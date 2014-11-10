@@ -17,23 +17,19 @@ public class stackActionScript : MonoBehaviour {
         stackAction.Add(schem);
     }
 
-    void startStack()
+    IEnumerator startStack()
     {
         foreach (StackSchemClass schem in stackAction)
         {
             schem.Script.fireAction(schem.Param);
-            wait(schem.Time);
+            yield return new WaitForSeconds(schem.Time);
         }
-    }
-
-    IEnumerator wait(float time)
-    {
-        yield return new WaitForSeconds(time);
+        stackAction.Clear();
     }
 
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
-            startStack();
+            StartCoroutine(startStack());
 	}
 }

@@ -12,9 +12,9 @@ public class MenuFunctionScript : MonoBehaviour {
 
     public void createServeur()
     {
-        Debug.Log(gameNameInput.text + " : " + (int)numberPlayerSlider.value);
+        Debug.Log(gameNameInput.text.ToString() + " : " + (int)numberPlayerSlider.value);
         Network.InitializeServer((int)numberPlayerSlider.value, 8080,!Network.HavePublicAddress());
-        MasterServer.RegisterHost("MyUnityProject", gameNameInput.text, "");
+        MasterServer.RegisterHost("MyUnityProject", gameNameInput.text.ToString(), "");
     }
 
     public void quitGame()

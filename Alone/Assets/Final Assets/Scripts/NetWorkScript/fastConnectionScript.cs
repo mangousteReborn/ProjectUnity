@@ -50,12 +50,12 @@ public class fastConnectionScript : MonoBehaviour {
     void instantiateMyPlayer()
     {
         int playerConnected = setting.ListPlayer.Count;
-        Debug.Log(playerConnected);
         GameObject spawnPos = spawnPoint[playerConnected];
         GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
+        newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
         setting.ListPlayer.Add(newPlayer.networkView.viewID);
+        Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
         networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
-
     }
 
     [RPC]

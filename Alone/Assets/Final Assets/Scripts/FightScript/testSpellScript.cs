@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Final_Assets.Scripts.Class;
 
 public class testSpellScript : MonoBehaviour, ActionInterface {
 
@@ -10,12 +11,11 @@ public class testSpellScript : MonoBehaviour, ActionInterface {
 
     private stackActionScript stack;
 
-    public delegate void fireAction();
-    public event fireAction action;
+    public delegate void ActionEventImplemente(Vector3 pos);
+    public event ActionEventImplemente action;
 
     void Start()
     {
-        Debug.Log("start testSpell");
         stack = gameObject.GetComponent<stackActionScript>();
     }
 
@@ -27,30 +27,34 @@ public class testSpellScript : MonoBehaviour, ActionInterface {
 	// Update is called once per frame
 	void Update () {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 mouseLocation;
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Vector3 mouseLocation = hit.point;
+            mouseLocation = hit.point;
             mouseLocation.y = 0.1f;
             if(instanceObject.transform.position != mouseLocation)
                 instanceObject.transform.position = mouseLocation;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            stack.addAction(this);
-            action += attack;
-            this.enabled = false;
+            if (Input.GetMouseButtonDown(0))
+            {
+                object[] obj = new object[]{ mouseLocation };
+                StackSchemClass schem = new StackSchemClass(this, obj, this.timeIncantation);
+                stack.addAction(schem);
+                action += attack;
+                this.enabled = false;
+            }
         }
 	}
 
-    public void fireActionSpell()
+    public void fireAction(object[] param)
     {
-        action();
+        Vector3 pos = (Vector3)param[0];
+        action(pos);
     }
 
-    void attack()
+    void attack(Vector3 pos)
     {
-        Debug.Log("boooom");
+        Debug.Log("boooom at : " + pos);
     }
 
     void OnDisable()

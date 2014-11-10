@@ -47,16 +47,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\ServeurListScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" />
-     <Compile Include="Assets\TestAssets\ActionInterface.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
      <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />
-     <Compile Include="Assets\TestAssets\Scripts\DeplacementActionScript.cs" />
-     <Compile Include="Assets\TestAssets\Scripts\testSpellScript.cs" />
-     <Compile Include="Assets\TestAssets\stackActionScript.cs" />
      <None Include="Assets\IMPORTANT README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

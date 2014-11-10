@@ -1,0 +1,16 @@
+TODO pour l'alpha :
+Partie MJ - placement des unités / IA (minimaliste) / instanciation du player / interface
+Level Design - Map 
+Différent effect de particule (étude)
+
+
+
+En cours pour l'alpha :
+Déplacement - Prévisualisation / Action / Calcule du temps
+Network - Connection / Instanciation
+Spell - architecture général / Action
+Pile de sort - architecture général
+Menu et interface
+
+
+Fini pour l'alpha :

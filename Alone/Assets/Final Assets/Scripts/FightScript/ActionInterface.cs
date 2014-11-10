@@ -2,5 +2,5 @@
 using System.Collections;
 
 public interface ActionInterface  {
-    void fireActionSpell();
+    void fireAction(object[] param);
 }

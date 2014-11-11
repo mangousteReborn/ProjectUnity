@@ -13,12 +13,14 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
     }
 
     playerCaracScript carac;
+    AStarScript networkDeplacement;
 
     NavMeshAgent agent;
     NavMeshPath path;
     LineRenderer line;
 
     Vector3 target;
+    Vector3 currentTarget;
 
     bool wantToMove = false;
     bool isMoving = false;
@@ -35,6 +37,7 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
 	// Use this for initialization
 	void Start () {
         _player = gameObject;
+        networkDeplacement = new AStarScript(_player.networkView);
         agent = _player.GetComponent<NavMeshAgent>();
         carac = _player.GetComponent<playerCaracScript>();
         path = new NavMeshPath();
@@ -73,15 +76,20 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
             if (Input.GetMouseButton(0))
             {
                 moveToTarget(getTarget());
-                isMoving = true;
             }
         }
 
 	}
 
+    void FixedUpdate()
+    {
+    }
+
     void moveToTarget(Vector3 target)
     {
-        agent.SetDestination(target);
+        agent.path = networkDeplacement.setTarget(_player.transform.position, target);
+        isMoving = true;
+        //agent.SetDestination(target);
     }
 
     Vector3 getTarget()
@@ -112,8 +120,6 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
                 distance += Vector3.Distance(pathPosList[i], pathPosList[i - 1]);
             }
             float time = distance / agent.speed;
-            if (carac.IsInFight)
-                Debug.Log("Time deplacement : " + time);
         }
     }
 
@@ -126,5 +132,10 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         return distance / agent.speed;
     }
 
-
+    [RPC]
+    private void changeDirection(NetworkViewID id,string pathCorner)
+    {
+        Debug.Log("change direction");
+        NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = networkDeplacement.changeDirection(pathCorner);
+    }  
 }

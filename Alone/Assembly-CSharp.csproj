@@ -39,14 +39,17 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Programmes/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Programmes/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStats.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectInterface.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
@@ -58,12 +61,15 @@
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\ONFIRE\Singletons\GameSingleton.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterMovementScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
      <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />
      <None Include="Assets\IMPORTANT README.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>E:/Programmes/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

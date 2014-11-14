@@ -48,34 +48,37 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
 	
 	// Update is called once per frame
 	void Update () {
-        if(carac.IsInFight)
+        if (networkView.isMine)
         {
-            if (Input.GetKeyDown(KeyCode.P))
-                _player.GetComponent<testSpellScript>().enabled = !_player.GetComponent<testSpellScript>().enabled;
-            if(Input.GetKeyDown(KeyCode.D))
-                wantToMove = !wantToMove;
-            if (wantToMove)
+            if (carac.IsInFight)
             {
-                if (Input.GetMouseButton(0))
-                    drawPathTotarget(getTarget());
-                if(this.target != null && Input.GetKeyDown(KeyCode.KeypadEnter))
+                if (Input.GetKeyDown(KeyCode.P))
+                    _player.GetComponent<testSpellScript>().enabled = !_player.GetComponent<testSpellScript>().enabled;
+                if (Input.GetKeyDown(KeyCode.D))
+                    wantToMove = !wantToMove;
+                if (wantToMove)
                 {
-                    object[] obj = new object[] { this.target };
+                    if (Input.GetMouseButton(0))
+                        drawPathTotarget(getTarget());
+                    if (this.target != null && Input.GetKeyDown(KeyCode.KeypadEnter))
+                    {
+                        object[] obj = new object[] { this.target };
 
-                    StackSchemClass schem = new StackSchemClass(this, obj, getTime());
-                    _player.GetComponent<stackActionScript>().addAction(schem);
-                    action += moveToTarget;
-                    wantToMove = false;
+                        StackSchemClass schem = new StackSchemClass(this, obj, getTime());
+                        _player.GetComponent<stackActionScript>().addAction(schem);
+                        action += moveToTarget;
+                        wantToMove = false;
+                    }
                 }
             }
-        }
-        else
-        {
-            if (isMoving)
-                drawPathTotarget(this.target);
-            if (Input.GetMouseButton(0))
+            else
             {
-                moveToTarget(getTarget());
+                if (isMoving)
+                    drawPathTotarget(this.target);
+                if (Input.GetMouseButton(0))
+                {
+                    moveToTarget(getTarget());
+                }
             }
         }
 
@@ -87,7 +90,14 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
 
     void moveToTarget(Vector3 target)
     {
-        agent.path = networkDeplacement.setTarget(_player.transform.position, target);
+        if (Network.isServer)
+        {
+            agent.path = networkDeplacement.setTarget(_player.transform.position, target,false);
+        }
+        else
+        {
+            networkView.RPC("setTargetRPC", RPCMode.Server,networkView.viewID, _player.transform.position, target);
+        }
         isMoving = true;
         //agent.SetDestination(target);
     }
@@ -132,10 +142,18 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         return distance / agent.speed;
     }
 
-    [RPC]
     private void changeDirection(NetworkViewID id,string pathCorner)
     {
         Debug.Log("change direction");
-        NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = networkDeplacement.changeDirection(pathCorner);
-    }  
+        //NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = networkDeplacement.changeDirection(pathCorner);
+    }
+
+    [RPC]
+    private void setTargetRPC(NetworkViewID id, Vector3 startPos, Vector3 newTarget)
+    {
+        Debug.Log("setTargetRPC");
+        NavMeshPath path = networkDeplacement.setTarget(startPos, newTarget,true);
+        if (path != null)
+            NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = path;
+    }
 }

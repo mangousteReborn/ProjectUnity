@@ -2,15 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\CharacterStats.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="12" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="20" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterMovementScript.cs" Line="24" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectInterface.cs" Line="14" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" Line="13" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" Line="8" Column="38" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="11" Column="56" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="29" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" Line="17" Column="18" />
+      <File FileName="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" Line="43" Column="23" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

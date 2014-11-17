@@ -7,13 +7,19 @@ public class DamagePopupScript : MonoBehaviour {
 	Animator _animator;
 
 	[SerializeField]
-	GameObject _popup;
+	GameObject _popupObject;
 	// Use this for initialization
 	void Start () {
-
+	
 	}
 	
 	public void destroy(){
-		Destroy (_popup);
+		Destroy (_popupObject);
+	}
+
+	public GameObject popupObject{
+		get {
+			return _popupObject;
+		}
 	}
 }

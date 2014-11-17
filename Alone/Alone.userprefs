@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\CharacterStats.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs">
     <Files>
       <File FileName="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="60" Column="60" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="51" Column="37" />
       <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="146" Column="4" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" Line="1" Column="1" />
@@ -14,9 +13,10 @@
       <File FileName="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" Line="137" Column="6" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" Line="8" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" Line="22" Column="24" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" Line="141" Column="49" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

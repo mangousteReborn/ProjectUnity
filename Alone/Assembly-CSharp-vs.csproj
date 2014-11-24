@@ -48,9 +48,12 @@
   <ItemGroup>
      <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStats.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
@@ -61,9 +64,7 @@
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\ONFIRE\Singletons\GameSingleton.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterMovementScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
      <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />

@@ -48,8 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStats.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectInterface.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />

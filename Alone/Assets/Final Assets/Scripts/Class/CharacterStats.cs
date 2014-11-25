@@ -15,7 +15,7 @@ public class CharacterStats  {
 	 */
 	Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> _eventListernersMap;
 
-
+	List <Vignette> _vignettesList;
 	List <Effect> _effectsList;
 
 	private int _maxLife;
@@ -53,6 +53,14 @@ public class CharacterStats  {
 	/*
 	 * Effects managing
 	 */
+	public void pushVignette(Vignette v){
+
+	}
+
+	public void removeVignette(string k){
+
+	}
+
 	public void pushEffect(Effect e){
 		this._effectsList.Add (e);
 		e.applyEffect (this);

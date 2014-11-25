@@ -53,11 +53,16 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\Vignette.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteBonus.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\ServeurListScript.cs" />

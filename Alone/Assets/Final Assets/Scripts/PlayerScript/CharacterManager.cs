@@ -61,6 +61,10 @@ public class CharacterManager : MonoBehaviour {
 			
 			this._characterStats.currentLife += 1;
 		}
+		if (Input.GetKeyDown (KeyCode.M)) {
+			Vignette v = GameData.getBonusVignette("lifebonus");
+			Debug.Log("Vignette === " + v.name);
+		}
 		  //!\\
 		 //!!!\\
 		//!!!!!\\
@@ -79,7 +83,7 @@ public class CharacterManager : MonoBehaviour {
 
 		GameObject popup = (GameObject)Instantiate (this._damagePopup, this._character.transform.position,  Quaternion.identity);
 
-		//popup.transform.position = this._character.transform.position;
+
 		popup.GetComponentInChildren<Text> ().color = color;
 		popup.GetComponentInChildren<Text> ().text = damages >= 0 ? ""+damages : "+"+damages*-1;
 	}

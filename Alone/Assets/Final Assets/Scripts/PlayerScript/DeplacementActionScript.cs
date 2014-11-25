@@ -5,6 +5,9 @@ using Assets.Final_Assets.Scripts.Class;
 
 public class DeplacementActionScript : MonoBehaviour, ActionInterface {
 
+	[SerializeField]
+	Material _lineColorMaterial;
+
     GameObject _player;
     public GameObject Player
     {
@@ -43,6 +46,10 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         path = new NavMeshPath();
         line = gameObject.AddComponent<LineRenderer>();
         line.SetWidth(1.0f, 1.0f);
+		/*
+		Material m = line.GetComponent<Material>();
+		m = _lineColorMaterial;
+		*/
         line.SetColors(Color.yellow, Color.yellow);
 	}
 	

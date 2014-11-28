@@ -42,7 +42,7 @@ public class CharacterStats  {
 		this._eventListernersMap.Add (key, a);
 	}
 
-	private void fireEvent(CharacterStatsEvent key, object[] param=null){
+	public void fireEvent(CharacterStatsEvent key, object[] param=null){
 		foreach (KeyValuePair<CharacterStatsEvent,Action<CharacterStats,object[]>> kvp in this._eventListernersMap) {
 			if(kvp.Key == key){
 				kvp.Value(this,param);
@@ -95,7 +95,7 @@ public class CharacterStats  {
 				e.updateEffect(this);
 			}
 		}
-		hasChanged();
+		fireEvent(CharacterStatsEvent.change,null);
 	}
 
 	public void updateEffectsOfType(int durationType){
@@ -104,7 +104,7 @@ public class CharacterStats  {
 				e.updateEffect(this);
 			}
 		}
-		hasChanged();
+		fireEvent(CharacterStatsEvent.change,null);
 	}
 
 	public void updateCombatEffects(){
@@ -125,7 +125,7 @@ public class CharacterStats  {
 		foreach (Effect e in toRemove) {
 			this._effectsList.Remove(e);
 		}
-		hasChanged();
+		fireEvent(CharacterStatsEvent.change,null);
 	}
 
 	// Get/Seters
@@ -137,7 +137,7 @@ public class CharacterStats  {
 		set {
 			this._maxLife = value;
 
-			hasChanged();
+			fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
 	public int currentLife
@@ -152,7 +152,7 @@ public class CharacterStats  {
 			object[] param = {oldLife,this._currentLife};
 
 			fireEvent(CharacterStatsEvent.currentLifeChange, param);
-			hasChanged();
+			fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
 

@@ -4,6 +4,7 @@ public enum CharacterStatsEvent
 {
 	currentLifeChange,
 	lifeChange,
+	change,
 }
 
 

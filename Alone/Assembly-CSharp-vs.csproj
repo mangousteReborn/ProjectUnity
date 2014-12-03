@@ -57,9 +57,8 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteBonus.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\PlayerGUIScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\PlayerGUIScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\UI\GUIScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />

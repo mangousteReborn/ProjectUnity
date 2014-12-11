@@ -11,7 +11,7 @@ using System;
  */
 public class CharacterManager : MonoBehaviour {
 	
-	CharacterStats _characterStats;
+
 		
 	[SerializeField]
 	private GameObject _damagePopup;
@@ -19,15 +19,12 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject _healthBar;
 
-	private Scrollbar _healthBarScrollbar;
-	private Text _healthBarLabel;
-		
-
 	[SerializeField]
 	public GameObject _character;
 
+	private CharacterStats _characterStats = new CharacterStats ();
+
 	void Start () {
-		this._characterStats = new CharacterStats ();
 
 		// HealthBar init (if defined)
 		if (this._healthBar != null) {
@@ -36,18 +33,13 @@ public class CharacterManager : MonoBehaviour {
 			//this._healthBar.transform.parent = this._character.transform;
 
 			this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
-
-			//this._characterStats.listenersList.Add(updateHealthBar);
-
-
+			
+			this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
 		}
 
-		this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
+		//this._characterStats.pushEffect(new EffectDamageOverBattle(10, 3));
 
-		this._characterStats.pushEffect(new EffectDamageOverBattle(10, 3));
 
-		// Triggering event for first healthbar update
-		this._characterStats.fireEvent(CharacterStatsEvent.change);
 	}
 
 	// Update is called once per frame

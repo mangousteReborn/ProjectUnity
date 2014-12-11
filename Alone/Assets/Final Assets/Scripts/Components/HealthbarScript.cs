@@ -18,13 +18,15 @@ public class HealthbarScript : MonoBehaviour {
 
 	void Start () {
 		this.transform.localScale = _scale;
-		_healthBarScrollbar = _healthbar.GetComponentInChildren<Scrollbar>();
-		_healthBarLabel = _healthbar.GetComponentInChildren<Text>();
+		this._healthBarScrollbar = _healthbar.GetComponentInChildren<Scrollbar>();
+		this._healthBarLabel = _healthbar.GetComponentInChildren<Text>();
+
+		// Triggering event for first healthbar update
+		this._characterStats.fireEvent(CharacterStatsEvent.change);
 
 	}
 
 	private void updateHealthBar(CharacterStats stats,object[] param){
-
 		this._healthBarScrollbar.size = (float)stats.currentLife / (float)stats.maxLife;
 		this._healthBarLabel.text = stats.currentLife + " / " + stats.maxLife;
 		

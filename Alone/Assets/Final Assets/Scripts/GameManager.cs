@@ -5,18 +5,32 @@ public class GameManager : MonoBehaviour {
 	// STUFF STUFF !!
 	
 	[SerializeField]
-	GameObject _playerGUIObject;
+	GameObject _playerDesktopGUIObject;
+
 	// TODO : GameMasterGUIScript !!
 
-	private PlayerGUIScript _playerGUIScript;
+	// Players GUI Pattern
+	private PlayerDesktopGUIScript _playerDesktopGUIScript;
 
 
+	// Current player GUI (depending of player type (classic or game master)
+	private IPlayerGUI _currentPlayerGUI;
 
 	void Start () {
+
 		GameData.init();
+
+
 		// TODO : Check if current player is "classic" or "game master"
-		//_playerGUIScript = (PlayerGUIScript) Instantiate(_playerGUIObject);
-		_playerGUIObject = (GameObject)Instantiate(_playerGUIObject);
-		_playerGUIScript = _playerGUIObject.GetComponent<PlayerGUIScript>();
+		_playerDesktopGUIObject = (GameObject)Instantiate(_playerDesktopGUIObject);
+		_playerDesktopGUIScript = _playerDesktopGUIObject.GetComponent<PlayerDesktopGUIScript>();
+
+		_currentPlayerGUI = _playerDesktopGUIScript;
+	}
+
+	public IPlayerGUI playerGUI {
+		get {
+			return this._currentPlayerGUI;
+		}
 	}
 }

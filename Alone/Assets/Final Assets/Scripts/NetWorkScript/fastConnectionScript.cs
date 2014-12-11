@@ -52,7 +52,14 @@ public class fastConnectionScript : MonoBehaviour {
         int playerConnected = setting.ListPlayer.Count;
         GameObject spawnPos = spawnPoint[playerConnected];
         GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
-        newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
+        
+		// Setting values for player GUI
+		IPlayerGUI gui = this.GetComponent<GameManager> ().playerGUI;
+		CharacterManager cm = newPlayer.GetComponent<CharacterManager> ();
+		
+		gui.setCharacterStats(cm.characterStats);
+
+		newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
         setting.ListPlayer.Add(newPlayer.networkView.viewID);
         Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
         networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);

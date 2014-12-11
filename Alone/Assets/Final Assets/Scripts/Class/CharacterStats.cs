@@ -9,14 +9,13 @@ using System.Collections.Generic;
 public class CharacterStats  {
 
 	List <Action<CharacterStats,object[]>> _listenersList; // !!! ???
-
-	/*
-	 * 
-	 */
+	
 	Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> _eventListernersMap;
 
-	List <Vignette> _vignettesList;
+	List <VignetteBonus> _vignettesList;
 	List <Effect> _effectsList;
+
+	List<Action> _availableActionList;
 
 	private int _maxLife;
 	private int _currentLife;
@@ -26,8 +25,15 @@ public class CharacterStats  {
 		this._listenersList = new List <Action<CharacterStats,object[]>> ();
 		this._eventListernersMap = new Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> ();
 
+		this._vignettesList = new List<VignetteBonus> ();
+
+		this._availableActionList = new List<Action> ();
+
 		this._maxLife = startLife;
 		this._currentLife = startLife;
+
+		// Definition of default available Actions
+		this._availableActionList.Add (GameData.getAction("move"));
 
 	}
 
@@ -52,15 +58,47 @@ public class CharacterStats  {
 
 	/*
 	 * Effects managing
-	 */
-	public void pushVignette(Vignette v){
+ 	 */
+	// Vignettes
+	public void pushVignette(VignetteBonus v){
+		this._vignettesList.Add (v);
+		foreach (Effect e in v.effectsList) {
+			e.applyEffect(this);
+		}
 
 	}
 
-	public void removeVignette(string k){
-
+	public void removeVignette(string key, bool all = false, bool silent = false){
+		int i = 0;
+		bool found = false;
+		foreach (VignetteBonus v in this._vignettesList){
+			if(v.key.CompareTo(key) == 0){
+				found = true;
+				if (!silent){
+					foreach(Effect e in v.effectsList)
+						e.removeEffect(this);
+				}
+				break;
+			}
+			i++;
+		}
+		if (found) {
+			this._vignettesList.RemoveAt(i);
+		}
+		
+		if (all && found)
+			removeVignette (key, all, silent);
 	}
 
+	public bool hasVignette(string key){
+		foreach (VignetteBonus vb in this._vignettesList) {
+			if(vb.key.CompareTo(key) == 0)
+				return true;
+		}
+		return false;
+	}
+
+	// Effects
 	public void pushEffect(Effect e){
 		this._effectsList.Add (e);
 		e.applyEffect (this);
@@ -89,6 +127,19 @@ public class CharacterStats  {
 			removeEffect (key, all, silent);
 	}
 
+	public bool hasEffect(string key){
+		foreach (Effect e in this._effectsList) {
+			if(e.key.CompareTo(key) == 0)
+				return true;
+		}
+		return false;
+	}
+
+
+
+	/*
+	 * All effects (Vignettes included) updates
+	 */
 	public void updateEffects(){
 		foreach (Effect e in this._effectsList){
 			if(e.durationType != 0){
@@ -153,6 +204,13 @@ public class CharacterStats  {
 
 			fireEvent(CharacterStatsEvent.currentLifeChange, param);
 			fireEvent(CharacterStatsEvent.change,null);
+		}
+	}
+
+	public List<Action> availableActionList
+	{
+		get {
+			return this._availableActionList;
 		}
 	}
 

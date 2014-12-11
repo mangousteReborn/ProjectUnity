@@ -6,7 +6,7 @@ public class VignetteBonus : Vignette {
 
 	List<Effect> _effectsList;
 
-	public VignetteBonus(List<Effect> l,string key, string name, string desc=null, string imagePath="imports/images/notfound.png")
+	public VignetteBonus(List<Effect> l,string key, string name, string desc=null, string imagePath="Vignettes/default_bonus")
 	: base(key, name, desc == null ? name : desc, VignetteType.bonus, imagePath){
 		copyList(l);
 	}

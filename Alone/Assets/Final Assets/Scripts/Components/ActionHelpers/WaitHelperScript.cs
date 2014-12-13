@@ -5,73 +5,71 @@ using UnityEngine.EventSystems;
 using System;
 using System.Collections;
 
-
-public class MoveHelperScript : MonoBehaviour, IActionHelper{
+public class WaitHelperScript : MonoBehaviour,  IActionHelper{
 
 	[SerializeField]
 	private GameObject _object;
-
-	[SerializeField]
-	private GameObject _textObject;
-
+	
 	[SerializeField]
 	private LineRenderer _lineRenderer;
-
+	
+	[SerializeField]
+	private GameObject _textObject;
+	
 	[SerializeField]
 	private Text _text;
-
+	
 	private Vector3 _endPoint; // Implements
 	private Vector3 _startPoint; // Implements
 	private Vector3 _middlePoint; // Implements
-
-
+	
+	
 	private float _size;
-
+	
 	private bool _validated = false;
-
+	
 	private float _currentCost;
 	private MoveAction _moveAction;
 	private CharacterManager _owner;
-
+	
 	void Start(){
-
+		
 	}
-
+	
 	void Update(){
 		if (this._validated)
 			return;
-
+		
 		if (Input.GetMouseButton (0) && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector3 target = getTarget();
-			calcCost(target);
+			drawLines(target);
 			object[] p = {this._currentCost, target};
 			this._validated = this._moveAction.onActionValidation(this._owner, p);
-
+			
 			return;
 		}
-
-		calcCost(getTarget());
-
-
+		
+		drawLines(getTarget());
+		
+		
 	}
-
+	
 	// IMPLEMENTS ME
 	public void setAction(Action a){
 		this._moveAction = (MoveAction)a;
-
+			
 	}
-
 	// IMPLEMENTS ME
 	public void setOwner(CharacterManager cm){
 		this._owner = cm;
 	}
-
+	
 	public void setStartPosition(Vector3 startPos){
 		this._startPoint = startPos;
 		this._object.transform.position = startPos;
-
+		
 	}
-
+	
 	private Vector3 getTarget()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -84,9 +82,9 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		}
 		return target;
 	}
-
-	private void calcCost(Vector3 destPos){
-
+	
+	private void drawLines(Vector3 destPos){
+		
 		this._endPoint = destPos;
 		this._lineRenderer.SetVertexCount(2);
 		this._lineRenderer.SetPosition(0, this._startPoint);
@@ -106,8 +104,8 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 			this._text.color = Color.red;
 		} else 
 			this._text.color = Color.white;
-
-
+		
+		
 		return;
 		// FIXME
 		NavMeshPath path = new NavMeshPath();
@@ -115,7 +113,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		Debug.Log ("Path Len == " + path.corners.Length + " path corn " + path.corners);
 		if (path.corners.Length < 0)
 			return;
-
+		
 		Vector3[] pathPosList = path.corners;
 		this._lineRenderer.SetVertexCount(pathPosList.Length);
 		this._lineRenderer.SetPosition(0, pathPosList[0]);
@@ -126,18 +124,18 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 			distance += Vector3.Distance(pathPosList[i], pathPosList[i - 1]);
 		}
 	}
-
+	
 	public void delete(){
 		GameObject.Destroy (this._object);
 	}
-
+	
 	public bool validate(object[] param){
-
+		
 		//this._endPoint = (Vector3)param [0];
 		return true;
-
+		
 	}
-
+	
 	public Vector3 getEndPoint() {
 		return this._endPoint;
 	}
@@ -147,7 +145,5 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	public Vector3 getMiddlePoint() {
 		return this._middlePoint;
 	}
-
-
 
 }

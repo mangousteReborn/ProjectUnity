@@ -1,34 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="84" Column="101" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Vignettes\VignetteAction.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" Line="4" Column="39" />
-      <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="36" Column="39" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\Action.cs" Line="49" Column="25" />
-      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="92" Column="3" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" Line="17" Column="27" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" Line="154" Column="27" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="325" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\GameData.cs" Line="33" Column="22" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="298" Column="38" />
-      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" Line="8" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" Line="18" Column="23" />
-      <File FileName="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" Line="24" Column="10" />
-      <File FileName="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" Line="18" Column="6" />
-      <File FileName="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" Line="43" Column="34" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="92" Column="3" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\VignetteSlotScript.cs" Line="39" Column="2" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="27" Column="55" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="89" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\WaitAction.cs" Line="32" Column="5" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\WaitHelperScript.cs" Line="106" Column="35" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

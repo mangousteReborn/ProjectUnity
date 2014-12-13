@@ -25,6 +25,7 @@ public class CharacterManager : MonoBehaviour {
 	public GameObject _character;
 
 	private CharacterStats _characterStats = new CharacterStats ();
+	private Player _player;
 	private bool _isInFight = false;
 
 	void Start () {
@@ -140,6 +141,14 @@ public class CharacterManager : MonoBehaviour {
 	public bool isInFight{
 		get {
 			return this._isInFight;
+		}
+	}
+	public Player player{
+		set {
+			this._player = value;
+		}
+		get {
+			return this._player;
 		}
 	}
 

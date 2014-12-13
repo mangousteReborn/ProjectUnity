@@ -104,7 +104,9 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
     {
         if (Network.isServer)
         {
-            agent.path = networkDeplacement.setTarget(_player.transform.position, target,false);
+			NavMeshPath nmp = networkDeplacement.setTarget(_player.transform.position, target,false);
+			if(null != nmp)
+				agent.path = nmp;
         }
         else
         {

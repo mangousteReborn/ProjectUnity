@@ -30,6 +30,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	private bool _validated = false;
 
 	private float _currentCost;
+
 	private MoveAction _moveAction;
 	private CharacterManager _owner;
 
@@ -46,6 +47,10 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 			calcCost(target);
 			object[] p = {this._currentCost, target};
 			this._validated = this._moveAction.onActionValidation(this._owner, p);
+
+
+
+			GameData.getActionHelperDrawer().networkView.RPC("pushMoveHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint);
 
 			return;
 		}

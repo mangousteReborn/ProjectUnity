@@ -53,10 +53,15 @@ public class fastConnectionScript : MonoBehaviour {
         GameObject spawnPos = spawnPoint[playerConnected];
         GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
         
+
 		// Setting values for player GUI
 		IPlayerGUI gui = this.GetComponent<GameManager> ().playerGUI;
 		CharacterManager cm = newPlayer.GetComponent<CharacterManager> ();
-		
+
+		Player p = new Player("Player", newPlayer.networkView.viewID, Color.green);
+
+		cm.player = p;
+
 		gui.setCharacterManager(cm);
 
 		newPlayer.GetComponent<DeplacementActionScript>().enabled = true;

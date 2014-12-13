@@ -55,6 +55,7 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Player.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\Vignette.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteAction.cs" />

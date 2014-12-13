@@ -31,6 +31,7 @@ public static class GameData {
 
 		_actionHelperDrawer = GameObject.Find ("Handler").GetComponent<ActionHelperDrawer> ();
 		_playerCameraObject = GameObject.Find ("Main Camera");
+
 		/*
 			VIGNETTES
 		 */

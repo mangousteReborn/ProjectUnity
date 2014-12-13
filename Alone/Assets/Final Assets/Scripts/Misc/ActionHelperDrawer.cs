@@ -77,5 +77,38 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 	}
 
+	public void addHelperInMap(NetworkViewID playerID, IActionHelper helper){
+		string k = playerID.ToString ();
+		if (playerID.isMine) {
+			Debug.LogError("Calling addHelerInMap for current player");
+			return;
+		}
+
+		if (this._othersHelpersMap.ContainsKey(k)){
+			Stack<IActionHelper> s = null;
+			this._othersHelpersMap.TryGetValue(k, out s);
+			s.Push(helper);
+
+		}else {
+			Stack<IActionHelper> s = new Stack<IActionHelper>();
+			s.Push(helper);
+			this._othersHelpersMap.Add(k, s);
+		}
+	}
+
+	[RPC]
+	public void pushMoveHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 middlePoint, Vector3 endPoint){
+		Debug.Log ("pushmovehlepr : mine ? " + playerID.isMine); 
+		if (playerID.isMine) {
+			return;
+			this._currentPlayerHelper.delete();
+
+			GameObject go = (GameObject)Instantiate (_moveHelperObject,startPoint , Quaternion.identity);
+			MoveHelperScript mhs = go.GetComponent<MoveHelperScript> ();
+			
+
+		}
+	}
+	
 
 }

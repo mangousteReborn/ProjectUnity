@@ -7,14 +7,14 @@ public abstract class Action  {
 	protected string _name;
 	protected string _desc;
 
-	protected float _actionCost = 0f;
+	protected float _actionCost;
 	protected bool _pending;
 
-	public Action(string key, string name="NONE", string desc="This is an action. And it rulez"){
+	public Action(string key, string name="NONE", string desc="This is an action. And it rulez", float actionCost=0f){
 		this._key = key;
 		this._name = name;
 		this._desc = desc;
-
+		this._actionCost = actionCost;
 	}
 
 

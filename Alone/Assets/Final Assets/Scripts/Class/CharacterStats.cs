@@ -261,15 +261,18 @@ public class CharacterStats  {
         }
         else
         {
-            int oldLife = this._currentLife;
-            this._currentLife = value;
-
-            object[] param = { oldLife, this._currentLife };
-
-            fireEvent(CharacterStatsEvent.currentLifeChange, param);
-            fireEvent(CharacterStatsEvent.change, null);
             if(!isFromRPC)
                 _networkView.RPC("setLife", RPCMode.Server, value);
+            else
+            {
+                int oldLife = this._currentLife;
+                this._currentLife = value;
+
+                object[] param = { oldLife, this._currentLife };
+
+                fireEvent(CharacterStatsEvent.currentLifeChange, param);
+                fireEvent(CharacterStatsEvent.change, null);
+            }
         }
     }
 

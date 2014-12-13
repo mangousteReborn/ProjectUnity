@@ -14,5 +14,5 @@ Alpha_Data/
 /*.pidb
 /*.booproj
 obj/
-*.meta
+# *.meta
 *.suo

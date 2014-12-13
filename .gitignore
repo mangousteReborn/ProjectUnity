@@ -13,5 +13,6 @@ Alpha_Data/
 /*.userprefs
 /*.pidb
 /*.booproj
+obj/
 *.meta
 *.suo

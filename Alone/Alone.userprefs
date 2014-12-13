@@ -1,21 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\CharacterStats.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="157" Column="42" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" Line="46" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="19" Column="64" />
       <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="27" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="59" Column="22" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="55" Column="9" />
       <File FileName="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\GameData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="27" Column="2" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="10" Column="2" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" Line="8" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System;
 
 public class GameManager : MonoBehaviour {
-	// STUFF STUFF !!
-	
+
+	[SerializeField]
+	bool _forceGameMasterUI;
+
 	[SerializeField]
 	GameObject _playerDesktopGUIObject;
+
+	[SerializeField]
+	GameObject _gameMasterGUIObject;
 
     private int _playerValidateCount;
 
@@ -16,6 +21,7 @@ public class GameManager : MonoBehaviour {
 	// Players GUI Pattern
 	private PlayerDesktopGUIScript _playerDesktopGUIScript;
 
+	private GameMasterGUIScript _gameMasterGUIScript;
 
 	// Current player GUI (depending of player type (classic or game master)
 	private IPlayerGUI _currentPlayerGUI;

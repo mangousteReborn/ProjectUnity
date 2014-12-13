@@ -2,8 +2,12 @@
 using System.Collections;
 using System;
 using Assets.Final_Assets.Scripts.Class;
+using UnityEngine.EventSystems;
 
 public class DeplacementActionScript : MonoBehaviour, ActionInterface {
+
+	[SerializeField]
+	Material _lineColorMaterial;
 
     GameObject _player;
     public GameObject Player
@@ -12,7 +16,7 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         set { _player = value; }
     }
 
-    playerCaracScript carac;
+	CharacterManager _characterManager;
     AStarScript networkDeplacement;
 
     NavMeshAgent agent;
@@ -39,10 +43,14 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         _player = gameObject;
         networkDeplacement = new AStarScript(_player.networkView);
         agent = _player.GetComponent<NavMeshAgent>();
-        carac = _player.GetComponent<playerCaracScript>();
+        _characterManager = _player.GetComponent<CharacterManager>();
         path = new NavMeshPath();
         line = gameObject.AddComponent<LineRenderer>();
         line.SetWidth(1.0f, 1.0f);
+		/*
+		Material m = line.GetComponent<Material>();
+		m = _lineColorMaterial;
+		*/
         line.SetColors(Color.yellow, Color.yellow);
 	}
 	
@@ -50,15 +58,16 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
 	void Update () {
         if (networkView.isMine)
         {
-            if (carac.IsInFight)
+			if (_characterManager.isInFight)
             {
+				line.SetWidth(0,0);
                 if (Input.GetKeyDown(KeyCode.P))
                     _player.GetComponent<testSpellScript>().enabled = !_player.GetComponent<testSpellScript>().enabled;
                 if (Input.GetKeyDown(KeyCode.D))
                     wantToMove = !wantToMove;
                 if (wantToMove)
                 {
-                    if (Input.GetMouseButton(0))
+					if (Input.GetMouseButton(0))
                         drawPathTotarget(getTarget());
                     if (this.target != null && Input.GetKeyDown(KeyCode.KeypadEnter))
                     {
@@ -75,7 +84,10 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
             {
                 if (isMoving)
                     drawPathTotarget(this.target);
-                if (Input.GetMouseButton(0))
+				/*
+				 * /?\ EventSystem.current.IsPointerOverGameObject() check if cursor is not on GUI
+				*/
+				if (Input.GetMouseButton(0) &&!EventSystem.current.IsPointerOverGameObject())
                 {
                     moveToTarget(getTarget());
                 }
@@ -88,7 +100,7 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
     {
     }
 
-    void moveToTarget(Vector3 target)
+    public void moveToTarget(Vector3 target)
     {
         if (Network.isServer)
         {
@@ -141,6 +153,10 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
             distance += Vector3.Distance(pathPosList[i], pathPosList[i - 1]);
         return distance / agent.speed;
     }
+
+	public AStarScript AStarScript{
+		get{ return this.networkDeplacement;}
+	}
 
     private void changeDirection(NetworkViewID id,string pathCorner)
     {

@@ -8,7 +8,7 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 	[SerializeField]
 	private float mSpeed = 3.0f; // Scale. Speed of the movement
 
-    private bool lockCamera = true;
+	private bool _lockCamera = true;
     private Transform joueur;
 
     StaticVariableScript setting;
@@ -28,8 +28,8 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 	void Update () {
 
 		// Check if on the right edge
-        if (!lockCamera)
-        {
+		if (!_lockCamera)
+		{
             if (Input.mousePosition.x >= Screen.width - mDelta)
             {
                 transform.position += Vector3.right * Time.deltaTime * mSpeed;
@@ -49,12 +49,18 @@ public class CameraMovementScriptMouse : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.E))
-            lockCamera = !lockCamera;
+			_lockCamera = !_lockCamera;
 
-        if (lockCamera)
-        {
+		if (_lockCamera)
+		{
 			float yPos = transform.position.y;
 			transform.position = new Vector3(joueur.position.x, yPos, joueur.position.z);
+		}
+	}
+
+	public bool lockCamera{
+		set{
+			this._lockCamera = value;
 		}
 	}
 }

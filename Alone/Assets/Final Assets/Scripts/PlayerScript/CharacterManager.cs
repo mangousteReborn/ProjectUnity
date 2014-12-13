@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+
+using System.Collections.Generic;
 using System.Collections;
 using System;
 /*
@@ -11,7 +13,7 @@ using System;
  */
 public class CharacterManager : MonoBehaviour {
 	
-	CharacterStats _characterStats;
+
 		
 	[SerializeField]
 	private GameObject _damagePopup;
@@ -19,15 +21,13 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject _healthBar;
 
-	private Scrollbar _healthBarScrollbar;
-	private Text _healthBarLabel;
-		
-
 	[SerializeField]
 	public GameObject _character;
 
+	private CharacterStats _characterStats = new CharacterStats ();
+	private bool _isInFight = false;
+
 	void Start () {
-		this._characterStats = new CharacterStats ();
 
 		// HealthBar init (if defined)
 		if (this._healthBar != null) {
@@ -35,20 +35,14 @@ public class CharacterManager : MonoBehaviour {
 			this._healthBar = (GameObject)Instantiate (this._healthBar);
 			//this._healthBar.transform.parent = this._character.transform;
 
-			this._healthBarScrollbar = this._healthBar.GetComponentInChildren<Scrollbar>();
-			this._healthBarLabel = this._healthBar.GetComponentInChildren<Text>();
-
-			this._characterStats.listenersList.Add(updateHealthBar);
-
-
+			this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
+			
+			this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
 		}
 
-		this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
+		//this._characterStats.pushEffect(new EffectDamageOverBattle(10, 3));
 
 
-		this._characterStats.pushEffect(new EffectDamageOverBattle(10, 3));
-
-		this._characterStats.hasChanged();
 	}
 
 	// Update is called once per frame
@@ -61,17 +55,17 @@ public class CharacterManager : MonoBehaviour {
 			
 			this._characterStats.currentLife += 1;
 		}
+		if (Input.GetKeyDown (KeyCode.M)) {
+			Vignette v = GameData.getBonusVignette("lifebonus");
+			Debug.Log("Vignette === " + v.name);
+		}
 		  //!\\
 		 //!!!\\
 		//!!!!!\\
 		this._healthBar.transform.position = new Vector3(this._character.transform.position.x,3,this._character.transform.position.z + 1);
 	}
 
-	private void updateHealthBar(CharacterStats stats,object[] param){
-		this._healthBarScrollbar.size = (float)stats.currentLife / (float)stats.maxLife;
-		this._healthBarLabel.text = stats.currentLife + " / " + stats.maxLife;
 
-	}
 
 	private void createPopup(CharacterStats stats, object[] param){
 		int damages = (int)param [0] - (int)param [1];
@@ -79,20 +73,73 @@ public class CharacterManager : MonoBehaviour {
 
 		GameObject popup = (GameObject)Instantiate (this._damagePopup, this._character.transform.position,  Quaternion.identity);
 
-		//popup.transform.position = this._character.transform.position;
+
 		popup.GetComponentInChildren<Text> ().color = color;
 		popup.GetComponentInChildren<Text> ().text = damages >= 0 ? ""+damages : "+"+damages*-1;
+	
 	}
 
-	public void dealDamages(int damages){
-		this._characterStats.currentLife -= damages;
+	public void runHotAcions(){
 
+
+		Stack<Action> stack = this._characterStats.hotActionsStack;
+		List<Action> actions = new List<Action>();
+
+		Debug.Log ("stack len = " + stack.Count);
+
+		while(stack.Count > 0)
+			actions.Add(stack.Pop());
+
+		actions.Reverse ();
+		StartCoroutine("runNextHotAction", actions);
+	}
+
+	IEnumerator runNextHotAction(object o){
+
+		List<Action> actions = (List<Action>)o;
+
+		foreach(Action a in actions){
+			Debug.Log ("# Running action " + a.key + " Waiting : " + a.actionCost);
+			a.onActionRunning(this);
+			yield return new WaitForSeconds(a.actionCost);
+		}
+
+
+	}
+
+	[RPC]
+	public void enterFightMode(NetworkViewID id)
+	{
+		if(Network.isServer)
+		{
+			if (!this._isInFight)
+			{
+				this._isInFight = true;
+				this._characterStats.gameMode = 2;
+				networkView.RPC("enterFightMode", RPCMode.Others, id);
+			}
+		}
+		else
+		{
+			this._characterStats.gameMode = 2;
+			this._isInFight = true;
+		}
 	}
 
 	// Get / Seters
+	public GameObject character{
+		get {
+			return this._character;
+		}
+	}
 	public CharacterStats characterStats{
 		get {
 			return this._characterStats;
+		}
+	}
+	public bool isInFight{
+		get {
+			return this._isInFight;
 		}
 	}
 

@@ -34,7 +34,7 @@ public class CharacterStats  {
 	 */
 	private uint _gameMode = 0;
 
-	public CharacterStats (NetworkView networkView, int startLife = 100, float actionPoint=5f){
+	public CharacterStats (NetworkView networkView=null, int startLife = 100, float actionPoint=5f){
 		this._effectsList = new List<Effect> ();
 		this._listenersList = new List <Action<CharacterStats,object[]>> ();
 		this._eventListernersMap = new Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> ();
@@ -322,6 +322,13 @@ public class CharacterStats  {
 	{
 		get {
 			return this._listenersList;
+		}
+	}
+	public NetworkView networkView
+	{
+		set {this._networkView = value;}
+		get {
+			return this._networkView;
 		}
 	}
 

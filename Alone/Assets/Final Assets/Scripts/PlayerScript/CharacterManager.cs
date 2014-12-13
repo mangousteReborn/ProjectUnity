@@ -24,27 +24,20 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	public GameObject _character;
 
-	private CharacterStats _characterStats;
+	private CharacterStats _characterStats = new CharacterStats ();
 	private Player _player;
 	private bool _isInFight = false;
 
 	void Start () {
-        _characterStats = new CharacterStats (this.networkView);
+		this._healthBar = (GameObject)Instantiate (this._healthBar);
 
-		// HealthBar init (if defined)
-		if (this._healthBar != null) {
-
-			this._healthBar = (GameObject)Instantiate (this._healthBar);
-			//this._healthBar.transform.parent = this._character.transform;
-
-			this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
+		this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
 			
-			this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
-		}
-
-		//this._characterStats.pushEffect(new EffectDamageOverBattle(10, 3));
+		this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
 
 
+		 
+		this._characterStats.networkView = this.networkView;
 	}
 
 	// Update is called once per frame

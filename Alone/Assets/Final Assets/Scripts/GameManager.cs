@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour {
     {
         _playerValidateCount += 1;
         int playerCount = GameData.getNonGMPlayerCount();
+        Debug.Log(_playerValidateCount);
+        Debug.Log(playerCount);
         if (_playerValidateCount == playerCount)
             _playerDesktopGUIScript.broadcastStartSimulation();
     }

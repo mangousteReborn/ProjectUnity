@@ -89,10 +89,10 @@ public class fastConnectionScript : MonoBehaviour {
     }
 
     [RPC]
-    void addPlayer(NetworkViewID playerID)
+    void addPlayer(NetworkViewID networkViewID)
     {
-        setting.ListPlayer.Add(playerID);
-        Debug.Log("player add");
+        Player p = new Player("Player", NetworkView.Find(networkViewID).gameObject.networkView, Color.green);
+        GameData.addPlayer(p);
     }
 
     void DestroyPlayer(GameObject player)

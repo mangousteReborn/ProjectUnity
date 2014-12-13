@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
 		GameData.init();
-
-
+		
 		// TODO : Check if current player is "classic" or "game master"
 		_playerDesktopGUIObject = (GameObject)Instantiate(_playerDesktopGUIObject);
 		_playerDesktopGUIScript = _playerDesktopGUIObject.GetComponent<PlayerDesktopGUIScript>();

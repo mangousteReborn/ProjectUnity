@@ -10,6 +10,7 @@ using System.Collections.Generic;
  */
 public static class GameData {
 
+    private static List<Player> _playerList;
 
 	private static Dictionary<string, Vignette> _bonusVignetteMap = new Dictionary<string, Vignette>();
 
@@ -31,7 +32,7 @@ public static class GameData {
 
 		_actionHelperDrawer = GameObject.Find ("Handler").GetComponent<ActionHelperDrawer> ();
 		_playerCameraObject = GameObject.Find ("Main Camera");
-
+        _playerList = new List<Player>();
 		/*
 			VIGNETTES
 		 */
@@ -71,6 +72,11 @@ public static class GameData {
 		return val;
 	}
 	
+    public static List<Player> getPlayerList()
+    {
+        return _playerList;
+    }
+
 	public static Dictionary<string, Vignette> getActionVignettes(){
 		return _actionVignetteMap;
 	}
@@ -89,4 +95,20 @@ public static class GameData {
 	public static GameObject getCameraObject(){
 		return _playerCameraObject;
 	}
+
+    public static void addPlayer(Player player)
+    {
+        _playerList.Add(player);
+    }
+
+    public static int getNonGMPlayerCount()
+    {
+        int playerCount = 0;
+        foreach (Player player in _playerList)
+        {
+            if (!player.isGM)
+                playerCount++;
+        }
+        return playerCount;
+    }
 }

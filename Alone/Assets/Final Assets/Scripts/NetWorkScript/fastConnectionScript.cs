@@ -58,7 +58,8 @@ public class fastConnectionScript : MonoBehaviour {
 		IPlayerGUI gui = this.GetComponent<GameManager> ().playerGUI;
 		CharacterManager cm = newPlayer.GetComponent<CharacterManager> ();
 
-		Player p = new Player("Player", newPlayer.networkView.viewID, Color.green);
+		Player p = new Player("Player", newPlayer.networkView, Color.green);
+        GameData.addPlayer(p);
 
 		cm.player = p;
 

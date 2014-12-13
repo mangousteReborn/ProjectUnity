@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 /*
  *  author: Thomas P
@@ -90,6 +91,9 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private CharacterStats _characterStats;
 
 	private Action _pendingAction;
+
+    public delegate void addReadyPlayerHandler(object sender, EventArgs e);
+    public event addReadyPlayerHandler readyPlayer;
 
 	/*	- currentMode :
 	 * 	0 : default.
@@ -260,10 +264,40 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		if (this._currentMode != 2) {
 			return;		
 		}
-		this._charaterManager.runHotAcions ();
-		changeGameMode (3);
-
+        changeGameMode (3);
+		//this._charaterManager.runHotAcions ();
+        if(Network.isServer)
+        {
+            readyPlayer(null, null);
+            networkView.RPC("newPlayerReady", RPCMode.Others);
+        }
+        else
+        {
+            networkView.RPC("newPlayerReady", RPCMode.Server);
+        }
 	}
+
+    [RPC]
+    private void newPlayerReady()
+    {
+        readyPlayer(null, null);
+        if(Network.isServer)
+            networkView.RPC("newPlayerReady", RPCMode.Others);
+    }
+
+    [RPC]
+    public void broadcastStartSimulation()
+    {
+        if(Network.isServer)
+        {
+            networkView.RPC("broadcastStartSimulation", RPCMode.Others);
+            this._charaterManager.runHotAcions();
+        }
+        else
+        {
+            this._charaterManager.runHotAcions();
+        }
+    }
 
 	// TODO : Check if we are in "passiveMode" (to avoid changing vignettes during battle)
 	private void onBonusVignetteSlotClick(object[] data){

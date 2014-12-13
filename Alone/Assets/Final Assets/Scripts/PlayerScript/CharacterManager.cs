@@ -24,11 +24,12 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	public GameObject _character;
 
-	private CharacterStats _characterStats = new CharacterStats ();
+	private CharacterStats _characterStats;
 	private Player _player;
 	private bool _isInFight = false;
 
 	void Start () {
+        _characterStats = new CharacterStats (this.networkView);
 
 		// HealthBar init (if defined)
 		if (this._healthBar != null) {
@@ -50,11 +51,11 @@ public class CharacterManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.T)) {
 			
-			this._characterStats.currentLife += (int)UnityEngine.Random.Range(-5,5);
+			this._characterStats.setCurrentLife(this._characterStats.currentLife + (int)UnityEngine.Random.Range(-5,5),false);
 		}
 		if (Input.GetKeyDown (KeyCode.Y)) {
 			
-			this._characterStats.currentLife += 1;
+			this._characterStats.setCurrentLife(this._characterStats.currentLife + 1,false);
 		}
 		if (Input.GetKeyDown (KeyCode.M)) {
 			Vignette v = GameData.getBonusVignette("lifebonus");
@@ -152,5 +153,10 @@ public class CharacterManager : MonoBehaviour {
 		}
 	}
 
+    [RPC]
+    private void setLife(int value)
+    {
+        this._characterStats.setCurrentLife(value,true);
+    }
 
 }

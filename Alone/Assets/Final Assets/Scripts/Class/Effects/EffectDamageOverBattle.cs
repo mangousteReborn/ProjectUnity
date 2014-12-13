@@ -23,7 +23,7 @@ public class EffectDamageOverBattle : Effect {
 	}
 	
 	public override void updateEffect(CharacterStats stats){
-		stats.currentLife -= this._damage;
+		stats.setCurrentLife(stats.currentLife - this._damage,false);
 	}
 	
 }

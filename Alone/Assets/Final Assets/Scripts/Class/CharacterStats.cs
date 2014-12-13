@@ -25,6 +25,8 @@ public class CharacterStats  {
 	private float _maxActionPoint;
 	private float _currentActionPoint;
 
+    private NetworkView _networkView;
+
 	/*
 	 *  0 : Default
 	 *  1 : restMode
@@ -32,7 +34,7 @@ public class CharacterStats  {
 	 */
 	private uint _gameMode = 0;
 
-	public CharacterStats (int startLife = 100, float actionPoint=5f){
+	public CharacterStats (NetworkView networkView, int startLife = 100, float actionPoint=5f){
 		this._effectsList = new List<Effect> ();
 		this._listenersList = new List <Action<CharacterStats,object[]>> ();
 		this._eventListernersMap = new Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> ();
@@ -50,6 +52,8 @@ public class CharacterStats  {
 
 		// Definition of default available Actions
 		this._availableActionList.Add (GameData.getAction("move"));
+
+        this._networkView = networkView;
 
 	}
 
@@ -240,16 +244,28 @@ public class CharacterStats  {
 		get {
 			return this._currentLife;
 		}
-		set {
-			int oldLife = this._currentLife;
-			this._currentLife = value;
-
-			object[] param = {oldLife,this._currentLife};
-
-			fireEvent(CharacterStatsEvent.currentLifeChange, param);
-			fireEvent(CharacterStatsEvent.change,null);
-		}
 	}
+
+    public void setCurrentLife(int value, bool isFromRPC)
+    {
+        if (Network.isServer)
+        {
+            int oldLife = this._currentLife;
+            this._currentLife = value;
+
+            object[] param = { oldLife, this._currentLife };
+
+            fireEvent(CharacterStatsEvent.currentLifeChange, param);
+            fireEvent(CharacterStatsEvent.change, null);
+            _networkView.RPC("setLife", RPCMode.Others, value);
+        }
+        else
+        {
+            if(!isFromRPC)
+                _networkView.RPC("setLife", RPCMode.Server, value);
+        }
+    }
+
 	public float maxActionPoint
 	{
 		get {

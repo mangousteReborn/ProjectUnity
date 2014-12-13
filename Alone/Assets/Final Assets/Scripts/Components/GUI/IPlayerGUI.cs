@@ -3,9 +3,9 @@ using System.Collections;
 public interface IPlayerGUI
 {
 
-	void setCharacterStats (CharacterStats cs);
+	void setCharacterManager (CharacterManager cm);
 	
-	void changeGameMode(uint mode);
+	void changeGameMode(uint gameMode);
 }
 
 

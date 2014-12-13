@@ -16,11 +16,23 @@ public class CharacterStats  {
 	List <Effect> _effectsList;
 
 	List<Action> _availableActionList;
+	Stack<Action> _hotActionsStack;
 
+	// Statistics
 	private int _maxLife;
 	private int _currentLife;
 
-	public CharacterStats (int startLife = 100){
+	private float _maxActionPoint;
+	private float _currentActionPoint;
+
+	/*
+	 *  0 : Default
+	 *  1 : restMode
+	 *  2 : fightMode
+	 */
+	private uint _gameMode = 0;
+
+	public CharacterStats (int startLife = 100, float actionPoint=5f){
 		this._effectsList = new List<Effect> ();
 		this._listenersList = new List <Action<CharacterStats,object[]>> ();
 		this._eventListernersMap = new Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> ();
@@ -29,14 +41,17 @@ public class CharacterStats  {
 
 		this._availableActionList = new List<Action> ();
 
+		this._hotActionsStack = new Stack<Action> ();
+
 		this._maxLife = startLife;
 		this._currentLife = startLife;
+		this._maxActionPoint = actionPoint;
+		this._currentActionPoint = actionPoint;
 
 		// Definition of default available Actions
 		this._availableActionList.Add (GameData.getAction("move"));
 
 	}
-
 
 	public void hasChanged(){
 		foreach (Action<CharacterStats,object[]> f in this._listenersList) {
@@ -179,7 +194,36 @@ public class CharacterStats  {
 		fireEvent(CharacterStatsEvent.change,null);
 	}
 
+	/*
+	 * Action
+	 */
+	public void addActionInAvailableList(Action a){
+		this._availableActionList.Add (a);
+		object[]param={a};
+		fireEvent(CharacterStatsEvent.actionAdded,param);
+	}
+	public void pushHotAction(Action a){
+		this._hotActionsStack.Push (a);
+
+		object[]param={a};
+		fireEvent(CharacterStatsEvent.hotActionPushed,param);
+	}
+	// FIXME : CharacterStats maybe doesnt have to cancelAction. GUI will do it by listening lastHotActionRemove event
+	public void removeLastHotAction(){
+		Action oa = this._hotActionsStack.Pop ();
+		object[] subParam = {this};
+		oa.cancelAction (subParam);
+
+		object[]param={oa};
+		fireEvent (CharacterStatsEvent.lastHotActionRemoved, param);
+	}
+
+
+
 	// Get/Seters
+	/*
+	 *  Statictics TODO : Manage Events and Fireing conditions
+	 */
 	public int maxLife
 	{
 		get {
@@ -206,11 +250,55 @@ public class CharacterStats  {
 			fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
+	public float maxActionPoint
+	{
+		get {
+			return this._maxActionPoint;
+		}
+		set {
+			this._maxActionPoint = value;
+			
+			fireEvent(CharacterStatsEvent.change,null);
+		}
+	}
+	public float currentActionPoint
+	{
+		get {
+			return this._currentActionPoint;
+		}
+		set {
+			float old = this._currentActionPoint;
+			this._currentActionPoint = value;
+
+			object[] param = {old,this._currentActionPoint};
+			fireEvent(CharacterStatsEvent.currentActionPointChanged,param);
+		}
+	}
+
+	// Others
+	public uint gameMode
+	{
+		get {
+			return this._gameMode;
+		}
+		set {
+			this._gameMode = value;
+			object[] p = {value};
+			fireEvent(CharacterStatsEvent.gameModeChanged,p);
+		}
+	}
 
 	public List<Action> availableActionList
 	{
 		get {
 			return this._availableActionList;
+		}
+	}
+
+	public Stack<Action> hotActionsStack
+	{
+		get {
+			return this._hotActionsStack;
 		}
 	}
 

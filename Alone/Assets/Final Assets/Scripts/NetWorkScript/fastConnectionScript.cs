@@ -57,7 +57,7 @@ public class fastConnectionScript : MonoBehaviour {
 		IPlayerGUI gui = this.GetComponent<GameManager> ().playerGUI;
 		CharacterManager cm = newPlayer.GetComponent<CharacterManager> ();
 		
-		gui.setCharacterStats(cm.characterStats);
+		gui.setCharacterManager(cm);
 
 		newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
         setting.ListPlayer.Add(newPlayer.networkView.viewID);

@@ -4,10 +4,23 @@ public enum CharacterStatsEvent
 {
 	currentLifeChange,
 	lifeChange,
-	vignetteAdded,
-	vignetteRemoved,
+
+	vignetteBonusAdded,
+	vignetteBonusRemoved,
+
+	actionAdded,
+	actionRemoved,
+
 	effectAdded,
 	effectRemove,
+
+	currentActionPointChanged,
+	maxActionPointChanged, // TODO
+
+	hotActionPushed,
+	lastHotActionRemoved,
+
+	gameModeChanged,
 	change,
 }
 

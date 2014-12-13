@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +23,9 @@ public class VignettesPickerScript : MonoBehaviour {
 
 	[SerializeField]
 	GameObject _vignetteSlotObject;
+
+	[SerializeField]
+	Text _title;
 
 	[SerializeField]
 	Animator _animator;
@@ -121,6 +124,10 @@ public class VignettesPickerScript : MonoBehaviour {
 			i++;
 		}
 	
+	}
+
+	public void setTitle(string value){
+		this._title.text = value;
 	}
 
 	// Vignettes manipulation methods

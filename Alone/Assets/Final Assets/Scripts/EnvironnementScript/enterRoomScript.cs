@@ -25,9 +25,9 @@ public class enterRoomScript : MonoBehaviour {
                 {
                     view = NetworkView.Find(id);
                     if (!Network.isServer)
-                        view.RPC("enterFight", RPCMode.Server, id);
+                        view.RPC("enterFightMode", RPCMode.Server, id);
                     else
-                        view.GetComponent<playerCaracScript>().enterFight(id);
+						view.GetComponent<CharacterManager>().enterFightMode(id);//view.GetComponent<playerCaracScript>().enterFight(id);
                 }
             }
         }

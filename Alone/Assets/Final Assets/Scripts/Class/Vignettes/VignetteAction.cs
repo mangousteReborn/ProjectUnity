@@ -8,7 +8,7 @@ public class VignetteAction : Vignette {
 
 	public VignetteAction(Action a, string imagePath="Vignettes/default_action")
 	: base(a.key, a.name, a.desc == null ? a.name : a.desc, VignetteType.action, imagePath){
-
+		this._action = a;
 	}
 
 	public Action action{

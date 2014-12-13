@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+
+using System.Collections.Generic;
 using System.Collections;
 using System;
 /*
@@ -23,6 +25,7 @@ public class CharacterManager : MonoBehaviour {
 	public GameObject _character;
 
 	private CharacterStats _characterStats = new CharacterStats ();
+	private bool _isInFight = false;
 
 	void Start () {
 
@@ -76,10 +79,67 @@ public class CharacterManager : MonoBehaviour {
 	
 	}
 
+	public void runHotAcions(){
+
+
+		Stack<Action> stack = this._characterStats.hotActionsStack;
+		List<Action> actions = new List<Action>();
+
+		Debug.Log ("stack len = " + stack.Count);
+
+		while(stack.Count > 0)
+			actions.Add(stack.Pop());
+
+		actions.Reverse ();
+		StartCoroutine("runNextHotAction", actions);
+	}
+
+	IEnumerator runNextHotAction(object o){
+
+		List<Action> actions = (List<Action>)o;
+
+		foreach(Action a in actions){
+			Debug.Log ("# Running action " + a.key + " Waiting : " + a.actionCost);
+			a.onActionRunning(this);
+			yield return new WaitForSeconds(a.actionCost);
+		}
+
+
+	}
+
+	[RPC]
+	public void enterFightMode(NetworkViewID id)
+	{
+		if(Network.isServer)
+		{
+			if (!this._isInFight)
+			{
+				this._isInFight = true;
+				this._characterStats.gameMode = 2;
+				networkView.RPC("enterFightMode", RPCMode.Others, id);
+			}
+		}
+		else
+		{
+			this._characterStats.gameMode = 2;
+			this._isInFight = true;
+		}
+	}
+
 	// Get / Seters
+	public GameObject character{
+		get {
+			return this._character;
+		}
+	}
 	public CharacterStats characterStats{
 		get {
 			return this._characterStats;
+		}
+	}
+	public bool isInFight{
+		get {
+			return this._isInFight;
 		}
 	}
 

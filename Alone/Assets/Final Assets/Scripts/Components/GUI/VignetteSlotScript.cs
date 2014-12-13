@@ -35,7 +35,7 @@ public class VignetteSlotScript : MonoBehaviour, IPointerEnterHandler, IPointerE
 	// Constant
 	private Color _emptyColor = new Color (0f, 0f, 0f, 0.3f);
 	private Color _availableColor = new Color (0f, 0f, 0f, 0f);
-	private Color _selectedColor = new Color (1f, 0f, 0f, 0.3f);
+	private Color _selectedColor = new Color (0f, 1f, 0f, 0.5f);
 
 	void Start(){
 		this._mask.color = _emptyColor;

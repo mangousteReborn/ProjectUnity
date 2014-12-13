@@ -3,48 +3,65 @@ using System.Collections;
 
 public abstract class Action  {
 
-	private string _key;
-	private string _name;
-	private string _desc;
+	protected string _key;
+	protected string _name;
+	protected string _desc;
 
-	private bool _pending;
+	protected float _actionCost = 0f;
+	protected bool _pending;
 
 	public Action(string key, string name="NONE", string desc="This is an action. And it rulez"){
 		this._key = key;
 		this._name = name;
 		this._desc = desc;
+
 	}
+
 
 	// Get / Set
 	public string key
 	{
 		get {
-			return _key;
+			return this._key;
 		}
 	}
 	public string name
 	{
 		get {
-			return _name;
+			return this._name;
 		}
 	}
 	public string desc
 	{
 		get {
-			return _desc;
+			return this._desc;
 		}
 	}
 	public bool pending
 	{
 		get {
-			return _pending;
+			return this._pending;
 		}
 		set {
 			this._pending = value;
 		}
 	}
+	public float actionCost
+	{
+		get {
+			return this._actionCost;
+		}
+	}
+
+	public abstract Action getCopy(Action a);
 
 	public abstract void onActionSelection(CharacterManager cm, bool drawHelper);
 
-	public abstract void onActionValidation(CharacterManager cm, Vector3 nextPos);
+	public abstract bool onActionValidation(CharacterManager cm, object[] param=null);
+
+	public abstract void onActionCanceled(CharacterManager cm, object[] param=null);
+
+	public abstract void onActionRunning(CharacterManager cm, object[] param=null);
+
+	public abstract void cancelAction (object[] param=null);
 }

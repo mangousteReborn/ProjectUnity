@@ -18,7 +18,7 @@ public class fastConnectionScript : MonoBehaviour {
         MasterServer.ClearHostList();
         MasterServer.RequestHostList("MyUnityProject");
         StartCoroutine(wait5Second());
-
+        GameData.init();
 	}
 
     IEnumerator wait5Second()
@@ -39,8 +39,6 @@ public class fastConnectionScript : MonoBehaviour {
 
     void OnConnectedToServer()
     {
-        setting = new StaticVariableScript();
-        setting.ListPlayer = new List<NetworkViewID>();
         if (Network.isServer)
             instantiateMyPlayer();
         else
@@ -49,7 +47,7 @@ public class fastConnectionScript : MonoBehaviour {
 
     void instantiateMyPlayer()
     {
-        int playerConnected = setting.ListPlayer.Count;
+        int playerConnected = GameData.getPlayerList().Count;
         GameObject spawnPos = spawnPoint[playerConnected];
         GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
         
@@ -66,7 +64,7 @@ public class fastConnectionScript : MonoBehaviour {
 		gui.setCharacterManager(cm);
 
 		newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
-        setting.ListPlayer.Add(newPlayer.networkView.viewID);
+        //setting.ListPlayer.Add(newPlayer.networkView.viewID);
         Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
         networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
     }
@@ -76,8 +74,9 @@ public class fastConnectionScript : MonoBehaviour {
     {
         if (Network.isServer)
         {
-            foreach (NetworkViewID id in setting.ListPlayer)
-                networkView.RPC("addPlayer", player, id);
+            List<Player> playerList = GameData.getPlayerList();
+            foreach (Player playerData in playerList)
+                networkView.RPC("addPlayer", player, playerData.id);
             networkView.RPC("addClientPlayer", player);
         }
     }

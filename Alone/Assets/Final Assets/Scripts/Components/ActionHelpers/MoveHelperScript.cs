@@ -34,9 +34,19 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	private MoveAction _moveAction;
 	private CharacterManager _owner;
 
+    public CharacterManager manager{
+        get { return _owner; }
+    }
+
 	void Start(){
 
 	}
+
+    [RPC]
+    private void setValidate(bool isValidate)
+    {
+        this._validated = isValidate;
+    }
 
 	void Update(){
 		if (this._validated)
@@ -45,19 +55,16 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		if (Input.GetMouseButton (0) && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector3 target = getTarget();
 			calcCost(target);
-			object[] p = {this._currentCost, target};
-			this._validated = this._moveAction.onActionValidation(this._owner, p);
 
-
-
-			GameData.getActionHelperDrawer().networkView.RPC("pushMoveHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint);
+            object[] p = { this._currentCost, target };
+            this._validated = this._moveAction.onActionValidation(this._owner, p);
+            if (this._validated)
+                GameData.getActionHelperDrawer().networkView.RPC("pushMoveHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint);
 
 			return;
 		}
 
 		calcCost(getTarget());
-
-
 	}
 
 	// IMPLEMENTS ME
@@ -115,7 +122,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 		return;
 		// FIXME
-		NavMeshPath path = new NavMeshPath();
+		/*NavMeshPath path = new NavMeshPath();
 		NavMesh.CalculatePath(this._startPoint, this._endPoint, -1, path);
 		Debug.Log ("Path Len == " + path.corners.Length + " path corn " + path.corners);
 		if (path.corners.Length < 0)
@@ -129,7 +136,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		{
 			this._lineRenderer.SetPosition(i, pathPosList[i]);
 			distance += Vector3.Distance(pathPosList[i], pathPosList[i - 1]);
-		}
+		}*/
 	}
 
 	public void delete(){

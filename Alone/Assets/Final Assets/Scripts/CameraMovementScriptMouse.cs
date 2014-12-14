@@ -16,11 +16,12 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //joueur = transform.parent;
-        setting = new StaticVariableScript();
-        foreach (NetworkViewID id in setting.ListPlayer)
+        GameData.init();
+        var playerList = GameData.getPlayerList();
+        foreach (Player player in playerList)
         {
-            if (id.isMine)
-                joueur = NetworkView.Find(id).transform;
+            if (player.id.isMine)
+                joueur = NetworkView.Find(player.id).transform;
         }
 	}
 	

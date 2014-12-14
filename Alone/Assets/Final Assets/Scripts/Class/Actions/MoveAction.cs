@@ -39,24 +39,24 @@ public class MoveAction : Action {
 	 * [1] <Vector3> target 
 	 */ 
 	public override bool onActionValidation(CharacterManager cm, object[] param){
-		float cost = (float)param[0];
+        float cost = (float)param[0];
 
-		if (cost > cm.characterStats.currentActionPoint) {
-			return false;
+        if (cost > cm.characterStats.currentActionPoint)
+        {
+            return false;
+        }
+        cm.characterStats.currentActionPoint -= cost;
 
-		}
-		cm.characterStats.currentActionPoint -= cost;
+        this._actionCost = cost;
 
-		this._actionCost = cost;
+        Debug.Log("Validated .!.");
 
-		Debug.Log ("Validated .!.");
+        // Maybe dangerous ....
+        GameData.getActionHelperDrawer().validateCurrentPlayerHelper();
 
-		// Maybe dangerous ....
-		GameData.getActionHelperDrawer ().validateCurrentPlayerHelper();
-		
-		cm.characterStats.pushHotAction (this);
-		//this._lineHelper.validate();
-		return true;
+        cm.characterStats.pushHotAction(this);
+        //this._lineHelper.validate();
+        return true;
 
 	}
 

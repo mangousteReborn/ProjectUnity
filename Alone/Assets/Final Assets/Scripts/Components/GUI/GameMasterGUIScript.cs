@@ -69,7 +69,7 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		VignetteSlotScript vss = (VignetteSlotScript)data [0];
 		VignetteEntity ve = (VignetteEntity)vss.vignette;
 
-		Debug.Log ("Vignette entity name == " + ve.name);
+        gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType);
 	}
 
 	// Update is called once per frame

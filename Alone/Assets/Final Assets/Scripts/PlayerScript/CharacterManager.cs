@@ -161,6 +161,7 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC]
 	public void pushMoveActionAsPendingRPC(string k, string name, string d, float costpu){
+		Debug.Log ("Pending >>> push MoveActionAsPendingRPC");
 		this._characterStats.setPendingActionAsMoveAction(k, name, d, costpu);
 	}
 	[RPC]
@@ -170,6 +171,7 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC]
 	public void removePendingActionRPC(){
+		Debug.Log ("Pending >>> remove PendingActionRPC");
 		this._characterStats.removePendingAction();
 	}
 

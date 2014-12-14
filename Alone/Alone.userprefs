@@ -1,13 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\IA\IABase.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="72" Column="36" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\Action.cs" Line="87" Column="39" />
-      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="100" Column="162" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="205" Column="32" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="222" Column="5" />
-      <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="65" Column="4" />
+      <File FileName="Assets\Final Assets\Scripts\IA\IABase.cs" Line="49" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

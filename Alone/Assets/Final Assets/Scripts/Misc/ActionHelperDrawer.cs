@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,23 +18,26 @@ public class ActionHelperDrawer : MonoBehaviour {
 	[SerializeField]
 	GameObject _moveHelperObject;
 
-	private Stack<IActionHelper> _playerPendingHelpers;
-	private Stack<IActionHelper> _playerValidatedHelpers;
+	[SerializeField]
+	GameObject _defaultStaticHelperObject;
+
+
+	private Stack<GameObject> _playerHelpers;
 
 	// string : Player or IA helpers
-	private Dictionary<string, Stack<IActionHelper>> _othersHelpersMap;
+	private Dictionary<string, Stack<GameObject>> _othersHelpersMap;
 
 	private IActionHelper _currentPlayerHelper;
 
 
 	// Use this for initialization
 	void Start () {
-		this._playerPendingHelpers = new Stack<IActionHelper> ();
-		this._playerValidatedHelpers = new Stack<IActionHelper> ();
-		this._othersHelpersMap = new Dictionary<string, Stack<IActionHelper>>();
+		this._playerHelpers = new Stack<GameObject> ();
+		this._othersHelpersMap = new Dictionary<string, Stack<GameObject>>();
 
 	}
 
+	/*
 	public void removeCurrentPlayerHelper(){
 		if (this._currentPlayerHelper == null)
 			return;
@@ -41,21 +46,52 @@ public class ActionHelperDrawer : MonoBehaviour {
 		this._currentPlayerHelper = null;
 	}
 
-	public void validateCurrentPlayerHelper(object[] param=null){
-		if (this._currentPlayerHelper == null)
+public void addHelperInMap(NetworkViewID playerID, GameObject helper){
+		string k = playerID.ToString ();
+		if (playerID.isMine) {
+			Debug.LogError("Calling addHelerInMap for current player");
 			return;
-		this._currentPlayerHelper.validate (param);
-		this._playerPendingHelpers.Push (this._currentPlayerHelper);
+		}
 
-		this._currentPlayerHelper = null;
+		if (this._othersHelpersMap.ContainsKey(k)){
+			Stack<GameObject> s = null;
+			this._othersHelpersMap.TryGetValue(k, out s);
+			s.Push(helper);
+
+		}else {
+			Stack<GameObject> s = new Stack<GameObject>();
+			s.Push(helper);
+			this._othersHelpersMap.Add(k, s);
+		}
+	}
+	
+	*/
+
+	private void pushHelperForOtherPlayer(NetworkViewID playerID, GameObject helper){
+		string k = playerID.ToString ();
+		if (playerID.isMine) {
+			Debug.LogError("Calling addHelerInMap for current player");
+			return;
+		}
+		
+		if (this._othersHelpersMap.ContainsKey(k)){
+			Stack<GameObject> s = null;
+			this._othersHelpersMap.TryGetValue(k, out s);
+			s.Push(helper);
+			
+		}else {
+			Stack<GameObject> s = new Stack<GameObject>();
+			s.Push(helper);
+			this._othersHelpersMap.Add(k, s);
+		}
 	}
 
 	public MoveHelperScript pushMoveHelper(CharacterManager cm, Action a){
 		Vector3 startPos;
-		IActionHelper lastActionHelper = this._playerPendingHelpers.Count > 0 ? this._playerPendingHelpers.Peek() : null;
-
-		if (lastActionHelper != null) {
-			startPos = lastActionHelper.getEndPoint();
+		Action lastAction = cm.characterStats.getLastHotAction ();
+		Debug.Log ("lastAction ? " + lastAction);
+		if (lastAction != null) {
+			startPos = lastAction.endPosition;
 			GameData.getCameraObject().GetComponent<CameraMovementScriptMouse>().lockCamera = false;
 			Vector3 camPos = GameData.getCameraObject().transform.position;
 			GameData.getCameraObject().transform.position = new Vector3(startPos.x, camPos.y, startPos.z);
@@ -77,36 +113,38 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 	}
 
-	public void addHelperInMap(NetworkViewID playerID, IActionHelper helper){
-		string k = playerID.ToString ();
-		if (playerID.isMine) {
-			Debug.LogError("Calling addHelerInMap for current player");
+	[RPC]
+	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){
+		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
 			return;
+		Debug.Log ("ok");
+		GameObject go = (GameObject)Instantiate (_defaultStaticHelperObject, startPoint , Quaternion.identity);
+		LineRenderer ln = go.GetComponent<LineRenderer>();
+		DefaultStaticHelperScript dshs = go.GetComponent<DefaultStaticHelperScript>();
+		dshs.text.text = label;
+		dshs.textObject.transform.position = ((endPoint - startPoint ) / 2) + startPoint;
+
+		ln.SetVertexCount(2);
+		ln.SetPosition(0, startPoint);
+		ln.SetPosition(1, endPoint);
+
+		if (playerID.isMine) {
+			this._currentPlayerHelper.delete();
+			this._playerHelpers.Push(go);
+		} else {
+			pushHelperForOtherPlayer(playerID, go);
 		}
 
-		if (this._othersHelpersMap.ContainsKey(k)){
-			Stack<IActionHelper> s = null;
-			this._othersHelpersMap.TryGetValue(k, out s);
-			s.Push(helper);
-
-		}else {
-			Stack<IActionHelper> s = new Stack<IActionHelper>();
-			s.Push(helper);
-			this._othersHelpersMap.Add(k, s);
-		}
 	}
 
 	[RPC]
 	public void pushMoveHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 middlePoint, Vector3 endPoint){
+
+
 		Debug.Log ("pushmovehlepr : mine ? " + playerID.isMine); 
 		if (playerID.isMine) {
 			return;
 			this._currentPlayerHelper.delete();
-
-			GameObject go = (GameObject)Instantiate (_moveHelperObject,startPoint , Quaternion.identity);
-			MoveHelperScript mhs = go.GetComponent<MoveHelperScript> ();
-			
-
 		}
 	}
 	

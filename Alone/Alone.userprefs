@@ -1,13 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\ActionHelpers\DafaultStaticHelperScript.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="72" Column="36" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\Action.cs" Line="87" Column="39" />
-      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="100" Column="162" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="205" Column="32" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="222" Column="5" />
-      <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="65" Column="4" />
+      <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="107" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\DafaultStaticHelperScript.cs" Line="7" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

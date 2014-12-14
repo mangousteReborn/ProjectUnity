@@ -50,14 +50,12 @@ public class MoveAction : Action {
 		this._lineHelper = ahd.pushMoveHelper(cm, this);
 
 		this._lineHelper.activate (cm, this);
-		Debug.Log ("Action on Selectionnnnn !!");
 	}
 
 	public override void onActionValidation(CharacterManager cm, object[] param){
         Debug.Log("ACTION IS POWA VALIDATED GOSU !!!!!");
-
-        // Maybe dangerous ....
-        GameData.getActionHelperDrawer().validateCurrentPlayerHelper();
+		
+        //GameData.getActionHelperDrawer().validateCurrentPlayerHelper();
 
 	}
 
@@ -67,14 +65,11 @@ public class MoveAction : Action {
 	}
 
 	public override void onActionCanceled(CharacterManager cm, object[] param=null){
-		Debug.Log ("onCancel action ...");
 		this._lineHelper.cancel (cm);
-		//cm.characterStats.currentActionPoint += this._actionCost;
 
 	}
 
 	public override void onActionStart(CharacterManager cm, object[] param=null){
-		Debug.Log ("Running action ...");
 		cm.character.GetComponent<DeplacementActionScript> ().moveToTarget(this._endPosition);
 		
 	}

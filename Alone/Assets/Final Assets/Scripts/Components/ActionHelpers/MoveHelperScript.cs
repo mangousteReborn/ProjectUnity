@@ -103,7 +103,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	}
 
 	public void validate(CharacterManager cm){
-		GameData.getActionHelperDrawer().networkView.RPC("pushMoveHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint);
+		GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint, this._text.text);
 		this._validated = true;
 	}
 

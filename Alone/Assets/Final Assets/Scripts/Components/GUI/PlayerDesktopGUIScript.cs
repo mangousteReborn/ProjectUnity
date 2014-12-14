@@ -309,7 +309,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	 * 	We have to use Introspection to have a generic behaviour.
 	 */
 	private void onActionVignetteSlotClick(object[] data){
-		if (this._currentMode != 2 || this._pendingAction != null)
+		if (this._currentMode != 2 || this._characterStats.pendingAction != null)
 			return;
 
 		VignetteAction va = (VignetteAction)((VignetteSlotScript)data [0]).vignette;

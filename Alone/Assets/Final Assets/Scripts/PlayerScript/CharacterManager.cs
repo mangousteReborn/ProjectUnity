@@ -211,6 +211,7 @@ public class CharacterManager : MonoBehaviour {
 
 			ma.onActionValidation(this);
 
+			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, ePos, cost+"s");
 			this.networkView.RPC("pushMoveActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 		

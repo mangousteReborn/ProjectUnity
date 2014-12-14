@@ -24,8 +24,9 @@ public class IABase : MonoBehaviour {
 	}
 
 
-	static Vector3 getPositionWithDistanceLeft(NavMeshPath path,float distanceLeft,float pointLeft) // récupére la position qui aura une distance de distanceLeft avec le dernier corner du path
-	{/*
+	static Vector3 getPositionWithDistanceLeft(NavMeshPath path,float distanceLeft,float pointsLeft) // récupére la position qui aura une distance de distanceLeft avec le dernier corner du path
+	{
+		MoveAction moveAction = new MoveAction (costPerUnit);
 		float totalDistance = getPathLength (path);
 
 		if ( totalDistance< distanceLeft)
@@ -33,16 +34,26 @@ public class IABase : MonoBehaviour {
 		float distanceDone = 0;
 
 		for(int i = 0; i < path.corners.Length-1; i++){
+
 			float dist = moveAction.calculateCost(path.corners[i],path.corners[i+1]);
-			if(distanceDone+path.corners[i] < (totalDistance - distanceLeft) ){
+			if(pointsLeft - dist <= 0f)
+			{
+				if(pointsLeft-dist == 0f)
+					return path.corners[i+1];
+				Vector3 norm = Vector3.Normalize(path.corners[i+1]- path.corners[i]);  
+				return path.corners[i] + norm*(pointsLeft/costPerUnit);
+			}
+
+			if(distanceDone+dist < (totalDistance - distanceLeft) ){
 				distanceDone+= dist;
+				pointsLeft-= dist;
 			}
 			else {
 				float distanceLeftToDistanceLeft = (totalDistance-distanceLeft)-distanceDone;
-				return path.corners[i] + Vector3.Normalize(path.corners[i],path.corners[i+1])*distanceLeftToDistanceLeft;
+				return path.corners[i] + Vector3.Normalize(path.corners[i+1]-path.corners[i])*distanceLeftToDistanceLeft;
 			}
 
-		}*/
+		}
 
 		return new Vector3 (-1, -1, -1);
 	}
@@ -58,25 +69,11 @@ public class IABase : MonoBehaviour {
 		MoveAction moveAction = new MoveAction (costPerUnit);
 
 		float actionPointLeft = stat.maxActionPoint;
+		float portee = 1f;
 
 		NavMeshPath path = new NavMeshPath ();
 		NavMesh.CalculatePath (gameObject.transform.position, nearest.playerObject.transform.position,0 , path );
-	/*
-		if(path.status == NavMeshPathStatus.PathComplete)
-			for (int i = 0; i < path.corners.Length-1; i++) {
-				float cost = moveAction.calculateCost(path.corners[i],path.corners[i+1];
-			    if( actionPointLeft > cost){                     
-			        actionPointLeft-= cost;
-				}
-			    else {
-					//TODO : calculer le point le plus eloigné atteignable avec les points restants
-
-				}
-
-					
-			}
-	*/
-
+		Vector3 dest = getPositionWithDistanceLeft (path, portee, actionPointLeft);
 	}
 	
 	Player getNearestPlayer()
@@ -115,6 +112,9 @@ public class IABase : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+
+	}
 
 
 

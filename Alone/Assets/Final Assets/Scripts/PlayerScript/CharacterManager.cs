@@ -187,6 +187,7 @@ public class CharacterManager : MonoBehaviour {
 
 		try{
 			ma = (MoveAction)playerWhoValidate.characterManager.characterStats.pendingAction;
+
 		} catch (Exception e){
 			Debug.LogError("CharacterManager : <validateMoveAction> Player doest have pending action or action is not a MoveAction : " + e.ToString());
 			return;

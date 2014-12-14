@@ -89,12 +89,16 @@ public class fastConnectionScript : MonoBehaviour {
         instantiateMyPlayer();
     }
 
-    [RPC]
-    void addPlayer(NetworkViewID networkViewID)
-    {
-        Player p = new Player("Player", NetworkView.Find(networkViewID).gameObject.networkView, Color.green);
-        GameData.addPlayer(p);
-    }
+	[RPC]
+	void addPlayer(NetworkViewID networkViewID)
+	{
+		CharacterManager cm = NetworkView.Find(networkViewID).gameObject.GetComponent<CharacterManager>();
+		Player p = new Player("Player", NetworkView.Find(networkViewID).gameObject.networkView, Color.green);
+		p.characterManager = cm;
+		p.playerObject = NetworkView.Find(networkViewID).gameObject;
+		GameData.addPlayer(p);
+		cm.player = p;
+	}
 
     void DestroyPlayer(GameObject player)
     {

@@ -25,7 +25,7 @@ public class IABase : MonoBehaviour {
 
 
 	static Vector3 getPositionWithDistanceLeft(NavMeshPath path,float distanceLeft,float pointLeft) // récupére la position qui aura une distance de distanceLeft avec le dernier corner du path
-	{
+	{/*
 		float totalDistance = getPathLength (path);
 
 		if ( totalDistance< distanceLeft)
@@ -42,7 +42,7 @@ public class IABase : MonoBehaviour {
 				return path.corners[i] + Vector3.Normalize(path.corners[i],path.corners[i+1])*distanceLeftToDistanceLeft;
 			}
 
-		}
+		}*/
 
 		return new Vector3 (-1, -1, -1);
 	}

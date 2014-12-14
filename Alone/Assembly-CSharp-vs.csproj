@@ -73,6 +73,7 @@
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\roomBattleModeScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />

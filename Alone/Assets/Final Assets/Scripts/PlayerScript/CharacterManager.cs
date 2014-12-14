@@ -102,27 +102,6 @@ public class CharacterManager : MonoBehaviour {
 
 	}
 
-	[RPC]
-	public void enterFightMode(NetworkViewID id)
-	{
-		if(Network.isServer)
-		{
-			if (!this._isInFight)
-			{
-				this._isInFight = true;
-				this._characterStats.gameMode = 2;
-				networkView.RPC("enterFightMode", RPCMode.Others, id);
-			}
-		}
-		else
-		{
-			this._characterStats.gameMode = 2;
-			this._isInFight = true;
-		}
-	}
-
-
-
 	// Get / Seters
 	public GameObject character{
 		get {
@@ -138,6 +117,10 @@ public class CharacterManager : MonoBehaviour {
 		get {
 			return this._isInFight;
 		}
+        set
+        {
+            this._isInFight = value;
+        }
 	}
 	public Player player{
 		set {

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
 
+    
+
     [SerializeField]
     private GameObject baseEnemyPrefab;
 
@@ -17,9 +19,11 @@ public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
     private GameObject currentPrefab;
     private int currentCost;
     private bool isEntityHandle;
+    private int currentRoomNumber;
 
 	// Use this for initialization
 	void Start () {
+        currentRoomNumber = 1;
         tmpEntity = new List<GameObject>();
         validatedEntity = new List<spawnEntityInfos>();
         currentEntityHandle = null;
@@ -71,6 +75,7 @@ public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
             Destroy(currentEntityHandle);
         if (VignetteEntity.EntityType.Base == type && nbPoints > cost-1)
         {
+            Debug.Log(type + "::" + cost);
             currentPrefab = baseEnemyPrefab;
             currentEntityHandle = (GameObject)Instantiate(baseEnemyPrefab);
             currentCost = cost;
@@ -80,16 +85,28 @@ public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
 
     public void onValidate()
     {
+        List<GameObject> enemyList = new List<GameObject>();
         foreach(GameObject obj in tmpEntity)
         {
             Destroy(obj);
         }
         foreach(spawnEntityInfos entity in validatedEntity)
         {
-            Network.Instantiate(entity.entity,entity.position,Quaternion.identity,10);
+            GameObject enemyInstance = (GameObject)Network.Instantiate(entity.entity, entity.position, Quaternion.identity, 10);
+            NetworkViewID enemyID = enemyInstance.networkView.viewID;
+            enemyList.Add(enemyInstance);
+            addToRoomList(currentRoomNumber,enemyID);
+            networkView.RPC("addToRoomList", RPCMode.Others, currentRoomNumber, enemyID);
         }
         tmpEntity.Clear();
         validatedEntity.Clear();
+    }
+
+    [RPC]
+    public void addToRoomList(int roomNumber,NetworkViewID idEnemy)
+    {
+        roomBattleModeScript room = gameObject.GetComponent<GameManager>().getRoomNumber(roomNumber);
+        room.EnemyList.Add(NetworkView.Find(idEnemy).gameObject);
     }
 
     public void setCharacterManager(CharacterManager cm){}

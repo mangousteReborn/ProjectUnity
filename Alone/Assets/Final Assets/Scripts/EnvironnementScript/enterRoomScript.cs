@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class enterRoomScript : MonoBehaviour {
 
+    [SerializeField]
+    GameObject handler;
+
+    GameManager gm;
+
     List<NetworkViewID> listEnter;
     StaticVariableScript setting;
 
@@ -11,6 +16,7 @@ public class enterRoomScript : MonoBehaviour {
 	void Start () {
         listEnter = new List<NetworkViewID>();
         setting = new StaticVariableScript();
+        gm = handler.GetComponent<GameManager>();
 	}
 
     void OnTriggerEnter(Collider other)
@@ -26,9 +32,9 @@ public class enterRoomScript : MonoBehaviour {
                 {
                     view = NetworkView.Find(player.id);
                     if (!Network.isServer)
-                        view.RPC("enterFightMode", RPCMode.Server, player.id);
+                        gm.networkView.RPC("enterFightMode", RPCMode.Server, player.id);
                     else
-                        view.GetComponent<CharacterManager>().enterFightMode(player.id);//view.GetComponent<playerCaracScript>().enterFight(id);
+                        gm.enterFightMode(player.id);//view.GetComponent<playerCaracScript>().enterFight(id);
                 }
             }
         }

@@ -61,7 +61,8 @@ public class MoveAction : Action {
 
 	public override void onActionInvalid (CharacterManager cm, object[] param)
 	{
-		this._lineHelper.RPCcallback = true;
+		if(this._lineHelper != null)
+			this._lineHelper.RPCcallback = true;
 	}
 
 	public override void onActionCanceled(CharacterManager cm, object[] param=null){

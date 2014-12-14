@@ -14,6 +14,8 @@ public static class GameData {
 
 	private static Dictionary<string, Vignette> _bonusVignetteMap = new Dictionary<string, Vignette>();
 
+    //private static Dictionary<string, Vignette> _entityVignetteMap = new Dictionary<string, Vignette>();
+
 	private static Dictionary<string, Vignette> _actionVignetteMap = new Dictionary<string, Vignette>();
 
 	private static Dictionary<string, Action> _actionsMap = new Dictionary<string, Action>();
@@ -44,6 +46,8 @@ public static class GameData {
 		lifeupEffects.Add(new EffectBonusLife(150));
 		_bonusVignetteMap.Add("lifebonus2", new VignetteBonus(lifeupEffects, "lifebonus2", "Souper Viche",null, "Vignettes/lifehigh"));
 		/* Actions */
+        /*Entity Enemy */
+        //_entityVignetteMap.Add("Base Enemy", new VignetteEntity(VignetteEntity.EntityType.Base, "Base", "DefaultEnemy"));
 		// Move
 		Action moveAction = new MoveAction (0.2f);
 

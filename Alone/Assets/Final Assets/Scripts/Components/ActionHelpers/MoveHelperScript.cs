@@ -135,7 +135,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		this._lineRenderer.SetVertexCount(2);
 		this._lineRenderer.SetPosition(0, this._startPoint);
 		this._lineRenderer.SetPosition(1, this._endPoint);
-		
+
 		this._currentCost = this._moveAction.calculateCost (this._startPoint, this._endPoint);
 		
 		this._middlePoint = ((this._endPoint - this._startPoint ) / 2) + this._startPoint;

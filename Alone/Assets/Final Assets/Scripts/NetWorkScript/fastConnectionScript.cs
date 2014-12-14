@@ -10,6 +10,9 @@ public class fastConnectionScript : MonoBehaviour {
     [SerializeField]
     private GameObject[] spawnPoint;
 
+    [SerializeField]
+    private bool _isGM;
+
     private StaticVariableScript setting;
 
 	// Use this for initialization
@@ -47,28 +50,37 @@ public class fastConnectionScript : MonoBehaviour {
 
     void instantiateMyPlayer()
     {
-        int playerConnected = GameData.getPlayerList().Count;
-        GameObject spawnPos = spawnPoint[playerConnected];
-        GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
-        
+        if (!_isGM)
+        {
+            int playerConnected = GameData.getPlayerList().Count;
+            GameObject spawnPos = spawnPoint[playerConnected];
+            GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
 
-		// Setting values for player GUI
-		IPlayerGUI gui = this.GetComponent<GameManager> ().playerGUI;
-		CharacterManager cm = newPlayer.GetComponent<CharacterManager> ();
 
-		Player p = new Player("Player", newPlayer.networkView, Color.green);
-		p.characterManager = cm;
-		p.playerObject = newPlayer;
-        GameData.addPlayer(p);
+            // Setting values for player GUI
+            GameManager manager = this.GetComponent<GameManager>();
+            manager.setPlayerGUI();
+            IPlayerGUI gui = manager.playerGUI;
+            CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
-		cm.player = p;
+            Player p = new Player("Player", newPlayer.networkView, Color.green);
+            p.characterManager = cm;
+            p.playerObject = newPlayer;
+            GameData.addPlayer(p);
 
-		gui.setCharacterManager(cm);
+            cm.player = p;
 
-		newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
-        //setting.ListPlayer.Add(newPlayer.networkView.viewID);
-        Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
-        networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
+            gui.setCharacterManager(cm);
+
+            newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
+            //setting.ListPlayer.Add(newPlayer.networkView.viewID);
+            Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
+            networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
+        }
+        else
+        {
+            this.GetComponent<GameManager>().setGMGui();
+        }
     }
 
     [RPC]

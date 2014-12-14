@@ -6,9 +6,6 @@ using System;
 public class GameManager : MonoBehaviour {
 
 	[SerializeField]
-	bool _forceGameMasterUI;
-
-	[SerializeField]
 	GameObject _playerDesktopGUIObject;
 
 	[SerializeField]
@@ -27,16 +24,6 @@ public class GameManager : MonoBehaviour {
 	private IPlayerGUI _currentPlayerGUI;
 
 	void Start () {
-		GameData.init();
-
-		// TODO : Check if current player is "classic" or "game master"
-		_playerDesktopGUIObject = (GameObject)Instantiate(_playerDesktopGUIObject);
-		_playerDesktopGUIScript = _playerDesktopGUIObject.GetComponent<PlayerDesktopGUIScript>();
-
-		_currentPlayerGUI = _playerDesktopGUIScript;
-
-        _playerDesktopGUIScript.readyPlayer += increaseReadyPlayer;
-        _playerValidateCount = 0;
 	}
 
 	public IPlayerGUI playerGUI {
@@ -53,5 +40,23 @@ public class GameManager : MonoBehaviour {
         Debug.Log(playerCount);
         if (_playerValidateCount == playerCount)
             _playerDesktopGUIScript.broadcastStartSimulation();
+    }
+
+    public void setGMGui()
+    {
+        GameData.init();
+        _playerDesktopGUIObject = (GameObject)Instantiate(_gameMasterGUIObject);
+    }
+
+    public void setPlayerGUI()
+    {
+        GameData.init();
+        _playerDesktopGUIObject = (GameObject)Instantiate(_playerDesktopGUIObject);
+        _playerDesktopGUIScript = _playerDesktopGUIObject.GetComponent<PlayerDesktopGUIScript>();
+
+        _currentPlayerGUI = _playerDesktopGUIScript;
+
+        _playerDesktopGUIScript.readyPlayer += increaseReadyPlayer;
+        _playerValidateCount = 0;
     }
 }

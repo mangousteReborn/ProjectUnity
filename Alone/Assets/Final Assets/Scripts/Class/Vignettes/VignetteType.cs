@@ -13,7 +13,8 @@ public enum VignetteType
 {
 	spell,
 	bonus,
-	action
+	action,
+    enemy
 }
 
 

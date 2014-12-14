@@ -102,45 +102,45 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	 */
 	private uint _currentMode = 0;
 
+    void Awake()
+    {
+        this._screenHeight = Screen.height;
+        this._screenWidth = Screen.width;
 
-	void Start() {
-		this._screenHeight = Screen.height;
-		this._screenWidth = Screen.width;
+        this._topContainerObject.GetComponent<RectTransform>().sizeDelta = new Vector2(this._screenWidth, 50);
+        this._bottomContainerObject.GetComponent<RectTransform>().sizeDelta = new Vector2(this._screenWidth, 50);
 
-		this._topContainerObject.GetComponent<RectTransform> ().sizeDelta = new Vector2(this._screenWidth, 50);
-		this._bottomContainerObject.GetComponent<RectTransform> ().sizeDelta = new Vector2(this._screenWidth, 50);
+        // ActionBar def
+        int actionBarWidth = (this._screenWidth - (int)this._buttonPanelObject.GetComponent<RectTransform>().sizeDelta.x) - 20;
+        this._actionBarObject.GetComponent<ActionBarScript>().setDimension(actionBarWidth > 0 ? actionBarWidth : 100, 50);
+        this._actionBarObject.GetComponent<ActionBarScript>().setPlayerGUI(this);
 
-		// ActionBar def
-		int actionBarWidth = (this._screenWidth - (int)this._buttonPanelObject.GetComponent<RectTransform>().sizeDelta.x) - 20;
-		this._actionBarObject.GetComponent<ActionBarScript> ().setDimension (actionBarWidth > 0 ? actionBarWidth : 100, 50);
-		this._actionBarObject.GetComponent<ActionBarScript> ().setPlayerGUI (this);
-
-		// Bonus Vignettes picker def
-		this._bonusVignettesPickerObject = (GameObject)Instantiate (this._VignettesPickerObject);
-		this._bonusVignettesPickerObject.transform.parent = this._mainContainerObject.transform;
-		this._bonusVignettesPickerObject.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 50);
-		this._bonusVignettesPickerObject.GetComponent<VignettesPickerScript> ().setDimension (this._screenWidth, 50);
-		this._bonusVignettesPickerObject.GetComponent<VignettesPickerScript> ().setPlayerGUI (this);
-		this._bonusVignettesPickerObject.SetActive (false);
-		// Action Vignettes picker def
-		this._actionVignettesPickerObject = (GameObject)Instantiate (this._VignettesPickerObject);
-		this._actionVignettesPickerObject.transform.parent = this._mainContainerObject.transform;
-		this._actionVignettesPickerObject.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 50);
-		this._actionVignettesPickerObject.GetComponent<VignettesPickerScript> ().setDimension (this._screenWidth, 50);
-		this._actionVignettesPickerObject.GetComponent<VignettesPickerScript> ().setPlayerGUI (this);
-		this._actionVignettesPickerObject.SetActive (false);
+        // Bonus Vignettes picker def
+        this._bonusVignettesPickerObject = (GameObject)Instantiate(this._VignettesPickerObject);
+        this._bonusVignettesPickerObject.transform.parent = this._mainContainerObject.transform;
+        this._bonusVignettesPickerObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 50);
+        this._bonusVignettesPickerObject.GetComponent<VignettesPickerScript>().setDimension(this._screenWidth, 50);
+        this._bonusVignettesPickerObject.GetComponent<VignettesPickerScript>().setPlayerGUI(this);
+        this._bonusVignettesPickerObject.SetActive(false);
+        // Action Vignettes picker def
+        this._actionVignettesPickerObject = (GameObject)Instantiate(this._VignettesPickerObject);
+        this._actionVignettesPickerObject.transform.parent = this._mainContainerObject.transform;
+        this._actionVignettesPickerObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 50);
+        this._actionVignettesPickerObject.GetComponent<VignettesPickerScript>().setDimension(this._screenWidth, 50);
+        this._actionVignettesPickerObject.GetComponent<VignettesPickerScript>().setPlayerGUI(this);
+        this._actionVignettesPickerObject.SetActive(false);
 
 
 
-		// Buttons listeners
-		this._bonusButtonObject.GetComponent<Button> ().onClick.AddListener(() => { onBonusButtonClick();}); 
-		this._actionButtonObject.GetComponent<Button> ().onClick.AddListener(() => { onActionButtonClick();}); 
-		this._cancelActionButtonObject.GetComponent<Button> ().onClick.AddListener(() => { onCancelActionButtonClick();}); 
-		this._readyButtonObject.GetComponent<Button> ().onClick.AddListener(() => { onReadyButtonClick();}); 
-		fillBonusVignettesPicker (); // Define default bonus vignettes (in GameData)
+        // Buttons listeners
+        this._bonusButtonObject.GetComponent<Button>().onClick.AddListener(() => { onBonusButtonClick(); });
+        this._actionButtonObject.GetComponent<Button>().onClick.AddListener(() => { onActionButtonClick(); });
+        this._cancelActionButtonObject.GetComponent<Button>().onClick.AddListener(() => { onCancelActionButtonClick(); });
+        this._readyButtonObject.GetComponent<Button>().onClick.AddListener(() => { onReadyButtonClick(); });
+        fillBonusVignettesPicker(); // Define default bonus vignettes (in GameData)
 
-		switchToDefaultMode ();
-	}
+        switchToDefaultMode();
+    }
 
 	private void fillBonusVignettesPicker(){
 		VignettesPickerScript bvpScript = this._bonusVignettesPickerObject.GetComponent<VignettesPickerScript>();

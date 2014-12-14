@@ -155,8 +155,14 @@ public class CharacterManager : MonoBehaviour {
     }
 
 	[RPC]
-	private void pushMoveActionRPC(string k, string name, string d, float cost, Vector3 destPosition){
-		this._characterStats.pushMoveAction(k, name, d, cost, destPosition);
+	public void pushMoveActionRPC(bool isPending, string k, string name, string d, float cost, Vector3 destPosition){
+
+		this._characterStats.pushMoveAction(isPending, k, name, d, cost, destPosition);
+	}
+
+	[RPC]
+	public void removePendingActionRPC(){
+		this._characterStats.removePendingAction();
 	}
 
 }

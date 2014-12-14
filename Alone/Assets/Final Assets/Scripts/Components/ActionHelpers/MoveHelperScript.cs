@@ -28,6 +28,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	private float _size;
 
 	private bool _validated = false;
+	private bool _activated = false;
 
 	private float _currentCost;
 
@@ -49,6 +50,9 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
     }
 
 	void Update(){
+		if (!this._activated)
+			return;
+
 		if (this._validated)
 			return;
 
@@ -76,6 +80,19 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	// IMPLEMENTS ME
 	public void setOwner(CharacterManager cm){
 		this._owner = cm;
+
+	}
+
+	public void activate (CharacterManager cm, Action a){
+		a = (MoveAction)a;
+
+		cm.networkView.RPC("pushMoveActionRPC", RPCMode.All,  true,  a.key, a.name, a.desc, a.actionCost, null);
+
+		this._activated = true;
+	}
+
+	public void cancel(CharacterManager cm){
+		cm.networkView.RPC ("removePendingActionRPC", RPCMode.All);
 	}
 
 	public void setStartPosition(Vector3 startPos){
@@ -84,21 +101,24 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 	}
 
-	private Vector3 getTarget()
-	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		Vector3 target = this._startPoint;
-		if (Physics.Raycast(ray, out hit))
-		{
-			target = hit.point;
-			target.y = 0;
-		}
-		return target;
+
+
+
+
+	public void delete(){
+		GameObject.Destroy (this._object);
 	}
 
-	private void calcCost(Vector3 destPos){
+	public bool validate(object[] param){
 
+		//this._endPoint = (Vector3)param [0];
+		return true;
+
+	}
+
+
+	private void calcCost(Vector3 destPos){
+		
 		this._endPoint = destPos;
 		this._lineRenderer.SetVertexCount(2);
 		this._lineRenderer.SetPosition(0, this._startPoint);
@@ -118,8 +138,8 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 			this._text.color = Color.red;
 		} else 
 			this._text.color = Color.white;
-
-
+		
+		
 		return;
 		// FIXME
 		/*NavMeshPath path = new NavMeshPath();
@@ -138,16 +158,17 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 			distance += Vector3.Distance(pathPosList[i], pathPosList[i - 1]);
 		}*/
 	}
-
-	public void delete(){
-		GameObject.Destroy (this._object);
-	}
-
-	public bool validate(object[] param){
-
-		//this._endPoint = (Vector3)param [0];
-		return true;
-
+	private Vector3 getTarget()
+	{
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+		Vector3 target = this._startPoint;
+		if (Physics.Raycast(ray, out hit))
+		{
+			target = hit.point;
+			target.y = 0;
+		}
+		return target;
 	}
 
 	public Vector3 getEndPoint() {

@@ -25,6 +25,9 @@ public class CharacterStats  {
 	private float _maxActionPoint;
 	private float _currentActionPoint;
 
+
+	// Otros
+	private Action _pendingAction;
     private NetworkView _networkView;
 
 	/*
@@ -223,9 +226,27 @@ public class CharacterStats  {
 	}
 
 	/* Specific action pushing (called by CharacterManager from RPC) */
-	public void pushMoveAction(string k, string name, string d, float cost, Vector3 destPosition){
-		this._hotActionsStack.Push(new MoveAction(k,name,d,cost,destPosition));
-		Debug.Log ("CharacterStats : <pushMoveAction> OK");
+	public void pushMoveAction(bool isPending, string k, string name, string d, float cost, Vector3 destPosition){
+		Debug.Log ("CharacterStats : <pushMoveAction> as pending ? " + isPending);
+		MoveAction ma = new MoveAction (k, name, d, cost, destPosition);
+		if (isPending) {
+
+			if (null != this._pendingAction){
+				Debug.LogWarning("CharacterStats : <pushMoveAction> An action was here as pending");
+			}
+
+			this._pendingAction = ma;
+		} else {
+			this._hotActionsStack.Push(ma);
+		}
+	}
+
+	public void removePendingAction(){
+		if (null == this._pendingAction){
+			Debug.LogWarning("CharacterStats : <removePendingAction> Setting null Pending Action, but was already null");
+		}
+
+		this._pendingAction = null;
 	}
 
 	/*
@@ -243,13 +264,13 @@ public class CharacterStats  {
 			fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
+
 	public int currentLife
 	{
 		get {
 			return this._currentLife;
 		}
 	}
-
     public void setCurrentLife(int value, bool isFromRPC)
     {
         if (Network.isServer)
@@ -306,6 +327,10 @@ public class CharacterStats  {
 	}
 
 	// Others
+	public Action pendingAction{
+		get {return this._pendingAction;}
+	}
+
 	public uint gameMode
 	{
 		get {

@@ -16,7 +16,7 @@ public class MoveAction : Action {
 	}
 
 	public MoveAction (string k, string name, string d, float cost, Vector3 destPosition)
-		: base(k, name, d)
+	: base(k, name, d)
 	{
 		this._actionCost = cost;
 		this._destPosition = destPosition;
@@ -40,6 +40,7 @@ public class MoveAction : Action {
 
 		this._lineHelper = ahd.pushMoveHelper(cm, this);
 
+		this._lineHelper.activate (cm, this);
 		Debug.Log ("Action on Selectionnnnn !!");
 	}
 
@@ -79,6 +80,7 @@ public class MoveAction : Action {
 
 	public override void onActionCanceled(CharacterManager cm, object[] param=null){
 		Debug.Log ("onCancel action ...");
+		this._lineHelper.cancel (cm);
 		cm.characterStats.currentActionPoint += this._actionCost;
 
 	}

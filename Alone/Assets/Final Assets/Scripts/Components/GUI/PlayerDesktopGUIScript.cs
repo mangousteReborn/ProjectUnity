@@ -251,10 +251,10 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private void onCancelActionButtonClick(){
 		if (this._pendingAction == null)
 			return;
-		Debug.Log ("oki");
-		object[] p = {this._characterStats};
-		GameData.getActionHelperDrawer ().removeCurrentPlayerHelper ();
-		this._pendingAction.cancelAction (p);
+		
+		//GameData.getActionHelperDrawer ().removeCurrentPlayerHelper ();
+		
+		this._pendingAction.onActionCanceled (this._charaterManager);
 		this._pendingAction = null;
 
 		this._cancelActionButtonObject.SetActive (false);
@@ -277,42 +277,19 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
         }
 	}
 
-    [RPC]
-    private void newPlayerReady()
-    {
-        readyPlayer(null, null);
-        if(Network.isServer)
-            networkView.RPC("newPlayerReady", RPCMode.Others);
-    }
-
-    [RPC]
-    public void broadcastStartSimulation()
-    {
-        if(Network.isServer)
-        {
-            networkView.RPC("broadcastStartSimulation", RPCMode.Others);
-            this._charaterManager.runHotAcions();
-        }
-        else
-        {
-            this._charaterManager.runHotAcions();
-        }
-    }
-
-	// TODO : Check if we are in "passiveMode" (to avoid changing vignettes during battle)
 	private void onBonusVignetteSlotClick(object[] data){
 		if (null == this._characterStats) {
 			Debug.LogError("onBonusVignetteSlotClick : CharacterStats not set !");
 			return;
 		}
-
+		
 		VignetteSlotScript vss = (VignetteSlotScript)data [0];
 		if (vss.vignette.type != VignetteType.bonus) {
 			Debug.LogError("onBonusVignetteSlotClick : Vignette is not a Bonus !");
 			return;
 		}
-
-
+		
+		
 		if(this._characterStats.hasVignette(vss.vignette.key) ){
 			this._characterStats.removeVignette(vss.vignette.key);
 			vss.state = 1;
@@ -320,9 +297,9 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 			this._characterStats.pushVignette ((VignetteBonus)vss.vignette);
 			vss.state = 2;
 		}
-			
+		
 	}
-
+	
 	/*
 	 * /?\ Tricky :
 	 * 	ActionVignette slot contains an Action predefined in GameData.
@@ -332,29 +309,21 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	 * 	We have to use Introspection to have a generic behaviour.
 	 */
 	private void onActionVignetteSlotClick(object[] data){
-		if (!(this._currentMode == 0 || this._currentMode == 2) || this._pendingAction != null)
+		if (this._currentMode != 2 || this._pendingAction != null)
 			return;
 
-		// CAST !!! INCEP-CAST POWA !! 99.99997% Chance to fail, hehehe
 		VignetteAction va = (VignetteAction)((VignetteSlotScript)data [0]).vignette;
 
-		/* Introcpection Factorized version
-		object[] param = {va.action};
-		System.Type t = va.action.GetType ();
-		System.Reflection.MethodInfo m = t.GetMethod ("getCopy"); //, System.Reflection.BindingFlags.Default
-		Action newAction = null;
-		newAction = (Action)m.Invoke (va.action, param);
-		//*/
-
-		//* Introcpection Crazy version
 		object[] param = {va.action};
 		Action newAction = (Action)va.action.GetType ().GetMethod ("getCopy").Invoke (va.action, param);
-		//*/
-
+		
 		newAction.onActionSelection (this._charaterManager, true);
 		this._pendingAction = newAction;
 		this._cancelActionButtonObject.SetActive (true);
 	}
+
+
+	// TODO : Check if we are in "passiveMode" (to avoid changing vignettes during battle)
 
 
 	/*
@@ -408,5 +377,27 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		this._pendingAction.onActionValidation(this._charaterManager,ped.worldPosition);
 		this._pendingAction = null;
 		*/
+	}
+	
+	[RPC]
+	private void newPlayerReady()
+	{
+		readyPlayer(null, null);
+		if(Network.isServer)
+			networkView.RPC("newPlayerReady", RPCMode.Others);
+	}
+	
+	[RPC]
+	public void broadcastStartSimulation()
+	{
+		if(Network.isServer)
+		{
+			networkView.RPC("broadcastStartSimulation", RPCMode.Others);
+			this._charaterManager.runHotAcions();
+		}
+		else
+		{
+			this._charaterManager.runHotAcions();
+		}
 	}
 }

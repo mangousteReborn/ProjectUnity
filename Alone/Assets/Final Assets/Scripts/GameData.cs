@@ -14,7 +14,7 @@ public static class GameData {
 
 	private static Dictionary<string, Vignette> _bonusVignetteMap = new Dictionary<string, Vignette>();
 
-    //private static Dictionary<string, Vignette> _entityVignetteMap = new Dictionary<string, Vignette>();
+	private static Dictionary<string, Vignette> _entitiesVignetteMap = new Dictionary<string, Vignette>();
 
 	private static Dictionary<string, Vignette> _actionVignetteMap = new Dictionary<string, Vignette>();
 
@@ -47,7 +47,7 @@ public static class GameData {
 		_bonusVignetteMap.Add("lifebonus2", new VignetteBonus(lifeupEffects, "lifebonus2", "Souper Viche",null, "Vignettes/lifehigh"));
 		/* Actions */
         /*Entity Enemy */
-        //_entityVignetteMap.Add("Base Enemy", new VignetteEntity(VignetteEntity.EntityType.Base, "Base", "DefaultEnemy"));
+		_entitiesVignetteMap.Add("base", new VignetteEntity(VignetteEntity.EntityType.Base, "Base", "DefaultEnemy"));
 		// Move
 		Action moveAction = new MoveAction (0.2f);
 
@@ -75,7 +75,14 @@ public static class GameData {
 		_actionVignetteMap.TryGetValue(k, out val);
 		return val;
 	}
-	
+
+	public static Vignette getEntityVignette(string k){
+		Vignette val;
+		_entitiesVignetteMap.TryGetValue(k, out val);
+		return val;
+	}
+
+
     public static List<Player> getPlayerList()
     {
         return _playerList;
@@ -83,6 +90,10 @@ public static class GameData {
 
 	public static Dictionary<string, Vignette> getActionVignettes(){
 		return _actionVignetteMap;
+	}
+
+	public static Dictionary<string, Vignette> getEntitiesVignettes(){
+		return _entitiesVignetteMap;
 	}
 
 	// Action Get

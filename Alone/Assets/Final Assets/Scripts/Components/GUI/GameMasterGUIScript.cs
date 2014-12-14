@@ -50,18 +50,27 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		this._unitsVignettesPicker.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
 		this._unitsVignettesPicker.GetComponent<VignettesPickerScript> ().setDimension (this._screenWidth, 50);
 		this._unitsVignettesPicker.GetComponent<VignettesPickerScript> ().setPlayerGUI (this);
+
+
+		fillVignettesPicker ();
 	}
 
-    private void fillBonusVignettesPicker()
+    private void fillVignettesPicker()
     {
         VignettesPickerScript bvpScript = this._unitsVignettesPicker.GetComponent<VignettesPickerScript>();
-        foreach (KeyValuePair<string, Vignette> kvp in GameData.getBonusVignettes())
+		foreach (KeyValuePair<string, Vignette> kvp in GameData.getEntitiesVignettes())
         {
-            object[] p = { kvp.Value };
-            //bvpScript.pushVignette(kvp.Key, kvp.Value, onBonusVignetteSlotClick);
+			bvpScript.pushVignette(kvp.Key, kvp.Value, onEntityVignetteClick );
 
         }
     }
+
+	private void onEntityVignetteClick(object[] data){
+		VignetteSlotScript vss = (VignetteSlotScript)data [0];
+		VignetteEntity ve = (VignetteEntity)vss.vignette;
+
+		Debug.Log ("Vignette entity name == " + ve.name);
+	}
 
 	// Update is called once per frame
 	void Update () {

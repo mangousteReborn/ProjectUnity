@@ -14,10 +14,9 @@ public class IABase : MonoBehaviour {
 	static float getPathLength(NavMeshPath path)
 	{
 		float length = 0f;
-		MoveAction moveAction = new MoveAction (costPerUnit);
 
 		for (int i = 0; i < path.corners.Length-1; i++) {
-			length += moveAction.calculateCost(path.corners[i],path.corners[i+1] );		
+			length += Vector3.Distance(path.corners[i],path.corners[i+1] );		
 		}
 
 		return length;
@@ -35,10 +34,12 @@ public class IABase : MonoBehaviour {
 
 		for(int i = 0; i < path.corners.Length-1; i++){
 
-			float dist = moveAction.calculateCost(path.corners[i],path.corners[i+1]);
-			if(pointsLeft - dist <= 0f)
+			float costDist = moveAction.calculateCost(path.corners[i],path.corners[i+1]);
+			float dist = Vector3.Distance(path.corners[i],path.corners[i+1]);
+
+			if(pointsLeft - costDist <= 0f)
 			{
-				if(pointsLeft-dist == 0f)
+				if(pointsLeft-costDist == 0f)
 					return path.corners[i+1];
 				Vector3 norm = Vector3.Normalize(path.corners[i+1]- path.corners[i]);  
 				return path.corners[i] + norm*(pointsLeft/costPerUnit);
@@ -46,7 +47,7 @@ public class IABase : MonoBehaviour {
 
 			if(distanceDone+dist < (totalDistance - distanceLeft) ){
 				distanceDone+= dist;
-				pointsLeft-= dist;
+				pointsLeft-= costDist;
 			}
 			else {
 				float distanceLeftToDistanceLeft = (totalDistance-distanceLeft)-distanceDone;

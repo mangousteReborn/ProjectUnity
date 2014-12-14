@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\Actions\Action.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" Line="46" Column="3" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="19" Column="64" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="1" Column="1" />
@@ -15,9 +16,11 @@
       <File FileName="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\GameData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="10" Column="2" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" Line="8" Column="37" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="22" Column="37" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\Action.cs" Line="49" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

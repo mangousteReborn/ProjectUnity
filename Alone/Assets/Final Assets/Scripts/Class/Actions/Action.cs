@@ -55,13 +55,21 @@ public abstract class Action  {
 
 	public abstract Action getCopy(Action a);
 
+	//1: Called on vignette Click (client side)
 	public abstract void onActionSelection(CharacterManager cm, bool drawHelper);
 
+	//2: Called on click validation (client side ? helper ?)
 	public abstract bool onActionValidation(CharacterManager cm, object[] param=null);
 
+	//*: Called on action cancel (server side ?)
 	public abstract void onActionCanceled(CharacterManager cm, object[] param=null);
 
-	public abstract void onActionRunning(CharacterManager cm, object[] param=null);
+	//3: Called on execution
+	public abstract void onActionStart(CharacterManager cm, object[] param=null);
+
+	//4 : Called on end of exection
+	public abstract void onActionEnd(CharacterManager cm, object[] param=null);
+
 
 	public abstract void cancelAction (object[] param=null);
 }

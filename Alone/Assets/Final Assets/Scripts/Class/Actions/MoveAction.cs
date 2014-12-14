@@ -6,12 +6,21 @@ public class MoveAction : Action {
 	private MoveHelperScript _lineHelper;
 
 	private float _costPerUnit;
+	private Vector3 _destPosition;
 
 	// Used by GameData for definition
 	public MoveAction(float costPerUnit)
 	: base("move", "Deplacement", "Marche petit !")
 	{
 		this._costPerUnit = costPerUnit;
+	}
+
+	public MoveAction (string k, string name, string d, float cost, Vector3 destPosition)
+		: base(k, name, d)
+	{
+		this._actionCost = cost;
+		this._destPosition = destPosition;
+
 	}
 
 	public override Action getCopy(Action a){
@@ -35,14 +44,15 @@ public class MoveAction : Action {
 	}
 
 	/* Param 
-	 * [0] <float> cost
-	 * [1] <Vector3> target 
+	 * [0] <NetworkViewID> id of Player 
+	 * [1] <Vector3> dest
 	 */ 
 	public override bool onActionValidation(CharacterManager cm, object[] param){
         float cost = (float)param[0];
 
         if (cost > cm.characterStats.currentActionPoint)
         {
+			Debug.Log("No enough action point : ");
             return false;
         }
         cm.characterStats.currentActionPoint -= cost;
@@ -73,10 +83,14 @@ public class MoveAction : Action {
 
 	}
 
-	public override void onActionRunning(CharacterManager cm, object[] param=null){
+	public override void onActionStart(CharacterManager cm, object[] param=null){
 		Debug.Log ("Running action ...");
-		cm.character.GetComponent<DeplacementActionScript> ().moveToTarget(this._lineHelper.getEndPoint());
+		cm.character.GetComponent<DeplacementActionScript> ().moveToTarget(this._destPosition);
 		
+	}
+
+	public override void onActionEnd(CharacterManager cm, object[] param=null){
+		Debug.Log ("Running end ...");
 	}
 
 	public float costPerUnit{

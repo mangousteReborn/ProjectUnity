@@ -199,7 +199,7 @@ public class CharacterStats  {
 	}
 
 	/*
-	 * Action
+	 * Actions
 	 */
 	public void addActionInAvailableList(Action a){
 		this._availableActionList.Add (a);
@@ -222,12 +222,16 @@ public class CharacterStats  {
 		fireEvent (CharacterStatsEvent.lastHotActionRemoved, param);
 	}
 
+	/* Specific action pushing (called by CharacterManager from RPC) */
+	public void pushMoveAction(string k, string name, string d, float cost, Vector3 destPosition){
+		this._hotActionsStack.Push(new MoveAction(k,name,d,cost,destPosition));
+		Debug.Log ("CharacterStats : <pushMoveAction> OK");
+	}
 
-
-	// Get/Seters
 	/*
-	 *  Statictics TODO : Manage Events and Fireing conditions
+	 * Get / Seters
 	 */
+	/* Statictics TODO : Manage/Fix Events and Fireing conditions */
 	public int maxLife
 	{
 		get {

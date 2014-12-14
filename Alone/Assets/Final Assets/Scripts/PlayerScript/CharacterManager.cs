@@ -95,7 +95,7 @@ public class CharacterManager : MonoBehaviour {
 
 		foreach(Action a in actions){
 			Debug.Log ("# Running action " + a.key + " Waiting : " + a.actionCost);
-			a.onActionRunning(this);
+			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
 		}
 
@@ -120,6 +120,8 @@ public class CharacterManager : MonoBehaviour {
 			this._isInFight = true;
 		}
 	}
+
+
 
 	// Get / Seters
 	public GameObject character{
@@ -151,5 +153,10 @@ public class CharacterManager : MonoBehaviour {
     {
         this._characterStats.setCurrentLife(value,true);
     }
+
+	[RPC]
+	private void pushMoveActionRPC(string k, string name, string d, float cost, Vector3 destPosition){
+		this._characterStats.pushMoveAction(k, name, d, cost, destPosition);
+	}
 
 }

@@ -69,7 +69,7 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 		mhs.setStartPosition (startPos);
 
-		mhs.activate(cm,a);
+		//mhs.activate(cm,a);
 
 		this._currentPlayerHelper = mhs;
 

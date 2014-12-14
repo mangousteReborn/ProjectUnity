@@ -88,7 +88,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 		this._moveAction = ma;
 		this._owner = cm;
-		
+		Debug.Log (" Jumanji ");
 		cm.networkView.RPC("pushMoveActionRPC", RPCMode.All,  true,  ma.key, ma.name, ma.desc, ma.actionCost, new Vector3());
 
 		this._activated = true;
@@ -96,6 +96,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 	public void cancel(CharacterManager cm){
 		cm.networkView.RPC ("removePendingActionRPC", RPCMode.All);
+		GameObject.Destroy (this._object);
 	}
 
 	public void setStartPosition(Vector3 startPos){

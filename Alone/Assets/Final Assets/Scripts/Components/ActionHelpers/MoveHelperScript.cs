@@ -84,9 +84,12 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	}
 
 	public void activate (CharacterManager cm, Action a){
-		a = (MoveAction)a;
+		MoveAction ma = (MoveAction)a;
 
-		cm.networkView.RPC("pushMoveActionRPC", RPCMode.All,  true,  a.key, a.name, a.desc, a.actionCost, null);
+		this._moveAction = ma;
+		this._owner = cm;
+		
+		cm.networkView.RPC("pushMoveActionRPC", RPCMode.All,  true,  ma.key, ma.name, ma.desc, ma.actionCost, new Vector3());
 
 		this._activated = true;
 	}

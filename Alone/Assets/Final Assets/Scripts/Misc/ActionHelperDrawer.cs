@@ -68,6 +68,7 @@ public class ActionHelperDrawer : MonoBehaviour {
 		MoveHelperScript mhs = go.GetComponent<MoveHelperScript> ();
 
 		mhs.setStartPosition (startPos);
+
 		mhs.activate(cm,a);
 
 		this._currentPlayerHelper = mhs;

@@ -63,7 +63,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 			if(this._RPCcallback){
 				Debug.Log("cliclick and run CallBack");
-				this._owner.networkView.RPC("validateMoveActionRPC", RPCMode.All,this._owner.player.id, this._endPoint);
+                this._owner.networkView.RPC("validateMoveActionRPC", RPCMode.All, this._owner.player.id, this._endPoint);
 				this._RPCcallback = false;
 			}
 			return;
@@ -91,19 +91,21 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 		this._moveAction = ma;
 		this._owner = cm;
-		
-		cm.networkView.RPC("pushMoveActionAsPendingRPC", RPCMode.All, ma.key, ma.name, ma.desc,  ma.costPerUnit);
+        Debug.Log("activate RPCALL");
+        cm.networkView.RPC("pushMoveActionAsPendingRPC", RPCMode.All, ma.key, ma.name, ma.desc, ma.costPerUnit);
 
 		this._activated = true;
 	}
 
 	public void cancel(CharacterManager cm){
-		cm.networkView.RPC ("removePendingActionRPC", RPCMode.All);
+        Debug.Log("cancel RPCALL");
+        cm.networkView.RPC("removePendingActionRPC", RPCMode.All);
 		GameObject.Destroy (this._object);
 	}
 
 	public void validate(CharacterManager cm){
-		GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint, this._text.text);
+        Debug.Log("validate RPCALL");
+        GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint, this._text.text);
 		this._validated = true;
 	}
 

@@ -47,7 +47,7 @@ public static class GameData {
 		_bonusVignetteMap.Add("lifebonus2", new VignetteBonus(lifeupEffects, "lifebonus2", "Souper Viche",null, "Vignettes/lifehigh"));
 		/* Actions */
         /*Entity Enemy */
-		_entitiesVignetteMap.Add("base", new VignetteEntity(VignetteEntity.EntityType.Base, "Base", "DefaultEnemy"));
+		_entitiesVignetteMap.Add("base", new VignetteEntity(VignetteEntity.EntityType.Base,1, "Base", "DefaultEnemy"));
 		// Move
 		Action moveAction = new MoveAction (0.2f);
 

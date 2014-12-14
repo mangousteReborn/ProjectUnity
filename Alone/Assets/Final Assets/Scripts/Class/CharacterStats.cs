@@ -318,6 +318,7 @@ public class CharacterStats  {
 
 	public void setCurrentActionPoint(float value, bool isFromRPC)
 	{
+        Debug.Log("current ActionPoint");
 		if (Network.isServer)
 		{
 			float oldValue = this._currentActionPoint;
@@ -327,12 +328,12 @@ public class CharacterStats  {
 			
 			fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
 			fireEvent(CharacterStatsEvent.change, null);
-			_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value);
+			_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value, true);
 		}
 		else
 		{
 			if(!isFromRPC)
-				_networkView.RPC("setCurrentActionPoint", RPCMode.Server, value);
+				_networkView.RPC("setCurrentActionPoint", RPCMode.Server, value,true);
 			else
 			{
 				float oldValue = this._currentActionPoint;
@@ -342,7 +343,7 @@ public class CharacterStats  {
 				
 				fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
 				fireEvent(CharacterStatsEvent.change, null);
-				_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value);
+				//_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value);
 			}
 		}
 	}

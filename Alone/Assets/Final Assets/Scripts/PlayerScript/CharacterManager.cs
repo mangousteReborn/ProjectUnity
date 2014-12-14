@@ -209,14 +209,14 @@ public class CharacterManager : MonoBehaviour {
 			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
 				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
 
-			ma.onActionValidation(this);
+			ma.onActionValidation(this,null);
 
-			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, ePos, cost+"s");
-			this.networkView.RPC("pushMoveActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);
-			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
-		
+            GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC", RPCMode.All, playerWhoValidate.id, sPos, ePos, cost + "s");
+            this.networkView.RPC("pushMoveActionRPC", RPCMode.All, ma.key, ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);
+            this.networkView.RPC("removePendingActionRPC", RPCMode.All);
+
 		} else {
-			ma.onActionInvalid(this);
+			ma.onActionInvalid(this,null);
 		}
 
 	}

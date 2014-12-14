@@ -10,9 +10,8 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 
 	private bool _lockCamera = true;
     private Transform joueur;
+    private bool cameraCanBeLock = true;
 
-    StaticVariableScript setting;
-	
 	// Use this for initialization
 	void Start () {
         //joueur = transform.parent;
@@ -24,11 +23,18 @@ public class CameraMovementScriptMouse : MonoBehaviour {
                 joueur = NetworkView.Find(player.id).transform;
         }
 	}
+
+    public Transform setJoueur
+    {
+        set { this.joueur = value; }
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
 		// Check if on the right edge
+        if (joueur == null)
+            return;
 		if (!_lockCamera)
 		{
             if (Input.mousePosition.x >= Screen.width - mDelta)
@@ -49,8 +55,9 @@ public class CameraMovementScriptMouse : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-			_lockCamera = !_lockCamera;
+        if (cameraCanBeLock)
+            if (Input.GetKeyDown(KeyCode.E))
+			    _lockCamera = !_lockCamera;
 
 		if (_lockCamera)
 		{
@@ -64,5 +71,10 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 			this._lockCamera = value;
 		}
 	}
+
+    public bool cameraCanBeLocked
+    {
+        set { this.cameraCanBeLock = value; }
+    }
 }
 

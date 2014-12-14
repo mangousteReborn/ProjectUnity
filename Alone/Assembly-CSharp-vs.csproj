@@ -79,6 +79,7 @@
      <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\MJScript\spawnEntityInfos.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\ServeurListScript.cs" />

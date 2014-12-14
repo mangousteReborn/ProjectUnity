@@ -8,7 +8,13 @@ public class fastConnectionScript : MonoBehaviour {
     private GameObject playerPrefab;
 
     [SerializeField]
+    private GameObject gmEmpty;
+
+    [SerializeField]
     private GameObject[] spawnPoint;
+
+    [SerializeField]
+    private GameObject gmSpawnPoint;
 
     [SerializeField]
     private bool _isGM;
@@ -80,6 +86,15 @@ public class fastConnectionScript : MonoBehaviour {
         else
         {
             this.GetComponent<GameManager>().setGMGui();
+            Vector3 spawnPos = gmSpawnPoint.transform.position;
+            GameObject newPlayer = (GameObject)Network.Instantiate(gmEmpty, spawnPos, Quaternion.identity, 1);
+            spawnPos.y = Camera.main.transform.position.y;
+            Camera.main.transform.position = spawnPos;
+            CameraMovementScriptMouse camScript = Camera.main.GetComponent<CameraMovementScriptMouse>();
+            camScript.enabled = true;
+            camScript.setJoueur = newPlayer.transform;
+            camScript.cameraCanBeLocked = false;
+            camScript.lockCamera = false;
         }
     }
 

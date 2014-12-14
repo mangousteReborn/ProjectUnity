@@ -51,6 +51,7 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		this._unitsVignettesPicker.GetComponent<VignettesPickerScript> ().setDimension (this._screenWidth, 50);
 		this._unitsVignettesPicker.GetComponent<VignettesPickerScript> ().setPlayerGUI (this);
 
+        this._readyButtonObject.GetComponent<Button>().onClick.AddListener(() => { onReadyButtonClick(); });
 
 		fillVignettesPicker ();
 	}
@@ -69,8 +70,14 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		VignetteSlotScript vss = (VignetteSlotScript)data [0];
 		VignetteEntity ve = (VignetteEntity)vss.vignette;
 
-        gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType);
+        gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType,ve.cost);
 	}
+
+    private void onReadyButtonClick()
+    {
+        Debug.Log("instanciate");
+        gameObject.GetComponent<InstantiateNPCScript>().onValidate();
+    }
 
 	// Update is called once per frame
 	void Update () {

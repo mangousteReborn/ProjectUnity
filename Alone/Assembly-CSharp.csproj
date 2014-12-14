@@ -63,7 +63,6 @@
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\StaticHelperScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\WaitHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" />

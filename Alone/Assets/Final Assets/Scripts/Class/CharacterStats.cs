@@ -202,7 +202,7 @@ public class CharacterStats  {
 	}
 
 	/*
-	 * Actions
+	 *  Actions
 	 */
 	public void addActionInAvailableList(Action a){
 		this._availableActionList.Add (a);
@@ -219,26 +219,24 @@ public class CharacterStats  {
 	public void removeLastHotAction(){
 		Action oa = this._hotActionsStack.Pop ();
 		object[] subParam = {this};
-		oa.cancelAction (subParam);
+		//oa.cancelAction (subParam);
 
 		object[]param={oa};
 		fireEvent (CharacterStatsEvent.lastHotActionRemoved, param);
 	}
 
 	/* Specific action pushing (called by CharacterManager from RPC) */
-	public void pushMoveAction(bool isPending, string k, string name, string d, float cost, Vector3 destPosition){
-		Debug.Log ("CharacterStats : <pushMoveAction> as pending ? " + isPending);
-		MoveAction ma = new MoveAction (k, name, d, cost, destPosition);
-		if (isPending) {
-
-			if (null != this._pendingAction){
-				Debug.LogWarning("CharacterStats : <pushMoveAction> An action was here as pending");
-			}
-
-			this._pendingAction = ma;
-		} else {
-			this._hotActionsStack.Push(ma);
+	public void setPendingActionAsMoveAction(string k , string name, string d, float cpu){
+		MoveAction ma = new MoveAction (k, name, d, cpu);
+		if (null != this._pendingAction){
+			Debug.LogWarning("CharacterStats : <pushMoveAction> An action was here as pending");
 		}
+		
+		this._pendingAction = ma;
+	}
+	public void pushMoveAction(string k, string name, string d, float costPU, float totalCost, Vector3 sPos, Vector3 ePos){
+		MoveAction ma = new MoveAction (k, name, d, totalCost, sPos, ePos);
+		this._hotActionsStack.Push(ma);
 	}
 
 	public void removePendingAction(){
@@ -249,6 +247,11 @@ public class CharacterStats  {
 		this._pendingAction = null;
 	}
 
+	public Action getLastHotAction (){
+		if (this._hotActionsStack.Count > 0)
+			return this._hotActionsStack.Peek ();
+		return null;
+	}
 	/*
 	 * Get / Seters
 	 */
@@ -312,17 +315,41 @@ public class CharacterStats  {
 			fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
+
+	public void setCurrentActionPoint(float value, bool isFromRPC)
+	{
+		if (Network.isServer)
+		{
+			float oldValue = this._currentActionPoint;
+			this._currentActionPoint = value;
+			
+			object[] param = { oldValue, this._currentActionPoint };
+			
+			fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
+			fireEvent(CharacterStatsEvent.change, null);
+			_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value);
+		}
+		else
+		{
+			if(!isFromRPC)
+				_networkView.RPC("setCurrentActionPoint", RPCMode.Server, value);
+			else
+			{
+				float oldValue = this._currentActionPoint;
+				this._currentActionPoint = value;
+				
+				object[] param = { oldValue, this._currentActionPoint };
+				
+				fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
+				fireEvent(CharacterStatsEvent.change, null);
+				_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value);
+			}
+		}
+	}
 	public float currentActionPoint
 	{
 		get {
 			return this._currentActionPoint;
-		}
-		set {
-			float old = this._currentActionPoint;
-			this._currentActionPoint = value;
-
-			object[] param = {old,this._currentActionPoint};
-			fireEvent(CharacterStatsEvent.currentActionPointChanged,param);
 		}
 	}
 

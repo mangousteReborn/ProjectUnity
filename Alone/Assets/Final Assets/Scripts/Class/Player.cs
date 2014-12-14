@@ -4,10 +4,14 @@ using System.Collections;
 public class Player {
 
 	private string _name;
+
     private NetworkView _networkView;
 	private NetworkViewID _id;
 	private Color _color;
     private bool _isGM;
+
+	private CharacterManager _characterManager;
+	private GameObject _playerObject;
 
 	public Player(string name, NetworkView view, Color col,bool isGM=false){
 		this._name = name;
@@ -18,6 +22,7 @@ public class Player {
 		}
 		this._color = col;
         this._isGM = isGM;
+		this._characterManager = null;
 	}
 
 	public string name{
@@ -33,6 +38,12 @@ public class Player {
     {
         get {return this._isGM;}
     }
-
-
+	public CharacterManager characterManager {
+		get {return this._characterManager;}
+		set {this._characterManager = value;}
+	}
+	public GameObject playerObject{
+		get {return this._playerObject;}
+		set {this._playerObject = value;}
+	}
 }

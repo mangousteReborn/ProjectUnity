@@ -29,6 +29,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 	private bool _validated = false;
 	private bool _activated = false;
+	private bool _RPCcallback = true;
 
 	private float _currentCost;
 
@@ -59,17 +60,18 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		if (Input.GetMouseButton (0) && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector3 target = getTarget();
 			calcCost(target);
-
-            object[] p = { this._currentCost, target };
-            this._validated = this._moveAction.onActionValidation(this._owner, p);
-            if (this._validated)
-                GameData.getActionHelperDrawer().networkView.RPC("pushMoveHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint);
-
+			Debug.Log("cliclick");
+			if(this._RPCcallback){
+				this._owner.networkView.RPC("validateMoveActionRPC", RPCMode.All,this._owner.player.id, this._endPoint);
+				this._RPCcallback = false;
+			}
 			return;
 		}
 
 		calcCost(getTarget());
 	}
+
+
 
 	// IMPLEMENTS ME
 	public void setAction(Action a){
@@ -88,8 +90,8 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 		this._moveAction = ma;
 		this._owner = cm;
-		Debug.Log (" Jumanji ");
-		cm.networkView.RPC("pushMoveActionRPC", RPCMode.All,  true,  ma.key, ma.name, ma.desc, ma.actionCost, new Vector3());
+		
+		cm.networkView.RPC("pushMoveActionAsPendingRPC", RPCMode.All, ma.key, ma.name, ma.desc,  ma.costPerUnit);
 
 		this._activated = true;
 	}
@@ -97,6 +99,11 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 	public void cancel(CharacterManager cm){
 		cm.networkView.RPC ("removePendingActionRPC", RPCMode.All);
 		GameObject.Destroy (this._object);
+	}
+
+	public void validate(CharacterManager cm){
+		GameData.getActionHelperDrawer().networkView.RPC("pushMoveHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint);
+		this._validated = true;
 	}
 
 	public void setStartPosition(Vector3 startPos){
@@ -128,11 +135,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		this._lineRenderer.SetPosition(0, this._startPoint);
 		this._lineRenderer.SetPosition(1, this._endPoint);
 		
-		this._currentCost = (float)Math.Round(
-			(Vector3.Distance(this._startPoint, this._endPoint) * this._moveAction.costPerUnit),
-			2,
-			MidpointRounding.ToEven
-			);
+		this._currentCost = this._moveAction.calculateCost (this._startPoint, this._endPoint);
 		
 		this._middlePoint = ((this._endPoint - this._startPoint ) / 2) + this._startPoint;
 		
@@ -185,6 +188,9 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		return this._middlePoint;
 	}
 
+	public bool RPCcallback{
+		set{this._RPCcallback = value;}
+	}
 
 
 }

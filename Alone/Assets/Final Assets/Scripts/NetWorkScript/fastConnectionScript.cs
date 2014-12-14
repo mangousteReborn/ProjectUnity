@@ -57,6 +57,8 @@ public class fastConnectionScript : MonoBehaviour {
 		CharacterManager cm = newPlayer.GetComponent<CharacterManager> ();
 
 		Player p = new Player("Player", newPlayer.networkView, Color.green);
+		p.characterManager = cm;
+		p.playerObject = newPlayer;
         GameData.addPlayer(p);
 
 		cm.player = p;

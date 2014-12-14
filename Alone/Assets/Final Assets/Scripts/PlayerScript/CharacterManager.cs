@@ -153,16 +153,84 @@ public class CharacterManager : MonoBehaviour {
     {
         this._characterStats.setCurrentLife(value,true);
     }
+	[RPC]
+	private void setCurrentActionPoint(float value){
+		this._characterStats.setCurrentActionPoint(value,true);
+	}
+
 
 	[RPC]
-	public void pushMoveActionRPC(bool isPending, string k, string name, string d, float cost, Vector3 destPosition){
-
-		this._characterStats.pushMoveAction(isPending, k, name, d, cost, destPosition);
+	public void pushMoveActionAsPendingRPC(string k, string name, string d, float costpu){
+		this._characterStats.setPendingActionAsMoveAction(k, name, d, costpu);
+	}
+	[RPC]
+	public void pushMoveActionRPC(string k, string name, string d, float costpu, float totalCost, Vector3 startPos, Vector3 destPosition){
+		this._characterStats.pushMoveAction(k, name, d, costpu, totalCost, startPos, destPosition);
 	}
 
 	[RPC]
 	public void removePendingActionRPC(){
 		this._characterStats.removePendingAction();
+	}
+
+	[RPC] 
+	public void validateMoveActionRPC(NetworkViewID id, Vector3 ePos){
+		Debug.Log ("Trying to validation ");
+		if (!Network.isServer)
+			return;
+
+		Player playerWhoValidate = GameData.getPlayerByNetworkViewID (id);
+
+		MoveAction ma = null;
+
+		try{
+			ma = (MoveAction)playerWhoValidate.characterManager.characterStats.pendingAction;
+		} catch (Exception e){
+			Debug.LogError("CharacterManager : <validateMoveAction> Player doest have pending action or action is not a MoveAction : " + e.ToString());
+			return;
+		}
+		Vector3 sPos;
+
+		Action lastHotAction = playerWhoValidate.characterManager.characterStats.getLastHotAction();
+
+		if (null == lastHotAction) {
+			sPos = playerWhoValidate.playerObject.transform.position;
+		}
+		else {
+			sPos = lastHotAction.endPosition;
+		}
+		
+		float cost = ma.calculateCost (sPos, ePos);
+
+		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
+			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
+				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
+
+			ma.onActionValidation(this);
+
+			this.networkView.RPC("pushMoveActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);
+			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
+		
+		} else {
+			ma.onActionInvalid(this);
+		}
+
+	}
+
+	[RPC]
+	public void validadePendingAction(NetworkViewID id){
+		//TODO : genre validafing pending action (only for classic pending action whit predefined action cost
+		Player playerWhoValidate = GameData.getPlayerByNetworkViewID (id);
+
+		Action pa = playerWhoValidate.characterManager.characterStats.pendingAction;
+		if (null == pa) {
+			Debug.LogWarning("CharacterManager : <validatePendingAcion> Player doest have pending action");
+		}
+
+		float costRes = playerWhoValidate.characterManager.characterStats.currentActionPoint - pa.actionCost;
+
+
+		
 	}
 
 }

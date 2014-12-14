@@ -101,6 +101,19 @@ public static class GameData {
         _playerList.Add(player);
     }
 
+	public static Player getPlayerByNetworkViewID(NetworkViewID id){
+		bool f = false;
+
+		foreach (Player p in _playerList) {
+			if (p.id == id){
+				return p;
+			}
+		}
+
+		Debug.LogWarning ("GameData : <getPlayerByNetworkViewID> player not found : " + id.ToString ());
+		return null;
+	}
+
     public static int getNonGMPlayerCount()
     {
         int playerCount = 0;

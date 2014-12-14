@@ -7,6 +7,9 @@ public abstract class Action  {
 	protected string _name;
 	protected string _desc;
 
+	protected Vector3 _startPosition;
+	protected Vector3 _endPosition;
+
 	protected float _actionCost;
 	protected bool _pending;
 
@@ -52,6 +55,25 @@ public abstract class Action  {
 			return this._actionCost;
 		}
 	}
+	public Vector3 endPosition
+	{
+		get {
+			return this._endPosition;
+		}
+		set {
+			this._endPosition = value;
+		}
+	}
+
+	public Vector3 startPosition
+	{
+		get {
+			return this._startPosition;
+		}
+		set {
+			this._startPosition = value;
+		}
+	}
 
 	public abstract Action getCopy(Action a);
 
@@ -59,7 +81,10 @@ public abstract class Action  {
 	public abstract void onActionSelection(CharacterManager cm, bool drawHelper);
 
 	//2: Called on click validation (client side ? helper ?)
-	public abstract bool onActionValidation(CharacterManager cm, object[] param=null);
+	public abstract void onActionValidation(CharacterManager cm, object[] param=null);
+
+	//2.b : Called on action not valid (costing too much, etc ..)
+	public abstract void onActionInvalid(CharacterManager cm, object[] param=null);
 
 	//*: Called on action cancel (server side ?)
 	public abstract void onActionCanceled(CharacterManager cm, object[] param=null);
@@ -70,6 +95,4 @@ public abstract class Action  {
 	//4 : Called on end of exection
 	public abstract void onActionEnd(CharacterManager cm, object[] param=null);
 
-
-	public abstract void cancelAction (object[] param=null);
 }

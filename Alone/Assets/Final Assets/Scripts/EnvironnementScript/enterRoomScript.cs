@@ -18,16 +18,17 @@ public class enterRoomScript : MonoBehaviour {
         if (!listEnter.Contains(other.gameObject.networkView.viewID))
         {
             listEnter.Add(other.gameObject.networkView.viewID);
-            if(setting.ListPlayer.Count == listEnter.Count)
+            var playerList = GameData.getPlayerList();
+            if (playerList.Count == listEnter.Count)
             {
                 NetworkView view;
-                foreach(NetworkViewID id in setting.ListPlayer)
+                foreach (Player player in playerList)
                 {
-                    view = NetworkView.Find(id);
+                    view = NetworkView.Find(player.id);
                     if (!Network.isServer)
-                        view.RPC("enterFightMode", RPCMode.Server, id);
+                        view.RPC("enterFightMode", RPCMode.Server, player.id);
                     else
-						view.GetComponent<CharacterManager>().enterFightMode(id);//view.GetComponent<playerCaracScript>().enterFight(id);
+                        view.GetComponent<CharacterManager>().enterFightMode(player.id);//view.GetComponent<playerCaracScript>().enterFight(id);
                 }
             }
         }

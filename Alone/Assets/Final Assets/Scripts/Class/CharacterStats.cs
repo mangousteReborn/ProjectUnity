@@ -347,6 +347,7 @@ public class CharacterStats  {
 			}
 		}
 	}
+
 	public float currentActionPoint
 	{
 		get {

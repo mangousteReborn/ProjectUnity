@@ -136,9 +136,10 @@ public class CharacterManager : MonoBehaviour {
     {
         this._characterStats.setCurrentLife(value,true);
     }
+
 	[RPC]
-	private void setCurrentActionPoint(float value){
-		this._characterStats.setCurrentActionPoint(value,true);
+	private void setCurrentActionPoint(float value,bool isFromRPC){
+        this._characterStats.setCurrentActionPoint(value, isFromRPC);
 	}
 
 

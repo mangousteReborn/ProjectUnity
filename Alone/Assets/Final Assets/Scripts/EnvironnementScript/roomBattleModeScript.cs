@@ -28,11 +28,9 @@ public class roomBattleModeScript : MonoBehaviour {
 
     public void beginBattleMode()
     {
-        Debug.Log("start IA : " + _enemyList.Count);
         foreach(GameObject enemy in _enemyList)
         {
-            Debug.Log(enemy);
-            //enemy.GetComponent<IA>().enable = true;
+            enemy.GetComponent<IABase>().enabled = true;
         }
     }
 }

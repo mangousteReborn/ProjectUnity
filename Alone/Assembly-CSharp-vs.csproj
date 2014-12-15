@@ -1,102 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{D3E18609-1997-6BFE-6CBC-1F6904FE4EE1}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3E18609-1997-6BFE-6CBC-1F6904FE4EE1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Actions\Action.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStats.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Player.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\Vignette.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteAction.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteBonus.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteEntity.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DefaultStaticHelperScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignetteSlotScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\roomBattleModeScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\IA\IABase.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\MJScript\spawnEntityInfos.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\MenuScript\ServeurListScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
-     <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />
-     <None Include="Assets\IMPORTANT README.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Actions\Action.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStats.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Player.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\Vignette.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteAction.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteBonus.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteEntity.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DefaultStaticHelperScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignetteSlotScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\roomBattleModeScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\IA\IABase.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\MJScript\spawnEntityInfos.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\MenuScript\ServeurListScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" />
+    <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
+    <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />
+    <None Include="Assets\IMPORTANT README.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -106,5 +107,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

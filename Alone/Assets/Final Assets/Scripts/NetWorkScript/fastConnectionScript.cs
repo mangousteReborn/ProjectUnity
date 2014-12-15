@@ -95,6 +95,7 @@ public class fastConnectionScript : MonoBehaviour {
             camScript.setJoueur = newPlayer.transform;
             camScript.cameraCanBeLocked = false;
             camScript.lockCamera = false;
+            gameObject.GetComponent<InstantiateNPCScript>().enabled = true;
         }
     }
 

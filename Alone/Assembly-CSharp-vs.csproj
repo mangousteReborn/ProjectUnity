@@ -79,6 +79,7 @@
      <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\IA\IABase.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\spawnEntityInfos.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />

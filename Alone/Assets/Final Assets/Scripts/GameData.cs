@@ -50,10 +50,12 @@ public static class GameData {
         //_entityVignetteMap.Add("Base Enemy", new VignetteEntity(VignetteEntity.EntityType.Base, "Base", "DefaultEnemy"));
 		// Move
 		Action moveAction = new MoveAction (0.2f);
+		WaitAction waitAction = new WaitAction(0.9f);
 
 		_actionsMap.Add (moveAction.key, moveAction);
+		_actionsMap.Add (waitAction.key, waitAction);
 		_actionVignetteMap.Add(moveAction.key, new VignetteAction(moveAction));
-
+		_actionVignetteMap.Add(waitAction.key, new VignetteAction(waitAction));
 
 		return err;
 	}

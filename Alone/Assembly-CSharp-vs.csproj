@@ -48,7 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Actions\Action.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Actions\DirectDamageAction.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\Actions\WaitAction.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStats.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\CharacterStatsEvent.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
@@ -63,6 +65,7 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DefaultStaticHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MouseDistanceHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" />

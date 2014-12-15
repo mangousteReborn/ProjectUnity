@@ -24,7 +24,7 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	public GameObject _character;
 
-	private CharacterStats _characterStats = new CharacterStats ();
+	private CharacterStats _characterStats = new CharacterStats (null,200,20f);
 	private Player _player;
 	private bool _isInFight = false;
 
@@ -161,18 +161,73 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC]
 	public void pushMoveActionAsPendingRPC(string k, string name, string d, float costpu){
-		Debug.Log ("Pending >>> push MoveActionAsPendingRPC");
+		Debug.Log ("Pending >>> push Move ActionAsPendingRPC");
 		this._characterStats.setPendingActionAsMoveAction(k, name, d, costpu);
+	}
+	[RPC]
+	public void pushWaitActionAsPendingRPC(string k, string name, string d, float costpu){
+		Debug.Log ("Pending >>> push Wait ActionAsPendingRPC");
+		this._characterStats.setPendingActionAsWaitAction(k, name, d, costpu);
 	}
 	[RPC]
 	public void pushMoveActionRPC(string k, string name, string d, float costpu, float totalCost, Vector3 startPos, Vector3 destPosition){
 		this._characterStats.pushMoveAction(k, name, d, costpu, totalCost, startPos, destPosition);
 	}
+	[RPC]
+	public void pushWaitActionRPC(string k, string name, string d, float costpu, float totalCost, Vector3 startPos, Vector3 destPosition){
+		this._characterStats.pushWaitAction(k, name, d, costpu, totalCost, startPos, destPosition);//destPosition
+	}
+
 
 	[RPC]
 	public void removePendingActionRPC(){
 		Debug.Log ("Pending >>> remove PendingActionRPC");
 		this._characterStats.removePendingAction();
+	}
+
+	[RPC]
+	public void validateWaitActionRPC(NetworkViewID id, Vector3 ePos){
+		Debug.Log ("Trying to validate WAit ");
+		if (!Network.isServer)
+			return;
+		
+		Player playerWhoValidate = GameData.getPlayerByNetworkViewID (id);
+		
+		WaitAction ma = null;
+		
+		try{
+			ma = (WaitAction)playerWhoValidate.characterManager.characterStats.pendingAction;
+			
+		} catch (Exception e){
+			Debug.LogError("CharacterManager : <validateMoveAction> Player doest have pending action or action is not a WaitAction : " + e.ToString());
+			return;
+		}
+		Vector3 sPos;
+		
+		Action lastHotAction = playerWhoValidate.characterManager.characterStats.getLastHotAction();
+		
+		if (null == lastHotAction) {
+			sPos = playerWhoValidate.playerObject.transform.position;
+		}
+		else {
+			sPos = lastHotAction.endPosition;
+		}
+		Debug.Log("Ma is == " + ma);
+		float cost = ma.calculateCost (sPos, ePos);
+		
+		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
+			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
+				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
+			
+			ma.onActionValidation(this);
+			
+			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s");
+			this.networkView.RPC("pushWaitActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, sPos);
+			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
+			
+		} else {
+			ma.onActionInvalid(this);
+		}
 	}
 
 	[RPC] 
@@ -210,8 +265,8 @@ public class CharacterManager : MonoBehaviour {
 				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
 
 			ma.onActionValidation(this);
-
-			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, ePos, cost+"s");
+			
+			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, ePos,  ma.name + "\n" + cost+"s");
 			this.networkView.RPC("pushMoveActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 		

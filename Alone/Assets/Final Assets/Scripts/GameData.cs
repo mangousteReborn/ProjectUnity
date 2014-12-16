@@ -51,14 +51,17 @@ public static class GameData {
 		// Move
 		Action moveAction = new MoveAction (0.2f);
 		WaitAction waitAction = new WaitAction(0.9f);
-		DirectDamageAction ddAction= new DirectDamageAction(0.9f, 45f, 2f, 10);
+		DirectDamageAction areaAttack = new DirectDamageAction(0.8f, 45f, 1.7f, 10);
+		DirectDamageAction spinerAttack = new DirectDamageAction("sniperdamage", "Sniper","Inflige de gros degats dans un petites zone.",1.2f, 15f, 3f, 15);
 
 		_actionsMap.Add (moveAction.key, moveAction);
 		_actionsMap.Add (waitAction.key, waitAction);
-		_actionsMap.Add (ddAction.key, ddAction);
-		_actionVignetteMap.Add(moveAction.key, new VignetteAction(moveAction));
-		_actionVignetteMap.Add(waitAction.key, new VignetteAction(waitAction));
-		_actionVignetteMap.Add(ddAction.key, new VignetteAction(ddAction));
+		_actionsMap.Add (areaAttack.key, areaAttack);
+		_actionsMap.Add (spinerAttack.key, spinerAttack);
+		_actionVignetteMap.Add(moveAction.key, new VignetteAction(moveAction, "Vignettes/move"));
+		_actionVignetteMap.Add(waitAction.key, new VignetteAction(waitAction,"Vignettes/wait"));
+		_actionVignetteMap.Add(areaAttack.key, new VignetteAction(areaAttack,"Vignettes/attack2"));
+		_actionVignetteMap.Add(spinerAttack.key, new VignetteAction(spinerAttack,"Vignettes/attack"));
 
 		return err;
 	}

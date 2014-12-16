@@ -61,33 +61,9 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 	private int _quality = 15;
 
 
-	
-
-
 	void Start(){
-		/*
-		mesh = new Mesh();
-		mesh.vertices = new Vector3[4 * quality];   // Could be of size [2 * quality + 2] if circle segment is continuous
-		mesh.triangles = new int[3 * 2 * quality];
-		
-		Vector3[] normals = new Vector3[4 * quality];
-		Vector2[] uv = new Vector2[4 * quality];
-		
-		for (int i = 0; i < uv.Length; i++)
-			uv[i] = new Vector2(0, 0);
-		for (int i = 0; i < normals.Length; i++)
-			normals[i] = new Vector3(0, 1, 0);
-		
-		mesh.uv = uv;
-		mesh.normals = normals;
-
-		//this._meshRenderer = this._meshWrapperObject.GetComponent<MeshRenderer>();
-
-
-		*/
 
 	}
-
 	
 	void Update(){
 		if (!this._activated)
@@ -101,7 +77,8 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 			calcDistance(target);
 			
 			if(this._RPCcallback){
-				this._owner.networkView.RPC("validateDirectDamageActionRPC", RPCMode.All,this._owner.player.id, this._endPoint, this._setAngle);
+				this._owner.networkView.RPC("validateDirectDamageActionRPC", RPCMode.All,this._owner.player.id, target, this._setAngle);
+				this._endPoint = target;
 				this._RPCcallback = false;
 			}
 			return;
@@ -110,10 +87,29 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		calcDistance(getTarget());
 	}
 
+	public void activateAsStatic(CharacterManager cm, Vector3 startPoint, Vector3 endPoint, string label , float degree, float radius, float angle){
+		if (this._activated)
+			return;
+
+		this._dist_max = radius;
+		this._angle_fov = degree;
+		this._startPoint = startPoint;
+
+		this._meshFilter = this._meshWrapperObject.GetComponent<MeshFilter>();
+		this._meshFilter.transform.position =  new Vector3(this._startPoint.x,0.5f,this._startPoint.z);
+		this._meshFilter.mesh = buildMesh(angle);
+
+		this._text.text = label;
+		this._textObject.transform.position = ((endPoint - startPoint) / 2) + startPoint;
+	}
+
 	public void activate (CharacterManager cm, Action a){
 		
 		this._action = (DirectDamageAction)a;
 		this._owner = cm;
+
+		this._dist_max = this._action.radius;
+		this._angle_fov = this._action.degree;
 
 		this._meshFilter = this._meshWrapperObject.GetComponent<MeshFilter>();
 		this._meshFilter.transform.position =  new Vector3(this._startPoint.x,0.5f,this._startPoint.z);
@@ -159,24 +155,19 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 	private void calcDistance(Vector3 destPos){
 		
 		this._endPoint = destPos;
-		//calcCone(destPos);
-
-		//this._meshFilter.transform.RotateAround(this._startPoint, Vector3.up, getMagicalAngle(destPos));
 		this._setAngle = getMagicalAngle(destPos);
 		this._meshFilter.transform.eulerAngles = new Vector3(0, this._setAngle, 0);
-		if (this._drawLine) {
 
-			//this._lineRenderer.SetVertexCount(2);
-			//this._lineRenderer.SetPosition(0, this._startPoint);
-			//this._lineRenderer.SetPosition(1, this._endPoint);
-		}
-		
+		this._currentCost = this._action.calculateCost (this._startPoint, this._endPoint);
+
+		/*
 		if(null != this._calculateDistanceFuncion){
 			this._currentCost = this._calculateDistanceFuncion(this);
 		} else {
 			this._currentCost = defaultCalculateDistance(this._startPoint, this._endPoint);
 		}
-		
+		*/
+
 		this._middlePoint = ((this._endPoint - this._startPoint ) / 2) + this._startPoint;
 		
 		this._textObject.transform.position = this._middlePoint;
@@ -188,7 +179,7 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		
 	}
 	
-	public Mesh buildMesh(float angle=0f){
+	private Mesh buildMesh(float angle=0f){
 		// Global def
 		Mesh mesh = new Mesh();
 
@@ -270,7 +261,7 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		return mesh;
 	}
 
-	float getMagicalAngle(Vector3 mousePos)
+	private float getMagicalAngle(Vector3 mousePos)
 	{	
 		Vector3 refRight = Vector3.Cross(Vector3.up, this._startPoint  + Vector3.forward);
 		
@@ -279,7 +270,7 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		return (Mathf.Sign(Vector3.Dot(mousePos -this._startPoint, refRight)) * angle) - 180; // 180 to revert result, beacause formula use inverse ref. to rotate
 		
 	}
-
+	
 	private Vector3 getTarget()
 	{
 		Vector3 mousepos = Input.mousePosition;
@@ -295,7 +286,10 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		}
 		return target;
 	}
-	
+
+	/*
+	 *  Get / Set
+	 */
 	private float defaultCalculateDistance(Vector3 start, Vector3 dest){
 		return (float)Math.Round(
 			(Vector3.Distance(start, dest) * this._costPerUnit),

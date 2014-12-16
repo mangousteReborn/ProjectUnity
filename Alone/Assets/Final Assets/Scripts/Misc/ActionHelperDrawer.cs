@@ -150,7 +150,6 @@ public class ActionHelperDrawer : MonoBehaviour {
 	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){
 		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
 			return;
-		Debug.Log ("ok");
 		GameObject go = (GameObject)Instantiate (_defaultStaticHelperObject, startPoint , Quaternion.identity);
 		LineRenderer ln = go.GetComponent<LineRenderer>();
 		DefaultStaticHelperScript dshs = go.GetComponent<DefaultStaticHelperScript>();
@@ -174,15 +173,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	public void pushDirectDamageStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label , float degree, float radius, float angle){
 		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
 			return;
-		Debug.Log ("ok");
 		GameObject go = (GameObject)Instantiate (_directDamageObject, startPoint , Quaternion.identity);
 		DirectDamageHelperScript ddhs = go.GetComponent<DirectDamageHelperScript>();
-		ddhs.text.text = label;
-		ddhs.textObject.transform.position = ((endPoint - startPoint ) / 2) + startPoint;
-		ddhs.angleFOV = degree;
-		ddhs.distanceMax = radius;
-		ddhs.buildMesh(angle);
-
+		ddhs.activateAsStatic(GameData.getPlayerByNetworkViewID(playerID).characterManager, startPoint, endPoint ,label, degree, radius, angle);
 
 
 		if (playerID.isMine) {

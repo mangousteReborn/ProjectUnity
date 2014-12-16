@@ -158,9 +158,8 @@ public class CharacterManager : MonoBehaviour {
 		this._characterStats.setCurrentActionPoint(value,true);
 	}
 
-	[RPC]// GENERAL (in test)
+	[RPC]// GENERAL (Works !)
 	public void setPendingActionByKeyRPC(string k ){
-		Debug.Log("Set pending : " + k);
 		this._characterStats.setPendingAction(GameData.getCopyOfAction(k));
 	}
 	/*
@@ -188,9 +187,12 @@ public class CharacterManager : MonoBehaviour {
 		this._characterStats.pushWaitAction(k, name, d, costpu, totalCost, startPos, destPosition);//destPosition
 	}
 	[RPC]
-	public void pushDirectDamageActionRPC(string k, float cost){
+	public void pushDirectDamageActionRPC(string k, float totalCost, Vector3 startPos, Vector3 destPosition){
 		DirectDamageAction a = (DirectDamageAction)GameData.getCopyOfAction(k);
-		a.actionCost = cost;
+		a.actionCost = totalCost;
+		a.endPosition = destPosition;
+		a.startPosition = startPos;
+
 		this._characterStats.pushHotAction (a);
 	}
 
@@ -202,7 +204,6 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC]
 	public void validateDirectDamageActionRPC(NetworkViewID id, Vector3 ePos, float angle){
-		Debug.Log ("Trying to validate attack ");
 		if (!Network.isServer)
 			return;
 		
@@ -237,7 +238,7 @@ public class CharacterManager : MonoBehaviour {
 			ma.onActionValidation(this);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDirectDamageStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s", ma.degree, ma.radius, angle);
-			this.networkView.RPC("pushDirectDamageActionRPC", RPCMode.All,  ma.key,cost);
+			this.networkView.RPC("pushDirectDamageActionRPC", RPCMode.All,  ma.key,cost,sPos, sPos);
 
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 			
@@ -248,7 +249,6 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC]
 	public void validateWaitActionRPC(NetworkViewID id, Vector3 ePos){
-		Debug.Log ("Trying to validate WAit ");
 		if (!Network.isServer)
 			return;
 		

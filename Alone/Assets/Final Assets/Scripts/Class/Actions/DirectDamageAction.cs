@@ -61,7 +61,7 @@ public class DirectDamageAction : Action {
 			return null;
 		}
 		
-		return new DirectDamageAction (ma.costPerUnit, ma.degree, ma.radius, ma.damages);
+		return new DirectDamageAction (ma.key, ma.name, ma.desc,ma.costPerUnit, ma.degree, ma.radius, ma.damages);
 	}
 
 	public override void onActionSelection(CharacterManager cm, bool drawHelper=true){
@@ -97,7 +97,10 @@ public class DirectDamageAction : Action {
 	public override void onActionEnd(CharacterManager cm, object[] param=null){
 
 	}
-	// FIXME ??
+
+
+
+
 	public float calculateCost(Vector3 start, Vector3 dest){
 		return (float)Math.Round(
 			(Vector3.Distance(start, dest) * this._costPerUnit),
@@ -106,7 +109,19 @@ public class DirectDamageAction : Action {
 			);
 	}
 	
-	
+	public GameObject getCollider(){
+		GameObject go = new GameObject ();
+		Transform t = go.AddComponent<Transform> ();
+		t.position = this._endPosition;
+		
+		SphereCollider sc = go.AddComponent<SphereCollider> ();
+		sc.radius = this._radius;
+
+		//go.AddComponent<SphereColliderScript> ();
+
+		return go;
+	}
+
 	// Get / Set
 	public float costPerUnit{
 		get {return this._costPerUnit;}

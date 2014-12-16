@@ -57,6 +57,7 @@ public class CharacterStats  {
 		this._availableActionList.Add (GameData.getAction("move"));
 		this._availableActionList.Add (GameData.getAction("wait"));
 		this._availableActionList.Add (GameData.getAction("directdamage"));
+		this._availableActionList.Add (GameData.getAction ("sniperdamage"));
 
         this._networkView = networkView;
 

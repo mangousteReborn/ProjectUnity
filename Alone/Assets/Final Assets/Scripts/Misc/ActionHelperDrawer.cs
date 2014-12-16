@@ -23,6 +23,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	[SerializeField]
 	GameObject _moveHelperObject;
 
+	[SerializeField]
+	GameObject _directDamageObject;
+
 	/* Use in server side*/
 	[SerializeField]
 	GameObject _defaultStaticHelperObject;
@@ -121,10 +124,28 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 	}
 
+	public DirectDamageHelperScript pushDirectDamageHelper(CharacterManager cm, Action a){
+		Vector3 startPos = defineStartPosition(cm);
+		
+		GameObject go = (GameObject)Instantiate (_directDamageObject, startPos , Quaternion.identity);
+		DirectDamageHelperScript helper = go.GetComponent<DirectDamageHelperScript> ();
+		
+		helper.setStartPosition (startPos);
+
+
+
+		this._currentPlayerHelper = helper;
+		
+		return helper;
+	}
+
+
 	/*
 	 *  RPC
 	 */
 
+	// Specific Helpers will ne puched for client side obly. After validating a helper, will put for all player a static helper
+	// as a Description of current player actions.
 	[RPC]
 	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){
 		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
@@ -137,6 +158,7 @@ public class ActionHelperDrawer : MonoBehaviour {
 		dshs.textObject.transform.position = ((endPoint - startPoint ) / 2) + startPoint;
 
 		ln.SetVertexCount(2);
+		startPoint.y = 0;
 		ln.SetPosition(0, startPoint);
 		ln.SetPosition(1, endPoint);
 
@@ -148,17 +170,27 @@ public class ActionHelperDrawer : MonoBehaviour {
 		}
 
 	}
-
 	[RPC]
-	public void pushMoveHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 middlePoint, Vector3 endPoint){
-
-
-		Debug.Log ("pushmovehlepr : mine ? " + playerID.isMine); 
-		if (playerID.isMine) {
+	public void pushDirectDamageStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label , float degree, float radius, float angle){
+		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
 			return;
+		Debug.Log ("ok");
+		GameObject go = (GameObject)Instantiate (_directDamageObject, startPoint , Quaternion.identity);
+		DirectDamageHelperScript ddhs = go.GetComponent<DirectDamageHelperScript>();
+		ddhs.text.text = label;
+		ddhs.textObject.transform.position = ((endPoint - startPoint ) / 2) + startPoint;
+		ddhs.angleFOV = degree;
+		ddhs.distanceMax = radius;
+		ddhs.buildMesh(angle);
+
+
+
+		if (playerID.isMine) {
 			this._currentPlayerHelper.delete();
+			this._playerHelpers.Push(go);
+		} else {
+			pushHelperForOtherPlayer(playerID, go);
 		}
 	}
-	
 
 }

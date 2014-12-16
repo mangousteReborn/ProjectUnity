@@ -51,11 +51,14 @@ public static class GameData {
 		// Move
 		Action moveAction = new MoveAction (0.2f);
 		WaitAction waitAction = new WaitAction(0.9f);
+		DirectDamageAction ddAction= new DirectDamageAction(0.9f, 45f, 2f, 10);
 
 		_actionsMap.Add (moveAction.key, moveAction);
 		_actionsMap.Add (waitAction.key, waitAction);
+		_actionsMap.Add (ddAction.key, ddAction);
 		_actionVignetteMap.Add(moveAction.key, new VignetteAction(moveAction));
 		_actionVignetteMap.Add(waitAction.key, new VignetteAction(waitAction));
+		_actionVignetteMap.Add(ddAction.key, new VignetteAction(ddAction));
 
 		return err;
 	}
@@ -92,6 +95,18 @@ public static class GameData {
 		Action val;
 		_actionsMap.TryGetValue(k, out val);
 		return val;
+	}
+	public static Action getCopyOfAction(string k){
+		/*
+		object[] param = {va.action};
+		Action newAction = (Action)va.action.GetType ().GetMethod ("getCopy").Invoke (va.action, param);
+		*/
+		Action a = null;
+		if(!_actionsMap.TryGetValue(k, out a))
+			return null;
+
+		return a.getCopy(a);
+
 	}
 
 	public static ActionHelperDrawer getActionHelperDrawer(){

@@ -51,8 +51,12 @@ public abstract class Action  {
 	}
 	public float actionCost
 	{
+
 		get {
 			return this._actionCost;
+		}
+		set {
+			this._actionCost = value;
 		}
 	}
 	public Vector3 endPosition

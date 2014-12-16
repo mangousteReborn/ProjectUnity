@@ -63,9 +63,7 @@ public class WaitAction : Action {
 	}
 	
 	public override void onActionValidation(CharacterManager cm, object[] param){
-		Debug.Log("ACTION IS POWA VALIDATED GOSU !!!!!");
-		
-		//GameData.getActionHelperDrawer().validateCurrentPlayerHelper();
+
 		
 	}
 	

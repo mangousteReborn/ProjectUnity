@@ -93,7 +93,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		this._owner = cm;
 		
 		cm.networkView.RPC("pushMoveActionAsPendingRPC", RPCMode.All, ma.key, ma.name, ma.desc,  ma.costPerUnit);
-
+		
 		this._activated = true;
 	}
 
@@ -109,6 +109,7 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 	public void setStartPosition(Vector3 startPos){
 		this._startPoint = startPos;
+		this._startPoint.y = 0;
 		this._object.transform.position = startPos;
 
 	}
@@ -133,14 +134,17 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 		
 		this._endPoint = destPos;
 		this._lineRenderer.SetVertexCount(2);
+
 		this._lineRenderer.SetPosition(0, this._startPoint);
 		this._lineRenderer.SetPosition(1, this._endPoint);
 
 		this._currentCost = this._moveAction.calculateCost (this._startPoint, this._endPoint);
 		
 		this._middlePoint = ((this._endPoint - this._startPoint ) / 2) + this._startPoint;
-		
+
 		this._textObject.transform.position = this._middlePoint;
+
+
 		this._text.text = this._moveAction.name + "\n" + this._currentCost + "s";
 		if (this._currentCost > this._owner.characterStats.currentActionPoint) {
 			this._text.color = Color.red;

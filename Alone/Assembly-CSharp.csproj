@@ -64,9 +64,11 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteEntity.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DefaultStaticHelperScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DirectDamageHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MouseDistanceHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\TextListenerScrpit.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" />

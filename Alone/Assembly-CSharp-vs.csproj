@@ -91,6 +91,7 @@
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\MenuFunctionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\ServeurListScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Misc\AngleCollider.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\StaticVariableScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" />

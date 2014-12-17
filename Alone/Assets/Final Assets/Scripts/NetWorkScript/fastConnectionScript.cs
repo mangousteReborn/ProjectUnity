@@ -19,7 +19,12 @@ public class fastConnectionScript : MonoBehaviour {
     [SerializeField]
     private bool _isGM;
 
+	[SerializeField]
+	private Material[] _materialArray;
+
     private StaticVariableScript setting;
+
+	private static int _playerColorIndex = 1; // 0 will be default
 
 	// Use this for initialization
 	void Start () {
@@ -69,7 +74,10 @@ public class fastConnectionScript : MonoBehaviour {
             IPlayerGUI gui = manager.playerGUI;
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
-            Player p = new Player("Player", newPlayer.networkView, Color.green);
+			Material mat = _playerColorIndex > _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
+			_playerColorIndex ++;
+
+			Player p = new Player("GameMaster", newPlayer.networkView, mat);
             p.characterManager = cm;
             p.playerObject = newPlayer;
             GameData.addPlayer(p);
@@ -121,7 +129,10 @@ public class fastConnectionScript : MonoBehaviour {
 	void addPlayer(NetworkViewID networkViewID)
 	{
 		CharacterManager cm = NetworkView.Find(networkViewID).gameObject.GetComponent<CharacterManager>();
-		Player p = new Player("Player", NetworkView.Find(networkViewID).gameObject.networkView, Color.green);
+		Material mat = _playerColorIndex > _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
+		_playerColorIndex ++;
+
+		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView, mat);
 		p.characterManager = cm;
 		p.playerObject = NetworkView.Find(networkViewID).gameObject;
 		GameData.addPlayer(p);

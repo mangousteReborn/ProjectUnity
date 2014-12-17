@@ -124,7 +124,10 @@ public class CharacterManager : MonoBehaviour {
 	}
 	public Player player{
 		set {
+			this._character.GetComponent<MeshRenderer>().materials[0]= value.material;
+
 			this._player = value;
+			Debug.Log("set mat == " + this._player.material.color);
 		}
 		get {
 			return this._player;
@@ -171,11 +174,12 @@ public class CharacterManager : MonoBehaviour {
 		this._characterStats.pushWaitAction(k, name, d, costpu, totalCost, startPos, destPosition);//destPosition
 	}
 	[RPC]
-	public void pushDirectDamageActionRPC(string k, float totalCost, Vector3 startPos, Vector3 destPosition){
+	public void pushDirectDamageActionRPC(string k, float totalCost, Vector3 startPos, Vector3 destPosition, float angle){
 		DirectDamageAction a = (DirectDamageAction)GameData.getCopyOfAction(k);
 		a.actionCost = totalCost;
 		a.endPosition = destPosition;
 		a.startPosition = startPos;
+		a.definedAngle = angle;
 
 		this._characterStats.pushHotAction (a);
 	}
@@ -218,11 +222,12 @@ public class CharacterManager : MonoBehaviour {
 		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
 			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
 				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
-			
-			ma.onActionValidation(this);
+
+			object[] p = {1}; // 0 for MeshCollider mode; 1 for SphereCollider mode
+			ma.onActionValidation(this,p);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDirectDamageStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s", ma.degree, ma.radius, angle);
-			this.networkView.RPC("pushDirectDamageActionRPC", RPCMode.All,  ma.key,cost,sPos, sPos);
+			this.networkView.RPC("pushDirectDamageActionRPC", RPCMode.All,  ma.key,cost,sPos, sPos, angle);
 
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 			

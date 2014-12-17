@@ -113,7 +113,8 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 
 		this._meshFilter = this._meshWrapperObject.GetComponent<MeshFilter>();
 		this._meshFilter.transform.position =  new Vector3(this._startPoint.x,0.5f,this._startPoint.z);
-		this._meshFilter.mesh = buildMesh();
+		this._meshFilter.mesh = this._action.buildMesh(this._quality, this._action.degree, 0.1f, this._action.radius, 0f);
+		//this._meshFilter.mesh = buildMesh();
 
 		cm.networkView.RPC("setPendingActionByKeyRPC", RPCMode.All, a.key);
 
@@ -124,11 +125,7 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		cm.networkView.RPC ("removePendingActionRPC", RPCMode.All);
 		GameObject.Destroy (this._object);
 	}
-	
-	public void validate(CharacterManager cm){
-		GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC", RPCMode.All, this._owner.player.id, this._startPoint, this._middlePoint, this._endPoint, this._text.text);
-		this._validated = true;
-	}
+
 	
 	public void setStartPosition(Vector3 startPos){
 		this._startPoint = startPos;

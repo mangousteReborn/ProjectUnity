@@ -98,6 +98,10 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		this._meshFilter = this._meshWrapperObject.GetComponent<MeshFilter>();
 		this._meshFilter.transform.position =  new Vector3(this._startPoint.x,0.5f,this._startPoint.z);
 		this._meshFilter.mesh = buildMesh(angle);
+		this._meshWrapperObject.GetComponent<MeshRenderer> ().material.color = new Color(cm.material.color.r,
+		                                                                                 cm.material.color.g,
+		                                                                                 cm.material.color.b,
+		                                                                                 0.2f);
 
 		this._text.text = label;
 		this._textObject.transform.position = ((endPoint - startPoint) / 2) + startPoint;
@@ -114,7 +118,10 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		this._meshFilter = this._meshWrapperObject.GetComponent<MeshFilter>();
 		this._meshFilter.transform.position =  new Vector3(this._startPoint.x,0.5f,this._startPoint.z);
 		this._meshFilter.mesh = this._action.buildMesh(this._quality, this._action.degree, 0.1f, this._action.radius, 0f);
-		//this._meshFilter.mesh = buildMesh();
+		this._meshWrapperObject.GetComponent<MeshRenderer> ().material.color = new Color(cm.material.color.r,
+		                                                                                 cm.material.color.g,
+		                                                                                 cm.material.color.b,
+		                                                                                 0.2f);
 
 		cm.networkView.RPC("setPendingActionByKeyRPC", RPCMode.All, a.key);
 

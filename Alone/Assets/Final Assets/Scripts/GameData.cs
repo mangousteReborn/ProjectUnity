@@ -44,7 +44,7 @@ public static class GameData {
 		_bonusVignetteMap.Add("lifebonus", new VignetteBonus(lifeupEffects, "lifebonus", "Super Vie", null, "Vignettes/lifelow"));
 		List<Effect> fakeEffects = new List<Effect>();
 		lifeupEffects.Add(new EffectBonusLife(150));
-		_bonusVignetteMap.Add("lifebonus2", new VignetteBonus(lifeupEffects, "lifebonus2", "Souper Viche",null, "Vignettes/lifehigh"));
+		_bonusVignetteMap.Add("lifebonus2", new VignetteBonus(fakeEffects, "lifebonus2", "Souper Viche",null, "Vignettes/lifehigh"));
 		/* Actions */
         /*Entity Enemy */
 		_entitiesVignetteMap.Add("base", new VignetteEntity(VignetteEntity.EntityType.Base,1, "Base", "DefaultEnemy"));
@@ -137,7 +137,6 @@ public static class GameData {
     }
 
 	public static Player getPlayerByNetworkViewID(NetworkViewID id){
-		bool f = false;
 
 		foreach (Player p in _playerList) {
 			if (p.id == id){

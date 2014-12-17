@@ -1,11 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\GameManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\ActionHelpers\DirectDamageHelperScript.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="135" Column="51" />
-      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="37" Column="3" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="130" Column="57" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="38" Column="28" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="337" Column="54" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="77" Column="39" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="15" Column="46" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="236" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="181" Column="18" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\DefaultStaticHelperScript.cs" Line="19" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\DirectDamageHelperScript.cs" Line="97" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" Line="23" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="143" Column="81" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" Line="93" Column="16" />
+      <File FileName="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" Line="29" Column="14" />
+      <File FileName="Assets\Final Assets\Scripts\GameData.cs" Line="140" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\IA\IABase.cs" Line="70" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" Line="70" Column="34" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\DirectDamageAction.cs" Line="15" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

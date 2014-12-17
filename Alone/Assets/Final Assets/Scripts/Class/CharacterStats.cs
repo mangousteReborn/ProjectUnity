@@ -18,6 +18,16 @@ public class CharacterStats  {
 	List<Action> _availableActionList;
 	Stack<Action> _hotActionsStack;
 
+	List<TargetType> _targetTypes;
+	
+	public enum TargetType {
+		me,
+		ally,
+		ai,
+		gm,
+		pet
+	}
+
 	// Statistics
 	private int _maxLife;
 	private int _currentLife;
@@ -47,6 +57,8 @@ public class CharacterStats  {
 		this._availableActionList = new List<Action> ();
 
 		this._hotActionsStack = new Stack<Action> ();
+
+		this._targetTypes = new List<TargetType> ();
 
 		this._maxLife = startLife;
 		this._currentLife = startLife;
@@ -221,8 +233,6 @@ public class CharacterStats  {
 	// FIXME : CharacterStats maybe doesnt have to cancelAction. GUI will do it by listening lastHotActionRemove event
 	public void removeLastHotAction(){
 		Action oa = this._hotActionsStack.Pop ();
-		object[] subParam = {this};
-		//oa.cancelAction (subParam);
 
 		object[]param={oa};
 		fireEvent (CharacterStatsEvent.lastHotActionRemoved, param);
@@ -372,6 +382,31 @@ public class CharacterStats  {
 		}
 	}
 
+	public void addTargetType(TargetType tt){
+		if (this._targetTypes.Contains(tt))
+		    return;
+		  
+		this._targetTypes.Add (tt);
+	}
+
+	public void removeTargetType(TargetType tt){
+		TargetType elem = 0;
+		bool f = false;
+		foreach (TargetType t in this._targetTypes) {
+			if (t == tt){
+				elem = t;
+				f = true;
+			}
+		}
+		if(!f)
+			return;
+		this._targetTypes.Remove (elem);
+	}
+
+	public bool hasTargetType(TargetType tt){
+		return this._targetTypes.Contains (tt);
+	}
+
 	public float currentActionPoint
 	{
 		get {
@@ -396,6 +431,9 @@ public class CharacterStats  {
 		}
 	}
 
+	public List<TargetType> targetTypes{
+		get {return this._targetTypes;}
+	}
 	public List<Action> availableActionList
 	{
 		get {

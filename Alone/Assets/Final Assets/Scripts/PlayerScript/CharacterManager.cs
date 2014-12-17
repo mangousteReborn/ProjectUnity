@@ -26,7 +26,9 @@ public class CharacterManager : MonoBehaviour {
 
 	private CharacterStats _characterStats = new CharacterStats (null,200,20f);
 	private Player _player;
+	private Material _material;
 	private bool _isInFight = false;
+
 
 	void Start () {
 		this._healthBar = (GameObject)Instantiate (this._healthBar);
@@ -124,16 +126,21 @@ public class CharacterManager : MonoBehaviour {
 	}
 	public Player player{
 		set {
-			this._character.GetComponent<MeshRenderer>().materials[0]= value.material;
-
 			this._player = value;
-			Debug.Log("set mat == " + this._player.material.color);
 		}
 		get {
 			return this._player;
 		}
 	}
+	public Material material{
+		get {return this._material;}
+		set {
+			this._material = value;
 
+			this._character.GetComponent<MeshRenderer>().material = this._material;
+
+		}
+	}
     [RPC]
     private void setLife(int value)
     {
@@ -325,9 +332,9 @@ public class CharacterManager : MonoBehaviour {
 
 	}
 
+	/*
 	[RPC]
 	public void validadePendingAction(NetworkViewID id){
-		//TODO : genre validafing pending action (only for classic pending action whit predefined action cost
 		Player playerWhoValidate = GameData.getPlayerByNetworkViewID (id);
 
 		Action pa = playerWhoValidate.characterManager.characterStats.pendingAction;
@@ -335,10 +342,11 @@ public class CharacterManager : MonoBehaviour {
 			Debug.LogWarning("CharacterManager : <validatePendingAcion> Player doest have pending action");
 		}
 
-		float costRes = playerWhoValidate.characterManager.characterStats.currentActionPoint - pa.actionCost;
+		//float costRes = playerWhoValidate.characterManager.characterStats.currentActionPoint - pa.actionCost;
 
 
 		
 	}
+	*/
 
 }

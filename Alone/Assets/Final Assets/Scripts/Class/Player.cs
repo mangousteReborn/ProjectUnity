@@ -7,20 +7,16 @@ public class Player {
 
     private NetworkView _networkView;
 	private NetworkViewID _id;
-	private Material _material;
-	private Color _color;
     private bool _isGM;
 
 	private CharacterManager _characterManager;
 	private GameObject _playerObject;
 
-	public Player(string name, NetworkView view, Material mat,bool isGM=false){
+	public Player(string name, NetworkView view,bool isGM=false){
 		this._name = name;
         this._networkView = view;
 		this._id = view.viewID;
-
-		this._material = mat;
-		this._color = mat.color;
+		
         this._isGM = isGM;
 		this._characterManager = null;
 	}
@@ -30,12 +26,6 @@ public class Player {
 	}
 	public NetworkViewID id{
 		get {return this._id;}
-	}
-	public Color color{
-		get{return this._color;}
-	}
-	public Material material{
-		get{return this._material;}
 	}
     public bool isGM
     {

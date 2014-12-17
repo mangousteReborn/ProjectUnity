@@ -20,7 +20,7 @@ public class HealthbarScript : MonoBehaviour {
 		this.transform.localScale = _scale;
 		this._healthBarScrollbar = _healthbar.GetComponentInChildren<Scrollbar>();
 		this._healthBarLabel = _healthbar.GetComponentInChildren<Text>();
-
+		this._healthBarLabel.color = Color.white;
 		// Triggering event for first healthbar update
 		this._characterStats.fireEvent(CharacterStatsEvent.change);
 

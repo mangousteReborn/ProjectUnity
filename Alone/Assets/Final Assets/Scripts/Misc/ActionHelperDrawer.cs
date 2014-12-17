@@ -152,6 +152,8 @@ public class ActionHelperDrawer : MonoBehaviour {
 			return;
 		GameObject go = (GameObject)Instantiate (_defaultStaticHelperObject, startPoint , Quaternion.identity);
 		LineRenderer ln = go.GetComponent<LineRenderer>();
+		ln.material = GameData.getPlayerByNetworkViewID (playerID).characterManager.material;
+
 		DefaultStaticHelperScript dshs = go.GetComponent<DefaultStaticHelperScript>();
 		dshs.text.text = label;
 		dshs.textObject.transform.position = ((endPoint - startPoint ) / 2) + startPoint;
@@ -176,7 +178,7 @@ public class ActionHelperDrawer : MonoBehaviour {
 		GameObject go = (GameObject)Instantiate (_directDamageObject, startPoint , Quaternion.identity);
 		DirectDamageHelperScript ddhs = go.GetComponent<DirectDamageHelperScript>();
 		ddhs.activateAsStatic(GameData.getPlayerByNetworkViewID(playerID).characterManager, startPoint, endPoint ,label, degree, radius, angle);
-
+		ddhs.material = GameData.getPlayerByNetworkViewID (playerID).characterManager.material;
 
 		if (playerID.isMine) {
 			this._currentPlayerHelper.delete();

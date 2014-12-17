@@ -141,7 +141,6 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private void fillBonusVignettesPicker(){
 		VignettesPickerScript bvpScript = this._bonusVignettesPickerObject.GetComponent<VignettesPickerScript>();
 		foreach (KeyValuePair<string, Vignette> kvp in GameData.getBonusVignettes()) {
-			object[] p = {kvp.Value};
 			bvpScript.pushVignette(kvp.Key, kvp.Value, onBonusVignetteSlotClick);
 			
 		}

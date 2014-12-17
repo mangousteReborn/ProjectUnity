@@ -91,7 +91,6 @@ public class VignettesPickerScript : MonoBehaviour {
 		this._vignetteSlotObject.GetComponent<RectTransform> ().sizeDelta = new Vector2 (this._vignetteSlotWidth, this._vignetteSlotHeight);
 
 		// Init slots
-		Vector3 daddyPosition = this._vignettesWrapperObject.GetComponent<RectTransform> ().localPosition;
 		int totalRowGap = this._wrapperWidth % this._vignetteSlotWidth;
 		int rowSlotsCount = (this._wrapperWidth - (this._wrapperWidth % this._vignetteSlotWidth)) / this._vignetteSlotWidth;
 		int rowGap = (int)(totalRowGap / rowSlotsCount);

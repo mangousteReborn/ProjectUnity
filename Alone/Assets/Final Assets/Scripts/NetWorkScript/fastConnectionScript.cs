@@ -74,15 +74,17 @@ public class fastConnectionScript : MonoBehaviour {
             IPlayerGUI gui = manager.playerGUI;
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
-			Material mat = _playerColorIndex > _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
-			_playerColorIndex ++;
+			Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
-			Player p = new Player("GameMaster", newPlayer.networkView, mat);
+			Debug.Log ("Len = " + _materialArray.Length + " curr = " + _playerColorIndex);
+			Player p = new Player("GameMaster", newPlayer.networkView);
             p.characterManager = cm;
             p.playerObject = newPlayer;
             GameData.addPlayer(p);
 
             cm.player = p;
+			cm.material = mat;
+			cm.characterStats.addTargetType(CharacterStats.TargetType.ally);
 
             gui.setCharacterManager(cm);
 
@@ -90,6 +92,7 @@ public class fastConnectionScript : MonoBehaviour {
             //setting.ListPlayer.Add(newPlayer.networkView.viewID);
             Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
             networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
+			_playerColorIndex ++;
         }
         else
         {
@@ -129,14 +132,26 @@ public class fastConnectionScript : MonoBehaviour {
 	void addPlayer(NetworkViewID networkViewID)
 	{
 		CharacterManager cm = NetworkView.Find(networkViewID).gameObject.GetComponent<CharacterManager>();
-		Material mat = _playerColorIndex > _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
-		_playerColorIndex ++;
+		Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
-		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView, mat);
+
+		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView);
 		p.characterManager = cm;
 		p.playerObject = NetworkView.Find(networkViewID).gameObject;
 		GameData.addPlayer(p);
+
 		cm.player = p;
+		cm.material = mat;
+
+		if(_isGM)
+			cm.characterStats.addTargetType(CharacterStats.TargetType.gm);
+		else
+			cm.characterStats.addTargetType(CharacterStats.TargetType.ally);
+
+		if(networkViewID.isMine)
+			cm.characterStats.addTargetType(CharacterStats.TargetType.me);
+
+		_playerColorIndex ++;
 	}
 
     void DestroyPlayer(GameObject player)

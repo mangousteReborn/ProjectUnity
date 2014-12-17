@@ -27,10 +27,8 @@ public class enterRoomScript : MonoBehaviour {
             var playerList = GameData.getPlayerList();
             if (playerList.Count == listEnter.Count)
             {
-                NetworkView view;
                 foreach (Player player in playerList)
                 {
-                    view = NetworkView.Find(player.id);
                     if (!Network.isServer)
                         gm.networkView.RPC("enterFightMode", RPCMode.Server, player.id);
                     else

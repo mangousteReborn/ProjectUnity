@@ -55,6 +55,7 @@ public class CharacterStats  {
 
 		// Definition of default available Actions
 		this._availableActionList.Add (GameData.getAction("move"));
+		this._availableActionList.Add (GameData.getAction("wait"));
 
         this._networkView = networkView;
 
@@ -234,8 +235,22 @@ public class CharacterStats  {
 		
 		this._pendingAction = ma;
 	}
+	public void setPendingActionAsWaitAction(string k , string name, string d, float cpu){
+		WaitAction ma = new WaitAction (k, name, d, cpu);
+		if (null != this._pendingAction){
+			Debug.LogWarning("CharacterStats : <pushMoveAction> An action was here as pending");
+		}
+		
+		this._pendingAction = ma;
+	}
+
+
 	public void pushMoveAction(string k, string name, string d, float costPU, float totalCost, Vector3 sPos, Vector3 ePos){
 		MoveAction ma = new MoveAction (k, name, d, totalCost, sPos, ePos);
+		this._hotActionsStack.Push(ma);
+	}
+	public void pushWaitAction(string k, string name, string d, float costPU, float totalCost, Vector3 sPos, Vector3 ePos){
+		WaitAction ma = new WaitAction (k, name, d, totalCost, sPos, ePos);
 		this._hotActionsStack.Push(ma);
 	}
 

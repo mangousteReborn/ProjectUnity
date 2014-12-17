@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,9 +16,14 @@ using System.Collections.Generic;
 
 public class ActionHelperDrawer : MonoBehaviour {
 
+	/* Use for client side*/
+	[SerializeField]
+	GameObject _mouseDistanceHelperObject;
+
 	[SerializeField]
 	GameObject _moveHelperObject;
 
+	/* Use in server side*/
 	[SerializeField]
 	GameObject _defaultStaticHelperObject;
 
@@ -36,36 +42,6 @@ public class ActionHelperDrawer : MonoBehaviour {
 		this._othersHelpersMap = new Dictionary<string, Stack<GameObject>>();
 
 	}
-
-	/*
-	public void removeCurrentPlayerHelper(){
-		if (this._currentPlayerHelper == null)
-			return;
-
-		this._currentPlayerHelper.delete();
-		this._currentPlayerHelper = null;
-	}
-
-public void addHelperInMap(NetworkViewID playerID, GameObject helper){
-		string k = playerID.ToString ();
-		if (playerID.isMine) {
-			Debug.LogError("Calling addHelerInMap for current player");
-			return;
-		}
-
-		if (this._othersHelpersMap.ContainsKey(k)){
-			Stack<GameObject> s = null;
-			this._othersHelpersMap.TryGetValue(k, out s);
-			s.Push(helper);
-
-		}else {
-			Stack<GameObject> s = new Stack<GameObject>();
-			s.Push(helper);
-			this._othersHelpersMap.Add(k, s);
-		}
-	}
-	
-	*/
 
 	private void pushHelperForOtherPlayer(NetworkViewID playerID, GameObject helper){
 		string k = playerID.ToString ();
@@ -86,32 +62,68 @@ public void addHelperInMap(NetworkViewID playerID, GameObject helper){
 		}
 	}
 
-	public MoveHelperScript pushMoveHelper(CharacterManager cm, Action a){
+	/*
+	 * Client side Components
+	 */
+	private Vector3 defineStartPosition(CharacterManager cm){
 		Vector3 startPos;
 		Action lastAction = cm.characterStats.getLastHotAction ();
-		Debug.Log ("lastAction ? " + lastAction);
 		if (lastAction != null) {
 			startPos = lastAction.endPosition;
 			GameData.getCameraObject().GetComponent<CameraMovementScriptMouse>().lockCamera = false;
 			Vector3 camPos = GameData.getCameraObject().transform.position;
 			GameData.getCameraObject().transform.position = new Vector3(startPos.x, camPos.y, startPos.z);
-
+			
 		} else {
 			startPos = cm.character.transform.position;
 		}
+		return startPos;
+	}
+	/* Params 
+	 * [0] <bool> draw linerenderer
+	 * [1] <Action<MouseDistanceHelperScript> > calculateDistance formula
+	 */
+	public MouseDistanceHelperScript pushMouseDistanceHelperScript(CharacterManager cm, Action a, object[] param){
+		Vector3 startPos = defineStartPosition(cm);
+
+		bool drawLine = true;
+		Func<MouseDistanceHelperScript, float> func = null;
+		if(null != param){
+			if(param.Length >= 1)
+				drawLine = (bool)param[0];
+			if(param.Length >= 2)
+				func = (Func<MouseDistanceHelperScript, float>)param[1];
+		}
+
+		GameObject go = (GameObject)Instantiate (_mouseDistanceHelperObject,startPos , Quaternion.identity);
+		MouseDistanceHelperScript helper = go.GetComponent<MouseDistanceHelperScript> ();
+		
+		helper.setStartPosition (startPos);
+		helper.drawLine = drawLine;
+		helper.calculateDistanceFuncion = func;
+
+		this._currentPlayerHelper = helper;
+		
+		return helper;
+	}
+
+	public MoveHelperScript pushMoveHelper(CharacterManager cm, Action a){
+		Vector3 startPos = defineStartPosition(cm);
 
 		GameObject go = (GameObject)Instantiate (_moveHelperObject,startPos , Quaternion.identity);
 		MoveHelperScript mhs = go.GetComponent<MoveHelperScript> ();
 
 		mhs.setStartPosition (startPos);
 
-		//mhs.activate(cm,a);
-
 		this._currentPlayerHelper = mhs;
 
 		return mhs;
 
 	}
+
+	/*
+	 *  RPC
+	 */
 
 	[RPC]
 	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){

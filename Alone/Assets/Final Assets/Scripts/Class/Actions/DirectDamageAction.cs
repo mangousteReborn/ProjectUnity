@@ -4,14 +4,14 @@ using System;
 using System.Collections;
 
 public class DirectDamageAction : Action {
-	//FIXME
-	//private ConeHelerScript _helper;
-	
+	private DirectDamageHelperScript _helper;
+
 	private float _costPerUnit;
 	private float _degree;
 	private float _radius;
-	private float _damages;
-	private int _maxAttacks = 1;
+
+	private int _damages;
+	private int _maxAttacks = 1; // Maybe player (CharacterStats) have to manage it
 
 
 
@@ -24,16 +24,27 @@ public class DirectDamageAction : Action {
 		this._radius = radius;
 		this._damages = damages;
 	}
-	// FIXME
-	public DirectDamageAction(string k, string name, string d, float costPerUnit)
+	
+	public DirectDamageAction(string k, string name, string d, float costPerUnit,float degree, float radius, int damages)
 		: base (k, name, d)
 	{
 		this._costPerUnit = costPerUnit;
+		this._degree = degree;
+		this._radius = radius;
+		this._damages = damages;
 	}
-	// FIXME
-	public DirectDamageAction (string k, string name, string d, float cost,Vector3 startPosition, Vector3 destPosition)
+	
+	public DirectDamageAction (
+		string k, string name, string d,  
+		float costPerUnit,float degree, float radius, int damages, 
+		float cost,Vector3 startPosition, Vector3 destPosition
+	)
 		: base(k, name, d)
 	{
+		this._degree = degree;
+		this._radius = radius;
+		this._damages = damages;
+
 		this._actionCost = cost;
 		this._startPosition = startPosition;
 		this._endPosition = destPosition;
@@ -50,31 +61,31 @@ public class DirectDamageAction : Action {
 			return null;
 		}
 		
-		return new DirectDamageAction (ma.costPerUnit, ma.degree, ma.radius, ma.damages);
+		return new DirectDamageAction (ma.key, ma.name, ma.desc,ma.costPerUnit, ma.degree, ma.radius, ma.damages);
 	}
-	//FIXME
+
 	public override void onActionSelection(CharacterManager cm, bool drawHelper=true){
 		ActionHelperDrawer ahd = GameData.getActionHelperDrawer ();
 		
-		//this._lineHelper = ahd.pushMoveHelper(cm, this);
+		this._helper = ahd.pushDirectDamageHelper(cm, this);
 		
-		//this._lineHelper.activate (cm, this);
+		this._helper.activate (cm, this);
 	}
 	
 	public override void onActionValidation(CharacterManager cm, object[] param){
-		
-		//GameData.getActionHelperDrawer().validateCurrentPlayerHelper();
+
 		
 	}
-	// FIXME
+	
 	public override void onActionInvalid (CharacterManager cm, object[] param)
 	{
-		//if(this._lineHelper != null)
-		//	this._lineHelper.RPCcallback = true;
+		if(this._helper != null)
+			this._helper.RPCcallback = true;
 	}
-	//FIXME
+
+
 	public override void onActionCanceled(CharacterManager cm, object[] param=null){
-		//this._helper.cancel (cm);
+		this._helper.cancel (cm);
 		
 	}
 	
@@ -86,7 +97,10 @@ public class DirectDamageAction : Action {
 	public override void onActionEnd(CharacterManager cm, object[] param=null){
 
 	}
-	// FIXME ??
+
+
+
+
 	public float calculateCost(Vector3 start, Vector3 dest){
 		return (float)Math.Round(
 			(Vector3.Distance(start, dest) * this._costPerUnit),
@@ -95,7 +109,19 @@ public class DirectDamageAction : Action {
 			);
 	}
 	
-	
+	public GameObject getCollider(){
+		GameObject go = new GameObject ();
+		Transform t = go.AddComponent<Transform> ();
+		t.position = this._endPosition;
+		
+		SphereCollider sc = go.AddComponent<SphereCollider> ();
+		sc.radius = this._radius;
+
+		//go.AddComponent<SphereColliderScript> ();
+
+		return go;
+	}
+
 	// Get / Set
 	public float costPerUnit{
 		get {return this._costPerUnit;}
@@ -106,7 +132,7 @@ public class DirectDamageAction : Action {
 	public float radius{
 		get {return this._radius;}
 	}
-	public float damages{
+	public int damages{
 		get {return this._damages;}
 	}
 }

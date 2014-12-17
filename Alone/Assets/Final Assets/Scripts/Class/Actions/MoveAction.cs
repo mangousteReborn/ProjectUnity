@@ -53,9 +53,7 @@ public class MoveAction : Action {
 	}
 
 	public override void onActionValidation(CharacterManager cm, object[] param){
-        Debug.Log("ACTION IS POWA VALIDATED GOSU !!!!!");
-		
-        //GameData.getActionHelperDrawer().validateCurrentPlayerHelper();
+        
 
 	}
 
@@ -79,6 +77,8 @@ public class MoveAction : Action {
 		Debug.Log ("Running end ...");
 	}
 
+
+
 	public float calculateCost(Vector3 start, Vector3 dest){
 		return (float)Math.Round(
 			(Vector3.Distance(start, dest) * this._costPerUnit),
@@ -86,6 +86,7 @@ public class MoveAction : Action {
 			MidpointRounding.ToEven
 			);
 	}
+
 
 
 	// Get / Set

@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Programmes/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Programmes/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -64,9 +64,11 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteEntity.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteType.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DefaultStaticHelperScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\DirectDamageHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\IActionHelper.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MouseDistanceHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\MoveHelperScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\ActionHelpers\TextListenerScrpit.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\DamagePopupScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\ActionBarScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" />
@@ -98,7 +100,7 @@
      <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />
      <None Include="Assets\IMPORTANT README.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>E:/Programmes/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

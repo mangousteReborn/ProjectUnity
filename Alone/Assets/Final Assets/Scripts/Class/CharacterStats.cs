@@ -56,6 +56,8 @@ public class CharacterStats  {
 		// Definition of default available Actions
 		this._availableActionList.Add (GameData.getAction("move"));
 		this._availableActionList.Add (GameData.getAction("wait"));
+		this._availableActionList.Add (GameData.getAction("directdamage"));
+		this._availableActionList.Add (GameData.getAction ("sniperdamage"));
 
         this._networkView = networkView;
 
@@ -227,6 +229,13 @@ public class CharacterStats  {
 	}
 
 	/* Specific action pushing (called by CharacterManager from RPC) */
+	// General (in test)
+	public void setPendingAction(Action a){
+		if (null != this._pendingAction){
+			Debug.LogWarning("CharacterStats : <pushMoveAction> An action was here as pending : old=" +this._pendingAction.key + " new=" +a.key);
+		}
+		this._pendingAction = a;
+	}
 	public void setPendingActionAsMoveAction(string k , string name, string d, float cpu){
 		MoveAction ma = new MoveAction (k, name, d, cpu);
 		if (null != this._pendingAction){

@@ -51,11 +51,17 @@ public static class GameData {
 		// Move
 		Action moveAction = new MoveAction (0.2f);
 		WaitAction waitAction = new WaitAction(0.9f);
+		DirectDamageAction areaAttack = new DirectDamageAction(0.8f, 45f, 1.7f, 10);
+		DirectDamageAction spinerAttack = new DirectDamageAction("sniperdamage", "Sniper","Inflige de gros degats dans un petites zone.",1.2f, 15f, 3f, 15);
 
 		_actionsMap.Add (moveAction.key, moveAction);
 		_actionsMap.Add (waitAction.key, waitAction);
-		_actionVignetteMap.Add(moveAction.key, new VignetteAction(moveAction));
-		_actionVignetteMap.Add(waitAction.key, new VignetteAction(waitAction));
+		_actionsMap.Add (areaAttack.key, areaAttack);
+		_actionsMap.Add (spinerAttack.key, spinerAttack);
+		_actionVignetteMap.Add(moveAction.key, new VignetteAction(moveAction, "Vignettes/move"));
+		_actionVignetteMap.Add(waitAction.key, new VignetteAction(waitAction,"Vignettes/wait"));
+		_actionVignetteMap.Add(areaAttack.key, new VignetteAction(areaAttack,"Vignettes/attack2"));
+		_actionVignetteMap.Add(spinerAttack.key, new VignetteAction(spinerAttack,"Vignettes/attack"));
 
 		return err;
 	}
@@ -103,6 +109,18 @@ public static class GameData {
 		Action val;
 		_actionsMap.TryGetValue(k, out val);
 		return val;
+	}
+	public static Action getCopyOfAction(string k){
+		/*
+		object[] param = {va.action};
+		Action newAction = (Action)va.action.GetType ().GetMethod ("getCopy").Invoke (va.action, param);
+		*/
+		Action a = null;
+		if(!_actionsMap.TryGetValue(k, out a))
+			return null;
+
+		return a.getCopy(a);
+
 	}
 
 	public static ActionHelperDrawer getActionHelperDrawer(){

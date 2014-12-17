@@ -68,14 +68,10 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 
 	GameObject _actionVignettesPickerObject;
 
-
-
-	[SerializeField]
-	GameObject _vignetteSlotObject;
-
+	/* TODO : soon !
 	[SerializeField]
 	GameObject _tooltipPanelObject;
-
+	*/
 
 
 	// GUI general management variable

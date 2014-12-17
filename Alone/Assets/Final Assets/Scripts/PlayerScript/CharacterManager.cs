@@ -142,17 +142,26 @@ public class CharacterManager : MonoBehaviour {
         this._characterStats.setCurrentActionPoint(value, isFromRPC);
 	}
 
-
-	[RPC]
+	[RPC]// GENERAL (Works !)
+	public void setPendingActionByKeyRPC(string k ){
+		this._characterStats.setPendingAction(GameData.getCopyOfAction(k));
+	}
+	/*
+	[RPC] // DirectDamage
+	public void pushDirectDamageActionAsPendingRPC(string k, string name, string d, float costpu,  float degree, float radius, int damages){
+		this._characterStats.setDirectDamageActionAsPending(k, name, d, costpu, degree, radius, damages);
+	}
+	*/
+	[RPC]// Move
 	public void pushMoveActionAsPendingRPC(string k, string name, string d, float costpu){
-		Debug.Log ("Pending >>> push Move ActionAsPendingRPC");
 		this._characterStats.setPendingActionAsMoveAction(k, name, d, costpu);
 	}
-	[RPC]
+	[RPC]// Wait
 	public void pushWaitActionAsPendingRPC(string k, string name, string d, float costpu){
-		Debug.Log ("Pending >>> push Wait ActionAsPendingRPC");
 		this._characterStats.setPendingActionAsWaitAction(k, name, d, costpu);
 	}
+
+
 	[RPC]
 	public void pushMoveActionRPC(string k, string name, string d, float costpu, float totalCost, Vector3 startPos, Vector3 destPosition){
 		this._characterStats.pushMoveAction(k, name, d, costpu, totalCost, startPos, destPosition);
@@ -161,7 +170,15 @@ public class CharacterManager : MonoBehaviour {
 	public void pushWaitActionRPC(string k, string name, string d, float costpu, float totalCost, Vector3 startPos, Vector3 destPosition){
 		this._characterStats.pushWaitAction(k, name, d, costpu, totalCost, startPos, destPosition);//destPosition
 	}
+	[RPC]
+	public void pushDirectDamageActionRPC(string k, float totalCost, Vector3 startPos, Vector3 destPosition){
+		DirectDamageAction a = (DirectDamageAction)GameData.getCopyOfAction(k);
+		a.actionCost = totalCost;
+		a.endPosition = destPosition;
+		a.startPosition = startPos;
 
+		this._characterStats.pushHotAction (a);
+	}
 
 	[RPC]
 	public void removePendingActionRPC(){
@@ -170,8 +187,52 @@ public class CharacterManager : MonoBehaviour {
 	}
 
 	[RPC]
+	public void validateDirectDamageActionRPC(NetworkViewID id, Vector3 ePos, float angle){
+		if (!Network.isServer)
+			return;
+		
+		Player playerWhoValidate = GameData.getPlayerByNetworkViewID (id);
+		
+		DirectDamageAction ma = null;
+		
+		try{
+			ma = (DirectDamageAction)playerWhoValidate.characterManager.characterStats.pendingAction;
+			
+		} catch (Exception e){
+			Debug.LogError("CharacterManager : <validateDirectDamageActionRPC> Player doest have pending action or action is not a DirectDamage : " + e.ToString());
+			return;
+		}
+		Vector3 sPos;
+		
+		Action lastHotAction = playerWhoValidate.characterManager.characterStats.getLastHotAction();
+		
+		if (null == lastHotAction) {
+			sPos = playerWhoValidate.playerObject.transform.position;
+		}
+		else {
+			sPos = lastHotAction.endPosition;
+		}
+		
+		float cost = ma.calculateCost (sPos, ePos);
+		
+		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
+			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
+				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
+			
+			ma.onActionValidation(this);
+			
+			GameData.getActionHelperDrawer().networkView.RPC("pushDirectDamageStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s", ma.degree, ma.radius, angle);
+			this.networkView.RPC("pushDirectDamageActionRPC", RPCMode.All,  ma.key,cost,sPos, sPos);
+
+			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
+			
+		} else {
+			ma.onActionInvalid(this);
+		}
+	}
+
+	[RPC]
 	public void validateWaitActionRPC(NetworkViewID id, Vector3 ePos){
-		Debug.Log ("Trying to validate WAit ");
 		if (!Network.isServer)
 			return;
 		

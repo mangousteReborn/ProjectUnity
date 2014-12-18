@@ -22,6 +22,7 @@ public class HealthbarScript : MonoBehaviour {
 		this._healthBarLabel = _healthbar.GetComponentInChildren<Text>();
 		this._healthBarLabel.color = Color.white;
 		// Triggering event for first healthbar update
+
 		this._characterStats.fireEvent(CharacterStatsEvent.change);
 
 	}

@@ -260,6 +260,8 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		}
         changeGameMode (3);
 		//this._charaterManager.runHotAcions ();
+		newPlayerReady ();
+		return;
         if(Network.isServer)
         {
             readyPlayer(null, null);
@@ -372,13 +374,17 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		this._pendingAction = null;
 		*/
 	}
-	
-	[RPC]
+
 	private void newPlayerReady()
 	{
+		GameData.getGameManager ().networkView.RPC ("increaseReadyPlayer", RPCMode.All, this._charaterManager.networkView.viewID);
+		return;
+		/*
+
 		readyPlayer(null, null);
 		if(Network.isServer)
 			networkView.RPC("newPlayerReady", RPCMode.Others);
+		*/
 	}
 	
 	[RPC]

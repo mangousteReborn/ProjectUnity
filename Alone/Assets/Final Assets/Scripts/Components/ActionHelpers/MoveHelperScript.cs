@@ -62,7 +62,6 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 			calcCost(target);
 
 			if(this._RPCcallback){
-				Debug.Log("cliclick and run CallBack");
                 this._owner.networkView.RPC("validateMoveActionRPC", RPCMode.All, this._owner.player.id, this._endPoint);
 				this._RPCcallback = false;
 			}

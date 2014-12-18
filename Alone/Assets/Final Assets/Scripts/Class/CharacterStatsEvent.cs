@@ -19,6 +19,7 @@ public enum CharacterStatsEvent
 
 	hotActionPushed,
 	lastHotActionRemoved,
+	hotActionsExecuted,
 
 	gameModeChanged,
 	change,

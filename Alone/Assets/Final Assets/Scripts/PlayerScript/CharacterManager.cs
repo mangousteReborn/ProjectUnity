@@ -106,13 +106,13 @@ public class CharacterManager : MonoBehaviour {
 	IEnumerator runNextHotAction(object o){
 
 		List<Action> actions = (List<Action>)o;
-
+		GameData.getGameManager ().networkView.RPC ("hotActionsStarted",RPCMode.All, this.networkView.viewID);
 		foreach(Action a in actions){
 			Debug.Log ("# Running action '" + a.key + "' Waiting : " + a.actionCost);
 			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
 		}
-
+		GameData.getGameManager ().networkView.RPC ("hotActionsEnded",RPCMode.All, this.networkView.viewID);
 
 	}
 

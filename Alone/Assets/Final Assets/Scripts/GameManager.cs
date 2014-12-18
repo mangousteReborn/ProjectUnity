@@ -79,32 +79,22 @@ public class GameManager : MonoBehaviour {
 		_playerValidateCount += 1;
 		int playerCount = GameData.getNonGMPlayerCount();;
 		if (_playerValidateCount == playerCount) {
-			this.networkView.RPC("runCurrentFightStep", RPCMode.Server, id);
-			
+			runCurrentFightStep();
 			_playerValidateCount = 0;
 		}
 	}
 
-
-	[RPC]
-	public void hotActionsStarted(NetworkViewID id){
-		if (Network.isServer) {
-
-		}
+	public void hotActionsStarted(){
 
 		_hotActionsStartedCount += 1;
 		Debug.Log ("Action start " + _hotActionsStartedCount);
 	}
 
-	[RPC]
-	public void hotActionsEnded(NetworkViewID id){
-		if (Network.isServer) {
-
-		}
+	public void hotActionsEnded(){
 		_hotActionsEndedCount += 1;
 		Debug.Log ("Action end " + _hotActionsEndedCount + " / " + _hotActionsStartedCount);
 		if(_hotActionsEndedCount >= _hotActionsStartedCount){
-			networkView.RPC("runNextFightStep",RPCMode.Server, id);
+			networkView.RPC("runNextFightStep",RPCMode.All);
 			_hotActionsStartedCount = 0;
 			_playerValidateCount = 0;
 		}
@@ -139,53 +129,35 @@ public class GameManager : MonoBehaviour {
 
 		}
 	}
+
 	// Step 1
 	[RPC]
-	public void runCurrentFightStep(NetworkViewID id){
+	public void runCurrentFightStep(){
 		Debug.Log("Next Fight Step");
 
 		GameData.getActionHelperDrawer().deleteAllHelpers ();
-		CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
-		if (Network.isServer)
-		{
-			foreach(Player p in GameData.getPlayerList()){
-				networkView.RPC("runCurrentFightStep", RPCMode.Others, p.characterManager.networkView.viewID);
-			}
-
-			managerCharac.runHotAcions();
+		
+		foreach(Player p in GameData.getPlayerList()){
+            CharacterManager managerCharac = NetworkView.Find(p.id).gameObject.GetComponent<CharacterManager>();
+            managerCharac.runHotAcions();
 			managerCharac.characterStats.gameMode = 3;
 			managerCharac.characterStats.removePendingAction();
 			
 		}
-		else
-		{
-			managerCharac.runHotAcions();
-			managerCharac.characterStats.gameMode = 3;
-			managerCharac.characterStats.removePendingAction();
-		}
+        if (Network.isServer) networkView.RPC("runCurrentFightStep", RPCMode.Others);
 	}
 
-	[RPC]
-	public void runNextFightStep(NetworkViewID id){
+	public void runNextFightStep(){
 		Debug.Log("Next Fight Step");
 
 		GameData.getActionHelperDrawer().deleteAllHelpers ();
-		CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
-		if (Network.isServer)
-		{
-			foreach(Player p in GameData.getPlayerList()){
-				networkView.RPC("runNextFightStep", RPCMode.Others, p.characterManager.networkView.viewID);
-			}
-			//networkView.RPC("runNextFightStep", RPCMode.Others, id);
-			managerCharac.characterStats.nextFightStep();
+        foreach(Player p in GameData.getPlayerList())
+        {
+            CharacterManager managerCharac = NetworkView.Find(p.id).gameObject.GetComponent<CharacterManager>();
+            managerCharac.characterStats.nextFightStep();
 			managerCharac.characterStats.gameMode = 2;
-
-		}
-		else
-		{
-			managerCharac.characterStats.nextFightStep();
-			managerCharac.characterStats.gameMode = 2;
-		}
+        }
+		
 	}
 
     public roomBattleModeScript getRoomNumber(int number)

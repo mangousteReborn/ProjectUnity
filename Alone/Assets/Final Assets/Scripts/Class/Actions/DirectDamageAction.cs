@@ -260,7 +260,7 @@ public class DirectDamageAction : Action {
 					Debug.Log("Ok raycast hit");
 					int newLife = target.characterStats.currentLife - (cm.characterStats.currentStrength + this.damages);
 
-					target.networkView.RPC("setCurrentLifeHandlerRPC", RPCMode.All, newLife);
+					target.networkView.RPC("setCurrentLifeHandlerRPC", RPCMode.All, newLife,true);
 
 				}
 

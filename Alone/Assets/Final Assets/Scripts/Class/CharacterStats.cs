@@ -328,12 +328,12 @@ public class CharacterStats  {
 
             fireEvent(CharacterStatsEvent.currentLifeChange, param);
             fireEvent(CharacterStatsEvent.change, null);
-            _networkView.RPC("setLife", RPCMode.Others, value);
+			_networkView.RPC("setCurrentLife", RPCMode.Others, value);
         }
         else
         {
             if(!isFromRPC)
-                _networkView.RPC("setLife", RPCMode.Server, value);
+                _networkView.RPC("setCurrentLife", RPCMode.Server, value);
             else
             {
                 int oldLife = this._currentLife;

@@ -35,7 +35,7 @@ public class CharacterManager : MonoBehaviour {
 
 		this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
 			
-		this._characterStats.register (CharacterStatsEvent.currentLifeChange, createPopup);
+		this._characterStats.register (CharacterStatsEvent.currentLifeChange, onCurrentLifeChange);
 
 
 		 
@@ -64,7 +64,7 @@ public class CharacterManager : MonoBehaviour {
 
 
 
-	private void createPopup(CharacterStats stats, object[] param){
+	private void onCurrentLifeChange(CharacterStats stats, object[] param){
 		int damages = (int)param [0] - (int)param [1];
 		Color color = damages >= 0 ? Color.red : Color.green;
 
@@ -82,7 +82,6 @@ public class CharacterManager : MonoBehaviour {
 		Stack<Action> stack = this._characterStats.hotActionsStack;
 		List<Action> actions = new List<Action>();
 
-		Debug.Log ("stack len = " + stack.Count);
 
 		while(stack.Count > 0)
 			actions.Add(stack.Pop());
@@ -96,7 +95,7 @@ public class CharacterManager : MonoBehaviour {
 		List<Action> actions = (List<Action>)o;
 
 		foreach(Action a in actions){
-			Debug.Log ("# Running action " + a.key + " Waiting : " + a.actionCost);
+			Debug.Log ("# Running action '" + a.key + "' Waiting : " + a.actionCost);
 			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
 		}
@@ -146,6 +145,12 @@ public class CharacterManager : MonoBehaviour {
     {
         this._characterStats.setCurrentLife(value,true);
     }
+
+	[RPC]
+	private void setCurrentLife(int value)
+	{
+		this._characterStats.setCurrentLife(value,true);
+	}
 
 	[RPC]
 	private void setCurrentActionPoint(float value,bool isFromRPC){

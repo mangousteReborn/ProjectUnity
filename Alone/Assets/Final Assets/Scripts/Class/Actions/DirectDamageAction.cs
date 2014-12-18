@@ -251,24 +251,26 @@ public class DirectDamageAction : Action {
 
 			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();
 
-			if(target.characterStats.hasTargetType(CharacterStats.TargetType.ally)){
+			if(!target.networkView.isMine && target.characterStats.hasTargetType(CharacterStats.TargetType.ally)){
 				RaycastHit hit;
 				Debug.Log("Ok, is ally");
 				if(
-					Physics.Raycast(this._startPosition, target.character.transform.position, out hit,100f) // this._radius*10
+					Physics.Raycast(new Vector3(this._startPosition.x, 0.5f, this._startPosition.z), new Vector3(target.character.transform.position.x,0.5f, target.character.transform.position.z), out hit,this._radius*10)
 					){
 					Debug.Log("Ok raycast hit");
 					int newLife = target.characterStats.currentLife - (cm.characterStats.currentStrength + this.damages);
 
+					target.networkView.RPC("setCurrentLife", RPCMode.All, newLife);
+					/*
 					if(Network.isServer){
-						target.networkView.RPC("setLife", RPCMode.Server, newLife);
+						target.networkView.RPC("setCurrentLife", RPCMode.Server, newLife);
 					} else {
 						target.characterStats.setCurrentLife(newLife, false);
 					}
+					*/
 
 				}
 
-				//
 			}
 			Debug.Log("hey ::: " + target.player.name + " is ::: " + target.characterStats.targetTypesToString());
 			

@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
 		_playerValidateCount += 1;
 		int playerCount = GameData.getNonGMPlayerCount();;
 		if (_playerValidateCount == playerCount) {
-			this.networkView.RPC("runCurrentFightStep", RPCMode.All, id);
+			this.networkView.RPC("runCurrentFightStep", RPCMode.Server, id);
 			
 			_playerValidateCount = 0;
 		}

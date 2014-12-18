@@ -175,9 +175,9 @@ public class CharacterManager : MonoBehaviour {
     }
 
 	[RPC]
-	private void setCurrentLifeHandlerRPC(int value)
+	private void setCurrentLifeHandlerRPC(int value,bool isFromRPC)
 	{
-		this._characterStats.setCurrentLife(value,true);
+        this._characterStats.setCurrentLife(value, isFromRPC);
 	}
 
 	[RPC]

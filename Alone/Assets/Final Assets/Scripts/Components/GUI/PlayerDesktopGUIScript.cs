@@ -153,7 +153,6 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	public void setCharacterManager(CharacterManager cm){
 		this._charaterManager = cm;
 		this._characterStats = cm.characterStats;
-		Debug.Log ("cm is " + cm.characterStats);
 		this._characterStats.register(CharacterStatsEvent.actionAdded, onActionAdded);
 		this._characterStats.register(CharacterStatsEvent.gameModeChanged, onGameModeChange);
 		this._characterStats.register(CharacterStatsEvent.hotActionPushed, onHotActionPushed);

@@ -24,22 +24,15 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	public GameObject _character;
 
-	private CharacterStats _characterStats = new CharacterStats (null,200,20f);
+	private bool _initialized = false;
+	private CharacterStats _characterStats;// = new CharacterStats (null,200,20f);
 	private Player _player;
 	private Material _material;
 	private bool _isInFight = false;
 
 
 	void Start () {
-		this._healthBar = (GameObject)Instantiate (this._healthBar);
 
-		this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
-			
-		this._characterStats.register (CharacterStatsEvent.currentLifeChange, onCurrentLifeChange);
-
-
-		 
-		this._characterStats.networkView = this.networkView;
 	}
 
 	// Update is called once per frame
@@ -62,7 +55,27 @@ public class CharacterManager : MonoBehaviour {
 		this._healthBar.transform.position = new Vector3(this._character.transform.position.x,3,this._character.transform.position.z + 1);
 	}
 
+	public void initialize(CharacterStats stats, Player p, Material mat){
+		if(this._initialized)
+			return;
+		this._initialized = true;
+		this._characterStats = stats;
+		this._player = p;
+		this._material = mat;
 
+		
+
+
+		// Instanciate GO
+		this._healthBar = (GameObject)Instantiate (this._healthBar);
+		this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
+
+		// Listeners
+		this._characterStats.register (CharacterStatsEvent.currentLifeChange, onCurrentLifeChange);
+
+		// Misc
+		this._character.GetComponent<MeshRenderer>().material = this._material;
+	}
 
 	private void onCurrentLifeChange(CharacterStats stats, object[] param){
 		int damages = (int)param [0] - (int)param [1];
@@ -140,6 +153,13 @@ public class CharacterManager : MonoBehaviour {
 
 		}
 	}
+
+
+	/*
+	 * 	###########
+	 *  ### RPC ###
+	 * 	###########
+	 */
     [RPC]
     private void setLife(int value)
     {
@@ -198,7 +218,6 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC]
 	public void removePendingActionRPC(){
-		Debug.Log ("Pending >>> remove PendingActionRPC");
 		this._characterStats.removePendingAction();
 	}
 
@@ -274,7 +293,6 @@ public class CharacterManager : MonoBehaviour {
 		else {
 			sPos = lastHotAction.endPosition;
 		}
-		Debug.Log("Ma is == " + ma);
 		float cost = ma.calculateCost (sPos, ePos);
 		
 		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
@@ -294,7 +312,6 @@ public class CharacterManager : MonoBehaviour {
 
 	[RPC] 
 	public void validateMoveActionRPC(NetworkViewID id, Vector3 ePos){
-		Debug.Log ("Trying to validation ");
 		if (!Network.isServer)
 			return;
 

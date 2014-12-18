@@ -1,15 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Misc\AngleCollider.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\Player.cs">
     <Files>
-      <File FileName="Alone.sln" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" Line="152" Column="3" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Actions\DirectDamageAction.cs" Line="257" Column="8" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Components\ActionHelpers\DirectDamageHelperScript.cs" Line="18" Column="18" />
-      <File FileName="Assets\Final Assets\Scripts\Misc\AngleCollider.cs" Line="8" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="33" Column="17" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="93" Column="39" />
+      <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="155" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

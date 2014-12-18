@@ -72,25 +72,40 @@ public class fastConnectionScript : MonoBehaviour {
             GameManager manager = this.GetComponent<GameManager>();
             manager.setPlayerGUI();
             IPlayerGUI gui = manager.playerGUI;
+
+			// CharacManager Step 1 : Instantiate (as GameObject)
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
+			// Material for player's unit color
 			Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
+			// Logic Stats
+			CharacterStats stats = new CharacterStats(cm.networkView, 100, 10f, 10);
+			stats.addTargetType(CharacterStats.TargetType.mine);
+			stats.addTargetType(CharacterStats.TargetType.player);
+
+			// Player (data)
 			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView);
             p.characterManager = cm;
             p.playerObject = newPlayer;
-            GameData.addPlayer(p);
+           
 
-            cm.player = p;
-			cm.material = mat;
-			cm.characterStats.addTargetType(CharacterStats.TargetType.ally);
 
+			// CharacManager Step 2 : Instantiate (logic data)
+			cm.initialize(stats,p,mat);
+
+			// Setting CM for current GUI
             gui.setCharacterManager(cm);
+
 
             newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
             //setting.ListPlayer.Add(newPlayer.networkView.viewID);
             Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
+
             networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
+			GameData.addPlayer(p);
+
+			Debug.Log ("Player : " + p.name + " Is : " + stats.targetTypesToString ());
 			_playerColorIndex ++;
         }
         else
@@ -138,18 +153,17 @@ public class fastConnectionScript : MonoBehaviour {
 		p.characterManager = cm;
 		p.playerObject = NetworkView.Find(networkViewID).gameObject;
 		GameData.addPlayer(p);
+		
+		// Logic Stats
+		CharacterStats stats = new CharacterStats(cm.networkView, 100, 10f, 10);
+		stats.addTargetType(CharacterStats.TargetType.ally);
+		stats.addTargetType(CharacterStats.TargetType.player);
 
-		cm.player = p;
-		cm.material = mat;
+		
+		// CharacManager Step 2 : Instantiate (logic data)
+		cm.initialize(stats,p,mat);
 
-		if(_isGM)
-			cm.characterStats.addTargetType(CharacterStats.TargetType.gm);
-		else
-			cm.characterStats.addTargetType(CharacterStats.TargetType.ally);
-
-		if(networkViewID.isMine)
-			cm.characterStats.addTargetType(CharacterStats.TargetType.me);
-
+		Debug.Log ("Player : " + p.name + " Is : " + stats.targetTypesToString ());
 		_playerColorIndex ++;
 	}
 

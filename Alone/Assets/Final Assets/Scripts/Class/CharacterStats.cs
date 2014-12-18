@@ -22,6 +22,8 @@ public class CharacterStats  {
 	
 	public enum TargetType {
 		me,
+		mine,
+		player,
 		ally,
 		ai,
 		gm,

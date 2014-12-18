@@ -111,7 +111,7 @@ public class CharacterStats  {
 		foreach (Effect e in v.effectsList) {
 			e.applyEffect(this);
 		}
-
+        networkView.RPC("setBonusVignetteHandlerRPC", RPCMode.Server, v.key, true);
 	}
 
 	public void removeVignette(string key, bool all = false, bool silent = false){
@@ -317,6 +317,7 @@ public class CharacterStats  {
 			return this._currentLife;
 		}
 	}
+
     public void setCurrentLife(int value, bool isFromRPC)
     {
         if (Network.isServer)
@@ -358,6 +359,34 @@ public class CharacterStats  {
 			fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
+
+    public void setBonusVignetteRPC(string key, bool isFromRPC)
+    {
+        if (Network.isServer)
+        {
+            VignetteBonus v = (VignetteBonus)GameData.getBonusVignette(key);
+            this._vignettesList.Add(v);
+            foreach (Effect e in v.effectsList)
+            {
+                e.applyEffect(this);
+            }
+            _networkView.RPC("setBonusVignetteHandlerRPC", RPCMode.Others, key,true);
+        }
+        else
+        {
+            if (!isFromRPC)
+                _networkView.RPC("setBonusVignetteHandlerRPC", RPCMode.Server, key,true);
+            else
+            {
+                VignetteBonus v = (VignetteBonus)GameData.getBonusVignette(key);
+                this._vignettesList.Add(v);
+                foreach (Effect e in v.effectsList)
+                {
+                    e.applyEffect(this);
+                }
+            }
+        }
+    }
 
 	public void setCurrentActionPoint(float value, bool isFromRPC)
 	{

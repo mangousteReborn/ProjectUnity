@@ -140,6 +140,13 @@ public class CharacterManager : MonoBehaviour {
 
 		}
 	}
+
+    [RPC]
+    private void setBonusVignetteHandlerRPC(string key, bool isFromRPC)
+    {
+        this._characterStats.setBonusVignetteRPC(key, isFromRPC);
+    }
+
     [RPC]
     private void setLife(int value)
     {
@@ -244,7 +251,7 @@ public class CharacterManager : MonoBehaviour {
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 			
 		} else {
-			ma.onActionInvalid(this);
+			ma.onActionInvalid(this,null);
 		}
 	}
 
@@ -281,14 +288,14 @@ public class CharacterManager : MonoBehaviour {
 			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
 				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
 			
-			ma.onActionValidation(this);
+			ma.onActionValidation(this,null);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s");
 			this.networkView.RPC("pushWaitActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, sPos);
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 			
 		} else {
-			ma.onActionInvalid(this);
+			ma.onActionInvalid(this,null);
 		}
 	}
 
@@ -326,7 +333,7 @@ public class CharacterManager : MonoBehaviour {
 			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
 				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
 				
-			ma.onActionValidation(this);
+			ma.onActionValidation(this,null);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, ePos,  ma.name + "\n" + cost+"s");
 			this.networkView.RPC("pushMoveActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);

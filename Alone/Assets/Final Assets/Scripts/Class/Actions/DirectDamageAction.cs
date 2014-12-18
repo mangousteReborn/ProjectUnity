@@ -261,13 +261,6 @@ public class DirectDamageAction : Action {
 					int newLife = target.characterStats.currentLife - (cm.characterStats.currentStrength + this.damages);
 
 					target.networkView.RPC("setCurrentLife", RPCMode.All, newLife);
-					/*
-					if(Network.isServer){
-						target.networkView.RPC("setCurrentLife", RPCMode.Server, newLife);
-					} else {
-						target.characterStats.setCurrentLife(newLife, false);
-					}
-					*/
 
 				}
 

@@ -169,7 +169,6 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
     [RPC]
     private void setTargetRPC(NetworkViewID id, Vector3 startPos, Vector3 newTarget)
     {
-        Debug.Log("setTargetRPC");
         NavMeshPath path = networkDeplacement.setTarget(startPos, newTarget,true);
         if (path != null)
             NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = path;

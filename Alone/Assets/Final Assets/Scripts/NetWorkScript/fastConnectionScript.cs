@@ -76,7 +76,7 @@ public class fastConnectionScript : MonoBehaviour {
 
 			Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
-			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView);
+			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView,false);
             p.characterManager = cm;
             p.playerObject = newPlayer;
             GameData.addPlayer(p);
@@ -106,6 +106,11 @@ public class fastConnectionScript : MonoBehaviour {
             camScript.cameraCanBeLocked = false;
             camScript.lockCamera = false;
             gameObject.GetComponent<InstantiateNPCScript>().enabled = true;
+
+            CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
+            Player p = new Player("GM" + _playerColorIndex, false);
+            p.characterManager = cm;
+            p.playerObject = newPlayer;
         }
     }
 
@@ -134,7 +139,7 @@ public class fastConnectionScript : MonoBehaviour {
 		Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
 
-		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView);
+		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView,false);
 		p.characterManager = cm;
 		p.playerObject = NetworkView.Find(networkViewID).gameObject;
 		GameData.addPlayer(p);

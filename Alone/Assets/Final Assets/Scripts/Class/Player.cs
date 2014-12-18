@@ -12,6 +12,14 @@ public class Player {
 	private CharacterManager _characterManager;
 	private GameObject _playerObject;
 
+    public Player(string name, bool isGM )
+    {
+        this._name = name;
+
+        this._isGM = isGM;
+        this._characterManager = null;
+    }
+
 	public Player(string name, NetworkView view,bool isGM=false){
 		this._name = name;
         this._networkView = view;

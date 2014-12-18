@@ -7,9 +7,12 @@ public class IABase : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	//gameObject.
-
+        managerCharacter = gameObject.GetComponent<CharacterManager>();
+        OnPlanificationStart();
 	}
 	const float costPerUnit  = 0.2f;
+
+    private CharacterManager managerCharacter;
 
 	static float getPathLength(NavMeshPath path)
 	{
@@ -66,7 +69,7 @@ public class IABase : MonoBehaviour {
 			return;
 		
 		Player nearest = getNearestPlayer ();
-		CharacterStats stat = gameObject.GetComponent<CharacterManager> ().characterStats;
+        CharacterStats stat = managerCharacter.characterStats;
 		MoveAction moveAction = new MoveAction (costPerUnit);
 
 		float actionPointLeft = stat.maxActionPoint;
@@ -75,6 +78,8 @@ public class IABase : MonoBehaviour {
 		NavMeshPath path = new NavMeshPath ();
 		NavMesh.CalculatePath (gameObject.transform.position, nearest.playerObject.transform.position,0 , path );
 		Vector3 dest = getPositionWithDistanceLeft (path, portee, actionPointLeft);
+
+
 	}
 	
 	Player getNearestPlayer()

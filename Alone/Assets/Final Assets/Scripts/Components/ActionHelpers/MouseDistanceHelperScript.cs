@@ -50,7 +50,7 @@ public class MouseDistanceHelperScript : MonoBehaviour, IActionHelper{
 		
 		if (this._validated)
 			return;
-		
+		//bool b = EventSystemManager.currentSystem.IsPointerOverEventSystemObject ();
 		if (Input.GetMouseButton (0) && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector3 target = getTarget();
 			calcDistance(target);

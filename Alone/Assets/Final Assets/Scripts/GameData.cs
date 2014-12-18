@@ -20,6 +20,8 @@ public static class GameData {
 
 	private static Dictionary<string, Action> _actionsMap = new Dictionary<string, Action>();
 
+	private static GameManager _gameManager;
+
 	private static ActionHelperDrawer _actionHelperDrawer;
 
 	private static GameObject _playerCameraObject;
@@ -34,6 +36,8 @@ public static class GameData {
 
 		_actionHelperDrawer = GameObject.Find ("Handler").GetComponent<ActionHelperDrawer> ();
 		_playerCameraObject = GameObject.Find ("Main Camera");
+		_gameManager = GameObject.Find("Handler").GetComponent<GameManager>();
+
         _playerList = new List<Player>();
 		/*
 			VIGNETTES
@@ -121,6 +125,10 @@ public static class GameData {
 
 		return a.getCopy(a);
 
+	}
+
+	public static GameManager getGameManager(){
+		return _gameManager;
 	}
 
 	public static ActionHelperDrawer getActionHelperDrawer(){

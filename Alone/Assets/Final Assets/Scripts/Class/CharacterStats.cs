@@ -104,6 +104,10 @@ public class CharacterStats  {
 		}
 	}
 
+	public void nextFightStep(){
+		this.setCurrentActionPoint (this._maxActionPoint, false);
+		this.clearHotAction ();
+	}
 	/*
 	 * Effects managing
  	 */
@@ -241,7 +245,10 @@ public class CharacterStats  {
 		object[]param={a};
 		fireEvent(CharacterStatsEvent.hotActionPushed,param);
 	}
-	// FIXME : CharacterStats maybe doesnt have to cancelAction. GUI will do it by listening lastHotActionRemove event
+	public void clearHotAction(){
+		this._hotActionsStack.Clear ();
+	}
+	// FIXME
 	public void removeLastHotAction(){
 		Action oa = this._hotActionsStack.Pop ();
 

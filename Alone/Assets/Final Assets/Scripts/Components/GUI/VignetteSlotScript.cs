@@ -79,11 +79,11 @@ public class VignetteSlotScript : MonoBehaviour, IPointerEnterHandler, IPointerE
 	}
 
 	public void OnPointerUp(PointerEventData p){
-		Debug.Log ("up");
+
 	}
 
 	public void OnPointerDown(PointerEventData p){
-		Debug.Log ("down");
+
 	}
 	// Get / Set
 	public Vignette vignette

@@ -65,6 +65,27 @@ public class ActionHelperDrawer : MonoBehaviour {
 		}
 	}
 
+	public void deleteAllHelpers(){
+		Debug.Log ("deleteAllHelpers");
+		// Current player helpers
+		GameObject go = this._playerHelpers.Count > 0 ? this._playerHelpers.Pop () : null;
+		while (null != go) {
+			GameObject.Destroy(go);
+			go = this._playerHelpers.Count > 0 ? this._playerHelpers.Pop () : null;
+		}
+
+		// Others Players
+		foreach(KeyValuePair<string, Stack<GameObject>> kvp in this._othersHelpersMap){
+			GameObject gobj =  kvp.Value.Count > 0 ?  kvp.Value.Pop () : null;
+			while (null != gobj) {
+				GameObject.Destroy(gobj);
+				gobj =  kvp.Value.Count > 0 ?  kvp.Value.Pop () : null;
+			}
+
+		}
+
+	}
+
 	/*
 	 * Client side Components
 	 */

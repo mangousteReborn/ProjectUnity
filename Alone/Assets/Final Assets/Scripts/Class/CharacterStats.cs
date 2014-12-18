@@ -27,7 +27,8 @@ public class CharacterStats  {
 		ally,
 		ai,
 		gm,
-		pet
+		pet,
+        opponent
 	}
 
 	/* Statistics */

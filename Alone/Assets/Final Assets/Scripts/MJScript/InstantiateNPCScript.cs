@@ -121,7 +121,7 @@ public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
         }
         else
         {
-            newIA.GetComponent<CharacterManager>().characterStats.addTargetType(CharacterStats.TargetType.ai);
+            newIA.GetComponent<CharacterManager>().characterStats.addTargetType(CharacterStats.TargetType.opponent);
         }
     }
 

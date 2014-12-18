@@ -1,13 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="160" Column="4" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="213" Column="32" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="179" Column="13" />
       <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="168" Column="56" />
       <File FileName="Assets\Final Assets\Scripts\Misc\ActionHelperDrawer.cs" Line="1" Column="1" />
       <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="359" Column="39" />
+      <File FileName="Assets\Final Assets\Scripts\IA\IABase.cs" Line="60" Column="23" />
+      <File FileName="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" Line="79" Column="13" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="403" Column="42" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

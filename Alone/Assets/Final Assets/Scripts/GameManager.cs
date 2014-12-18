@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour {
             CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
             managerCharac.runHotAcions();
             managerCharac.characterStats.nextFightStep();
-            managerCharac.characterStats.gameMode = 2;
+            //managerCharac.characterStats.gameMode = 2;
         }
         if (Network.isServer) networkView.RPC("runNextFightStep", RPCMode.Others);
     }

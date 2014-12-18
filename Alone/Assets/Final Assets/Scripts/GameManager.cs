@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 		_hotActionsEndedCount += 1;
 		Debug.Log ("Action end " + _hotActionsEndedCount + " / " + _hotActionsStartedCount);
 		if(_hotActionsEndedCount >= _hotActionsStartedCount){
-			networkView.RPC("runNextFightStep",RPCMode.All);
+			runNextFightStep();
 			_hotActionsStartedCount = 0;
 			_playerValidateCount = 0;
 		}
@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour {
         if (Network.isServer) networkView.RPC("runCurrentFightStep", RPCMode.Others);
 	}
 
+    [RPC]
 	public void runNextFightStep(){
 		Debug.Log("Next Fight Step");
 
@@ -157,7 +158,7 @@ public class GameManager : MonoBehaviour {
             managerCharac.characterStats.nextFightStep();
 			managerCharac.characterStats.gameMode = 2;
         }
-		
+        if (Network.isServer) networkView.RPC("runNextFightStep", RPCMode.Others);
 	}
 
     public roomBattleModeScript getRoomNumber(int number)

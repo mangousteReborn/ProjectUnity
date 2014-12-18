@@ -16,7 +16,7 @@ public class DirectDamageAction : Action {
 
 	private Action<Collider> _onCollision;
 	private float _definedAngle;
-
+	private GameObject _colliderObject;
 	// Used by GameData for definition
 	public DirectDamageAction(float costPerUnit, float degree, float radius, int damages)
 		: base("directdamage", "Traquer", "Attend que ta proie soit dans ta ligne de mire puis FEU !")
@@ -102,12 +102,12 @@ public class DirectDamageAction : Action {
 		}
 
 		if(0 == colliderMode){
-			useMeshCollider(
+			this._colliderObject = useMeshCollider(
 				cm,
 				buildMesh(10, this._degree, 0.1f, this._radius*10, this._definedAngle)
 				);
 		} else if (1 == colliderMode){
-			useSphereCollider(cm);
+			this._colliderObject = useSphereCollider(cm);
 		} else {
 			Debug.LogError("<DirectDamageAction> onActionStart : Cannot create collider with param : " + colliderMode);
 			return;
@@ -116,10 +116,13 @@ public class DirectDamageAction : Action {
 	}
 	
 	public override void onActionEnd(CharacterManager cm, object[] param=null){
-
+		if(null != this._colliderObject)
+			GameObject.Destroy (this._colliderObject);
 	}
 
-
+	public void removeCollider(){
+		
+	}
 	public Mesh buildMesh(int quality, float angle_fov,float dist_min,float dist_max, float startAngle=0f){
 		// Global def
 		Mesh mesh = new Mesh();
@@ -247,6 +250,7 @@ public class DirectDamageAction : Action {
 		MeshCollider mc = go.AddComponent<MeshCollider> ();
 		mc.sharedMesh = mesh;
 		mc.isTrigger = true;
+		
 		this._onCollision = delegate (Collider c){
 
 			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();

@@ -351,6 +351,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 
 		this._cancelActionButtonObject.SetActive (false);
 		this._readyButtonObject.SetActive (true);
+		this._actionButtonObject.SetActive (true);
 
 		this._timerObject.GetComponent<Text> ().text = "0.0";
 		this._gameStateObject.GetComponent<Text> ().text = "Combat";

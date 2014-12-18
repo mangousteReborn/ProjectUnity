@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour {
 	// Step 1
 	[RPC]
 	public void runCurrentFightStep(){
-		Debug.Log("Next Fight Step");
+		Debug.Log("Next Current Step");
 
 		GameData.getActionHelperDrawer().deleteAllHelpers ();
 		
@@ -157,6 +157,8 @@ public class GameManager : MonoBehaviour {
             CharacterManager managerCharac = NetworkView.Find(p.id).gameObject.GetComponent<CharacterManager>();
             managerCharac.characterStats.nextFightStep();
 			managerCharac.characterStats.gameMode = 2;
+
+
         }
         if (Network.isServer) networkView.RPC("runNextFightStep", RPCMode.Others);
 	}

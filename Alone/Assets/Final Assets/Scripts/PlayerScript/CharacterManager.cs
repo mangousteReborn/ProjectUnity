@@ -112,6 +112,7 @@ public class CharacterManager : MonoBehaviour {
 			Debug.Log ("# Running action '" + a.key + "' Waiting : " + a.actionCost);
 			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
+			a.onActionEnd(this);
 		}
 		//GameData.getGameManager ().networkView.RPC ("hotActionsEnded",RPCMode.Server, this.networkView.viewID);
         if (Network.isServer) GameData.getGameManager().hotActionsEnded();

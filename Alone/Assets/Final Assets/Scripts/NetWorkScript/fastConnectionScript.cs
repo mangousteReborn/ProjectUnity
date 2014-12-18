@@ -76,8 +76,7 @@ public class fastConnectionScript : MonoBehaviour {
 
 			Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
-			Debug.Log ("Len = " + _materialArray.Length + " curr = " + _playerColorIndex);
-			Player p = new Player("GameMaster", newPlayer.networkView);
+			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView);
             p.characterManager = cm;
             p.playerObject = newPlayer;
             GameData.addPlayer(p);

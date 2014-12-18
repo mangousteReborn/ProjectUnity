@@ -28,17 +28,24 @@ public class CharacterStats  {
 		pet
 	}
 
-	// Statistics
+	/* Statistics */
 	private int _maxLife;
 	private int _currentLife;
 
 	private float _maxActionPoint;
 	private float _currentActionPoint;
 
+	private int _maxStrength;
+	private int _currentStrength;
 
-	// Otros
+	private int _maxAttacks;
+	private int _currentMaxAttacks;
+
+
+	/* Otros */
 	private Action _pendingAction;
     private NetworkView _networkView;
+	private int _attacksCount;
 
 	/*
 	 *  0 : Default
@@ -47,7 +54,7 @@ public class CharacterStats  {
 	 */
 	private uint _gameMode = 0;
 
-	public CharacterStats (NetworkView networkView=null, int startLife = 100, float actionPoint=5f){
+	public CharacterStats (NetworkView networkView=null, int startLife = 100, float actionPoint=5f, int str=5){
 		this._effectsList = new List<Effect> ();
 		this._listenersList = new List <Action<CharacterStats,object[]>> ();
 		this._eventListernersMap = new Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> ();
@@ -64,6 +71,8 @@ public class CharacterStats  {
 		this._currentLife = startLife;
 		this._maxActionPoint = actionPoint;
 		this._currentActionPoint = actionPoint;
+		this._maxStrength = str;
+		this._currentStrength = str;
 
 		// Definition of default available Actions
 		this._availableActionList.Add (GameData.getAction("move"));
@@ -381,7 +390,21 @@ public class CharacterStats  {
 			}
 		}
 	}
+	public int maxStrength{
+		get{return this._maxStrength;}
+	}
+	public int currentStrength{
+		get{return this._currentStrength;}
+	}
 
+	public int maxAttacks{
+		get{return this._maxAttacks;}
+	}
+	public int currentMaxAttacks{
+		get{return this._currentMaxAttacks;}
+	}
+
+	/* Targets Types */
 	public void addTargetType(TargetType tt){
 		if (this._targetTypes.Contains(tt))
 		    return;
@@ -405,6 +428,14 @@ public class CharacterStats  {
 
 	public bool hasTargetType(TargetType tt){
 		return this._targetTypes.Contains (tt);
+	}
+
+	public string targetTypesToString(){
+		string s = "";
+		foreach(TargetType tt in this._targetTypes){
+			s += tt.ToString() +", ";
+		}
+		return s;
 	}
 
 	public float currentActionPoint

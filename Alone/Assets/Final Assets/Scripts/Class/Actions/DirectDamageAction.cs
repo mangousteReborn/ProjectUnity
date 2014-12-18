@@ -102,11 +102,12 @@ public class DirectDamageAction : Action {
 		}
 
 		if(0 == colliderMode){
-			getMeshCollider(
+			useMeshCollider(
+				cm,
 				buildMesh(10, this._degree, 0.1f, this._radius*10, this._definedAngle)
 				);
 		} else if (1 == colliderMode){
-			getSphereCollider();
+			useSphereCollider(cm);
 		} else {
 			Debug.LogError("<DirectDamageAction> onActionStart : Cannot create collider with param : " + colliderMode);
 			return;
@@ -209,7 +210,7 @@ public class DirectDamageAction : Action {
 			);
 	}
 	
-	public GameObject getSphereCollider(){
+	public GameObject useSphereCollider(CharacterManager cm){
 		
 		GameObject go = new GameObject("AngleCollider_"+(int)this._degree);
 		go.layer = LayerMask.NameToLayer("AngleCollider");
@@ -234,7 +235,7 @@ public class DirectDamageAction : Action {
 		return go;
 	}
 
-	public GameObject getMeshCollider(Mesh mesh){
+	public GameObject useMeshCollider(CharacterManager cm, Mesh mesh){
 		Debug.Log("this._mesh == " + mesh);
 
 		GameObject go = new GameObject("AngleCollider_"+(int)this._degree);
@@ -247,10 +248,29 @@ public class DirectDamageAction : Action {
 		mc.sharedMesh = mesh;
 		mc.isTrigger = true;
 		this._onCollision = delegate (Collider c){
-			
-			GameObject player = c.gameObject;
-			
-			Debug.Log("hey" + player.name);
+
+			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();
+
+			if(target.characterStats.hasTargetType(CharacterStats.TargetType.ally)){
+				RaycastHit hit;
+				Debug.Log("Ok, is ally");
+				if(
+					Physics.Raycast(this._startPosition, target.character.transform.position, out hit,100f) // this._radius*10
+					){
+					Debug.Log("Ok raycast hit");
+					int newLife = target.characterStats.currentLife - (cm.characterStats.currentStrength + this.damages);
+
+					if(Network.isServer){
+						target.networkView.RPC("setLife", RPCMode.Server, newLife);
+					} else {
+						target.characterStats.setCurrentLife(newLife, false);
+					}
+
+				}
+
+				//
+			}
+			Debug.Log("hey ::: " + target.player.name + " is ::: " + target.characterStats.targetTypesToString());
 			
 		};
 		

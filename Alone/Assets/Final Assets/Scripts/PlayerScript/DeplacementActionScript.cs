@@ -45,13 +45,7 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         agent = _player.GetComponent<NavMeshAgent>();
         _characterManager = _player.GetComponent<CharacterManager>();
         path = new NavMeshPath();
-        line = gameObject.AddComponent<LineRenderer>();
-        line.SetWidth(1.0f, 1.0f);
-		/*
-		Material m = line.GetComponent<Material>();
-		m = _lineColorMaterial;
-		*/
-        line.SetColors(Color.yellow, Color.yellow);
+        line = gameObject.GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame

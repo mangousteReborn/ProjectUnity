@@ -19,6 +19,9 @@ public class fastConnectionScript : MonoBehaviour {
     [SerializeField]
     private bool _isGM;
 
+    [SerializeField]
+    private Material _materialGameMaster;
+
 	[SerializeField]
 	private Material[] _materialArray;
 
@@ -65,7 +68,7 @@ public class fastConnectionScript : MonoBehaviour {
         {
             int playerConnected = GameData.getPlayerList().Count;
             GameObject spawnPos = spawnPoint[playerConnected];
-            GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 1);
+            GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 10);
 
 
             // Setting values for player GUI
@@ -85,7 +88,7 @@ public class fastConnectionScript : MonoBehaviour {
 			stats.addTargetType(CharacterStats.TargetType.player);
 
 			// Player (data)
-			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView);
+			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView,false);
             p.characterManager = cm;
             p.playerObject = newPlayer;
            
@@ -105,7 +108,6 @@ public class fastConnectionScript : MonoBehaviour {
             networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
 			GameData.addPlayer(p);
 
-			Debug.Log ("Player : " + p.name + " Is : " + stats.targetTypesToString ());
 			_playerColorIndex ++;
         }
         else
@@ -115,6 +117,7 @@ public class fastConnectionScript : MonoBehaviour {
             GameObject newPlayer = (GameObject)Network.Instantiate(gmEmpty, spawnPos, Quaternion.identity, 1);
             spawnPos.y = Camera.main.transform.position.y;
             Camera.main.transform.position = spawnPos;
+            //
             CameraMovementScriptMouse camScript = Camera.main.GetComponent<CameraMovementScriptMouse>();
             camScript.enabled = true;
             camScript.setJoueur = newPlayer.transform;
@@ -123,10 +126,31 @@ public class fastConnectionScript : MonoBehaviour {
             gameObject.GetComponent<InstantiateNPCScript>().enabled = true;
 
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
-            Player p = new Player("GM" + _playerColorIndex, false);
+
+            Player p = new Player("GM", newPlayer.networkView, false);
             p.characterManager = cm;
             p.playerObject = newPlayer;
+
+            CharacterStats carac = new CharacterStats(newPlayer.networkView, 99999, 0, 0);
+
+            cm.initialize(carac, p, _materialGameMaster);
+
+            GameData.setGameMasterPlayer(p);
+            networkView.RPC("setGameMasterPlayerRPC", RPCMode.Others, newPlayer.networkView.viewID, 99999,0.0f,0);
         }
+    }
+
+    [RPC]
+    void setGameMasterPlayerRPC(NetworkViewID id,int health, float actionPoint, int strength)
+    {
+        GameObject newPlayer = NetworkView.Find(id).gameObject;
+        CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
+        Player p = new Player("GM", newPlayer.networkView, true);
+        CharacterStats carac = new CharacterStats(newPlayer.networkView, health, actionPoint, strength);
+        cm.initialize(carac, p, _materialGameMaster);
+        p.characterManager = cm;
+        p.playerObject = newPlayer;
+        GameData.setGameMasterPlayer(p);
     }
 
     [RPC]
@@ -137,6 +161,12 @@ public class fastConnectionScript : MonoBehaviour {
             List<Player> playerList = GameData.getPlayerList();
             foreach (Player playerData in playerList)
                 networkView.RPC("addPlayer", player, playerData.id);
+            if (GameData.getGameMasterPlayer() != null)
+            {
+                Player p = GameData.getGameMasterPlayer();
+                CharacterStats stats = p.characterManager.characterStats;
+                networkView.RPC("setGameMasterPlayerRPC", player, p.id, stats.maxLife, stats.maxActionPoint, stats.maxStrength);
+            }
             networkView.RPC("addClientPlayer", player);
         }
     }

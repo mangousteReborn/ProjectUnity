@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour {
     [RPC]
     public void enterFightMode(NetworkViewID id)
     {
-        Debug.Log("enterFightMode");
         CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
         if (Network.isServer)
         {

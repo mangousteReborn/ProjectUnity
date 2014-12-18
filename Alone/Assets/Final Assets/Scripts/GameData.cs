@@ -24,6 +24,8 @@ public static class GameData {
 
 	private static GameObject _playerCameraObject;
 
+    private static Player _gameMasterPlayer;
+
 	private static bool initialized = false;
 
 	public static string init(){
@@ -130,6 +132,16 @@ public static class GameData {
 	public static GameObject getCameraObject(){
 		return _playerCameraObject;
 	}
+
+    public static void setGameMasterPlayer(Player script)
+    {
+        _gameMasterPlayer = script;
+    }
+
+    public static Player getGameMasterPlayer()
+    {
+        return _gameMasterPlayer;
+    }
 
     public static void addPlayer(Player player)
     {

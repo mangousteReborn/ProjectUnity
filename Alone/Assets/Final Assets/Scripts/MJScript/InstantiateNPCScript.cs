@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
 
-    
+    [SerializeField]
+    private Material iaMaterial;
 
     [SerializeField]
     private GameObject baseEnemyPrefab;
@@ -93,13 +94,35 @@ public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
         foreach(spawnEntityInfos entity in validatedEntity)
         {
             GameObject enemyInstance = (GameObject)Network.Instantiate(entity.entity, entity.position, Quaternion.identity, 10);
+            NetworkView view = enemyInstance.networkView;
+            CharacterStats stats = new CharacterStats(view, 40, 10, 2);
+            Player p = new Player("IA", GameData.getGameMasterPlayer().characterManager.characterStats.networkView, false);
+            enemyInstance.GetComponent<CharacterManager>().initialize(stats, p , iaMaterial);
             NetworkViewID enemyID = enemyInstance.networkView.viewID;
             enemyList.Add(enemyInstance);
             addToRoomList(currentRoomNumber,enemyID);
             networkView.RPC("addToRoomList", RPCMode.Others, currentRoomNumber, enemyID);
+            networkView.RPC("setTargetTypeIA", RPCMode.All, enemyID, 40, 10.0f, 2);
         }
         tmpEntity.Clear();
         validatedEntity.Clear();
+    }
+
+    [RPC]
+    void setTargetTypeIA(NetworkViewID id,int health,float actionPoint, int strength)
+    {
+        GameObject newIA = NetworkView.Find(id).gameObject;
+        CharacterStats stats = new CharacterStats(newIA.networkView, health, actionPoint, strength);
+        Player p = new Player("IA", GameData.getGameMasterPlayer().characterManager.characterStats.networkView, false);
+        newIA.GetComponent<CharacterManager>().initialize(stats, p, iaMaterial);
+        if(GameData.getGameMasterPlayer().characterManager.networkView.viewID.isMine)
+        {
+            newIA.GetComponent<CharacterManager>().characterStats.addTargetType(CharacterStats.TargetType.ally);
+        }
+        else
+        {
+            newIA.GetComponent<CharacterManager>().characterStats.addTargetType(CharacterStats.TargetType.ai);
+        }
     }
 
     [RPC]

@@ -1,16 +1,36 @@
-TODO pour l'alpha :
-Partie MJ - placement des unités / IA (minimaliste) / instanciation du player / interface
-Level Design - Map 
-Différent effect de particule (étude)
+Emerick Lecomte
+Thomas Poncet
+Mael Laisne
+Quentin Secconi
 
 
-
-En cours pour l'alpha :
-Déplacement - Prévisualisation / Action / Calcule du temps
-Network - Connection / Instanciation
-Spell - architecture général / Action
-Pile de sort - architecture général
-Menu et interface
+/?\ Le jeu est un "Frozen sinaps" like en mode 1 vs X. Soit 1 GameMaster (posant et gérant des units AI) contre 'x' joueurs en coopération.
 
 
-Fini pour l'alpha :
+[Alpha 18/12/14]
+
+## DONE :
+- Partie MJ (Basic)
+- Partie PLayer
+- Gestion des Actions (Pile d'action + pose)
+- placement des unités (GameMaster)
+- Connexion des Players et du GameMaster
+- Menu et interface (Coté player)
+
+## TODO :
+- Différent effect de particule (étude)
+- Level Design - Map 
+- Lobby
+- Menu
+
+## TOFIX :
+- IA
+- GUI (coté GameMaster)
+- Etapes de jeu (Pour le GameMaster)
+- Fin de partie
+- Dernier Comabt (Joueurs Vs GameMaster en tant que "Capsule" et non AI)
+- "fastConnectionScript" le script qui gère les connections réseaux :
+	- Connection en Local
+	- Harmoniserles connections au MasterServeur
+
+[BETA]

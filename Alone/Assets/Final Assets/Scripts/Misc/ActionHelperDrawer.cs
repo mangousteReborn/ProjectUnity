@@ -30,6 +30,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	[SerializeField]
 	GameObject _defaultStaticHelperObject;
 
+	/* Effects for battle*/
+	[SerializeField]
+	GameObject _lazerPlaneObject;
 
 	private Stack<GameObject> _playerHelpers;
 
@@ -160,6 +163,29 @@ public class ActionHelperDrawer : MonoBehaviour {
 		return helper;
 	}
 
+
+	/*
+	 * Effects on battle
+	 */
+	public GameObject createStaticLazer(Vector3 start, Vector3 end, float duration){
+		Vector3 middleVector = ((end - start) / 2) + start;
+		Quaternion rot = Quaternion.identity;
+		float angle = Vector3.Angle(Vector3.right,end);
+		GameObject go = (GameObject) Instantiate(_lazerPlaneObject, middleVector, rot);
+
+		Debug.Log("angle : " + angle);
+		//go.transform.RotateAround(middleVector, 
+
+	
+
+
+		StartCoroutine(deleteObject(go, duration));
+		return go;
+	}
+	IEnumerator deleteObject(GameObject go, float dur){
+		yield return new WaitForSeconds(dur);
+		Destroy(go);
+	}
 
 	/*
 	 *  RPC

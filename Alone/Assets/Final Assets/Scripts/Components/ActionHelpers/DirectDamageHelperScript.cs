@@ -291,9 +291,6 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 		return target;
 	}
 
-	/*
-	 *  Get / Set
-	 */
 	private float defaultCalculateDistance(Vector3 start, Vector3 dest){
 		return (float)Math.Round(
 			(Vector3.Distance(start, dest) * this._costPerUnit),
@@ -302,7 +299,9 @@ public class DirectDamageHelperScript : MonoBehaviour, IActionHelper{
 			);
 	}
 
-
+	/*
+	 *  Get / Set
+	 */
 
 	public Vector3 getEndPoint() {
 		return this._endPoint;

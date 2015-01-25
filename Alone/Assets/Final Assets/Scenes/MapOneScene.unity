@@ -956,7 +956,7 @@ MonoBehaviour:
   - {fileID: 1925345300}
   - {fileID: 1487369310}
   gmSpawnPoint: {fileID: 1134271771}
-  _isGM: 1
+  _isGM: 0
   _materialGameMaster: {fileID: 2100000, guid: ca084320a21a38642978989828e90823, type: 2}
   _materialArray:
   - {fileID: 2100000, guid: 4a6613d73a67c5c459e88d23d2ed43fc, type: 2}
@@ -1008,6 +1008,7 @@ MonoBehaviour:
   _directDamageObject: {fileID: 100006, guid: 670036fdb4f19fb4880123bf777647aa, type: 2}
   _defaultStaticHelperObject: {fileID: 100006, guid: 8f440df68a7c91c49a0fc559483b4132,
     type: 2}
+  _lazerPlaneObject: {fileID: 100000, guid: cbf58a5482034f34e8541458668465b9, type: 2}
 --- !u!114 &1356623998
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,6 +45,24 @@ public class CharacterManager : MonoBehaviour {
 			
 			this._characterStats.setCurrentLife(this._characterStats.currentLife + 1,false);
 		}
+		if (Input.GetKeyDown (KeyCode.L)) {
+			Vector3 mousepos = Input.mousePosition;
+			mousepos.z = Camera.main.transform.position.y;
+			
+			Ray ray = Camera.main.ScreenPointToRay(mousepos);
+			RaycastHit hit;
+			Vector3 target = Vector3.zero;
+			if (Physics.Raycast(ray, out hit))
+			{
+				target = hit.point;
+				target.y = 0;
+			}
+
+			if(null != target){
+				Debug.Log("A MA FIRIN MA LAZER !!!");
+				GameData.getActionHelperDrawer().createStaticLazer(this._character.transform.position, target, 1f);
+			}
+		}
 		if (Input.GetKeyDown (KeyCode.M)) {
 			Vignette v = GameData.getBonusVignette("lifebonus");
 			Debug.Log("Vignette === " + v.name);

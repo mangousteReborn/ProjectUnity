@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
             GameObject room = this._roomList[number - 1];
             ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
             if (script)
-                script.setIsOpen(false);
+                script.setIsOpen(true);
             if (Network.isServer)
                 networkView.RPC("openRoomNumber", RPCMode.Others, number);
         }

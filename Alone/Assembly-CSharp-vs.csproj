@@ -60,6 +60,7 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\GamaMasterPlayer.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\ListSpwan.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Player.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Projectiles\SimpleProjectile.cs" />
@@ -103,7 +104,6 @@
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\DeplacementActionScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
-     <Compile Include="Assets\TestAssets\ClientFolderScript.cs" />
      <None Include="Assets\IMPORTANT README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

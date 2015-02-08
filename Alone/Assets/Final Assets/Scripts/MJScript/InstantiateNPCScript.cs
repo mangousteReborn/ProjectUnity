@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
+public class InstantiateNPCScript : MonoBehaviour {
 
     [SerializeField]
     private Material iaMaterial;
@@ -132,7 +132,4 @@ public class InstantiateNPCScript : MonoBehaviour, IPlayerGUI {
         room.EnemyList.Add(NetworkView.Find(idEnemy).gameObject);
     }
 
-    public void setCharacterManager(CharacterManager cm){}
-
-    public void changeGameMode(uint gameMode){}
 }

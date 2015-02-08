@@ -74,7 +74,7 @@ public class MoveAction : Action {
 	}
 
 	public override void onActionEnd(CharacterManager cm, object[] param=null){
-		Debug.Log ("Running end ...");
+
 	}
 
 

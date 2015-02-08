@@ -74,47 +74,6 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 19400000, guid: dba2b74db67ac0645b8499d94c2fbb15, type: 2}
---- !u!1 &26890567
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 26890569}
-  - 64: {fileID: 26890568}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!64 &26890568
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 26890567}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 0}
---- !u!4 &26890569
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 26890567}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.90379071, y: 1.11484909, z: -24.1428986}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
 --- !u!1 &127639491
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +694,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023669755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -83.2389984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -956,7 +915,7 @@ MonoBehaviour:
   - {fileID: 1925345300}
   - {fileID: 1487369310}
   gmSpawnPoint: {fileID: 1134271771}
-  _isGM: 0
+  _isGM: 1
   _materialGameMaster: {fileID: 2100000, guid: ca084320a21a38642978989828e90823, type: 2}
   _materialArray:
   - {fileID: 2100000, guid: 4a6613d73a67c5c459e88d23d2ed43fc, type: 2}
@@ -986,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d1f07894720b248bd855fed72e5bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 2146795032}
   _playerDesktopGUIObject: {fileID: 100010, guid: 58c9189069ac22f45aebb2c99059532f,
     type: 2}
   _gameMasterGUIObject: {fileID: 100010, guid: 86c0922701908114c96f33cd4008c01d, type: 2}
@@ -1008,7 +968,8 @@ MonoBehaviour:
   _directDamageObject: {fileID: 100006, guid: 670036fdb4f19fb4880123bf777647aa, type: 2}
   _defaultStaticHelperObject: {fileID: 100006, guid: 8f440df68a7c91c49a0fc559483b4132,
     type: 2}
-  _lazerPlaneObject: {fileID: 100000, guid: cbf58a5482034f34e8541458668465b9, type: 2}
+  _lazerMaterial: {fileID: 2100000, guid: 3c667bf1c742d8c4da448204b0c709df, type: 2}
+  _moveMaterial: {fileID: 2100000, guid: cb7c1ced5a013a64eb737d18546f7ec1, type: 2}
 --- !u!114 &1356623998
 MonoBehaviour:
   m_ObjectHideFlags: 0

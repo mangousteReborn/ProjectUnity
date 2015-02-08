@@ -70,14 +70,13 @@ public class fastConnectionScript : MonoBehaviour {
             GameObject spawnPos = spawnPoint[playerConnected];
             GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 10);
 
+			CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
             // Setting values for player GUI
             GameManager manager = this.GetComponent<GameManager>();
-            manager.setPlayerGUI();
-            IPlayerGUI gui = manager.playerGUI;
+            IPlayerGUI gui = GameData.getGameManager().instanciateAndGetPlayerGUI();
 
-			// CharacManager Step 1 : Instantiate (as GameObject)
-            CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
+            
 
 			// Material for player's unit color
 			Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
@@ -88,7 +87,7 @@ public class fastConnectionScript : MonoBehaviour {
 			stats.addTargetType(CharacterStats.TargetType.player);
 
 			// Player (data)
-			Player p = new Player("Player"+_playerColorIndex, newPlayer.networkView,false);
+			Player p = new Player("Player_"+_playerColorIndex, newPlayer.networkView,false,gui);
             p.characterManager = cm;
             p.playerObject = newPlayer;
            
@@ -96,10 +95,7 @@ public class fastConnectionScript : MonoBehaviour {
 
 			// CharacManager Step 2 : Instantiate (logic data)
 			cm.initialize(stats,p,mat);
-
-			// Setting CM for current GUI
-            gui.setCharacterManager(cm);
-
+			gui.setOwner(p);
 
             newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
             //setting.ListPlayer.Add(newPlayer.networkView.viewID);
@@ -112,7 +108,9 @@ public class fastConnectionScript : MonoBehaviour {
         }
         else
         {
-            this.GetComponent<GameManager>().setGMGui();
+			GameManager manager = this.GetComponent<GameManager>();
+			IPlayerGUI gui = GameData.getGameManager().instanciateAndGetGameMasterGUI();
+
             Vector3 spawnPos = gmSpawnPoint.transform.position;
             GameObject newPlayer = (GameObject)Network.Instantiate(gmEmpty, spawnPos, Quaternion.identity, 1);
             spawnPos.y = Camera.main.transform.position.y;
@@ -127,10 +125,11 @@ public class fastConnectionScript : MonoBehaviour {
 
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
-            Player p = new Player("GM", newPlayer.networkView, false);
+            Player p = new Player("GM", newPlayer.networkView, true, gui);
             p.characterManager = cm;
             p.playerObject = newPlayer;
 
+			gui.setOwner(p);
             CharacterStats carac = new CharacterStats(newPlayer.networkView, 99999, 0, 0);
 
             cm.initialize(carac, p, _materialGameMaster);
@@ -139,6 +138,7 @@ public class fastConnectionScript : MonoBehaviour {
             networkView.RPC("setGameMasterPlayerRPC", RPCMode.Others, newPlayer.networkView.viewID, 99999,0.0f,0);
         }
     }
+
 
     [RPC]
     void setGameMasterPlayerRPC(NetworkViewID id,int health, float actionPoint, int strength)
@@ -152,6 +152,7 @@ public class fastConnectionScript : MonoBehaviour {
         p.playerObject = newPlayer;
         GameData.setGameMasterPlayer(p);
     }
+
 
     [RPC]
     void requestPlayerList(NetworkPlayer player)

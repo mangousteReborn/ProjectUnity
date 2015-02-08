@@ -54,6 +54,7 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
         {
 			if (_characterManager.isInFight)
             {
+				/*
 				line.SetWidth(0,0);
                 if (Input.GetKeyDown(KeyCode.P))
                     _player.GetComponent<testSpellScript>().enabled = !_player.GetComponent<testSpellScript>().enabled;
@@ -73,6 +74,7 @@ public class DeplacementActionScript : MonoBehaviour, ActionInterface {
                         wantToMove = false;
                     }
                 }
+                */
             }
             else
             {

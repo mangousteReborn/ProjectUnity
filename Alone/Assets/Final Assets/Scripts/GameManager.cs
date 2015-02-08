@@ -5,74 +5,267 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
+	/* Misc */
+	[SerializeField]
+	Light _light;
+
+	/* GUI */
 	[SerializeField]
 	GameObject _playerDesktopGUIObject;
 
 	[SerializeField]
 	GameObject _gameMasterGUIObject;
-
+	
+	/* Rooms */
     [SerializeField]
     private List<GameObject> _roomList;
 
-    private int _playerValidateCount;
+	/* STATIC */
+	private static Color _FREE_MODE_COLOR = new Color(1f,1f,1f); // index : 1
+	private static Color _PLANIF_MODE_COLOR = new Color(0,0,1f); // index : 2
+	private static Color _SPECTATOR_MODE_COLOR = new Color(1f,0,0); // index : 3
+
+	/* Game Steps */
+	private List<Fight> _fights;
+	private List<Round> _currentRounds;
+	private bool _roundInProgress;
+
+	private List<Player> _playersConnected;
+	private Dictionary<NetworkViewID, int> _playersReadyMap;
+
+	private Player _gameMaster;
+	private bool _gameMasterReady;
+
+	private bool _withoutGameMasterMode;
+
+
+    private int _playerValidateCount = 0;
 	private int _hotActionsStartedCount = 0;
 	private int _hotActionsEndedCount = 0;
 
-	// TODO : GameMasterGUIScript !!
-
-	// Players GUI Pattern
-	private PlayerDesktopGUIScript _playerDesktopGUIScript;
-	private GameMasterGUIScript _gameMasterGUIScript;
-
     private int currentRoomBattle = 1;
 
-	// Current player GUI (depending of player type (classic or game master)
-	private IPlayerGUI _currentPlayerGUI;
 
 	void Start () {
+		_light.color = _FREE_MODE_COLOR;
+		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
+		_playersConnected = new List<Player> ();
+		_withoutGameMasterMode = true;
 	}
 
-	public IPlayerGUI playerGUI {
-		get {
-			return this._currentPlayerGUI;
-		}
+	public IPlayerGUI instanciateAndGetPlayerGUI(){
+		GameData.init();
+		_playerDesktopGUIObject = (GameObject)Instantiate(_playerDesktopGUIObject);
+		IPlayerGUI gui = _playerDesktopGUIObject.GetComponent<PlayerDesktopGUIScript>();
+		return gui;
+	}
+	public IPlayerGUI instanciateAndGetGameMasterGUI(){
+		GameData.init();
+		_playerDesktopGUIObject = (GameObject)Instantiate(_gameMasterGUIObject);
+		IPlayerGUI gui = _playerDesktopGUIObject.GetComponent<GameMasterGUIScript>();
+		return gui;
 	}
 
-   	/*
-		public void increaseReadyPlayer(object sender, EventArgs e)
+	/*
+	 * Step 1 : Planif mode
+	 */
+	[RPC]
+	public void enterFightMode(NetworkViewID id)
 	{
-		Debug.Log ("ea == " + e);
-		_playerValidateCount += 1;
-		int playerCount = GameData.getNonGMPlayerCount();;
-		if (_playerValidateCount == playerCount) {
-			//this.networkView.RPC("runCurrentFightStep", RPCMode.All, );
+		Debug.Log("Enter Planif Mode");
+
+		// PLANIF COLOR
+		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 2);
+
+		GameData.getActionHelperDrawer().deleteAllHelpers ();
+		Player player = GameData.getPlayerByNetworkViewID (id);
+		CharacterManager cm = player.characterManager;
+
+		if (Network.isServer)
+		{
+			getRoomNumber(currentRoomBattle).beginBattleMode();
+			cm.isInFight = true;
+			cm.characterStats.gameMode = 2;
+			cm.lineRenderer.SetVertexCount(0);
+			networkView.RPC("enterFightMode", RPCMode.Others, id);
+		}
+		else
+		{
+			cm.isInFight = true;
+			cm.characterStats.gameMode = 2;
+			cm.lineRenderer.SetVertexCount(0);
 			
-			//_playerDesktopGUIScript.broadcastStartSimulation();
-			
-			_playerValidateCount = 0;
 		}
 	}
-	*/
 
-    public void setGMGui()
-    {
-        GameData.init();
-        _playerDesktopGUIObject = (GameObject)Instantiate(_gameMasterGUIObject);
-        _playerDesktopGUIObject.GetComponent<GameMasterGUIScript>().gm = this;
-    }
+	/*
+	 * Step 2 : Round
+	 */
+	/* 2.1 : Wait for players + GM being ready */
+	[RPC]
+	public void addReadyPlayer(NetworkViewID id){
+		bool f = _playersReadyMap.ContainsKey (id);
+		if (!f) {
+			Player next = GameData.getPlayerByNetworkViewID(id);
 
-    public void setPlayerGUI()
-    {
-        GameData.init();
-        _playerDesktopGUIObject = (GameObject)Instantiate(_playerDesktopGUIObject);
-        _playerDesktopGUIScript = _playerDesktopGUIObject.GetComponent<PlayerDesktopGUIScript>();
+			_playersReadyMap.Add(id, next.characterManager.characterStats.hotActionsStack.Count);
+		} else {
+			Debug.LogError("Player " + GameData.getPlayerByNetworkViewID(id).name + " aleady ready");
+		}
 
-        _currentPlayerGUI = _playerDesktopGUIScript;
+		checkPlayersAndGameMasterReady();
 
-       // _playerDesktopGUIScript.readyPlayer += increaseReadyPlayer;
-        _playerValidateCount = 0;
-    }
+	}
+	[RPC]
+	public void gameMasterReady(){
+		if (_gameMasterReady) {
+			Debug.LogWarning("Game master already ready");
+			return;
+		}
 
+		this._gameMaster = GameData.getGameMasterPlayer ();
+		this._gameMasterReady = true;
+
+		checkPlayersAndGameMasterReady ();
+	}
+	private void checkPlayersAndGameMasterReady(){
+		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount () &&
+		    (_gameMasterReady || _withoutGameMasterMode)) {
+			startNextRound();
+		}
+	}
+
+	/* 2.2 : Run Next Round */
+	[RPC]
+	private void startNextRound(){
+		_roundInProgress = true;
+		Debug.Log ("Start next round");
+
+		GameData.getActionHelperDrawer().deleteAllHelpers ();
+
+		// Check if GameMaster Mobs are dead
+		/*
+		bool _gameMasterLostRound = true;
+
+		foreach (GameObject enemy in getRoomNumber(currentRoomBattle).EnemyList)
+		{
+			NetworkViewID id = enemy.networkView.viewID;
+			CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
+			managerCharac.runHotAcions();
+			managerCharac.characterStats.gameMode = 3;
+			managerCharac.characterStats.removePendingAction();
+		}
+		*/
+
+		// SPECTATOR COLOR
+		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 3);
+		
+		foreach (KeyValuePair<NetworkViewID, int> kvp in _playersReadyMap)
+		{
+			if(kvp.Value <= 0)
+				continue;
+			Player p = GameData.getPlayerByNetworkViewID(kvp.Key);
+			if(null == p){
+				Debug.LogError("[startNextRound] Trying to get unexisting player ID : " + kvp.Key);
+				continue;
+			}
+			p.characterManager.characterStats.removePendingAction();
+			p.characterManager.characterStats.gameMode = 3;
+			p.characterManager.runHotAcions();
+		}
+
+		checkIfRoundIsOver ();
+
+	}
+	[RPC]
+	public void hotActionProcessed (NetworkViewID ownerId){
+		Player player = GameData.getPlayerByNetworkViewID(ownerId);
+		bool roundIsOver = true;
+
+		if (player.isGM) {
+			// TODO
+		} else {
+			if (_playersReadyMap.ContainsKey(ownerId)){
+				_playersReadyMap[ownerId] -= 1;
+
+				Debug.Log("Player " + player.name + " remaining actions : " + _playersReadyMap[ownerId]);
+
+			} else {
+				Debug.LogError("[hotActionProcessed] _playersReadyMap doesnt contains Player " + player.name);
+			}
+		}
+
+		checkIfRoundIsOver ();
+	}
+	private void checkIfRoundIsOver(){
+		bool f = true;
+		foreach (KeyValuePair<NetworkViewID, int> kvp in _playersReadyMap) {
+			Debug.Log("kvp.value == " + kvp.Value);
+			if(kvp.Value != 0){
+				f = false;
+				break;
+			}
+		}
+		// TODO check GM !
+
+		if(!f)
+			return;
+
+		// At this point, round is OVER
+		StartCoroutine ("resetRound");
+	}
+
+	IEnumerator resetRound(){
+
+		yield return new WaitForSeconds (1);
+		Debug.Log ("Reset Round");
+		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
+
+		foreach (Player player in GameData.getPlayerList())
+		{
+			if (Network.isServer)
+				enterFightMode(player.id);
+			else
+				this.networkView.RPC("enterFightMode", RPCMode.Server, player.id);
+		}
+	}
+
+
+	/*
+	 * Misc
+	 */
+	[RPC]
+	public void changeLightForAllPlayer(int index){
+		if(1 == index)
+			_light.color = _FREE_MODE_COLOR;
+		else if(2 == index)
+			_light.color = _PLANIF_MODE_COLOR;
+		else if (3 == index)
+			_light.color = _SPECTATOR_MODE_COLOR;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	[RPC]
 	public void increaseReadyPlayer(NetworkViewID id)
 	{
@@ -101,36 +294,6 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	/*
-	 *  Game Steps
-	 */
-	// Step 0
-	[RPC]
-	public void enterFightMode(NetworkViewID id)
-	{
-		Debug.Log("Enter Fight Mode");
-		
-		GameData.getActionHelperDrawer().deleteAllHelpers ();
-		CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
-		if (Network.isServer)
-		{
-			if (!managerCharac.isInFight)
-			{
-				getRoomNumber(currentRoomBattle).beginBattleMode();
-				managerCharac.isInFight = true;
-				managerCharac.characterStats.gameMode = 2;
-				networkView.RPC("enterFightMode", RPCMode.Others, id);
-			}
-		}
-		else
-		{
-			managerCharac.characterStats.gameMode = 2;
-			managerCharac.isInFight = true;
-
-		}
-	}
-
-	// Step 1
     [RPC]
     public void runCurrentFightStep()
     {
@@ -181,6 +344,7 @@ public class GameManager : MonoBehaviour {
         }
         if (Network.isServer) networkView.RPC("runNextFightStep", RPCMode.Others);
     }
+	*/
 
     public roomBattleModeScript getRoomNumber(int number)
     {

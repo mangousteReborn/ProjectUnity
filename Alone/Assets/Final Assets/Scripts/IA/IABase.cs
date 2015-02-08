@@ -4,15 +4,17 @@ using System.Collections.Generic;
 
 public class IABase : MonoBehaviour {
 
+	const float _costPerUnit  = 0.2f;
+	private CharacterManager _characterManager;
+
+
 	// Use this for initialization
 	void Start () {
 	//gameObject.
-        managerCharacter = gameObject.GetComponent<CharacterManager>();
+		_characterManager = gameObject.GetComponent<CharacterManager>();
         OnPlanificationStart();
 	}
-	const float costPerUnit  = 0.2f;
 
-    private CharacterManager managerCharacter;
 
 	static float getPathLength(NavMeshPath path)
 	{
@@ -28,7 +30,7 @@ public class IABase : MonoBehaviour {
 
 	private void getPositionWithDistanceLeft(NavMeshPath path,float distanceLeft,float pointsLeft) // récupére la position qui aura une distance de distanceLeft avec le dernier corner du path
 	{
-		MoveAction moveAction = new MoveAction (costPerUnit);
+		MoveAction moveAction = new MoveAction (_costPerUnit);
 		float totalDistance = getPathLength (path);
 
 		if ( totalDistance< distanceLeft)
@@ -59,8 +61,8 @@ public class IABase : MonoBehaviour {
                 distanceDone += dist;
                 pointsLeft -= costDist;
                 Debug.Log("add to stack");
-                managerCharacter.characterStats.pushHotAction(moveAction);
-                networkView.RPC("pushMoveActionRPC", RPCMode.Others, moveAction.key, moveAction.name, moveAction.desc, moveAction.costPerUnit, costDist, path.corners[i], path.corners[i+1]);
+				_characterManager.characterStats.pushHotAction(moveAction);
+				_characterManager.networkView.RPC("pushMoveActionRPC", RPCMode.All, moveAction.key, moveAction.name, moveAction.desc, moveAction.costPerUnit, costDist, path.corners[i], path.corners[i+1]);
             }
 		}
 	}
@@ -72,8 +74,8 @@ public class IABase : MonoBehaviour {
 			return;
 		
 		Player nearest = getNearestPlayer ();
-        CharacterStats stat = managerCharacter.characterStats;
-		MoveAction moveAction = new MoveAction (costPerUnit);
+		CharacterStats stat = _characterManager.characterStats;
+		MoveAction moveAction = new MoveAction (_costPerUnit);
 
 		float actionPointLeft = stat.maxActionPoint;
 		float portee = 1f;

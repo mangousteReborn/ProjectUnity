@@ -157,12 +157,16 @@ public static class GameData {
     }
 
 	public static Player getPlayerByNetworkViewID(NetworkViewID id){
-
+		bool f = false;
 		foreach (Player p in _playerList) {
 			if (p.id == id){
+				f = true;
 				return p;
 			}
 		}
+
+		if(!f && id == _gameMasterPlayer.id)
+			return _gameMasterPlayer;
 
 		Debug.LogWarning ("GameData : <getPlayerByNetworkViewID> player not found : " + id.ToString ());
 		return null;

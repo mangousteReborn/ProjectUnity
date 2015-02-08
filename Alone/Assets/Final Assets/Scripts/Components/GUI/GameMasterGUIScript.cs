@@ -33,18 +33,17 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 	[SerializeField]
 	GameObject _VignettesPickerObject;
 
-    public GameManager gm;
+	private Player _owner;
+
+	private GameObject _unitsVignettesPicker;
 
 	private int _screenHeight;
 	private int _screenWidth;
-
-	private GameObject _unitsVignettesPicker;
 
 	// Use this for initialization
 	void Start () {
 		this._screenHeight = Screen.height;
 		this._screenWidth = Screen.width;
-
 
 		// Bonus Vignettes picker def
 		this._unitsVignettesPicker = (GameObject)Instantiate (this._VignettesPickerObject);
@@ -56,6 +55,10 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
         this._readyButtonObject.GetComponent<Button>().onClick.AddListener(() => { onReadyButtonClick(); });
 
 		fillVignettesPicker ();
+	}
+
+	public void setOwner(Player p){
+		this._owner = p;
 	}
 
     private void fillVignettesPicker()
@@ -72,13 +75,13 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		VignetteSlotScript vss = (VignetteSlotScript)data [0];
 		VignetteEntity ve = (VignetteEntity)vss.vignette;
 
-        gm.gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType, ve.cost);
+        GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType, ve.cost);
 	}
 
     private void onReadyButtonClick()
     {
         Debug.Log("instanciate");
-        gm.gameObject.GetComponent<InstantiateNPCScript>().onValidate();
+		GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().onValidate();
     }
 
 	// Update is called once per frame

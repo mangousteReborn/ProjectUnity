@@ -9,11 +9,13 @@ public class enterRoomScript : MonoBehaviour {
 
     GameManager gm;
 
+	bool _active;
     List<NetworkViewID> listEnter;
     StaticVariableScript setting;
 
 	// Use this for initialization
 	void Start () {
+		_active = true;
         listEnter = new List<NetworkViewID>();
         setting = new StaticVariableScript();
         gm = handler.GetComponent<GameManager>();
@@ -21,6 +23,9 @@ public class enterRoomScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+		if(!_active)
+			return;
+
         if (!listEnter.Contains(other.gameObject.networkView.viewID))
         {
             listEnter.Add(other.gameObject.networkView.viewID);
@@ -34,6 +39,7 @@ public class enterRoomScript : MonoBehaviour {
                     else
                         gm.enterFightMode(player.id);//view.GetComponent<playerCaracScript>().enterFight(id);
                 }
+				_active = false;
             }
         }
     }

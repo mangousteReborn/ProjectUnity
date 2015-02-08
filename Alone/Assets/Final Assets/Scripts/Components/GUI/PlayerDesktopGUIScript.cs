@@ -78,11 +78,11 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private bool _bonusVignettePickerOpened = false;
 	private bool _actionVignettePickerOpened = false;
 
-	private Image _dragAndDropImage;
 
 	private int _screenHeight;
 	private int _screenWidth;
 
+	private Player _owner;
 	private CharacterManager _charaterManager;
 	private CharacterStats _characterStats;
 
@@ -96,7 +96,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	 * 	1 : restMode (change VignetteBonus)
 	 * 	2 : battleMode (use Action)
 	 */
-	private uint _currentMode = 0;
+	private uint _currentMode = 1;
 
     void Awake()
     {
@@ -150,20 +150,25 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	 * Requested Methods
 	 */
 	// IMPLEMENTS
-	public void setCharacterManager(CharacterManager cm){
+	public void setOwner(Player p){
+		this._owner = p;
+		setCharacterManager (p.characterManager);
+	}
+	private void setCharacterManager(CharacterManager cm){
 		this._charaterManager = cm;
 		this._characterStats = cm.characterStats;
 		this._characterStats.register(CharacterStatsEvent.actionAdded, onActionAdded);
 		this._characterStats.register(CharacterStatsEvent.gameModeChanged, onGameModeChange);
 		this._characterStats.register(CharacterStatsEvent.hotActionPushed, onHotActionPushed);
 		this._characterStats.register(CharacterStatsEvent.currentActionPointChanged, onCurrentActionPointChange);
+
 		// Setting default actions of player
 		foreach (Action a in this._characterStats.availableActionList) {
 			Vignette v = GameData.getActionVignette(a.key);
 			this._actionVignettesPickerObject.GetComponent<VignettesPickerScript>().pushVignette(v.key,v,onActionVignetteSlotClick);
 		}
 	}
-	// IMPLEMENTS
+
 	public void changeGameMode(uint mode){
 		this._currentMode = mode;
 		
@@ -319,6 +324,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	}
 
 
+
 	// TODO : Check if we are in "passiveMode" (to avoid changing vignettes during battle)
 
 
@@ -343,7 +349,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		this._readyButtonObject.SetActive (false);
 
 		this._timerObject.GetComponent<Text> ().text = "0.0";
-		this._gameStateObject.GetComponent<Text> ().text = "Repos";
+		this._gameStateObject.GetComponent<Text> ().text = "Déplacement Libre";
 
 	}
 	private void switchToBattleMode(){
@@ -354,7 +360,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		this._actionButtonObject.SetActive (true);
 
 		this._timerObject.GetComponent<Text> ().text = "0.0";
-		this._gameStateObject.GetComponent<Text> ().text = "Combat";
+		this._gameStateObject.GetComponent<Text> ().text = "Planification";
 	}
 	private void switchToSpectatorMode(){
 		this._bonusButtonObject.SetActive (false);
@@ -364,7 +370,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		this._readyButtonObject.SetActive (false);
 
 		this._timerObject.GetComponent<Text> ().text = "0.0";
-		this._gameStateObject.GetComponent<Text> ().text = "Spectateur";
+		this._gameStateObject.GetComponent<Text> ().text = "Combat";
 	}
 
 	public void OnPointerClick(PointerEventData ped){
@@ -378,7 +384,13 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 
 	private void newPlayerReady()
 	{
-		GameData.getGameManager ().networkView.RPC ("increaseReadyPlayer", RPCMode.All, this._charaterManager.networkView.viewID);
+		if (Network.isServer) {
+			GameData.getGameManager().addReadyPlayer(this._charaterManager.networkView.viewID);
+		} else {
+			GameData.getGameManager().networkView.RPC("addReadyPlayer", RPCMode.Server, this._charaterManager.networkView.viewID);
+		}
+
+		//GameData.getGameManager ().networkView.RPC ("increaseReadyPlayer", RPCMode.All, this._charaterManager.networkView.viewID);
 		return;
 		/*
 

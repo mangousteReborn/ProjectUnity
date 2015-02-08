@@ -32,7 +32,10 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 	/* Effects for battle*/
 	[SerializeField]
-	GameObject _lazerPlaneObject;
+	Material _lazerMaterial;
+
+	[SerializeField]
+	Material _moveMaterial;
 
 	private Stack<GameObject> _playerHelpers;
 
@@ -167,24 +170,26 @@ public class ActionHelperDrawer : MonoBehaviour {
 	/*
 	 * Effects on battle
 	 */
-	public GameObject createStaticLazer(Vector3 start, Vector3 end, float duration){
-		Vector3 middleVector = ((end - start) / 2) + start;
-		Quaternion rot = Quaternion.identity;
-		float angle = Vector3.Angle(Vector3.right,end);
-		GameObject go = (GameObject) Instantiate(_lazerPlaneObject, middleVector, rot);
+	public void createStaticLazer(CharacterManager cm, Vector3 end, float duration){
 
-		Debug.Log("angle : " + angle);
-		//go.transform.RotateAround(middleVector, 
+		Vector3 from = cm.characterTransform.position,
+				to = end;
 
-	
+		to.y = 1;
+		from.y = 1;
 
-
-		StartCoroutine(deleteObject(go, duration));
-		return go;
+		cm.lineRenderer.SetVertexCount(2);
+		cm.lineRenderer.SetPosition(0,from);
+		cm.lineRenderer.SetPosition(1, to);
+		cm.lineRenderer.material = _lazerMaterial;
+		cm.lineRenderer.SetWidth (1f, 1f);
+		StartCoroutine(removeLine(cm, duration));
 	}
-	IEnumerator deleteObject(GameObject go, float dur){
+	IEnumerator removeLine(CharacterManager cm, float dur){
 		yield return new WaitForSeconds(dur);
-		Destroy(go);
+		cm.lineRenderer.material = _moveMaterial;
+		cm.lineRenderer.SetVertexCount(0);
+
 	}
 
 	/*

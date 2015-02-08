@@ -13,7 +13,11 @@ using System;
  */
 public class CharacterManager : MonoBehaviour {
 	
-
+	[SerializeField]
+	public GameObject _character;
+	
+	[SerializeField]
+	private Transform _characterTransform;
 		
 	[SerializeField]
 	private GameObject _damagePopup;
@@ -22,7 +26,7 @@ public class CharacterManager : MonoBehaviour {
 	private GameObject _healthBar;
 
 	[SerializeField]
-	public GameObject _character;
+	private LineRenderer _lineRenderer;
 
 	private bool _initialized = false;
 	private CharacterStats _characterStats;// = new CharacterStats (null,200,20f);
@@ -60,7 +64,7 @@ public class CharacterManager : MonoBehaviour {
 
 			if(null != target){
 				Debug.Log("A MA FIRIN MA LAZER !!!");
-				GameData.getActionHelperDrawer().createStaticLazer(this._character.transform.position, target, 1f);
+				GameData.getActionHelperDrawer().createStaticLazer(this, target, 1f);
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.M)) {
@@ -80,10 +84,7 @@ public class CharacterManager : MonoBehaviour {
 		this._characterStats = stats;
 		this._player = p;
 		this._material = mat;
-
 		
-
-
 		// Instanciate GO
 		this._healthBar = (GameObject)Instantiate (this._healthBar);
 		this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
@@ -108,10 +109,9 @@ public class CharacterManager : MonoBehaviour {
 	}
 
 	public void runHotAcions(){
-
-
 		Stack<Action> stack = this._characterStats.hotActionsStack;
 		List<Action> actions = new List<Action>();
+
 
 
 		while(stack.Count > 0)
@@ -125,57 +125,22 @@ public class CharacterManager : MonoBehaviour {
 
 		List<Action> actions = (List<Action>)o;
 		//GameData.getGameManager ().networkView.RPC ("hotActionsStarted",RPCMode.Server, this.networkView.viewID);
-        if (Network.isServer) GameData.getGameManager().hotActionsStarted();
+        //if (Network.isServer) GameData.getGameManager().hotActionsStarted();
 		foreach(Action a in actions){
-			Debug.Log ("# Running action '" + a.key + "' Waiting : " + a.actionCost);
+			//Debug.Log ("#Player : '" + this._player.name + "', Running action '" + a.key + "' Waiting : " + a.actionCost);
 			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
 			a.onActionEnd(this);
 		}
 		//GameData.getGameManager ().networkView.RPC ("hotActionsEnded",RPCMode.Server, this.networkView.viewID);
-        if (Network.isServer) GameData.getGameManager().hotActionsEnded();
+        if (Network.isServer) 
+			GameData.getGameManager().hotActionProcessed(this._player.id);
+		else
+			GameData.getGameManager().networkView.RPC("hotActionProcessed", RPCMode.Server, this._player.id);
 
 	}
 
-	// Get / Seters
-	public GameObject character{
-		get {
-			return this._character;
-		}
-	}
-	public CharacterStats characterStats{
-		get {
-			return this._characterStats;
-		}
-	}
-	public bool isInFight{
-		get {
-			return this._isInFight;
-		}
-        set
-        {
-            this._isInFight = value;
-        }
-	}
-	public Player player{
-		set {
-			this._player = value;
-		}
-		get {
-			return this._player;
-		}
-	}
-	public Material material{
-		get {return this._material;}
-		set {
-			this._material = value;
 
-			this._character.GetComponent<MeshRenderer>().material = this._material;
-
-		}
-	}
-
-	
 	/*
 	 * 	###########
 	 *  ### RPC ###
@@ -210,12 +175,6 @@ public class CharacterManager : MonoBehaviour {
 	public void setPendingActionByKeyRPC(string k ){
 		this._characterStats.setPendingAction(GameData.getCopyOfAction(k));
 	}
-	/*
-	[RPC] // DirectDamage
-	public void pushDirectDamageActionAsPendingRPC(string k, string name, string d, float costpu,  float degree, float radius, int damages){
-		this._characterStats.setDirectDamageActionAsPending(k, name, d, costpu, degree, radius, damages);
-	}
-	*/
 	[RPC]// Move
 	public void pushMoveActionAsPendingRPC(string k, string name, string d, float costpu){
 		this._characterStats.setPendingActionAsMoveAction(k, name, d, costpu);
@@ -383,21 +342,49 @@ public class CharacterManager : MonoBehaviour {
 
 	}
 
-	/*
-	[RPC]
-	public void validadePendingAction(NetworkViewID id){
-		Player playerWhoValidate = GameData.getPlayerByNetworkViewID (id);
-
-		Action pa = playerWhoValidate.characterManager.characterStats.pendingAction;
-		if (null == pa) {
-			Debug.LogWarning("CharacterManager : <validatePendingAcion> Player doest have pending action");
+	// 
+	// Get / Seters
+	//
+	public GameObject character{
+		get {
+			return this._character;
 		}
-
-		//float costRes = playerWhoValidate.characterManager.characterStats.currentActionPoint - pa.actionCost;
-
-
-		
 	}
-	*/
-
+	public CharacterStats characterStats{
+		get {
+			return this._characterStats;
+		}
+	}
+	public bool isInFight{
+		get {
+			return this._isInFight;
+		}
+		set
+		{
+			this._isInFight = value;
+		}
+	}
+	public Player player{
+		set {
+			this._player = value;
+		}
+		get {
+			return this._player;
+		}
+	}
+	public Material material{
+		get {return this._material;}
+		set {
+			this._material = value;
+			
+			this._character.GetComponent<MeshRenderer>().material = this._material;
+			
+		}
+	}
+	public Transform characterTransform {
+		get {return this._characterTransform;}
+	}
+	public LineRenderer lineRenderer {
+		get {return this._lineRenderer;}
+	}
 }

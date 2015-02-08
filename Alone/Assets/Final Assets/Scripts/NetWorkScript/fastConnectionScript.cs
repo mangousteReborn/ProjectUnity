@@ -108,6 +108,7 @@ public class fastConnectionScript : MonoBehaviour {
 			// CharacManager Step 2 : Instantiate (logic data)
 			cm.initialize(stats,p,mat);
 			gui.setOwner(p);
+			gui.changeGameMode(1);
 
             newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
             //setting.ListPlayer.Add(newPlayer.networkView.viewID);
@@ -137,11 +138,12 @@ public class fastConnectionScript : MonoBehaviour {
 
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
-            Player p = new GamaMasterPlayer( newPlayer.networkView, gui);
+            Player p = new GameMasterPlayer( newPlayer.networkView, gui);
             p.characterManager = cm;
             p.playerObject = newPlayer;
 
 			gui.setOwner(p);
+			gui.changeGameMode(1);
             CharacterStats carac = new CharacterStats(newPlayer.networkView, 99999, 0, 0);
 
             cm.initialize(carac, p, _materialGameMaster);
@@ -157,7 +159,7 @@ public class fastConnectionScript : MonoBehaviour {
     {
         GameObject newPlayer = NetworkView.Find(id).gameObject;
         CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
-		Player p = new GamaMasterPlayer( newPlayer.networkView);
+		Player p = new GameMasterPlayer( newPlayer.networkView);
         CharacterStats carac = new CharacterStats(newPlayer.networkView, health, actionPoint, strength);
         cm.initialize(carac, p, _materialGameMaster);
         p.characterManager = cm;

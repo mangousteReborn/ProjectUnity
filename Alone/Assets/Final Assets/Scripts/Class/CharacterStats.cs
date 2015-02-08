@@ -8,9 +8,7 @@ using System.Collections.Generic;
  */
 public class CharacterStats  {
 
-	List <Action<CharacterStats,object[]>> _listenersList; // !!! ???
-	
-	Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> _eventListernersMap;
+	//Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> _eventListernersMap;
 
 	List <VignetteBonus> _vignettesList;
 	List <Effect> _effectsList;
@@ -59,9 +57,10 @@ public class CharacterStats  {
 
 	public CharacterStats (NetworkView networkView=null, int startLife = 100, float actionPoint=5f, int str=5){
 		this._effectsList = new List<Effect> ();
+		/*
 		this._listenersList = new List <Action<CharacterStats,object[]>> ();
 		this._eventListernersMap = new Dictionary <CharacterStatsEvent, Action<CharacterStats,object[]>> ();
-
+		*/
 		this._vignettesList = new List<VignetteBonus> ();
 
 		this._availableActionList = new List<Action> ();
@@ -87,6 +86,7 @@ public class CharacterStats  {
 
 	}
 
+	/*
 	public void hasChanged(){
 		foreach (Action<CharacterStats,object[]> f in this._listenersList) {
 			f(this,null);
@@ -104,6 +104,7 @@ public class CharacterStats  {
 			}
 		}
 	}
+	*/
 
 	public void nextFightStep(){
 		this.setCurrentActionPoint (this._maxActionPoint, false);
@@ -199,7 +200,7 @@ public class CharacterStats  {
 				e.updateEffect(this);
 			}
 		}
-		fireEvent(CharacterStatsEvent.change,null);
+		//fireEvent(CharacterStatsEvent.change,null);
 	}
 
 	public void updateEffectsOfType(int durationType){
@@ -208,7 +209,7 @@ public class CharacterStats  {
 				e.updateEffect(this);
 			}
 		}
-		fireEvent(CharacterStatsEvent.change,null);
+		//fireEvent(CharacterStatsEvent.change,null);
 	}
 
 	public void updateCombatEffects(){
@@ -229,7 +230,7 @@ public class CharacterStats  {
 		foreach (Effect e in toRemove) {
 			this._effectsList.Remove(e);
 		}
-		fireEvent(CharacterStatsEvent.change,null);
+		//fireEvent(CharacterStatsEvent.change,null);
 	}
 
 	/*
@@ -238,13 +239,13 @@ public class CharacterStats  {
 	public void addActionInAvailableList(Action a){
 		this._availableActionList.Add (a);
 		object[]param={a};
-		fireEvent(CharacterStatsEvent.actionAdded,param);
+		//fireEvent(CharacterStatsEvent.actionAdded,param);
 	}
 	public void pushHotAction(Action a){
 		this._hotActionsStack.Push (a);
 
 		object[]param={a};
-		fireEvent(CharacterStatsEvent.hotActionPushed,param);
+		//fireEvent(CharacterStatsEvent.hotActionPushed,param);
 	}
 	public void clearHotAction(){
 		this._hotActionsStack.Clear ();
@@ -254,7 +255,7 @@ public class CharacterStats  {
 		Action oa = this._hotActionsStack.Pop ();
 
 		object[]param={oa};
-		fireEvent (CharacterStatsEvent.lastHotActionRemoved, param);
+		//fireEvent (CharacterStatsEvent.lastHotActionRemoved, param);
 	}
 
 	/* Specific action pushing (called by CharacterManager from RPC) */
@@ -317,7 +318,7 @@ public class CharacterStats  {
 		set {
 			this._maxLife = value;
 
-			fireEvent(CharacterStatsEvent.change,null);
+			//fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
 
@@ -337,8 +338,8 @@ public class CharacterStats  {
 
             object[] param = { oldLife, this._currentLife };
 
-            fireEvent(CharacterStatsEvent.currentLifeChange, param);
-            fireEvent(CharacterStatsEvent.change, null);
+            //fireEvent(CharacterStatsEvent.currentLifeChange, param);
+            //fireEvent(CharacterStatsEvent.change, null);
             _networkView.RPC("setCurrentLifeHandlerRPC", RPCMode.Others, value, true);
         }
         else
@@ -352,8 +353,8 @@ public class CharacterStats  {
 
                 object[] param = { oldLife, this._currentLife };
 
-                fireEvent(CharacterStatsEvent.currentLifeChange, param);
-                fireEvent(CharacterStatsEvent.change, null);
+                //fireEvent(CharacterStatsEvent.currentLifeChange, param);
+                //fireEvent(CharacterStatsEvent.change, null);
             }
         }
     }
@@ -366,7 +367,7 @@ public class CharacterStats  {
 		set {
 			this._maxActionPoint = value;
 			
-			fireEvent(CharacterStatsEvent.change,null);
+			//fireEvent(CharacterStatsEvent.change,null);
 		}
 	}
 
@@ -408,8 +409,8 @@ public class CharacterStats  {
 			
 			object[] param = { oldValue, this._currentActionPoint };
 			
-			fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
-			fireEvent(CharacterStatsEvent.change, null);
+			//fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
+			//fireEvent(CharacterStatsEvent.change, null);
 			_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value, true);
 		}
 		else
@@ -423,8 +424,8 @@ public class CharacterStats  {
 				
 				object[] param = { oldValue, this._currentActionPoint };
 				
-				fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
-				fireEvent(CharacterStatsEvent.change, null);
+				//fireEvent(CharacterStatsEvent.currentActionPointChanged, param);
+				//fireEvent(CharacterStatsEvent.change, null);
 				//_networkView.RPC("setCurrentActionPoint", RPCMode.Others, value);
 			}
 		}
@@ -497,7 +498,7 @@ public class CharacterStats  {
 		set {
 			this._gameMode = value;
 			object[] p = {value};
-			fireEvent(CharacterStatsEvent.gameModeChanged,p);
+			//fireEvent(CharacterStatsEvent.gameModeChanged,p);
 		}
 	}
 
@@ -518,12 +519,6 @@ public class CharacterStats  {
 		}
 	}
 
-	public List<Action<CharacterStats,object[]>> listenersList
-	{
-		get {
-			return this._listenersList;
-		}
-	}
 	public NetworkView networkView
 	{
 		set {this._networkView = value;}

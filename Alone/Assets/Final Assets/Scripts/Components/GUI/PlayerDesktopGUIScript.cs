@@ -96,7 +96,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	 * 	1 : restMode (change VignetteBonus)
 	 * 	2 : battleMode (use Action)
 	 */
-	private uint _currentMode = 1;
+	private int _currentMode = 1;
 
     void Awake()
     {
@@ -134,8 +134,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
         this._cancelActionButtonObject.GetComponent<Button>().onClick.AddListener(() => { onCancelActionButtonClick(); });
         this._readyButtonObject.GetComponent<Button>().onClick.AddListener(() => { onReadyButtonClick(); });
         fillBonusVignettesPicker(); // Define default bonus vignettes (in GameData)
-
-        switchToDefaultMode();
+			
     }
 
 	private void fillBonusVignettesPicker(){
@@ -157,11 +156,12 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private void setCharacterManager(CharacterManager cm){
 		this._charaterManager = cm;
 		this._characterStats = cm.characterStats;
+		/*
 		this._characterStats.register(CharacterStatsEvent.actionAdded, onActionAdded);
 		this._characterStats.register(CharacterStatsEvent.gameModeChanged, onGameModeChange);
 		this._characterStats.register(CharacterStatsEvent.hotActionPushed, onHotActionPushed);
 		this._characterStats.register(CharacterStatsEvent.currentActionPointChanged, onCurrentActionPointChange);
-
+		*/
 		// Setting default actions of player
 		foreach (Action a in this._characterStats.availableActionList) {
 			Vignette v = GameData.getActionVignette(a.key);
@@ -169,26 +169,27 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		}
 	}
 
-	public void changeGameMode(uint mode){
+	public void changeGameMode(int mode){
 		this._currentMode = mode;
 		
 		if (this._currentMode == 1) {
-			switchToRestMode ();
+			switchToFreeMode ();
 		} else if (this._currentMode == 2) {
 			switchToBattleMode ();
 		} else if (this._currentMode == 3){
 			switchToSpectatorMode();
-		} else
-			switchToDefaultMode ();
+		} else{
+			this._gameStateObject.GetComponent<Text> ().text = "MODE " + mode + " UNKNOW";
+		}
 	}
 
 	/*
 	 *  Listeners Methods
 	 */
-	/* CharacterStats listeners */
+	/* CharacterStats listeners
 	// Listen current game mode and change UI.
 	private void onGameModeChange(CharacterStats cs, object[] param){
-		changeGameMode((uint)param [0]);
+		changeGameMode((int)param [0]);
 
 	}
 	// Add action in available actions list
@@ -208,7 +209,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private void onCurrentActionPointChange(CharacterStats cs, object[] param){
 		this._timerObject.GetComponent<Text> ().text = cs.currentActionPoint + "s";
 	}
-
+	 */
 
 
 
@@ -335,14 +336,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	// Methods that change UI depending of set mode
 
 	// Only have use for Debug/Demo
-	private void switchToDefaultMode(){
-		this._bonusButtonObject.SetActive (true);
-		this._actionButtonObject.SetActive (true);
-
-		this._timerObject.GetComponent<Text> ().text = "0.0";
-		this._gameStateObject.GetComponent<Text> ().text = "Demo";
-	}
-	private void switchToRestMode(){
+	private void switchToFreeMode(){
 		this._bonusButtonObject.SetActive (true);
 
 		this._cancelActionButtonObject.SetActive (false);

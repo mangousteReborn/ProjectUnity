@@ -33,12 +33,15 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 	[SerializeField]
 	GameObject _VignettesPickerObject;
 
+
 	private Player _owner;
 
 	private GameObject _unitsVignettesPicker;
 
 	private int _screenHeight;
 	private int _screenWidth;
+
+	private int _currentMode;
 
 	// Use this for initialization
 	void Start () {
@@ -80,6 +83,11 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 
     private void onReadyButtonClick()
     {
+		if(Network.isServer)
+			GameData.getGameManager ().gameMasterReady();
+		else
+			GameData.getGameManager ().networkView.RPC ("gameMasterReady", RPCMode.Server);
+			
         Debug.Log("instanciate");
 		GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().onValidate();
     }
@@ -89,11 +97,21 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 	
 	}
 
-	public void changeGameMode(uint gameMode){
-		return;
+	public void changeGameMode(int gameMode){
+		this._currentMode = gameMode;
+		
+		if (this._currentMode == 1) {
+			switchToPoseMode ();
+		} else if (this._currentMode == 2) {
+			//switchToBattleMode ();
+		} else if (this._currentMode == 3){
+			//switchToSpectatorMode();
+		} else{
+			this._gameStateObject.GetComponent<Text> ().text = "MODE " + gameMode + " UNKNOW";
+		}
 	}
 
-	public void setCharacterManager (CharacterManager cm){
-		return;
+	private void switchToPoseMode(){
+		this._gameStateObject.GetComponent<Text> ().text = "Pose";
 	}
 }

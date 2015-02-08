@@ -1,12 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\Player.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\Class\GamaMasterPlayer.cs" Line="15" Column="27" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="32" Column="19" />
-      <File FileName="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" Line="118" Column="45" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="71" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" Line="24" Column="35" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\GameData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="33" Column="5" />
+      <File FileName="Assets\Final Assets\Scripts\Class\GameMasterPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\GameMasterGUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\PlayerDesktopGUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Components\GUI\IPlayerGUI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -25,15 +25,18 @@ public class CharacterManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject _healthBar;
 
+
 	[SerializeField]
 	private LineRenderer _lineRenderer;
 
 	private bool _initialized = false;
-	private CharacterStats _characterStats;// = new CharacterStats (null,200,20f);
-	private Player _player;
+
+	private CharacterStats _characterStats;
+	private Player _player; // Owner
 	private Material _material;
 	private bool _isInFight = false;
 
+	private HealthbarScript _healthBarScript;
 
 	void Start () {
 
@@ -87,10 +90,10 @@ public class CharacterManager : MonoBehaviour {
 		
 		// Instanciate GO
 		this._healthBar = (GameObject)Instantiate (this._healthBar);
-		this._healthBar.GetComponent<HealthbarScript>().setCharacterStats(this._characterStats);
-
+		this._healthBarScript = this._healthBar.GetComponent<HealthbarScript> ();
+		this._healthBarScript.setLife (stats.currentLife, stats.maxLife);
 		// Listeners
-		this._characterStats.register (CharacterStatsEvent.currentLifeChange, onCurrentLifeChange);
+		//this._characterStats.register (CharacterStatsEvent.currentLifeChange, onCurrentLifeChange);
 
 		// Misc
 		this._character.GetComponent<MeshRenderer>().material = this._material;
@@ -124,10 +127,7 @@ public class CharacterManager : MonoBehaviour {
 	IEnumerator runNextHotAction(object o){
 
 		List<Action> actions = (List<Action>)o;
-		//GameData.getGameManager ().networkView.RPC ("hotActionsStarted",RPCMode.Server, this.networkView.viewID);
-        //if (Network.isServer) GameData.getGameManager().hotActionsStarted();
 		foreach(Action a in actions){
-			//Debug.Log ("#Player : '" + this._player.name + "', Running action '" + a.key + "' Waiting : " + a.actionCost);
 			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
 			a.onActionEnd(this);
@@ -137,7 +137,6 @@ public class CharacterManager : MonoBehaviour {
             else
                 GameData.getGameManager().networkView.RPC("hotActionProcessed", RPCMode.Server, this._player.id);
 		}
-		//GameData.getGameManager ().networkView.RPC ("hotActionsEnded",RPCMode.Server, this.networkView.viewID);
 
 	}
 
@@ -147,25 +146,25 @@ public class CharacterManager : MonoBehaviour {
 	 *  ### RPC ###
 	 * 	###########
 	 */
-	 
+	 /* Stats */
+	[RPC]
+	private void setLife(int value)
+	{
+		this._characterStats.setCurrentLife(value,true);
+	}
+	
+	[RPC]
+	private void setCurrentLifeHandlerRPC(int value,bool isFromRPC)
+	{
+		this._characterStats.setCurrentLife(value, isFromRPC);
+	}
+
+
     [RPC]
     private void setBonusVignetteHandlerRPC(string key, bool isFromRPC)
     {
         this._characterStats.setBonusVignetteRPC(key, isFromRPC);
     }
-
-
-    [RPC]
-    private void setLife(int value)
-    {
-        this._characterStats.setCurrentLife(value,true);
-    }
-
-	[RPC]
-	private void setCurrentLifeHandlerRPC(int value,bool isFromRPC)
-	{
-        this._characterStats.setCurrentLife(value, isFromRPC);
-	}
 
 	[RPC]
 	private void setCurrentActionPoint(float value,bool isFromRPC){

@@ -67,29 +67,8 @@ public class GameManager : MonoBehaviour {
 		return gui;
 	}
 
-    private void closeAllRoom()
-    {
-        foreach(GameObject room in _roomList)
-        {
-            ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
-            if(script)
-                script.setIsOpen(false);
-        }
-    }
-
-    [RPC]
-    public void openRoomNumber(int number)
-    {
-        if (number > 0 && number <= this._roomList.Count)
-        {
-            GameObject room = this._roomList[number - 1];
-            ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
-            if (script)
-                script.setIsOpen(true);
-            if (Network.isServer)
-                networkView.RPC("openRoomNumber", RPCMode.Others, number);
-        }
-    }
+   
+   
 
 	/*
 	 * Step 1 : Planif mode
@@ -101,8 +80,9 @@ public class GameManager : MonoBehaviour {
 
 		// PLANIF COLOR
 		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 2);
+		networkView.RPC("deleteAllHelpers", RPCMode.All);
+		networkView.RPC("switchToFightMode", RPCMode.All);
 
-		GameData.getActionHelperDrawer().deleteAllHelpers ();
 		Player player = GameData.getPlayerByNetworkViewID (id);
 		CharacterManager cm = player.characterManager;
 
@@ -143,19 +123,19 @@ public class GameManager : MonoBehaviour {
 	}
 	[RPC]
 	public void gameMasterReady(){
-		if (_gameMasterReady) {
+		if (this._gameMasterReady) {
 			Debug.LogWarning("Game master already ready");
 			return;
 		}
 
-		this._gameMaster = GameData.getGameMasterPlayer ();
+		//this._gameMaster = GameData.getGameMasterPlayer ();
 		this._gameMasterReady = true;
 
 		checkPlayersAndGameMasterReady ();
 	}
 	private void checkPlayersAndGameMasterReady(){
 		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount () &&
-		    (_gameMasterReady || _withoutGameMasterMode)) {
+		    (_gameMasterReady)) {
 			startNextRound();
 		}
 	}
@@ -166,7 +146,7 @@ public class GameManager : MonoBehaviour {
 		_roundInProgress = true;
 		Debug.Log ("Start next round");
 
-		GameData.getActionHelperDrawer().deleteAllHelpers ();
+		networkView.RPC("deleteAllHelpers", RPCMode.All);
 
 		// Check if GameMaster Mobs are dead
 		/*
@@ -245,6 +225,7 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		Debug.Log ("Reset Round");
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
+		_gameMasterReady = false;
 
 		foreach (Player player in GameData.getPlayerList())
 		{
@@ -270,13 +251,61 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+	[RPC]
+	public void changeGUIModeForPlayer(NetworkViewID id, int mode){
+		Player p = GameData.getPlayerByNetworkViewID (id);
+		p.gui.changeGameMode (mode);
+	}
 
+	[RPC]
+	public void deleteAllHelpers(){
+		GameData.getActionHelperDrawer ().deleteAllHelpers ();
+	}
 
+	[RPC]
+	public void resetRoundForPlayer(NetworkViewID id){
+		Player p = GameData.getPlayerByNetworkViewID (id);
+		p.resetRound ();
+	}
 
+	[RPC]
+	public void switchToFightMode(){
+		//GameData.getGameMasterPlayer ().enterFightMode ();
+		foreach (Player p in GameData.getPlayerList()) {
+			if(p.isGM){
+				//TODO
+				continue;
+			}
+			p.enterFightMode();
+		}
+	}
+	/*
+	 * Rooms
+	 */
+	private void closeAllRoom()
+	{
+		foreach(GameObject room in _roomList)
+		{
+			ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
+			if(script)
+				script.setIsOpen(false);
+		}
+	}
 
+	[RPC]
+	public void openRoomNumber(int number)
+	{
+		if (number > 0 && number <= this._roomList.Count)
+		{
+			GameObject room = this._roomList[number - 1];
+			ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
+			if (script)
+				script.setIsOpen(true);
+			if (Network.isServer)
+				networkView.RPC("openRoomNumber", RPCMode.Others, number);
+		}
 
-
-
+	}
 
 
 

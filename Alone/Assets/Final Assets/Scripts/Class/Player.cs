@@ -5,6 +5,10 @@ public class Player {
 
 	protected string _name;
 
+	// Action Point
+	protected float _maxAP;
+	protected float _currAP;
+
 	protected NetworkView _networkView;
 	protected NetworkViewID _id;
 	protected bool _isGM = false;
@@ -15,30 +19,24 @@ public class Player {
 	protected CharacterManager _characterManager;
 	protected GameObject _playerObject;
 
-	public Player(string name, NetworkView view){
-		this._name = name;
-		this._networkView = view;
-		this._id = view.viewID;
-		this._gui = null;
-		
-
-		this._characterManager = null;
-	}
-
-	public Player(string name, NetworkView view, IPlayerGUI gui){
+	public Player(string name, NetworkView view, IPlayerGUI gui=null){
 		this._name = name;
         this._networkView = view;
 		this._id = view.viewID;
 		this._gui = gui;
-
 		this._characterManager = null;
 	}
 
-	public void changeGameMode(uint mode){
-		this._gameMode = mode;
-		this._gui.changeGameMode(mode);
 
+	public virtual void enterFightMode(){
+		this._gui.changeGameMode (2);
+		//this._characterManager.
 	}
+
+	public virtual void resetRound(){
+		Debug.Log ("Player reset Room");
+	}
+
 
 	/* GET / SET */
 
@@ -60,5 +58,32 @@ public class Player {
 	public GameObject playerObject{
 		get {return this._playerObject;}
 		set {this._playerObject = value;}
+	}
+
+	public IPlayerGUI gui {
+		get {
+			return _gui;
+		}
+		set {
+			_gui = value;
+		}
+	}
+
+	public float currAP {
+		get {
+			return _currAP;
+		}
+		set {
+			_currAP = value;
+		}
+	}
+
+	public float maxAP {
+		get {
+			return _maxAP;
+		}
+		set {
+			_maxAP = value;
+		}
 	}
 }

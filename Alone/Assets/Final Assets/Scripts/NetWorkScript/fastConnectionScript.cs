@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class fastConnectionScript : MonoBehaviour {
+
+    public bool localClientServer = false;
 
     [SerializeField]
     private GameObject playerPrefab;
@@ -42,16 +45,25 @@ public class fastConnectionScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(2);
         HostData[] data = MasterServer.PollHostList();
-        if (data.Length == 0)
+        if (data.Length == 0 && !localClientServer)
         {
-            Network.InitializeServer(8, 8080, !Network.HavePublicAddress()); // 8, 8080
-            MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
+            //Network.InitializeServer(8, 8080, !Network.HavePublicAddress()); // 8, 8080
+            //MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
+            Network.InitializeSecurity();
+            Network.InitializeServer(3, 9090, !Network.HavePublicAddress());
+            //MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
             OnConnectedToServer();
         }
         else
         {
-            Network.Connect(data[0]);
+            //Network.Connect(data[0]);
+            Network.Connect("127.0.0.1", 9090);
         }
+    }
+
+    void OnFailedToConnect(NetworkConnectionError error)
+    {
+        Debug.Log("Could not connect to server: " + error);
     }
 
     void OnConnectedToServer()

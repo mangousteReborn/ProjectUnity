@@ -44,7 +44,7 @@ public class fastConnectionScript : MonoBehaviour {
         HostData[] data = MasterServer.PollHostList();
         if (data.Length == 0)
         {
-            Network.InitializeServer(3, 8080, !Network.HavePublicAddress());
+            Network.InitializeServer(8, 8080, !Network.HavePublicAddress()); // 8, 8080
             MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
             OnConnectedToServer();
         }
@@ -87,7 +87,7 @@ public class fastConnectionScript : MonoBehaviour {
 			stats.addTargetType(CharacterStats.TargetType.player);
 
 			// Player (data)
-			Player p = new Player("Player_"+_playerColorIndex, newPlayer.networkView,false,gui);
+			Player p = new Player("Player_"+_playerColorIndex, newPlayer.networkView,gui);
             p.characterManager = cm;
             p.playerObject = newPlayer;
            
@@ -125,7 +125,7 @@ public class fastConnectionScript : MonoBehaviour {
 
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
 
-            Player p = new Player("GM", newPlayer.networkView, true, gui);
+            Player p = new GamaMasterPlayer( newPlayer.networkView, gui);
             p.characterManager = cm;
             p.playerObject = newPlayer;
 
@@ -145,7 +145,7 @@ public class fastConnectionScript : MonoBehaviour {
     {
         GameObject newPlayer = NetworkView.Find(id).gameObject;
         CharacterManager cm = newPlayer.GetComponent<CharacterManager>();
-        Player p = new Player("GM", newPlayer.networkView, true);
+		Player p = new GamaMasterPlayer( newPlayer.networkView);
         CharacterStats carac = new CharacterStats(newPlayer.networkView, health, actionPoint, strength);
         cm.initialize(carac, p, _materialGameMaster);
         p.characterManager = cm;
@@ -185,7 +185,7 @@ public class fastConnectionScript : MonoBehaviour {
 		Material mat = _playerColorIndex <= _materialArray.Length ? _materialArray[_playerColorIndex] : _materialArray[0];
 
 
-		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView,false);
+		Player p = new Player("Player"+_playerColorIndex, NetworkView.Find(networkViewID).gameObject.networkView);
 		p.characterManager = cm;
 		p.playerObject = NetworkView.Find(networkViewID).gameObject;
 		GameData.addPlayer(p);

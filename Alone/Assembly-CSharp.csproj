@@ -59,10 +59,10 @@
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\Effect.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectBonusLife.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Effects\EffectDamageOverBattle.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\GamaMasterPlayer.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Player.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Projectiles\SimpleProjectile.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\Class\StackSchemClass.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\Vignette.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteAction.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Vignettes\VignetteBonus.cs" />
@@ -87,9 +87,6 @@
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\fireCollisionEventScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\roomBattleModeScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\FightScript\ActionInterface.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\FightScript\stackActionScript.cs" />
-     <Compile Include="Assets\Final Assets\Scripts\FightScript\testSpellScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Final Assets\Scripts\IA\IABase.cs" />

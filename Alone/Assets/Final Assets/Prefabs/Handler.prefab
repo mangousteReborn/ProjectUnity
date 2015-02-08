@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 0}
   gmSpawnPoint: {fileID: 0}
   _isGM: 0
+  _materialGameMaster: {fileID: 0}
   _materialArray: []
 --- !u!114 &11400002
 MonoBehaviour:
@@ -62,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d1f07894720b248bd855fed72e5bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
   _playerDesktopGUIObject: {fileID: 100010, guid: 58c9189069ac22f45aebb2c99059532f,
     type: 2}
   _gameMasterGUIObject: {fileID: 0}
@@ -81,6 +83,8 @@ MonoBehaviour:
   _moveHelperObject: {fileID: 100000, guid: 06e5c4971342e054d82885da61d88960, type: 2}
   _directDamageObject: {fileID: 0}
   _defaultStaticHelperObject: {fileID: 0}
+  _lazerMaterial: {fileID: 0}
+  _moveMaterial: {fileID: 0}
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

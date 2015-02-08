@@ -96,8 +96,10 @@ public class InstantiateNPCScript : MonoBehaviour {
             GameObject enemyInstance = (GameObject)Network.Instantiate(entity.entity, entity.position, Quaternion.identity, 10);
             NetworkView view = enemyInstance.networkView;
             CharacterStats stats = new CharacterStats(view, 40, 10, 2);
-            Player p = new Player("IA", GameData.getGameMasterPlayer().characterManager.characterStats.networkView, false);
-            enemyInstance.GetComponent<CharacterManager>().initialize(stats, p , iaMaterial);
+			Player p = GameData.getGameMasterPlayer();
+           
+
+			enemyInstance.GetComponent<CharacterManager>().initialize(stats, p , iaMaterial);
             NetworkViewID enemyID = enemyInstance.networkView.viewID;
             enemyList.Add(enemyInstance);
             addToRoomList(currentRoomNumber,enemyID);
@@ -113,7 +115,7 @@ public class InstantiateNPCScript : MonoBehaviour {
     {
         GameObject newIA = NetworkView.Find(id).gameObject;
         CharacterStats stats = new CharacterStats(newIA.networkView, health, actionPoint, strength);
-        Player p = new Player("IA", GameData.getGameMasterPlayer().characterManager.characterStats.networkView, false);
+		Player p = GameData.getGameMasterPlayer();
         newIA.GetComponent<CharacterManager>().initialize(stats, p, iaMaterial);
         if(GameData.getGameMasterPlayer().characterManager.networkView.viewID.isMine)
         {

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using Assets.Final_Assets.Scripts.Class;
 using UnityEngine.EventSystems;
 
-public class DeplacementActionScript : MonoBehaviour, ActionInterface {
+public class DeplacementActionScript : MonoBehaviour {
 
 	[SerializeField]
 	Material _lineColorMaterial;

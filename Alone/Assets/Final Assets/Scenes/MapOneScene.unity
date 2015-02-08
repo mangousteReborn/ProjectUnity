@@ -626,7 +626,7 @@ Transform:
   - {fileID: 353489106}
   - {fileID: 1607041558}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!23 &840726088
 Renderer:
   m_ObjectHideFlags: 0

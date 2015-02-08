@@ -12,58 +12,13 @@ Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data
 Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.064 seconds
+- Completed reload, in  0.066 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\System.dll (this message is harmless)
-Received pong from 192.168.0.10:8080
+Failed to connect to master server at 67.225.180.24:23466
  
-(Filename:  Line: 836)
-
-Received pong from 192.168.226.1:8080
- 
-(Filename:  Line: 836)
-
-Received pong from 192.168.50.1:8080
- 
-(Filename:  Line: 836)
-
-Received pong from 25.4.146.211:8080
- 
-(Filename:  Line: 836)
-
-Enter Planif Mode
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-deleteAllHelpers
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Enter Planif Mode
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-deleteAllHelpers
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Enter Planif Mode
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-deleteAllHelpers
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-The server has disconnected from the client. Most likely the server has shut down.
- 
-(Filename:  Line: 745)
-
-Couldn't send RPC function '__RPCNetworkDestroy'
-
- 
-(Filename:  Line: 2463)
+(Filename:  Line: 231)
 

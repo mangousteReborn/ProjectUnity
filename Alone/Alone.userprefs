@@ -1,13 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs">
     <Files>
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="164" Column="65" />
-      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="202" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="38" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="45" Column="25" />
-      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="171" Column="5" />
-      <File FileName="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" Line="81" Column="47" />
+      <File FileName="Assets\Final Assets\Scripts\Class\GamaMasterPlayer.cs" Line="15" Column="27" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="32" Column="19" />
+      <File FileName="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" Line="118" Column="45" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs" Line="71" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\NetWorkScript\AStarScript.cs" Line="24" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

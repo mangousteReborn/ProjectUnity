@@ -37,7 +37,7 @@ public class ConnectRoomScript : MonoBehaviour {
                 if (nav != null)
                     nav.enabled = false;
                 player.playerObject.transform.position = ExitSpawn[currentIndex].spwan[i].transform.position;
-                CameraMovementScriptMouse cam = player.playerObject.GetComponent<CameraMovementScriptMouse>();
+                CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
                 if (cam != null)
                 {
                     cam.lockCamera = true;

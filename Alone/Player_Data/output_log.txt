@@ -12,906 +12,1165 @@ Platform assembly: C:\Users\Emerick\Documents\ProjectUnity\Alone\Player_Data\Man
 Loading C:\Users\Emerick\Documents\ProjectUnity\Alone\Player_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Emerick\Documents\ProjectUnity\Alone\Player_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\Emerick\Documents\ProjectUnity\Alone\Player_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.038 seconds
+- Completed reload, in  0.052 seconds
 desktop: 1920x1080 59Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\Emerick\Documents\ProjectUnity\Alone\Player_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Emerick\Documents\ProjectUnity\Alone\Player_Data\Managed\System.dll (this message is harmless)
-Player : Player2 Is : ally, player, 
+Connected to master server at 67.225.180.24:23466
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2484)
 
-Enter Fight Mode
+Incoming host list query response from master server.
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2484)
 
-deleteAllHelpers
+Running as client. No player ID set yet.
+UnityEngine.Network:Internal_ConnectToIPs(String[], Int32, Int32, String)
+UnityEngine.Network:Connect(String[], Int32, String) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:558)
+UnityEngine.Network:Connect(HostData, String) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:586)
+UnityEngine.Network:Connect(HostData) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:577)
+<wait5Second>c__Iterator3:MoveNext() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:65)
+
+[C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp line 2484] 
+(Filename: C Line: 0)
+
+Connected to 192.168.1.36:8080
+
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2484)
+
+Set player ID to 1
+
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2484)
+
+Assigning a view ID: old view ID 'AllocatedID: 0', new view ID 'AllocatedID: 1'
+
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Relay RPC - name: __RPCNetworkInstantiate - mode 2 - sender 192.168.1.36:8080
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Received state update for view ID SceneID: 1 Level Prefix: 0
+
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Received state update for view ID AllocatedID: 1
+
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+View ID AllocatedID: 0 not found during lookup. Strange behaviour may occur
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 1681)
+
+Received state update for view id' AllocatedID: 0' but the NetworkView doesn't exist
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2474)
+
+View ID AllocatedID: 0 not found during lookup. Strange behaviour may occur
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 1681)
+
+Received state update for view id' AllocatedID: 0' but the NetworkView doesn't exist
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2474)
+
+Received RPC 'setGameMasterPlayerRPC'- mode 3 - sender 192.168.1.36:8080
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Relay RPC - name: setGameMasterPlayerRPC - mode 3 - sender 192.168.1.36:8080
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Received RPC 'addClientPlayer'- mode 3 - sender 192.168.1.36:8080
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Relay RPC - name: addClientPlayer - mode 3 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Enter Fight Mode
+Allocating view ID AllocatedID: 150.
+
+UnityEngine.Network:INTERNAL_CALL_Instantiate(Object, Vector3&, Quaternion&, Int32)
+UnityEngine.Network:Instantiate(Object, Vector3, Quaternion, Int32) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:628)
+fastConnectionScript:instantiateMyPlayer() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:89)
+fastConnectionScript:addClientPlayer() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:198)
+
+[C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp line 2484] 
+(Filename: C Line: 0)
+
+Assigning a view ID: old view ID 'AllocatedID: 0', new view ID 'AllocatedID: 150'
+
+UnityEngine.Network:INTERNAL_CALL_Instantiate(Object, Vector3&, Quaternion&, Int32)
+UnityEngine.Network:Instantiate(Object, Vector3, Quaternion, Int32) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:628)
+fastConnectionScript:instantiateMyPlayer() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:89)
+fastConnectionScript:addClientPlayer() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:198)
+
+[C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp line 2494] 
+(Filename: C Line: 0)
+
+New scope index 0 is now in scope for AllocatedID: 150
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2484)
+
+Sending generic initial state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Enter Fight Mode
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Enter Fight Mode
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Tooltip !!!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-deleteAllHelpers
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 1
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 0.91
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 2
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 4.14
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-hey ::: Player1 is ::: mine, player, 
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Ok, is ally
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Ok raycast hit
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-hey ::: Player2 is ::: ally, player, 
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Action end 1 / 2
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-# Running action 'move' Waiting : 1.24
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 2 / 2
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Next Fight Step
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-onHotActionPushed
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Tooltip !!!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Tooltip !!!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 1
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 3.64
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 2
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 1.62
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Ok, is ally
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Ok raycast hit
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-hey ::: Player2 is ::: ally, player, 
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-hey ::: Player1 is ::: mine, player, 
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 1.17
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Running end ...
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 2.16
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Action end 3 / 2
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-deleteAllHelpers
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 4 / 0
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Next Fight Step
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Tooltip !!!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Action start 1
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 1.51
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 2
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 1.74
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 5 / 2
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 2.46
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 6 / 0
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Next Fight Step
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-onHotActionPushed
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Tooltip !!!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Tooltip !!!
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Next Fight Step
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 1
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-# Running action 'move' Waiting : 1.45
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 2
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 1.61
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 5.31
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-# Running action 'directdamage' Waiting : 2.88
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'sniperdamage' Waiting : 4.57
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 7 / 2
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-deleteAllHelpers
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Assigning a view ID: old view ID 'AllocatedID: 0', new view ID 'AllocatedID: 2'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: __RPCNetworkInstantiate - mode 2 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 8 / 0
+Received RPC 'addToRoomList'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Relay RPC - name: addToRoomList - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Received RPC 'setTargetTypeIA'- mode 2 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetTypeIA - mode 2 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Assigning a view ID: old view ID 'AllocatedID: 0', new view ID 'AllocatedID: 3'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: __RPCNetworkInstantiate - mode 2 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'addToRoomList'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: addToRoomList - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetTypeIA'- mode 2 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetTypeIA - mode 2 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'openRoomNumber'- mode 0 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Relay RPC - name: openRoomNumber - mode 0 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-deleteAllHelpers
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 1
+Received state update for view ID AllocatedID: 1
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 3.17
+Received state update for view ID AllocatedID: 2
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Received state update for view ID AllocatedID: 3
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 2
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 3.49
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-hey ::: Player1 is ::: mine, player, 
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Ok, is ally
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-hey ::: Player2 is ::: ally, player, 
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 9 / 2
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 1.69
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Running end ...
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 2.58
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Action end 10 / 0
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-deleteAllHelpers
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 1
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'move' Waiting : 4.53
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action start 2
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 3.45
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-# Running action 'directdamage' Waiting : 3.88
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-this._mesh == cone_mesh (UnityEngine.Mesh)
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-hey ::: Player1 is ::: mine, player, 
+Received RPC 'setTargetRPC'- mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Running end ...
+Relay RPC - name: setTargetRPC - mode 1 - sender 192.168.1.36:8080
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Action end 11 / 2
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Next Fight Step
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-deleteAllHelpers
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Action end 12 / 0
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-Next Fight Step
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-deleteAllHelpers
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-current ActionPoint
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
-current ActionPoint
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Connection lost to NAT facilitator, reconnecting.
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
 
  
-(Filename:  Line: 725)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-The connection request to 67.225.180.24:50005 failed. Are you sure the server can be connected to?
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename:  Line: 650)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
 
-Failed to connect to master server at 67.225.180.24:23466
+Sending generic state update, broadcast off, view ID 'AllocatedID: 150'
+
  
-(Filename:  Line: 231)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2494)
+
+Destroying object with view ID 'SceneID: 1 Level Prefix: 0'
+UnityEngine.Network:INTERNAL_CALL_Destroy(NetworkViewID&)
+UnityEngine.Network:Destroy(NetworkViewID) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:635)
+UnityEngine.Network:Destroy(GameObject) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:646)
+fastConnectionScript:DestroyPlayer(GameObject) (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:228)
+fastConnectionScript:OnDisconnectedFromServer(NetworkDisconnection) (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:234)
+UnityEngine.Network:Disconnect(Int32)
+UnityEngine.Network:Disconnect() (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:598)
+fastConnectionScript:OnApplicationQuit() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:239)
+
+[C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp line 1379] 
+(Filename: C Line: 0)
+
+Couldn't send RPC function '__RPCNetworkDestroy'
+
+UnityEngine.Network:INTERNAL_CALL_Destroy(NetworkViewID&)
+UnityEngine.Network:Destroy(NetworkViewID) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:635)
+UnityEngine.Network:Destroy(GameObject) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:646)
+fastConnectionScript:DestroyPlayer(GameObject) (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:228)
+fastConnectionScript:OnDisconnectedFromServer(NetworkDisconnection) (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:234)
+UnityEngine.Network:Disconnect(Int32)
+UnityEngine.Network:Disconnect() (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:598)
+fastConnectionScript:OnApplicationQuit() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:239)
+
+[C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp line 2463] 
+(Filename: C Line: 0)
+
+Failed to send remove RPCs command to network
+UnityEngine.Network:INTERNAL_CALL_Internal_RemoveRPCs(NetworkPlayer, NetworkViewID&, UInt32)
+UnityEngine.Network:Internal_RemoveRPCs(NetworkPlayer, NetworkViewID, UInt32) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:658)
+UnityEngine.Network:RemoveRPCs(NetworkViewID) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:666)
+fastConnectionScript:DestroyPlayer(GameObject) (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:229)
+fastConnectionScript:OnDisconnectedFromServer(NetworkDisconnection) (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:234)
+UnityEngine.Network:Disconnect(Int32)
+UnityEngine.Network:Disconnect() (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:598)
+fastConnectionScript:OnApplicationQuit() (at C:\Users\Emerick\Documents\ProjectUnity\Alone\Assets\Final Assets\Scripts\NetWorkScript\fastConnectionScript.cs:239)
+
+[C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp line 2463] 
+(Filename: C Line: 0)
 

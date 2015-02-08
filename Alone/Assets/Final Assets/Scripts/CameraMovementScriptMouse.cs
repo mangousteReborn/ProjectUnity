@@ -8,14 +8,13 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 	[SerializeField]
 	private float mSpeed = 3.0f; // Scale. Speed of the movement
 
-    [SerializeField]
+    //[SerializeField]
     private GameObject restrictAreaObject;
-
-    public bool noRestrictCam = false;
 
 	private bool _lockCamera = true;
     private Transform joueur;
     private bool cameraCanBeLock = true;
+    public int marges = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -80,19 +79,19 @@ public class CameraMovementScriptMouse : MonoBehaviour {
         
         Vector3 center = restrictAreaObject.transform.position;
         Vector3 newPos = transform.position + 2*deplacementValue;
-        if (newPos.x > center.x + (restrictAreaObject.renderer.bounds.size.x / 2))
+        if (newPos.x > center.x + (restrictAreaObject.renderer.bounds.size.x / 2) + marges)
         {
             return false;
         }
-        if (newPos.x < center.x - (restrictAreaObject.renderer.bounds.size.x / 2))
+        if (newPos.x < center.x - (restrictAreaObject.renderer.bounds.size.x / 2) - marges)
         {
             return false;
         }
-        if (newPos.z > center.z + (restrictAreaObject.renderer.bounds.size.z / 2))
+        if (newPos.z > center.z + (restrictAreaObject.renderer.bounds.size.z / 2) + marges)
         {
             return false;
         }
-        if (newPos.z < center.z - (restrictAreaObject.renderer.bounds.size.z / 2))
+        if (newPos.z < center.z - (restrictAreaObject.renderer.bounds.size.z / 2) - marges)
         {
             return false;
         }

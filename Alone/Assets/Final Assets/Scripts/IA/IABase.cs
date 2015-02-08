@@ -16,12 +16,11 @@ public class IABase : MonoBehaviour {
 	}
 
 
-	static float getPathLength(NavMeshPath path)
+	float getPathLength(NavMeshPath path)
 	{
 		float length = 0f;
-
-		for (int i = 0; i < path.corners.Length-1; i++) {
-			length += Vector3.Distance(path.corners[i],path.corners[i+1] );		
+		for (int i = 0; i < path.corners.Length; i++) {
+			length += path.corners[i].magnitude;		
 		}
 
 		return length;
@@ -35,7 +34,7 @@ public class IABase : MonoBehaviour {
 
 		if ( totalDistance< distanceLeft)
         {
-            Debug.Log("return1");
+            Debug.Log("return1 :: tot=" + totalDistance);
             return;
         }
 
@@ -75,13 +74,16 @@ public class IABase : MonoBehaviour {
 		
 		Player nearest = getNearestPlayer ();
 		CharacterStats stat = _characterManager.characterStats;
-		MoveAction moveAction = new MoveAction (_costPerUnit);
+		//MoveAction moveAction = new MoveAction (_costPerUnit);
 
 		float actionPointLeft = stat.maxActionPoint;
-		float portee = 1f;
+		float portee = 0.001f;
 
 		NavMeshPath path = new NavMeshPath ();
+        Debug.Log(gameObject.transform.position);
+        Debug.Log(nearest.playerObject.transform.position);
 		NavMesh.CalculatePath (gameObject.transform.position, nearest.playerObject.transform.position,-1 , path );
+        Debug.Log(path.corners.Length);
 		getPositionWithDistanceLeft (path, portee, actionPointLeft);
 	}
 	
@@ -111,7 +113,6 @@ public class IABase : MonoBehaviour {
                 }
             }
         }
-		
 		return nearestPlayer;
 	}
 

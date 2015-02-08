@@ -13,6 +13,8 @@ public class InstantiateNPCScript : MonoBehaviour {
     [SerializeField]
     private int nbPoints;
 
+    [SerializeField]
+    private List<GameObject> GMSpawn;
 
     private List<spawnEntityInfos> validatedEntity;
     private List<GameObject> tmpEntity;
@@ -110,6 +112,10 @@ public class InstantiateNPCScript : MonoBehaviour {
         validatedEntity.Clear();
         GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.Server, 1);
         currentRoomNumber++;
+        GameData.getGameMasterPlayer().playerObject.transform.position = this.GMSpawn[currentRoomNumber-1].transform.position;
+        CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
+        Camera.main.transform.position = this.GMSpawn[currentRoomNumber - 1].transform.position + new Vector3(0,Camera.main.transform.position.y - this.GMSpawn[currentRoomNumber - 1].transform.position.y,0);
+        cam.replaceRestictArea(this.GMSpawn[currentRoomNumber-1].transform.parent.transform.parent.gameObject);
     }
 
     [RPC]

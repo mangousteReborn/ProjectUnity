@@ -28,6 +28,12 @@ public class fastConnectionScript : MonoBehaviour {
 	[SerializeField]
 	private Material[] _materialArray;
 
+    [SerializeField]
+    private GameObject gmRestrictedArea;
+
+    [SerializeField]
+    private GameObject playerRestrictedArea;
+
     private StaticVariableScript setting;
 
 	private static int _playerColorIndex = 1; // 0 will be default
@@ -113,6 +119,7 @@ public class fastConnectionScript : MonoBehaviour {
             newPlayer.GetComponent<DeplacementActionScript>().enabled = true;
             //setting.ListPlayer.Add(newPlayer.networkView.viewID);
             Camera.main.GetComponent<CameraMovementScriptMouse>().enabled = true;
+            Camera.main.GetComponent<CameraMovementScriptMouse>().replaceRestictArea(playerRestrictedArea);
 
             networkView.RPC("addPlayer", RPCMode.Others, newPlayer.networkView.viewID);
 			GameData.addPlayer(p);
@@ -132,8 +139,9 @@ public class fastConnectionScript : MonoBehaviour {
             CameraMovementScriptMouse camScript = Camera.main.GetComponent<CameraMovementScriptMouse>();
             camScript.enabled = true;
             camScript.setJoueur = newPlayer.transform;
-            camScript.cameraCanBeLocked = false;
+            camScript.cameraCanBeLocked = true;
             camScript.lockCamera = false;
+            camScript.replaceRestictArea(gmRestrictedArea);
             gameObject.GetComponent<InstantiateNPCScript>().enabled = true;
 
             CharacterManager cm = newPlayer.GetComponent<CharacterManager>();

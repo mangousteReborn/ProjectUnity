@@ -8,6 +8,11 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 	[SerializeField]
 	private float mSpeed = 3.0f; // Scale. Speed of the movement
 
+    [SerializeField]
+    private GameObject restrictAreaObject;
+
+    public bool noRestrictCam = false;
+
 	private bool _lockCamera = true;
     private Transform joueur;
     private bool cameraCanBeLock = true;
@@ -39,19 +44,23 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 		{
             if (Input.mousePosition.x >= Screen.width - mDelta)
             {
-                transform.position += Vector3.right * Time.deltaTime * mSpeed;
+                if (checkCameraDeplacement(Vector3.right * Time.deltaTime * mSpeed))
+                    transform.position += Vector3.right * Time.deltaTime * mSpeed;
             }
             if (Input.mousePosition.x <= 0 + mDelta)
             {
-                transform.position += Vector3.left * Time.deltaTime * mSpeed;
+                if (checkCameraDeplacement(Vector3.left * Time.deltaTime * mSpeed))
+                    transform.position += Vector3.left * Time.deltaTime * mSpeed;
             }
             if (Input.mousePosition.y >= Screen.height - mDelta)
             {
-                transform.position += Vector3.forward * Time.deltaTime * mSpeed;
+                if (checkCameraDeplacement(Vector3.forward * Time.deltaTime * mSpeed))
+                    transform.position += Vector3.forward * Time.deltaTime * mSpeed;
             }
             if (Input.mousePosition.y <= 0 + mDelta)
             {
-                transform.position -= Vector3.forward * Time.deltaTime * mSpeed;
+                if (checkCameraDeplacement(-(Vector3.forward * Time.deltaTime * mSpeed)))
+                    transform.position -= Vector3.forward * Time.deltaTime * mSpeed;
             }
         }
 
@@ -65,6 +74,35 @@ public class CameraMovementScriptMouse : MonoBehaviour {
 			transform.position = new Vector3(joueur.position.x, yPos, joueur.position.z);
 		}
 	}
+
+    private bool checkCameraDeplacement(Vector3 deplacementValue)
+    {
+        
+        Vector3 center = restrictAreaObject.transform.position;
+        Vector3 newPos = transform.position + 2*deplacementValue;
+        if (newPos.x > center.x + (restrictAreaObject.renderer.bounds.size.x / 2))
+        {
+            return false;
+        }
+        if (newPos.x < center.x - (restrictAreaObject.renderer.bounds.size.x / 2))
+        {
+            return false;
+        }
+        if (newPos.z > center.z + (restrictAreaObject.renderer.bounds.size.z / 2))
+        {
+            return false;
+        }
+        if (newPos.z < center.z - (restrictAreaObject.renderer.bounds.size.z / 2))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void replaceRestictArea(GameObject newRestrictAreaObject)
+    {
+        this.restrictAreaObject = newRestrictAreaObject;
+    }
 
 	public bool lockCamera{
 		set{

@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour {
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
 		_playersConnected = new List<Player> ();
 		_withoutGameMasterMode = true;
+        closeAllRoom();
 	}
 
 	public IPlayerGUI instanciateAndGetPlayerGUI(){
@@ -65,6 +66,30 @@ public class GameManager : MonoBehaviour {
 		IPlayerGUI gui = _playerDesktopGUIObject.GetComponent<GameMasterGUIScript>();
 		return gui;
 	}
+
+    private void closeAllRoom()
+    {
+        foreach(GameObject room in _roomList)
+        {
+            ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
+            if(script)
+                script.setIsOpen(false);
+        }
+    }
+
+    [RPC]
+    public void openRoomNumber(int number)
+    {
+        if (number > 0 && number <= this._roomList.Count)
+        {
+            GameObject room = this._roomList[number - 1];
+            ConnectRoomScript script = room.GetComponent<ConnectRoomScript>();
+            if (script)
+                script.setIsOpen(false);
+            if (Network.isServer)
+                networkView.RPC("openRoomNumber", RPCMode.Others, number);
+        }
+    }
 
 	/*
 	 * Step 1 : Planif mode

@@ -108,6 +108,8 @@ public class InstantiateNPCScript : MonoBehaviour {
         }
         tmpEntity.Clear();
         validatedEntity.Clear();
+        GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.Server, currentRoomNumber);
+        currentRoomNumber++;
     }
 
     [RPC]

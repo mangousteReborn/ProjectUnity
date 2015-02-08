@@ -17,7 +17,6 @@ public class fireCollisionEventScript : MonoBehaviour {
 	// Update is called once per frame
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("send event");
         if (this.fireScript != null)
             ((ConnectRoomScript)fireScript).onCollisionEnter(collision);
     }

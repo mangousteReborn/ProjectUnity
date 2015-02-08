@@ -47,17 +47,17 @@ public class fastConnectionScript : MonoBehaviour {
         HostData[] data = MasterServer.PollHostList();
         if (data.Length == 0 && !localClientServer)
         {
-            //Network.InitializeServer(8, 8080, !Network.HavePublicAddress()); // 8, 8080
-            //MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
-            Network.InitializeSecurity();
-            Network.InitializeServer(3, 9090, !Network.HavePublicAddress());
+            Network.InitializeServer(8, 8080, !Network.HavePublicAddress()); // 8, 8080
+            MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
+            //Network.InitializeSecurity();
+            //Network.InitializeServer(3, 9090, !Network.HavePublicAddress());
             //MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
             OnConnectedToServer();
         }
         else
         {
-            //Network.Connect(data[0]);
-            Network.Connect("127.0.0.1", 9090);
+            Network.Connect(data[0]);
+            //Network.Connect("127.0.0.1", 9090);
         }
     }
 

@@ -131,12 +131,13 @@ public class CharacterManager : MonoBehaviour {
 			a.onActionStart(this);
 			yield return new WaitForSeconds(a.actionCost);
 			a.onActionEnd(this);
+
+            if (Network.isServer)
+                GameData.getGameManager().hotActionProcessed(this._player.id);
+            else
+                GameData.getGameManager().networkView.RPC("hotActionProcessed", RPCMode.Server, this._player.id);
 		}
 		//GameData.getGameManager ().networkView.RPC ("hotActionsEnded",RPCMode.Server, this.networkView.viewID);
-        if (Network.isServer) 
-			GameData.getGameManager().hotActionProcessed(this._player.id);
-		else
-			GameData.getGameManager().networkView.RPC("hotActionProcessed", RPCMode.Server, this._player.id);
 
 	}
 

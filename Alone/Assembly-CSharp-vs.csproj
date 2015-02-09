@@ -39,14 +39,15 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>E:/Programmes/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>E:/Programmes/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Final Assets\Scripts\CameraMovementScriptMouse.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Class\AI\AIEntityData.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Actions\Action.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Actions\DirectDamageAction.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Class\Actions\MoveAction.cs" />
@@ -92,6 +93,7 @@
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\roomBattleModeScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\IA\AIManager.cs" />
      <Compile Include="Assets\Final Assets\Scripts\IA\IABase.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\GameMasterHandler.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" />
@@ -109,7 +111,7 @@
      <Compile Include="Assets\Final Assets\Scripts\PlayerScript\playerCaracScript.cs" />
      <None Include="Assets\IMPORTANT README.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>E:/Programmes/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

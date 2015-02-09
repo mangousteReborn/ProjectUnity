@@ -135,8 +135,9 @@ public class fastConnectionScript : MonoBehaviour {
 			GameManager manager = this.GetComponent<GameManager>();
 			IPlayerGUI gui = GameData.getGameManager().instanciateAndGetGameMasterGUI();
 
-            Vector3 spawnPos = gmSpawnPoint.transform.position;
-            GameObject newPlayer = (GameObject)Network.Instantiate(gmEmpty, spawnPos, Quaternion.identity, 1);
+			Vector3 spawnPos = new Vector3(0,400,0);//gmSpawnPoint.transform.position;
+			GameObject newPlayer = (GameObject)Network.Instantiate(gmEmpty, spawnPos, Quaternion.identity, 1);
+            
             spawnPos.y = Camera.main.transform.position.y;
             Camera.main.transform.position = spawnPos;
             //
@@ -163,7 +164,9 @@ public class fastConnectionScript : MonoBehaviour {
             GameData.setGameMasterPlayer(p);
 			GameData.myself = p;
 
+
 			_gameMasterHandlerScprit.initialize((GameMasterPlayer)p, (GameMasterGUIScript)gui);
+			_gameMasterHandlerScprit.moveGMToCurrentRoom();
 
             networkView.RPC("setGameMasterPlayerRPC", RPCMode.Others, newPlayer.networkView.viewID, 99999,0.0f,0);
         }

@@ -34,13 +34,18 @@ public class GameManager : MonoBehaviour {
 	// 2 : Planif
 	// 3 : Fight
 	private int _playerGameStep;
+	/* GM Game Stes */
+	// 1 : Pose
+	// 2 : ?
+	private int _gameMasterGameStep;
 	private List<Fight> _fights;
 	private List<Round> _currentRounds;
 	private bool _roundInProgress;
 
 	private List<Player> _playersConnected;
 	private Dictionary<NetworkViewID, int> _playersReadyMap;
-	private List<GameObject> _hiddenEntities;
+	private List<AIEntityData> _hiddenEntities;
+	private List<AIEntityData> _gameMastersMinions;
 
 	private Player _gameMaster;
 	private bool _gameMasterReady;
@@ -60,7 +65,9 @@ public class GameManager : MonoBehaviour {
 		_light.color = _FREE_MODE_COLOR;
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
 		_playersConnected = new List<Player> ();
-		_hiddenEntities = new List<GameObject> ();
+		_hiddenEntities = new List<AIEntityData> ();
+		_gameMastersMinions = new List<AIEntityData>();
+
 		_withoutGameMasterMode = true;
 		_playerGameStep = 0;
         closeAllRoom();
@@ -89,6 +96,7 @@ public class GameManager : MonoBehaviour {
 	public void playerEnteredRoom(){
 		if (GameData.myself.isGM) {
 			GameData.myself.gui.changeGameMode(1);
+			GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
 		} else {
 
 			// Just in case of ..
@@ -99,7 +107,9 @@ public class GameManager : MonoBehaviour {
 			GameData.myself.characterManager.isInFight = true;
 		}
 
+		//networkView.RPC("instanciateHiddenEntities", RPCMode.All);
 		_playerGameStep = 2;
+		_gameMasterGameStep = 1;
 		_light.color = _PLANIF_MODE_COLOR;
 		//_gameMasterStep = 2;
 
@@ -134,6 +144,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/*
+	 * Step 2 : Check for next Round
+	 */
+	[RPC] // All
+	public void checkForNextRound(){
+
+	}
+
+	/*
 	 * Step 3 : Round
 	 */
 	/* 3.1 : Wait for players + GM being ready */
@@ -164,8 +182,7 @@ public class GameManager : MonoBehaviour {
 		checkPlayersAndGameMasterReady ();
 	}
 	private void checkPlayersAndGameMasterReady(){
-		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount () &&
-		    (_gameMasterReady)) {
+		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount ()) {
 			startNextRound();
 		}
 	}
@@ -309,6 +326,7 @@ public class GameManager : MonoBehaviour {
 			p.enterFightMode();
 		}
 	}
+
 	/*
 	 * Rooms
 	 */
@@ -344,18 +362,44 @@ public class GameManager : MonoBehaviour {
 				script.setIsOpen(true);
 			if (Network.isServer)
 				networkView.RPC("openRoomNumber", RPCMode.Others, number);
-			// else ?
+
 		}
 
 	}
-
+	[RPC] // All
+	public void moveGMToPosition(Vector3 pos){
+		GameData.getGameMasterPlayer().playerObject.transform.position = pos;
+	}
 	/*
 	 * AI Entity RPC
 	 */
 	[RPC] // All
-	public void addHiddenBasicEntity(Vector3 pos){
-		GameObject go = (GameObject)Instantiate (_basicEntityPrefab);
-		_hiddenEntities.Add (go);
+	public void instanciateHiddenEntities(){
+
+		foreach(AIEntityData e in _hiddenEntities){
+			Vector3 safePos = e.initPos;
+			safePos.y = 1;
+			GameObject go = (GameObject) Instantiate(e.prefab, safePos, Quaternion.identity);
+
+			CharacterManager cm = go.GetComponent<CharacterManager>();
+
+			// Logic Stats
+			CharacterStats stats = new CharacterStats(cm.networkView, e.life, e.actionPoint, e.str);
+			stats.addTargetType(CharacterStats.TargetType.ai);
+
+			// CharacManager Step 2 : Instantiate (logic data)
+			cm.initialize(stats,e.owner, null);
+			e.instanciateObject = go;
+
+			_gameMastersMinions.Add(e);
+		}
+		_hiddenEntities.Clear();
+		_hiddenEntities = new List<AIEntityData>();
+	}
+
+	[RPC] // All
+	public void addHiddenBasicEntity(Vector3 pos, NetworkViewID id){
+		_hiddenEntities.Add (new AIEntityData(_basicEntityPrefab, pos, GameData.getPlayerByNetworkViewID(id), 40,2,3f));
 	}
 
 	/*

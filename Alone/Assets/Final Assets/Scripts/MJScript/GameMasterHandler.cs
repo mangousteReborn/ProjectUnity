@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameMasterHandler : MonoBehaviour {
 
+	/* Prefabs */
 	[SerializeField]
 	private GameObject _basicEntityPrefab;
+
+	[SerializeField]
+	private List<GameObject> _GMSpawn;
 
 	private VignetteEntity _pendingVignette;
 	private GameMasterPlayer _owner;
 	private GameMasterGUIScript _gui;
+
+	private int _currRoom = 0;
 
 	private bool _active = false;
 	// Use this for initialization
@@ -32,10 +39,43 @@ public class GameMasterHandler : MonoBehaviour {
 		_active = true;
 	}
 
+	public void moveGMToCurrentRoom(){
+		GameData.getGameManager().networkView.RPC("moveGMToPosition",RPCMode.All, this._GMSpawn[_currRoom].transform.position);
+		//_owner.playerObject.transform.position = this._GMSpawn[_currRoom].transform.position;
+		
+		CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
+		Camera.main.transform.position = _GMSpawn[_currRoom].transform.position + new Vector3(0,Camera.main.transform.position.y - this._GMSpawn[_currRoom].transform.position.y,0);
+		cam.replaceRestictArea(_GMSpawn[_currRoom].transform.parent.transform.parent.gameObject);
+	}
+
+	public void moveGMToNextRoom(){
+
+		if(_currRoom + 1 > _GMSpawn.Count){
+			Debug.LogWarning("Last room reach : " + _currRoom + "/" + this._GMSpawn.Count);
+			_currRoom = 0;
+		}
+
+		_currRoom++;
+
+		GameData.getGameManager().networkView.RPC("moveGMToPosition",RPCMode.All, this._GMSpawn[_currRoom].transform.position);
+		//_owner.playerObject.transform.position = this._GMSpawn[_currRoom].transform.position;
+		
+		CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
+		Camera.main.transform.position = _GMSpawn[_currRoom].transform.position + new Vector3(0,Camera.main.transform.position.y - this._GMSpawn[_currRoom].transform.position.y,0);
+		cam.replaceRestictArea(_GMSpawn[_currRoom].transform.parent.transform.parent.gameObject);
+
+
+	}
+
+	// Clicks
 	public void onReadyButtonAction(object[] data){
 		Debug.Log ("onReadyButtonAction");
 
-		
+		GameData.getGameManager ().networkView.RPC("instanciateHiddenEntities", RPCMode.All);
+		GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.All, _currRoom + 1);
+		Debug.Log("Opening room " + _currRoom);
+		// Next : Move GM TO NEXT ROOM
+
 		return;
 		if(Network.isServer)
 			GameData.getGameManager ().gameMasterReady();
@@ -78,7 +118,7 @@ public class GameMasterHandler : MonoBehaviour {
 	private void onValidationClick(Vector3 pos){
 
 		GameData.getGameManager ().networkView.RPC ("setGameMasterPosePoint", RPCMode.All, _owner.currPosePoint - this._pendingVignette.cost);
-		GameData.getGameManager ().networkView.RPC ("addHiddenBasicEntity", RPCMode.All, pos);
+		GameData.getGameManager ().networkView.RPC ("addHiddenBasicEntity", RPCMode.All, pos, _owner.id);
 
 
 		this._pendingVignette = null;

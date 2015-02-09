@@ -155,6 +155,7 @@ public class DeplacementActionScript : MonoBehaviour {
 
 	[RPC]
 	public void moveToPosition(Vector3 des){
+
 		NavMeshPath path = networkDeplacement.setTarget(_transform.position, des,true);
 		if(null != path)
 			agent.path = path;

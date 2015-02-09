@@ -27,7 +27,10 @@ public class GameMasterPlayer : Player {
 			return _currPosePoint;
 		}
 		set {
-			this._castedGui.setPosePointValue(value, this._maxPosePoint);
+
+			if(this._castedGui != null)
+				this._castedGui.setPosePointValue(value, this._maxPosePoint);
+
 			_currPosePoint = value;
 		}
 	}

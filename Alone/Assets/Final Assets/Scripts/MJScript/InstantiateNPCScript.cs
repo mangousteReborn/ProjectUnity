@@ -90,6 +90,7 @@ public class InstantiateNPCScript : MonoBehaviour {
 
     public void onValidate()
     {
+		/*
         List<GameObject> enemyList = new List<GameObject>();
         foreach(GameObject obj in tmpEntity)
         {
@@ -112,10 +113,12 @@ public class InstantiateNPCScript : MonoBehaviour {
         }
         tmpEntity.Clear();
         validatedEntity.Clear();
+		*/
         GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.Server, 1);
         currentRoomNumber++;
         GameData.getGameMasterPlayer().playerObject.transform.position = this.GMSpawn[currentRoomNumber-1].transform.position;
-        CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
+        
+		CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
         Camera.main.transform.position = this.GMSpawn[currentRoomNumber - 1].transform.position + new Vector3(0,Camera.main.transform.position.y - this.GMSpawn[currentRoomNumber - 1].transform.position.y,0);
         cam.replaceRestictArea(this.GMSpawn[currentRoomNumber-1].transform.parent.transform.parent.gameObject);
     }

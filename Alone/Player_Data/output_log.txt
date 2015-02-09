@@ -12,110 +12,209 @@ Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\Player_Data\
 Loading C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\Player_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\Player_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\Player_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.104 seconds
+- Completed reload, in  0.096 seconds
 desktop: 1366x768 40Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\Player_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\Player_Data\Managed\System.dll (this message is harmless)
-Player : Player_1 Is : ally, player, 
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Failed to create agent because it is not close enough to the NavMesh
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 36 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename:  Line: 648)
+(Filename:  Line: 1170)
 
-Failed to create agent because it is not close enough to the NavMesh
+The referenced script on this Behaviour is missing!
  
-(Filename:  Line: 648)
+(Filename:  Line: 1639)
 
-Failed to create agent because it is not close enough to the NavMesh
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename:  Line: 648)
+(Filename:  Line: 1170)
 
-onReadyButtonAction
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Opening room 0
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-current ActionPoint
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Start next round
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-deleteAllHelpers
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-CharacterStats : <removePendingAction> Setting null Pending Action, but was already null
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 36 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-kvp.value == 1
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Player Player_1 remaining actions : 0
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-kvp.value == 0
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Reset Round
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-Enter Planif Mode
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-deleteAllHelpers
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-deleteAllHelpers
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Failed to create agent because it is not close enough to the NavMesh
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename:  Line: 648)
+(Filename:  Line: 1170)
 
-onReadyButtonAction
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Opening room 0
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 84 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-Failed to create agent because it is not close enough to the NavMesh
+The referenced script on this Behaviour is missing!
  
-(Filename:  Line: 648)
+(Filename:  Line: 1639)
 
-onReadyButtonAction
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 152 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-Opening room 0
+The referenced script on this Behaviour is missing!
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1639)
 
-Tooltip !!!
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 92 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename:  Line: 1170)
 
-Couldn't send RPC function '__RPCNetworkDestroy'
-
+The referenced script on this Behaviour is missing!
  
-(Filename:  Line: 2463)
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 80 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 72 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 60 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 68 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1639)
+
+A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 56 bytes)
+Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+ 
+(Filename:  Line: 1170)
 

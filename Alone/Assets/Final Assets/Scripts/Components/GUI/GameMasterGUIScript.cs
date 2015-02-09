@@ -37,6 +37,7 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 
 
 	private Player _owner;
+	private GameMasterPlayer _gameMaster;
 
 	private GameObject _unitsVignettesPicker;
 
@@ -76,6 +77,7 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 
 	public void setOwner(Player p){
 		_owner = p;
+		_gameMaster = (GameMasterPlayer) p;
 	}
 
 	public void setPosePointValue(int value, int max){
@@ -102,24 +104,12 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
         //GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType, ve.cost);
 	}
 
-    private void onReadyButtonClick()
-    {
-
-		//GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().onValidate();
-		return;
-
-		if(Network.isServer)
-			GameData.getGameManager ().gameMasterReady();
-		else
-			GameData.getGameManager ().networkView.RPC ("gameMasterReady", RPCMode.Server);
-			
-        Debug.Log("instanciate");
-		GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().onValidate();
-    }
-
-	// Update is called once per frame
-	void Update () {
-	
+	public void updateGUI(){
+		if(null == _gameMaster){
+			Debug.Log("Cannot update GM GUI, _gameMaster is NULL");
+			return;
+		}
+		setPosePointValue(_gameMaster.currPosePoint, _gameMaster.maxPosePoint);
 	}
 
 	public void changeGameMode(int gameMode){
@@ -129,8 +119,8 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 			switchToPoseMode ();
 		} else if (this._currentMode == 2) {
 			//switchToBattleMode ();
-		} else if (this._currentMode == 3){
-			//switchToSpectatorMode();
+		} else if (this._currentMode == 4){
+			switchLooseMode();
 		} else{
 			this._gameStateObject.GetComponent<Text> ().text = "MODE " + gameMode + " UNKNOW";
 		}
@@ -138,5 +128,13 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 
 	private void switchToPoseMode(){
 		this._gameStateObject.GetComponent<Text> ().text = "Pose";
+	}
+	private void switchLooseMode(){
+		this._readyButtonObject.SetActive (false);
+		
+		this._posePointText.text = "";
+		this._gameStateObject.GetComponent<Text> ().color = new Color(1f,0,0);
+		this._gameStateObject.GetComponent<Text> ().fontSize = 20;
+		this._gameStateObject.GetComponent<Text> ().text = "Vous avez Perdu";
 	}
 }

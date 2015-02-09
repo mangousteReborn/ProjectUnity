@@ -35,9 +35,9 @@ public class enterRoomScript : MonoBehaviour {
                 foreach (Player player in playerList)
                 {
                     if (!Network.isServer)
-                        gm.networkView.RPC("enterFightMode", RPCMode.Server, player.id);
+						gm.networkView.RPC("playerEnteredRoom", RPCMode.Server);
                     else
-                        gm.enterFightMode(player.id);//view.GetComponent<playerCaracScript>().enterFight(id);
+                        gm.playerEnteredRoom();//view.GetComponent<playerCaracScript>().enterFight(id);
                 }
 				_active = false;
             }

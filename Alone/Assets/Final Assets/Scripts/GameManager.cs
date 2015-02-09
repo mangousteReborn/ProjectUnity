@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour {
 	private List<Round> _currentRounds;
 	private bool _roundInProgress;
 
-	private List<Player> _playersConnected;
 	private Dictionary<NetworkViewID, int> _playersReadyMap;
 	private List<AIEntityData> _hiddenEntities;
 	private List<AIEntityData> _gameMastersMinions;
@@ -64,12 +63,12 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		_light.color = _FREE_MODE_COLOR;
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
-		_playersConnected = new List<Player> ();
 		_hiddenEntities = new List<AIEntityData> ();
 		_gameMastersMinions = new List<AIEntityData>();
 
 		_withoutGameMasterMode = true;
-		_playerGameStep = 0;
+		_playerGameStep = 1;
+		_gameMasterGameStep = 1;
         closeAllRoom();
 	}
 
@@ -87,67 +86,123 @@ public class GameManager : MonoBehaviour {
 	}
 
    
-   
+   /*
+    * Step 0 : Fight is over (FREE mode)
+    */
+	[RPC]
+	public void fightIsOver(){
+		if(GameData.myself.isGM){
+			// TODO : check for LAST room
+		} else {
+			GameData.myself.resetFight();
+		}
 
+		GameData.getActionHelperDrawer().deleteAllHelpers();
+		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
+
+		_playersReadyMap.Clear();
+		_gameMastersMinions.Clear();
+		_hiddenEntities.Clear();
+				
+		_playerGameStep = 1;
+		_gameMasterGameStep = 1;
+		_light.color = _FREE_MODE_COLOR;
+
+	}
 	/*
 	 * Step 1 : Entering in room (Fight Mode)
 	 */
-	[RPC] // All
 	public void playerEnteredRoom(){
-		if (GameData.myself.isGM) {
-			GameData.myself.gui.changeGameMode(1);
-			GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
-		} else {
-
-			// Just in case of ..
-			GameData.getActionHelperDrawer().deleteAllHelpers();
-
-			GameData.myself.gui.changeGameMode(2);
-			GameData.myself.characterManager.lineRenderer.SetVertexCount(0);
-			GameData.myself.characterManager.isInFight = true;
+		if(_playerGameStep != 1){
+			Debug.LogError("playerEnteredRoom _playerGameStep is not 'FREE' : " + _playerGameStep);
 		}
 
-		//networkView.RPC("instanciateHiddenEntities", RPCMode.All);
-		_playerGameStep = 2;
-		_gameMasterGameStep = 1;
-		_light.color = _PLANIF_MODE_COLOR;
-		//_gameMasterStep = 2;
-
+		networkView.RPC("initNextRound", RPCMode.All);
 	}
 
-	[RPC]
-	public void enterFightMode(NetworkViewID id)
-	{
-		Debug.Log("Enter Planif Mode");
-
-		// PLANIF COLOR
-		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 2);
-		networkView.RPC("deleteHelpers", RPCMode.All);
-		networkView.RPC("switchToFightMode", RPCMode.All);
-
-		Player player = GameData.getPlayerByNetworkViewID (id);
-		CharacterManager cm = player.characterManager;
-
-		if (Network.isServer)
-		{
-			getRoomNumber(currentRoomBattle).beginBattleMode();
-			cm.isInFight = true;
-			cm.lineRenderer.SetVertexCount(0);
-			networkView.RPC("enterFightMode", RPCMode.Others, id);
-		}
-		else
-		{
-			cm.isInFight = true;
-			cm.lineRenderer.SetVertexCount(0);
-			
-		}
-	}
 
 	/*
 	 * Step 2 : Check for next Round
 	 */
 	[RPC] // All
-	public void checkForNextRound(){
+	public void initNextRound(){
+		if(_playerGameStep == 2){
+			Debug.LogError("initNextRound : Player GameStep : " +_playerGameStep);
+			return;
+		}
+		if(_gameMastersMinions.Count <= 0){
+			Debug.LogError("GameMaster hasnt posed units");
+		}
+
+		_playersReadyMap.Clear();
+
+		/* 
+		 * Victory / Loose conditions check
+		 */
+
+		// Check if players lost
+		int deadPlayer = 0;
+		foreach(Player p in GameData.getPlayerList()){
+			if(p.characterManager.characterStats.isDead)
+				deadPlayer ++;
+		}
+		if(deadPlayer == GameData.getNonGMPlayerCount()){
+			Debug.Log("Players lost !");
+			foreach(Player p in GameData.getPlayerList()){
+				p.hasLost();
+			}
+			return;
+		}
+
+		// Check if gamemaster lost Round
+		int deadMinion = 0;
+		foreach(AIEntityData e in _gameMastersMinions){
+			CharacterManager cm = e.tryGetCharacterManager();
+			if (null == cm){
+				Debug.LogError("GM minion missing CharacterManager !!!");
+				continue;
+			}
+			if(cm.characterStats.isDead){
+				deadMinion ++;
+			}
+		}
+		if(deadMinion == _gameMastersMinions.Count){
+			networkView.RPC ("fightIsOver", RPCMode.All);
+			return;
+		}
+
+		/* 
+		 * Reseting stats
+		 */
+		if (GameData.myself.isGM) {
+			GameData.myself.gui.changeGameMode(1);
+			
+		} else {
+			GameData.myself.gui.changeGameMode(2);
+			GameData.myself.characterManager.lineRenderer.SetVertexCount(0);
+			GameData.myself.characterManager.isInFight = true;
+		}
+		
+		// Init AI
+		foreach(AIEntityData e in _gameMastersMinions){
+			// TODO : Init / Run AI
+		}
+		
+		// Reset AP for Minions
+		foreach(AIEntityData e in _gameMastersMinions){
+			e.tryGetCharacterManager().networkView.RPC("resetActionPointRPC", RPCMode.All);
+		}
+		// Reset Data for player and gm
+		GameData.myself.onInitNextRound();
+
+		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
+		GameData.getActionHelperDrawer().deleteAllHelpers();
+		_playerGameStep = 2;
+		_gameMasterGameStep = 1;
+		_light.color = _PLANIF_MODE_COLOR;
+
+		// Game Master move to next Room
+		networkView.RPC ("setGameMasterPosePoint", RPCMode.All, GameData.getCastedGameMasterPlayer().maxPosePoint);
 
 	}
 
@@ -157,6 +212,10 @@ public class GameManager : MonoBehaviour {
 	/* 3.1 : Wait for players + GM being ready */
 	[RPC]
 	public void addReadyPlayer(NetworkViewID id){
+		if(_playerGameStep != 2){
+			Debug.LogError("addReadyPlayer called for non PLANIF mode : " + _playerGameStep);
+		}
+
 		bool f = _playersReadyMap.ContainsKey (id);
 		if (!f) {
 			Player next = GameData.getPlayerByNetworkViewID(id);
@@ -183,59 +242,44 @@ public class GameManager : MonoBehaviour {
 	}
 	private void checkPlayersAndGameMasterReady(){
 		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount ()) {
-			startNextRound();
+			networkView.RPC("startNextRound", RPCMode.All);
 		}
 	}
 
 	/* 3.2 : Run Next Round */
-	[RPC]
+	[RPC]// All
 	private void startNextRound(){
 		_roundInProgress = true;
 		Debug.Log ("Start next round");
 
-		networkView.RPC("deleteHelpers", RPCMode.All);
+		if(GameData.myself.isGM){
 
-		// Check if GameMaster Mobs are dead
-		/*
-		bool _gameMasterLostRound = true;
-
-		foreach (GameObject enemy in getRoomNumber(currentRoomBattle).EnemyList)
-		{
-			NetworkViewID id = enemy.networkView.viewID;
-			CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
-			managerCharac.runHotAcions();
-			managerCharac.characterStats.gameMode = 3;
-			managerCharac.characterStats.removePendingAction();
+		}else {
+			GameData.myself.characterManager.networkView.RPC("removePendingActionRPC", RPCMode.All);
+			GameData.myself.gui.changeGameMode(3);
+			GameData.myself.characterManager.runHotAcions();
 		}
-		*/
 
-		// SPECTATOR COLOR
-		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 3);
+		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
+		GameData.getActionHelperDrawer().deleteAllHelpers();
+		_playerGameStep = 3;
+		_gameMasterGameStep = 1;
+		_light.color = _SPECTATOR_MODE_COLOR;
 		
-		foreach (KeyValuePair<NetworkViewID, int> kvp in _playersReadyMap)
-		{
-			if(kvp.Value <= 0)
-				continue;
-			Player p = GameData.getPlayerByNetworkViewID(kvp.Key);
-			if(null == p){
-				Debug.LogError("[startNextRound] Trying to get unexisting player ID : " + kvp.Key);
-				continue;
-			}
-			p.characterManager.characterStats.removePendingAction();
-			p.characterManager.characterStats.gameMode = 3;
-			p.characterManager.runHotAcions();
-		}
-
 		checkIfRoundIsOver ();
 
 	}
+
 	[RPC]
 	public void hotActionProcessed (NetworkViewID ownerId){
+		if(_playerGameStep!= 3){
+			Debug.LogError("hotActionProcessed called in non SPECTATOR step : " + _playerGameStep);
+		}
 		Player player = GameData.getPlayerByNetworkViewID(ownerId);
 		bool roundIsOver = true;
 
 		if (player.isGM) {
-			// TODO
+			// TODO : Check hotaction runned for Minnionzz
 		} else {
 			if (_playersReadyMap.ContainsKey(ownerId)){
 				_playersReadyMap[ownerId] -= 1;
@@ -271,16 +315,12 @@ public class GameManager : MonoBehaviour {
 
 		yield return new WaitForSeconds (1);
 		Debug.Log ("Reset Round");
+		_playersReadyMap.Clear();
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
+
 		_gameMasterReady = false;
 
-		foreach (Player player in GameData.getPlayerList())
-		{
-			if (Network.isServer)
-				enterFightMode(player.id);
-			else
-				this.networkView.RPC("enterFightMode", RPCMode.Server, player.id);
-		}
+		networkView.RPC("initNextRound", RPCMode.All);
 	}
 
 
@@ -304,28 +344,6 @@ public class GameManager : MonoBehaviour {
 		p.gui.changeGameMode (mode);
 	}
 
-	[RPC]
-	public void deleteHelpers(){
-		GameData.getActionHelperDrawer ().deleteAllHelpers ();
-	}
-
-	[RPC]
-	public void resetRoundForPlayer(NetworkViewID id){
-		Player p = GameData.getPlayerByNetworkViewID (id);
-		p.resetRound ();
-	}
-
-	[RPC]
-	public void switchToFightMode(){
-		//GameData.getGameMasterPlayer ().enterFightMode ();
-		foreach (Player p in GameData.getPlayerList()) {
-			if(p.isGM){
-				//TODO
-				continue;
-			}
-			p.enterFightMode();
-		}
-	}
 
 	/*
 	 * Rooms
@@ -368,13 +386,19 @@ public class GameManager : MonoBehaviour {
 	}
 	[RPC] // All
 	public void moveGMToPosition(Vector3 pos){
-		GameData.getGameMasterPlayer().playerObject.transform.position = pos;
+		if(GameData.myself.isGM){
+			GameData.myself.playerObject.transform.position = pos;
+		} else{
+			GameData.getGameMasterPlayer().playerObject.transform.position = pos;
+		}
 	}
 	/*
 	 * AI Entity RPC
 	 */
 	[RPC] // All
 	public void instanciateHiddenEntities(){
+
+		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
 
 		foreach(AIEntityData e in _hiddenEntities){
 			Vector3 safePos = e.initPos;
@@ -419,96 +443,65 @@ public class GameManager : MonoBehaviour {
 
 
 
-
-
-
 	/*
+
 	[RPC]
-	public void increaseReadyPlayer(NetworkViewID id)
+	public void enterFightMode(NetworkViewID id)
 	{
-		_playerValidateCount += 1;
-		int playerCount = GameData.getNonGMPlayerCount();;
-		if (_playerValidateCount == playerCount) {
-			runCurrentFightStep();
-			_playerValidateCount = 0;
+		Debug.Log("Enter Planif Mode");
+
+		// PLANIF COLOR
+		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 2);
+		networkView.RPC("deleteHelpers", RPCMode.All);
+		networkView.RPC("switchToFightMode", RPCMode.All);
+
+		Player player = GameData.getPlayerByNetworkViewID (id);
+		CharacterManager cm = player.characterManager;
+
+		if (Network.isServer)
+		{
+			getRoomNumber(currentRoomBattle).beginBattleMode();
+			cm.isInFight = true;
+			cm.lineRenderer.SetVertexCount(0);
+			networkView.RPC("enterFightMode", RPCMode.Others, id);
+		}
+		else
+		{
+			cm.isInFight = true;
+			cm.lineRenderer.SetVertexCount(0);
+			
 		}
 	}
-
-	public void hotActionsStarted(){
-
-		_hotActionsStartedCount += 1;
-		Debug.Log ("Action start " + _hotActionsStartedCount);
-	}
-
-	public void hotActionsEnded(){
-		_hotActionsEndedCount += 1;
-		Debug.Log ("Action end " + _hotActionsEndedCount + " / " + _hotActionsStartedCount);
-		if(_hotActionsEndedCount >= _hotActionsStartedCount){
-			runNextFightStep();
-			_hotActionsStartedCount = 0;
-			_playerValidateCount = 0;
-		}
-		
-	}
-
-    [RPC]
-    public void runCurrentFightStep()
-    {
-        Debug.Log("Next Fight Step");
-
-        GameData.getActionHelperDrawer().deleteAllHelpers();
-
-        foreach (Player p in GameData.getPlayerList())
-        {
-            CharacterManager managerCharac = NetworkView.Find(p.id).gameObject.GetComponent<CharacterManager>();
-            managerCharac.runHotAcions();
-            managerCharac.characterStats.gameMode = 3;
-            managerCharac.characterStats.removePendingAction();
-        }
-
-        foreach (GameObject enemy in getRoomNumber(currentRoomBattle).EnemyList)
-        {
-            NetworkViewID id = enemy.networkView.viewID;
-            CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
-            managerCharac.runHotAcions();
-            managerCharac.characterStats.gameMode = 3;
-            managerCharac.characterStats.removePendingAction();
-        }
-
-        if (Network.isServer) networkView.RPC("runCurrentFightStep", RPCMode.Others);
-    }
-
-    [RPC]
-    public void runNextFightStep()
-    {
-        Debug.Log("Next Fight Step");
-
-        GameData.getActionHelperDrawer().deleteAllHelpers();
-        foreach (Player p in GameData.getPlayerList())
-        {
-            CharacterManager managerCharac = NetworkView.Find(p.id).gameObject.GetComponent<CharacterManager>();
-            managerCharac.characterStats.nextFightStep();
-            managerCharac.characterStats.gameMode = 2;
-        }
-
-        foreach (GameObject enemy in getRoomNumber(currentRoomBattle).EnemyList)
-        {
-            NetworkViewID id = enemy.networkView.viewID;
-            CharacterManager managerCharac = NetworkView.Find(id).gameObject.GetComponent<CharacterManager>();
-            managerCharac.runHotAcions();
-            managerCharac.characterStats.nextFightStep();
-            //managerCharac.characterStats.gameMode = 2;
-        }
-        if (Network.isServer) networkView.RPC("runNextFightStep", RPCMode.Others);
-    }
 	*/
 
+
+
+
+
+
+	
 	/*
 	 *  GET / SET
 	 */
+	public List<AIEntityData> gameMastersMinions{
+		get {
+			return _gameMastersMinions;
+		}
+	}
 
+	public List<AIEntityData> hiddenEntities{
+		get {
+			return _hiddenEntities;
+		}
+	}
 
-   
+	public int gameMasterGameStep {
+		get {
+
+			return _gameMasterGameStep;
+		}
+	}
+   	
 	public int playerGameStep {
 		get {
 			return _playerGameStep;

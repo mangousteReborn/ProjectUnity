@@ -152,6 +152,7 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	public void setOwner(Player p){
 		this._owner = p;
 		setCharacterManager (p.characterManager);
+		switchToFreeMode();
 	}
 	private void setCharacterManager(CharacterManager cm){
 		this._charaterManager = cm;
@@ -178,6 +179,8 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 			switchToBattleMode ();
 		} else if (this._currentMode == 3){
 			switchToSpectatorMode();
+		} else if (this._currentMode == 4){
+			switchLooseMode();
 		} else{
 			this._gameStateObject.GetComponent<Text> ().text = "MODE " + mode + " UNKNOW";
 		}
@@ -204,15 +207,14 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		this._cancelActionButtonObject.SetActive (false);
 		Debug.Log ("onHotActionPushed");
 	}
-
-	// Param[0] <float> old value, Param[1] <float> currentValue
-	private void onCurrentActionPointChange(CharacterStats cs, object[] param){
-		this._timerObject.GetComponent<Text> ().text = cs.currentActionPoint + "s";
-	}
 	 */
 
 
 
+	public void setActionPointText(float curr, float max){
+		this._timerObject.GetComponent<Text> ().text = Math.Round(curr, 2) + " / " + Math.Round(max, 2);
+	}
+	
 	/* Buttons / SlotButtons listeners */
 	private void onBonusButtonClick(){
 		if (this._bonusVignettePickerOpened) {
@@ -251,8 +253,6 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	private void onCancelActionButtonClick(){
 		if (this._pendingAction == null)
 			return;
-		
-		//GameData.getActionHelperDrawer ().removeCurrentPlayerHelper ();
 		
 		this._pendingAction.onActionCanceled (this._charaterManager);
 		this._pendingAction = null;
@@ -365,6 +365,19 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 
 		this._timerObject.GetComponent<Text> ().text = "0.0";
 		this._gameStateObject.GetComponent<Text> ().text = "Combat";
+	}
+
+	private void switchLooseMode(){
+		this._bonusButtonObject.SetActive (false);
+		this._actionButtonObject.SetActive (false);
+		
+		this._cancelActionButtonObject.SetActive (false);
+		this._readyButtonObject.SetActive (false);
+		
+		this._timerObject.GetComponent<Text> ().text = "";
+		this._gameStateObject.GetComponent<Text> ().color = new Color(1f,0,0);
+		this._gameStateObject.GetComponent<Text> ().fontSize = 20;
+		this._gameStateObject.GetComponent<Text> ().text = "Vous avez Perdu";
 	}
 
 	public void OnPointerClick(PointerEventData ped){

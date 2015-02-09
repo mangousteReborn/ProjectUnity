@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 
 public class Player {
@@ -13,8 +14,6 @@ public class Player {
 	protected NetworkViewID _id;
 	protected bool _isGM = false;
 
-	protected uint _gameMode;
-
 	protected IPlayerGUI _gui;
 	protected CharacterManager _characterManager;
 	protected GameObject _playerObject;
@@ -28,10 +27,33 @@ public class Player {
 	}
 
 
-	public virtual void enterFightMode(){
-
+	public virtual void onInitNextRound(){
+		if(null == this._characterManager){
+			Debug.LogError("(onInitNextRound) _characterManager is not set for : " + this._name);
+			return;
+		}
+		this._gui.changeGameMode(2);
+		this._characterManager.networkView.RPC("resetActionPoint", RPCMode.All);
+		PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
+		pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
 	}
 
+	public virtual void resetFight(){
+		if(null == this._characterManager){
+			Debug.LogError("(resetFight) _characterManager is not set for : " + this._name);
+			return;
+		}
+		this._gui.changeGameMode(1);
+		this._characterManager.networkView.RPC("resetActionPoint", RPCMode.All);
+		this._characterManager.isInFight = false;
+		PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
+		pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
+	}
+
+	public virtual void hasLost(){
+		this._gui.changeGameMode(4);
+	}
+	
 	public virtual void resetRound(){
 		Debug.Log ("Player reset Room");
 	}

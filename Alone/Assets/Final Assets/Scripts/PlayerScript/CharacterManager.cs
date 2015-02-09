@@ -147,6 +147,27 @@ public class CharacterManager : MonoBehaviour {
 	 * 	###########
 	 */
 	 /* Stats */
+	[RPC] // ALL
+	public void resetActionPointRPC(){
+		this._characterStats.currentActionPoint = this._characterStats.maxActionPoint;
+		if(!GameData.myself.isGM){
+			this._player.gui.updateGUI();
+		}
+
+	}
+	[RPC] // All
+	public void inflictDamage(int value){
+		this._characterStats.currentLife -= value;
+		if(this._characterStats.currentLife <= 0){
+			this._characterStats.isDead = true;
+		}
+		this._healthBarScript.setLife(this._characterStats.currentLife, this._characterStats.maxLife);
+	}
+	[RPC] // All
+	public void setCurrentActionPointRPC(float value){
+		this._characterStats.
+	}
+
 	[RPC]
 	private void setLife(int value)
 	{
@@ -204,7 +225,7 @@ public class CharacterManager : MonoBehaviour {
 		this._characterStats.pushHotAction (a);
 	}
 
-	[RPC]
+	[RPC] // All
 	public void removePendingActionRPC(){
 		this._characterStats.removePendingAction();
 	}
@@ -239,15 +260,15 @@ public class CharacterManager : MonoBehaviour {
 		float cost = ma.calculateCost (sPos, ePos);
 		
 		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
-			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
-				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
+			float nextAPValue = playerWhoValidate.characterManager.characterStats.currentActionPoint - cost;
+			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(nextAPValue ,true);
 
 			object[] p = {1}; // 0 for MeshCollider mode; 1 for SphereCollider mode
 			ma.onActionValidation(this,p);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDirectDamageStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s", ma.degree, ma.radius, angle);
 			this.networkView.RPC("pushDirectDamageActionRPC", RPCMode.All,  ma.key,cost,sPos, sPos, angle);
-
+			this.networkView.RPC("setCurrentActionPointRPC", RPCMode.All, nextAPValue);
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 			
 		} else {

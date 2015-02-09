@@ -71,6 +71,10 @@ public class GameMasterHandler : MonoBehaviour {
 	public void onReadyButtonAction(object[] data){
 		Debug.Log ("onReadyButtonAction");
 
+		if(GameData.getGameManager().hiddenEntities.Count <= 0){
+			Debug.Log("Pose units :)");
+			return;
+		}
 		GameData.getGameManager ().networkView.RPC("instanciateHiddenEntities", RPCMode.All);
 		GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.All, _currRoom + 1);
 		Debug.Log("Opening room " + _currRoom);

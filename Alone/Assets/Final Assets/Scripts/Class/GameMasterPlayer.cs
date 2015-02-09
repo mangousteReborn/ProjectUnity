@@ -17,6 +17,13 @@ public class GameMasterPlayer : Player {
 		this._maxPosePoint = GameData._GAME_MASTER_AP;
 	}
 
+	public override void onInitNextRound(){
+
+	}
+
+	public override void resetFight(){
+
+	}
 
 	public override void resetRound(){
 		Debug.Log ("GameMaster reset Round");

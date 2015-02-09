@@ -7,6 +7,8 @@ public class AIEntityData {
 
 	GameObject _instanciateObject;
 
+	CharacterManager _characterManager;
+
 	Vector3 _initPos;
 
 	Player _owner;
@@ -22,6 +24,21 @@ public class AIEntityData {
 		_life = life;
 		_str = str;
 		_actionPoint = ap;
+		_characterManager = null;
+	}
+
+	public CharacterManager tryGetCharacterManager(){
+		if(null != _characterManager)
+			return _characterManager;
+
+		if(null == _instanciateObject)
+			return null;
+
+		CharacterManager cm = _instanciateObject.GetComponent<CharacterManager>();
+		if(null != cm)
+			_characterManager = cm;
+
+		return _characterManager;
 	}
 
 	public Vector3 initPos {

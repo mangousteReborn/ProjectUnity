@@ -56,26 +56,11 @@ public class ConnectRoomScript : MonoBehaviour {
             setIsOpen(false);
             currentIndex++;
             if (Network.isServer)
-                fireCombat(); 
+				gm.playerEnteredRoom(); 
 
         }
     }
 
-    private void fireCombat()
-    {
-
-		gm.networkView.RPC("playerEnteredRoom", RPCMode.All);
-
-		return;
-        var playerList = GameData.getPlayerList();
-        foreach (Player player in playerList)
-        {
-            if (!Network.isServer)
-                gm.networkView.RPC("enterFightMode", RPCMode.Server, player.id);
-            else
-                gm.enterFightMode(player.id);
-        }
-    }
 
     public void setIsOpen(bool value)
     {

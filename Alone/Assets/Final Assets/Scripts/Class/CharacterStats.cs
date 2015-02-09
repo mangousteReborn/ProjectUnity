@@ -47,13 +47,8 @@ public class CharacterStats  {
 	private Action _pendingAction;
     private NetworkView _networkView;
 	private int _attacksCount;
+	private bool _isDead;
 
-	/*
-	 *  0 : Default
-	 *  1 : restMode
-	 *  2 : fightMode
-	 */
-	private uint _gameMode = 0;
 
 	public CharacterStats (NetworkView networkView=null, int startLife = 100, float actionPoint=5f, int str=5){
 		this._effectsList = new List<Effect> ();
@@ -322,13 +317,6 @@ public class CharacterStats  {
 		}
 	}
 
-	public int currentLife
-	{
-		get {
-			return this._currentLife;
-		}
-	}
-
     public void setCurrentLife(int value, bool isFromRPC)
     {
         if (Network.isServer)
@@ -430,28 +418,15 @@ public class CharacterStats  {
 			}
 		}
 	}
-	public int maxStrength{
-		get{return this._maxStrength;}
-	}
-	public int currentStrength{
-		get{return this._currentStrength;}
-	}
-
-	public int maxAttacks{
-		get{return this._maxAttacks;}
-	}
-	public int currentMaxAttacks{
-		get{return this._currentMaxAttacks;}
-	}
 
 	/* Targets Types */
 	public void addTargetType(TargetType tt){
 		if (this._targetTypes.Contains(tt))
-		    return;
-		  
+			return;
+		
 		this._targetTypes.Add (tt);
 	}
-
+	
 	public void removeTargetType(TargetType tt){
 		TargetType elem = 0;
 		bool f = false;
@@ -465,11 +440,11 @@ public class CharacterStats  {
 			return;
 		this._targetTypes.Remove (elem);
 	}
-
+	
 	public bool hasTargetType(TargetType tt){
 		return this._targetTypes.Contains (tt);
 	}
-
+	
 	public string targetTypesToString(){
 		string s = "";
 		foreach(TargetType tt in this._targetTypes){
@@ -478,28 +453,60 @@ public class CharacterStats  {
 		return s;
 	}
 
+	/*
+	 *  GET / SET
+	 */ 
+	
+	public int currentLife
+	{
+		get {
+			return this._currentLife;
+		}
+		set {
+			this._currentLife = value;
+		}
+	}
+
+	public int maxStrength{
+		get{return this._maxStrength;}
+	}
+	public int currentStrength{
+		get{return this._currentStrength;}
+		set{this._currentStrength = value;}
+	}
+
+	public int maxAttacks{
+		get{return this._maxAttacks;}
+		set{this._maxAttacks = value;}
+	}
+	public int currentMaxAttacks{
+		get{return this._currentMaxAttacks;}
+		set{this._currentMaxAttacks = value;}
+	}
+
+
+	public bool isDead {
+		get {
+			return _isDead;
+		}
+		set {
+			_isDead = value;
+		}
+	}
+
 	public float currentActionPoint
 	{
 		get {
 			return this._currentActionPoint;
+		}
+		set {
+			this._currentActionPoint = value;
 		}
 	}
 
 	// Others
 	public Action pendingAction{
 		get {return this._pendingAction;}
-	}
-
-	public uint gameMode
-	{
-		get {
-			return this._gameMode;
-		}
-		set {
-			this._gameMode = value;
-			object[] p = {value};
-			//fireEvent(CharacterStatsEvent.gameModeChanged,p);
-		}
 	}
 
 	public List<TargetType> targetTypes{

@@ -250,25 +250,32 @@ public class DirectDamageAction : Action {
 		MeshCollider mc = go.AddComponent<MeshCollider> ();
 		mc.sharedMesh = mesh;
 		mc.isTrigger = true;
-		
-		this._onCollision = delegate (Collider c){
 
+		bool active = true;
+		this._onCollision = delegate (Collider c){
+			if(!active)
+				return;
+			active = false;
 			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();
 
-			if(!target.networkView.isMine && target.characterStats.hasTargetType(CharacterStats.TargetType.ally)){
+			// TODO : FIX ME THAT ! TargetType must change  ...
+			if(target.characterStats.hasTargetType(CharacterStats.TargetType.ai)){
 				RaycastHit hit;
-				Debug.Log("Ok, is ally");
+				Debug.Log("Ok, is AI");
 				if(
 					Physics.Raycast(new Vector3(this._startPosition.x, 0.5f, this._startPosition.z), new Vector3(target.character.transform.position.x,0.5f, target.character.transform.position.z), out hit,this._radius*10)
 					){
 					Debug.Log("Ok raycast hit");
-					int newLife = target.characterStats.currentLife - (cm.characterStats.currentStrength + this.damages);
 
-					target.networkView.RPC("setCurrentLifeHandlerRPC", RPCMode.All, newLife,true);
+					int damages = cm.characterStats.currentStrength + this.damages;
+
+					GameData.getActionHelperDrawer().networkView.RPC("createStaticLazerRPC", RPCMode.All, cm.player.id, target.characterTransform.position, 2f);
+					target.networkView.RPC("inflictDamage", RPCMode.All, damages);
 
 				}
 
 			}
+			active = true;
 			Debug.Log("hey ::: " + target.player.name + " is ::: " + target.characterStats.targetTypesToString());
 			
 		};

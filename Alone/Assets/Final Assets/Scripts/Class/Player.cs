@@ -33,7 +33,7 @@ public class Player {
 			return;
 		}
 		this._gui.changeGameMode(2);
-		this._characterManager.networkView.RPC("resetActionPoint", RPCMode.All);
+		this._characterManager.networkView.RPC("resetActionPointRPC", RPCMode.All);
 		PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
 		pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
 	}

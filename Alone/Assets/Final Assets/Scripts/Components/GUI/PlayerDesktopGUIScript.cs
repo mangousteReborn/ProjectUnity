@@ -151,10 +151,8 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 	// IMPLEMENTS
 	public void setOwner(Player p){
 		this._owner = p;
-		setCharacterManager (p.characterManager);
-		switchToFreeMode();
-	}
-	private void setCharacterManager(CharacterManager cm){
+		CharacterManager cm = p.characterManager;
+
 		this._charaterManager = cm;
 		this._characterStats = cm.characterStats;
 		/*
@@ -168,8 +166,18 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 			Vignette v = GameData.getActionVignette(a.key);
 			this._actionVignettesPickerObject.GetComponent<VignettesPickerScript>().pushVignette(v.key,v,onActionVignetteSlotClick);
 		}
+		switchToFreeMode();
 	}
 
+	// IMPLEMENTS
+	public void updateGUI(){
+		this._timerObject.GetComponent<Text> ().text = 
+			this._owner.characterManager.characterStats.currentActionPoint.ToString("F2") + "s / " + 
+				this._owner.characterManager.characterStats.maxActionPoint.ToString("F2") + "s";
+
+	}
+
+	// IMPLEMENTS
 	public void changeGameMode(int mode){
 		this._currentMode = mode;
 		
@@ -264,19 +272,17 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		if (this._currentMode != 2) {
 			return;		
 		}
-        changeGameMode (3);
-		//this._charaterManager.runHotAcions ();
-		newPlayerReady ();
-		return;
-        if(Network.isServer)
-        {
-            readyPlayer(null, null);
-            networkView.RPC("newPlayerReady", RPCMode.Others);
-        }
-        else
-        {
-            networkView.RPC("newPlayerReady", RPCMode.Server);
-        }
+		int count = GameData.myself.characterManager.characterStats.hotActionsStack.Count;
+		Debug.Log ("Actions count :: " + count);
+        //changeGameMode (3);
+		GameData.getGameManager().networkView.RPC("addReadyPlayer", RPCMode.All, GameData.myself.playerObject.networkView.viewID, count);
+		/*
+		if (Network.isServer) {
+			GameData.getGameManager().addReadyPlayer(this._charaterManager.networkView.viewID);
+		} else {
+			GameData.getGameManager().networkView.RPC("addReadyPlayer", RPCMode.Server, this._charaterManager.networkView.viewID);
+		}
+		*/
 	}
 
 	private void onBonusVignetteSlotClick(object[] data){
@@ -389,35 +395,4 @@ public class PlayerDesktopGUIScript : MonoBehaviour, IPlayerGUI, IPointerClickHa
 		*/
 	}
 
-	private void newPlayerReady()
-	{
-		if (Network.isServer) {
-			GameData.getGameManager().addReadyPlayer(this._charaterManager.networkView.viewID);
-		} else {
-			GameData.getGameManager().networkView.RPC("addReadyPlayer", RPCMode.Server, this._charaterManager.networkView.viewID);
-		}
-
-		//GameData.getGameManager ().networkView.RPC ("increaseReadyPlayer", RPCMode.All, this._charaterManager.networkView.viewID);
-		return;
-		/*
-
-		readyPlayer(null, null);
-		if(Network.isServer)
-			networkView.RPC("newPlayerReady", RPCMode.Others);
-		*/
-	}
-	
-	[RPC]
-	public void broadcastStartSimulation()
-	{
-		if(Network.isServer)
-		{
-			networkView.RPC("broadcastStartSimulation", RPCMode.Others);
-			this._charaterManager.runHotAcions();
-		}
-		else
-		{
-			this._charaterManager.runHotAcions();
-		}
-	}
 }

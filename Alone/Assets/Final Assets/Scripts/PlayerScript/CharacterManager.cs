@@ -150,9 +150,9 @@ public class CharacterManager : MonoBehaviour {
 	[RPC] // ALL
 	public void resetActionPointRPC(){
 		this._characterStats.currentActionPoint = this._characterStats.maxActionPoint;
-		if(!GameData.myself.isGM){
+
+		if(this.player.gui != null)
 			this._player.gui.updateGUI();
-		}
 
 	}
 	[RPC] // All
@@ -162,10 +162,15 @@ public class CharacterManager : MonoBehaviour {
 			this._characterStats.isDead = true;
 		}
 		this._healthBarScript.setLife(this._characterStats.currentLife, this._characterStats.maxLife);
+
+		if(this.player.gui != null)
+			this._player.gui.updateGUI();
 	}
 	[RPC] // All
 	public void setCurrentActionPointRPC(float value){
-		this._characterStats.
+		this._characterStats.currentActionPoint = value;
+		if(this.player.gui != null)
+			this._player.gui.updateGUI();
 	}
 
 	[RPC]
@@ -305,13 +310,14 @@ public class CharacterManager : MonoBehaviour {
 		float cost = ma.calculateCost (sPos, ePos);
 		
 		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
-			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
-				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
+			float nextAPValue = playerWhoValidate.characterManager.characterStats.currentActionPoint - cost;
+			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(nextAPValue,true);
 			
 			ma.onActionValidation(this,null);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, sPos, ma.name + "\n" + cost+"s");
 			this.networkView.RPC("pushWaitActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, sPos);
+			this.networkView.RPC("setCurrentActionPointRPC", RPCMode.All, nextAPValue);
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 			
 		} else {
@@ -349,13 +355,14 @@ public class CharacterManager : MonoBehaviour {
 		float cost = ma.calculateCost (sPos, ePos);
 
 		if (cost <= playerWhoValidate.characterManager.characterStats.currentActionPoint) {
-			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(
-				playerWhoValidate.characterManager.characterStats.currentActionPoint - cost,true);
+			float nextAPValue = playerWhoValidate.characterManager.characterStats.currentActionPoint - cost;
+			playerWhoValidate.characterManager.characterStats.setCurrentActionPoint(nextAPValue,true);
 				
 			ma.onActionValidation(this,null);
 			
 			GameData.getActionHelperDrawer().networkView.RPC("pushDefaultStaticHelperRPC",  RPCMode.All,playerWhoValidate.id, sPos, ePos,  ma.name + "\n" + cost+"s");
 			this.networkView.RPC("pushMoveActionRPC", RPCMode.All,  ma.key,  ma.name, ma.desc, ma.costPerUnit, cost, sPos, ePos);
+			this.networkView.RPC("setCurrentActionPointRPC", RPCMode.All, nextAPValue);
 			this.networkView.RPC("removePendingActionRPC", RPCMode.All);
 		} else {
 			ma.onActionInvalid(this,null);

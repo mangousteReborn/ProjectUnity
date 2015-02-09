@@ -14,6 +14,7 @@ public class ConnectRoomScript : MonoBehaviour {
     private GameObject handler;
 
     private bool isOpen = true;
+	private bool active = true;
     private GameManager gm;
     private int currentIndex;
 
@@ -26,6 +27,9 @@ public class ConnectRoomScript : MonoBehaviour {
 	
     public void onCollisionEnter(Collision collision)
     {
+		if(!active)
+			return;
+		
         GameObject obj = collision.gameObject;
         if(obj.tag == "Player" && isOpen && currentIndex < ExitSpawn.Count)
         {
@@ -55,8 +59,10 @@ public class ConnectRoomScript : MonoBehaviour {
             }
             setIsOpen(false);
             currentIndex++;
-            if (Network.isServer)
-				gm.playerEnteredRoom(); 
+
+			active = false;
+
+			GameData.getGameManager().networkView.RPC("initNextRound", RPCMode.All);
 
         }
     }
@@ -64,6 +70,7 @@ public class ConnectRoomScript : MonoBehaviour {
 
     public void setIsOpen(bool value)
     {
+		active = value;
         this.isOpen = value;
         if(isOpen)
         {

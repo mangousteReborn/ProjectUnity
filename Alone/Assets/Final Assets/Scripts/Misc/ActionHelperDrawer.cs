@@ -60,6 +60,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	}
 
 	private void pushHelperForOtherPlayer(NetworkViewID playerID, GameObject helper){
+		if(GameData.myself.isGM)
+			return;
+
 		string k = playerID.ToString ();
 		if (playerID.isMine) {
 			Debug.LogError("Calling addHelerInMap for current player");
@@ -79,7 +82,6 @@ public class ActionHelperDrawer : MonoBehaviour {
 	}
 
 	public void deleteAllHelpers(){
-		Debug.Log ("deleteAllHelpers");
 		// Current player helpers
 		GameObject go = this._playerHelpers.Count > 0 ? this._playerHelpers.Pop () : null;
 		while (null != go) {
@@ -121,6 +123,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	 * [1] <Action<MouseDistanceHelperScript> > calculateDistance formula
 	 */
 	public MouseDistanceHelperScript pushMouseDistanceHelperScript(CharacterManager cm, Action a, object[] param){
+		if(GameData.myself.isGM)
+			return null;
+
 		Vector3 startPos = defineStartPosition(cm);
 
 		bool drawLine = true;
@@ -145,6 +150,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	}
 
 	public MoveHelperScript pushMoveHelper(CharacterManager cm, Action a){
+		if(GameData.myself.isGM)
+			return null;
+
 		Vector3 startPos = defineStartPosition(cm);
 
 		GameObject go = (GameObject)Instantiate (_moveHelperObject,startPos , Quaternion.identity);
@@ -159,6 +167,9 @@ public class ActionHelperDrawer : MonoBehaviour {
 	}
 
 	public DirectDamageHelperScript pushDirectDamageHelper(CharacterManager cm, Action a){
+		if(GameData.myself.isGM)
+			return null;
+
 		Vector3 startPos = defineStartPosition(cm);
 		
 		GameObject go = (GameObject)Instantiate (_directDamageObject, startPos , Quaternion.identity);
@@ -214,23 +225,41 @@ public class ActionHelperDrawer : MonoBehaviour {
 		cm.lineRenderer.SetWidth (1f, 1f);
 		StartCoroutine(removeLine(cm, duration));
 	}
-	IEnumerator removeLine(CharacterManager cm, float dur){
-		yield return new WaitForSeconds(dur);
-		cm.lineRenderer.material = _moveMaterial;
-		cm.lineRenderer.SetVertexCount(0);
-
-	}
 
 	/*
 	 *  RPC
 	 */
+	[RPC]
+	public void createStaticLazerRPC(NetworkViewID id, Vector2 pos, float duration){
+		Player p = GameData.getPlayerByNetworkViewID (id);
+		CharacterManager cm = p.characterManager;
 
+		Vector3 from = cm.characterTransform.position,
+				to = pos;
+
+		to.y = 1;
+		from.y = 1;
+		
+		cm.lineRenderer.SetVertexCount(2);
+		cm.lineRenderer.SetPosition(0,from);
+		cm.lineRenderer.SetPosition(1, to);
+		cm.lineRenderer.material = _lazerMaterial;
+		cm.lineRenderer.SetWidth (1f, 1f);
+		StartCoroutine(removeLine(cm, duration));
+	}
+	IEnumerator removeLine(CharacterManager cm, float dur){
+		yield return new WaitForSeconds(dur);
+		cm.lineRenderer.material = _moveMaterial;
+		cm.lineRenderer.SetVertexCount(0);
+		
+	}
 	// Specific Helpers will ne puched for client side obly. After validating a helper, will put for all player a static helper
 	// as a Description of current player actions.
 	[RPC]
 	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){
-		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
+		if(GameData.myself.isGM)
 			return;
+		
 		GameObject go = (GameObject)Instantiate (_defaultStaticHelperObject, startPoint , Quaternion.identity);
 		LineRenderer ln = go.GetComponent<LineRenderer>();
 		ln.material = GameData.getPlayerByNetworkViewID (playerID).characterManager.material;
@@ -254,8 +283,8 @@ public class ActionHelperDrawer : MonoBehaviour {
 	}
 	[RPC]
 	public void pushDirectDamageStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label , float degree, float radius, float angle){
-		if(GameData.getPlayerByNetworkViewID(playerID).isGM)
-			return;
+
+
 		GameObject go = (GameObject)Instantiate (_directDamageObject, startPoint , Quaternion.identity);
 		DirectDamageHelperScript ddhs = go.GetComponent<DirectDamageHelperScript>();
 		ddhs.activateAsStatic(GameData.getPlayerByNetworkViewID(playerID).characterManager, startPoint, endPoint ,label, degree, radius, angle);

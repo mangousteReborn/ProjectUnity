@@ -290,7 +290,7 @@ public class CharacterStats  {
 
 	public void removePendingAction(){
 		if (null == this._pendingAction){
-			Debug.LogWarning("CharacterStats : <removePendingAction> Setting null Pending Action, but was already null");
+			//Debug.LogWarning("CharacterStats : <removePendingAction> Setting null Pending Action, but was already null");
 		}
 
 		this._pendingAction = null;

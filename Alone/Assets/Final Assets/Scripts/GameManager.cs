@@ -126,9 +126,10 @@ public class GameManager : MonoBehaviour {
 	 */
 	[RPC] // All
 	public void initNextRound(){
+		Debug.Log ("# 2 : initNextRound");
 		if(_playerGameStep == 2){
 			Debug.LogError("initNextRound : Player GameStep : " +_playerGameStep);
-			return;
+
 		}
 		if(_gameMastersMinions.Count <= 0){
 			Debug.LogError("GameMaster hasnt posed units");
@@ -190,7 +191,10 @@ public class GameManager : MonoBehaviour {
 		
 		// Reset AP for Minions
 		foreach(AIEntityData e in _gameMastersMinions){
-			e.tryGetCharacterManager().networkView.RPC("resetActionPointRPC", RPCMode.All);
+			CharacterManager cm = e.tryGetCharacterManager();
+			if(null == cm)
+				Debug.LogError("CharacterManager for AIEntityData is null ..");
+			cm.networkView.RPC("resetActionPointRPC", RPCMode.All);
 		}
 		// Reset Data for player and gm
 		GameData.myself.onInitNextRound();
@@ -209,27 +213,34 @@ public class GameManager : MonoBehaviour {
 	/*
 	 * Step 3 : Round
 	 */
-	/* 3.1 : Wait for players + GM being ready */
-	[RPC]
-	public void addReadyPlayer(NetworkViewID id){
+	/* 3.1 : Wait for players clicking Ready Button */
+	[RPC] // All
+	public void addReadyPlayer(NetworkViewID id, int count){
+		Debug.Log ("# 3.1 : addReadyPlayer");
 		if(_playerGameStep != 2){
 			Debug.LogError("addReadyPlayer called for non PLANIF mode : " + _playerGameStep);
 		}
 
+
+
 		bool f = _playersReadyMap.ContainsKey (id);
 		if (!f) {
-			Player next = GameData.getPlayerByNetworkViewID(id);
+			//Player next = GameData.getPlayerByNetworkViewID(id);
 
-			_playersReadyMap.Add(id, next.characterManager.characterStats.hotActionsStack.Count);
+			_playersReadyMap.Add(id, count);//next.characterManager.characterStats.hotActionsStack.Count);
 		} else {
 			Debug.LogError("Player " + GameData.getPlayerByNetworkViewID(id).name + " aleady ready");
 		}
 
-		checkPlayersAndGameMasterReady();
+		showMap ();
+
+		if(Network.isServer)
+			checkPlayersAndGameMasterReady();
 
 	}
-	[RPC]
+	[RPC] // ?
 	public void gameMasterReady(){
+		return;
 		if (this._gameMasterReady) {
 			Debug.LogWarning("Game master already ready");
 			return;
@@ -242,15 +253,22 @@ public class GameManager : MonoBehaviour {
 	}
 	private void checkPlayersAndGameMasterReady(){
 		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount ()) {
-			networkView.RPC("startNextRound", RPCMode.All);
+			networkView.RPC ("startNextRound", RPCMode.All);
 		}
 	}
-
+	[RPC] // Server
+	private void playerAreReady(){
+		networkView.RPC ("startNextRound", RPCMode.All);
+	}
 	/* 3.2 : Run Next Round */
 	[RPC]// All
 	private void startNextRound(){
+		Debug.Log ("# 3.2 : startNextRound");
 		_roundInProgress = true;
 		Debug.Log ("Start next round");
+
+		_playerGameStep = 3;
+		_gameMasterGameStep = 1;
 
 		if(GameData.myself.isGM){
 
@@ -262,8 +280,7 @@ public class GameManager : MonoBehaviour {
 
 		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
 		GameData.getActionHelperDrawer().deleteAllHelpers();
-		_playerGameStep = 3;
-		_gameMasterGameStep = 1;
+
 		_light.color = _SPECTATOR_MODE_COLOR;
 		
 		checkIfRoundIsOver ();
@@ -306,7 +323,7 @@ public class GameManager : MonoBehaviour {
 
 		if(!f)
 			return;
-
+		Debug.Log ("Round is OVER");
 		// At this point, round is OVER
 		StartCoroutine ("resetRound");
 	}
@@ -476,7 +493,17 @@ public class GameManager : MonoBehaviour {
 
 
 
+	// Units
+	public void showMap(){
+		int cpt = 1;
+		Debug.Log ("Ready Player Map :: ");
+		foreach (KeyValuePair<NetworkViewID, int> kvp in _playersReadyMap) {
+			String msg = cpt + " : " + GameData.getPlayerByNetworkViewID(kvp.Key) + " Actions : " + kvp.Value;
 
+			Debug.Log(msg);
+			cpt ++;
+		}
+	}
 
 
 	

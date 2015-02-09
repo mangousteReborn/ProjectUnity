@@ -60,9 +60,7 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		this._unitsVignettesPicker.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
 		this._unitsVignettesPicker.GetComponent<VignettesPickerScript> ().setDimension (this._screenWidth, 50);
 		this._unitsVignettesPicker.GetComponent<VignettesPickerScript> ().setPlayerGUI (this);
-
-        this._readyButtonObject.GetComponent<Button>().onClick.AddListener(() => { onReadyButtonClick(); });
-
+		
 		fillVignettesPicker ();
 	}
 

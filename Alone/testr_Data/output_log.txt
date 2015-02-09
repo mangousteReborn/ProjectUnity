@@ -1,220 +1,113 @@
 Initialize engine version: 4.6.0b20 (a3ecf55f1347)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 11.0 [level 10.0]
-    Renderer: Intel(R) HD Graphics (ID=0x46)
-    Vendor:   Intel
-    VRAM:     64 MB
+    Version:  Direct3D 11.0 [level 10.1]
+    Renderer: ATI Radeon HD 4800 Series (ID=0x9442)
+    Vendor:   ATI
+    VRAM:     505 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Dossier Magik\Projet\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.105 seconds
-desktop: 1366x768 40Hz; virtual: 1366x768 at 0,0
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.061 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-The referenced script on this Behaviour is missing!
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.dll (this message is harmless)
+Received pong from 192.168.0.10:8080
  
-(Filename:  Line: 1639)
+(Filename:  Line: 836)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 36 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+Received pong from 192.168.226.1:8080
  
-(Filename:  Line: 1170)
+(Filename:  Line: 836)
 
-The referenced script on this Behaviour is missing!
+Received pong from 192.168.50.1:8080
  
-(Filename:  Line: 1639)
+(Filename:  Line: 836)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+Received pong from 25.4.146.211:8080
  
-(Filename:  Line: 1170)
+(Filename:  Line: 836)
 
-The referenced script on this Behaviour is missing!
+# 2 : initNextRound
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+RPC call failed because the function 'resetActionPointRPC' does not exist in any script attached to'PlayerDefaultGUI(Clone)'
  
-(Filename:  Line: 1170)
+(Filename:  Line: 133)
 
-The referenced script on this Behaviour is missing!
+# 2 : initNextRound
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+initNextRound : Player GameStep : 2
  
-(Filename:  Line: 1170)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The referenced script on this Behaviour is missing!
+RPC call failed because the function 'resetActionPointRPC' does not exist in any script attached to'PlayerDefaultGUI(Clone)'
  
-(Filename:  Line: 1639)
+(Filename:  Line: 133)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 36 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+current ActionPoint
  
-(Filename:  Line: 1170)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The referenced script on this Behaviour is missing!
+current ActionPoint
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+Actions count :: 2
  
-(Filename:  Line: 1170)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The referenced script on this Behaviour is missing!
+# 3.1 : addReadyPlayer
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+Ready Player Map :: 
  
-(Filename:  Line: 1170)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The referenced script on this Behaviour is missing!
+1 : Player Actions : 2
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+# 3.2 : startNextRound
  
-(Filename:  Line: 1170)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The referenced script on this Behaviour is missing!
+Start next round
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+kvp.value == 2
  
-(Filename:  Line: 1170)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The referenced script on this Behaviour is missing!
+this._mesh == cone_mesh (UnityEngine.Mesh)
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 84 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+RPC call failed because the function 'resetActionPointRPC' does not exist in any script attached to'PlayerDefaultGUI(Clone)'
  
-(Filename:  Line: 1170)
+(Filename:  Line: 133)
 
-The referenced script on this Behaviour is missing!
+# 2 : initNextRound
  
-(Filename:  Line: 1639)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 152 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
+The server has disconnected from the client. Most likely the server has shut down.
  
-(Filename:  Line: 1170)
+(Filename:  Line: 745)
 
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
+Couldn't send RPC function '__RPCNetworkDestroy'
 
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 92 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
  
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 80 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 72 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 60 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 68 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 52 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 28 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
-
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1639)
-
-A script behaviour has a different serialization layout when loading. (Read 24 bytes but expected 56 bytes)
-Did you #ifdef UNITY_EDITOR a section of your serialized properties in any of your scripts?
- 
-(Filename:  Line: 1170)
+(Filename:  Line: 2463)
 

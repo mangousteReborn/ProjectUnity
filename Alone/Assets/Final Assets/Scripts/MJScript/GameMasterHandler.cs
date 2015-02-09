@@ -67,20 +67,23 @@ public class GameMasterHandler : MonoBehaviour {
 
 	}
 
-	// Clicks
+	/*
+	 * Listeners
+	 */
 	public void onReadyButtonAction(object[] data){
-		Debug.Log ("onReadyButtonAction");
 
 		if(GameData.getGameManager().hiddenEntities.Count <= 0){
 			Debug.Log("Pose units :)");
 			return;
 		}
+
 		GameData.getGameManager ().networkView.RPC("instanciateHiddenEntities", RPCMode.All);
 		GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.All, _currRoom + 1);
 		Debug.Log("Opening room " + _currRoom);
-		// Next : Move GM TO NEXT ROOM
+		// TODO : Move GM TO NEXT ROOM
 
-		return;
+		
+		/*
 		if(Network.isServer)
 			GameData.getGameManager ().gameMasterReady();
 		else
@@ -88,10 +91,14 @@ public class GameMasterHandler : MonoBehaviour {
 		
 		Debug.Log("instanciate");
 		GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().onValidate();
+		*/
 	}
 
 	public void onVignetteButtonAction(VignetteEntity ve){
-
+		if (GameData.getNonGMPlayerCount() <= 0) {
+			Debug.Log("Wait player(s) ..");
+			return;
+		}
 		if(_pendingVignette != null)
 			return;
 

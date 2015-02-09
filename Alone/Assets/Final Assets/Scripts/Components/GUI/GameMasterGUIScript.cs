@@ -27,7 +27,9 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 
 			[SerializeField]
 			GameObject _readyButtonObject;
-
+			
+			[SerializeField]
+			Text _posePointText;
 	
 	// Independents comps
 	[SerializeField]
@@ -42,6 +44,9 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 	private int _screenWidth;
 
 	private int _currentMode;
+
+	private Action<VignetteEntity> _vignetteAction;
+	private Action _readyAction;
 
 	// Use this for initialization
 	void Start () {
@@ -60,8 +65,21 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		fillVignettesPicker ();
 	}
 
+	public void setReadyButtonAction(Action<object[]> a){
+		//_readyAction = a;
+		this._readyButtonObject.GetComponent<Button>().onClick.AddListener(() => { a(null); });
+	}
+
+	public void setVignetteButtonAction(Action<VignetteEntity> a){
+		_vignetteAction = a;
+	}
+
 	public void setOwner(Player p){
-		this._owner = p;
+		_owner = p;
+	}
+
+	public void setPosePointValue(int value, int max){
+		_posePointText.text = value + " / " + max;
 	}
 
     private void fillVignettesPicker()
@@ -78,11 +96,18 @@ public class GameMasterGUIScript : MonoBehaviour, IPlayerGUI{
 		VignetteSlotScript vss = (VignetteSlotScript)data [0];
 		VignetteEntity ve = (VignetteEntity)vss.vignette;
 
-        GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType, ve.cost);
+		if (null != _vignetteAction) {
+			_vignetteAction(ve);
+		}
+        //GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().instantiateEnemy(ve.entityType, ve.cost);
 	}
 
     private void onReadyButtonClick()
     {
+
+		//GameData.getGameManager().gameObject.GetComponent<InstantiateNPCScript>().onValidate();
+		return;
+
 		if(Network.isServer)
 			GameData.getGameManager ().gameMasterReady();
 		else

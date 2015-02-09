@@ -83,7 +83,9 @@
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignetteSlotScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\GUI\VignettesPickerScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\HealthbarScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\Components\OthersHelpers\AIEntityHelperScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\Components\TextPopupScript.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\DebugHandler.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\ConnectRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\enterRoomScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\EnvironnementScript\fireCollisionEventScript.cs" />
@@ -91,6 +93,7 @@
      <Compile Include="Assets\Final Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Final Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Final Assets\Scripts\IA\IABase.cs" />
+     <Compile Include="Assets\Final Assets\Scripts\MJScript\GameMasterHandler.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\InstantiateNPCScript.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MJScript\spawnEntityInfos.cs" />
      <Compile Include="Assets\Final Assets\Scripts\MenuScript\LobbyMenuScript.cs" />

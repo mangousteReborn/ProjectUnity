@@ -36,7 +36,13 @@ public class ConnectRoomScript : MonoBehaviour {
                 NavMeshAgent nav = player.playerObject.GetComponent<NavMeshAgent>();
                 if (nav != null)
                     nav.enabled = false;
-                player.playerObject.transform.position = ExitSpawn[currentIndex].spwan[i].transform.position;
+
+				Vector3 nextPos = ExitSpawn[currentIndex].spwan[i].transform.position;
+				player.playerObject.transform.position = nextPos;
+
+				//player.characterManager.networkView.RPC ("moveToPoint", RPCMode.All, nextPos);
+
+
                 CameraMovementScriptMouse cam = Camera.main.GetComponent<CameraMovementScriptMouse>();
                 if (cam != null)
                 {
@@ -50,12 +56,17 @@ public class ConnectRoomScript : MonoBehaviour {
             setIsOpen(false);
             currentIndex++;
             if (Network.isServer)
-                fireCombat();
+                fireCombat(); 
+
         }
     }
 
     private void fireCombat()
     {
+
+		gm.networkView.RPC("playerEnteredRoom", RPCMode.All);
+
+		return;
         var playerList = GameData.getPlayerList();
         foreach (Player player in playerList)
         {

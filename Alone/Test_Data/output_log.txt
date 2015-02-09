@@ -12,13 +12,146 @@ Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data
 Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.066 seconds
+- Completed reload, in  0.062 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\Test_Data\Managed\System.dll (this message is harmless)
-Failed to connect to master server at 67.225.180.24:23466
+Player : Player2 Is : ally, player, 
  
-(Filename:  Line: 231)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+RPC call failed because the function 'moveToPoint' does not exist in the any script attached to'Player(Clone)'
+ 
+(Filename:  Line: 167)
+
+RPC call failed because the function 'moveToPoint' does not exist in the any script attached to'Player(Clone)'
+ 
+(Filename:  Line: 167)
+
+Enter Planif Mode
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+deleteAllHelpers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player Player2 Has no GUI set
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.enterFightMode () [0x00000] in <filename unknown>:0 
+  at GameManager.switchToFightMode () [0x00000] in <filename unknown>:0 
+UnityEngine.NetworkView:Internal_RPC(NetworkView, String, RPCMode, Object[])
+UnityEngine.NetworkView:RPC(String, RPCMode, Object[])
+GameManager:enterFightMode(NetworkViewID)
+ConnectRoomScript:fireCombat()
+ConnectRoomScript:onCollisionEnter(Collision)
+fireCollisionEventScript:OnCollisionEnter(Collision)
+ 
+(Filename:  Line: -1)
+
+Enter Planif Mode
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+deleteAllHelpers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player Player2 Has no GUI set
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.enterFightMode () [0x00000] in <filename unknown>:0 
+  at GameManager.switchToFightMode () [0x00000] in <filename unknown>:0 
+UnityEngine.NetworkView:Internal_RPC(NetworkView, String, RPCMode, Object[])
+UnityEngine.NetworkView:RPC(String, RPCMode, Object[])
+GameManager:enterFightMode(NetworkViewID)
+ConnectRoomScript:fireCombat()
+ConnectRoomScript:onCollisionEnter(Collision)
+fireCollisionEventScript:OnCollisionEnter(Collision)
+ 
+(Filename:  Line: -1)
+
+deleteAllHelpers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player Player2 Has no GUI set
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.enterFightMode () [0x00000] in <filename unknown>:0 
+  at GameManager.switchToFightMode () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+deleteAllHelpers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player Player2 Has no GUI set
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.enterFightMode () [0x00000] in <filename unknown>:0 
+  at GameManager.switchToFightMode () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+deleteAllHelpers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+deleteAllHelpers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player Player2 Has no GUI set
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.enterFightMode () [0x00000] in <filename unknown>:0 
+  at GameManager.switchToFightMode () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Player Player2 Has no GUI set
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.enterFightMode () [0x00000] in <filename unknown>:0 
+  at GameManager.switchToFightMode () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Tooltip !!!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Tooltip !!!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Tooltip !!!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Couldn't send RPC function '__RPCNetworkDestroy'
+
+ 
+(Filename:  Line: 2463)
 

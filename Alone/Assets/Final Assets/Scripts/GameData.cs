@@ -10,7 +10,14 @@ using System.Collections.Generic;
  */
 public static class GameData {
 
-    private static List<Player> _playerList;
+	/* Default Stats */
+	public static int _GAME_MASTER_AP = 5;
+
+    private static List<Player> _playerList; // All players 
+
+	private static Player _gameMasterPlayer;// GM Player
+
+	private static Player _me; // Current player
 
 	private static Dictionary<string, Vignette> _bonusVignetteMap = new Dictionary<string, Vignette>();
 
@@ -20,13 +27,13 @@ public static class GameData {
 
 	private static Dictionary<string, Action> _actionsMap = new Dictionary<string, Action>();
 
+
+
 	private static GameManager _gameManager;
 
 	private static ActionHelperDrawer _actionHelperDrawer;
 
 	private static GameObject _playerCameraObject;
-
-    private static Player _gameMasterPlayer;
 
 	private static bool initialized = false;
 
@@ -41,6 +48,9 @@ public static class GameData {
 		_gameManager = GameObject.Find("Handler").GetComponent<GameManager>();
 
         _playerList = new List<Player>();
+		_me = null;
+		_gameMasterPlayer = null;
+
 		/*
 			VIGNETTES
 		 */
@@ -110,17 +120,12 @@ public static class GameData {
 		return _entitiesVignetteMap;
 	}
 
-	// Action Get
 	public static Action getAction(string k){
 		Action val;
 		_actionsMap.TryGetValue(k, out val);
 		return val;
 	}
 	public static Action getCopyOfAction(string k){
-		/*
-		object[] param = {va.action};
-		Action newAction = (Action)va.action.GetType ().GetMethod ("getCopy").Invoke (va.action, param);
-		*/
 		Action a = null;
 		if(!_actionsMap.TryGetValue(k, out a))
 			return null;
@@ -151,10 +156,24 @@ public static class GameData {
         return _gameMasterPlayer;
     }
 
+	public static GameMasterPlayer getCastedGameMasterPlayer()
+	{
+		return (GameMasterPlayer)_gameMasterPlayer;
+	}
+
     public static void addPlayer(Player player)
     {
         _playerList.Add(player);
     }
+
+	public static Player myself {
+		get {
+			return _me;
+		}
+		set {
+			_me = value;
+		}
+	}
 
 	public static Player getPlayerByNetworkViewID(NetworkViewID id){
 		bool f = false;
@@ -182,4 +201,20 @@ public static class GameData {
         }
         return playerCount;
     }
+
+	public static void printGameDatas(){
+		Debug.Log("# Me : \n\t - " + (null == _me ? "NULL" : _me.name));
+
+		string msg = "";
+		foreach (Player p in _playerList) {
+			msg += "\t - " + (null == p ? "NULL" : p.name);
+		}
+		Debug.Log("# Players List (without GM): \n"+msg);
+
+
+		Debug.Log("# GameMaster : \n\t - " + (null == _gameMasterPlayer ? "NULL" : _gameMasterPlayer.name));
+
+	}
+
+
 }

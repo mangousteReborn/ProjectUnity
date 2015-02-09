@@ -29,8 +29,7 @@ public class Player {
 
 
 	public virtual void enterFightMode(){
-		this._gui.changeGameMode (2);
-		//this._characterManager.
+
 	}
 
 	public virtual void resetRound(){

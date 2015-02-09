@@ -5,6 +5,10 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
+	/* AI Entity Prefab */
+	[SerializeField]
+	private GameObject _basicEntityPrefab;
+
 	/* Misc */
 	[SerializeField]
 	Light _light;
@@ -26,12 +30,17 @@ public class GameManager : MonoBehaviour {
 	private static Color _SPECTATOR_MODE_COLOR = new Color(1f,0,0); // index : 3
 
 	/* Game Steps */
+	// 1 : Free
+	// 2 : Planif
+	// 3 : Fight
+	private int _playerGameStep;
 	private List<Fight> _fights;
 	private List<Round> _currentRounds;
 	private bool _roundInProgress;
 
 	private List<Player> _playersConnected;
 	private Dictionary<NetworkViewID, int> _playersReadyMap;
+	private List<GameObject> _hiddenEntities;
 
 	private Player _gameMaster;
 	private bool _gameMasterReady;
@@ -46,11 +55,14 @@ public class GameManager : MonoBehaviour {
     private int currentRoomBattle = 1;
 
 
+
 	void Start () {
 		_light.color = _FREE_MODE_COLOR;
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
 		_playersConnected = new List<Player> ();
+		_hiddenEntities = new List<GameObject> ();
 		_withoutGameMasterMode = true;
+		_playerGameStep = 0;
         closeAllRoom();
 	}
 
@@ -71,8 +83,28 @@ public class GameManager : MonoBehaviour {
    
 
 	/*
-	 * Step 1 : Planif mode
+	 * Step 1 : Entering in room (Fight Mode)
 	 */
+	[RPC] // All
+	public void playerEnteredRoom(){
+		if (GameData.myself.isGM) {
+			GameData.myself.gui.changeGameMode(1);
+		} else {
+
+			// Just in case of ..
+			GameData.getActionHelperDrawer().deleteAllHelpers();
+
+			GameData.myself.gui.changeGameMode(2);
+			GameData.myself.characterManager.lineRenderer.SetVertexCount(0);
+			GameData.myself.characterManager.isInFight = true;
+		}
+
+		_playerGameStep = 2;
+		_light.color = _PLANIF_MODE_COLOR;
+		//_gameMasterStep = 2;
+
+	}
+
 	[RPC]
 	public void enterFightMode(NetworkViewID id)
 	{
@@ -80,7 +112,7 @@ public class GameManager : MonoBehaviour {
 
 		// PLANIF COLOR
 		networkView.RPC("changeLightForAllPlayer", RPCMode.All, 2);
-		networkView.RPC("deleteAllHelpers", RPCMode.All);
+		networkView.RPC("deleteHelpers", RPCMode.All);
 		networkView.RPC("switchToFightMode", RPCMode.All);
 
 		Player player = GameData.getPlayerByNetworkViewID (id);
@@ -90,23 +122,21 @@ public class GameManager : MonoBehaviour {
 		{
 			getRoomNumber(currentRoomBattle).beginBattleMode();
 			cm.isInFight = true;
-			cm.characterStats.gameMode = 2;
 			cm.lineRenderer.SetVertexCount(0);
 			networkView.RPC("enterFightMode", RPCMode.Others, id);
 		}
 		else
 		{
 			cm.isInFight = true;
-			cm.characterStats.gameMode = 2;
 			cm.lineRenderer.SetVertexCount(0);
 			
 		}
 	}
 
 	/*
-	 * Step 2 : Round
+	 * Step 3 : Round
 	 */
-	/* 2.1 : Wait for players + GM being ready */
+	/* 3.1 : Wait for players + GM being ready */
 	[RPC]
 	public void addReadyPlayer(NetworkViewID id){
 		bool f = _playersReadyMap.ContainsKey (id);
@@ -140,13 +170,13 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	/* 2.2 : Run Next Round */
+	/* 3.2 : Run Next Round */
 	[RPC]
 	private void startNextRound(){
 		_roundInProgress = true;
 		Debug.Log ("Start next round");
 
-		networkView.RPC("deleteAllHelpers", RPCMode.All);
+		networkView.RPC("deleteHelpers", RPCMode.All);
 
 		// Check if GameMaster Mobs are dead
 		/*
@@ -258,7 +288,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	[RPC]
-	public void deleteAllHelpers(){
+	public void deleteHelpers(){
 		GameData.getActionHelperDrawer ().deleteAllHelpers ();
 	}
 
@@ -282,6 +312,17 @@ public class GameManager : MonoBehaviour {
 	/*
 	 * Rooms
 	 */
+	public roomBattleModeScript getRoomNumber(int number)
+	{
+		foreach (GameObject roomHandler in this._roomList)
+		{
+			roomBattleModeScript room = roomHandler.GetComponent<roomBattleModeScript>();
+			if (room.roomNumber == number)
+				return room;
+		}
+		return null;
+	}
+
 	private void closeAllRoom()
 	{
 		foreach(GameObject room in _roomList)
@@ -303,14 +344,32 @@ public class GameManager : MonoBehaviour {
 				script.setIsOpen(true);
 			if (Network.isServer)
 				networkView.RPC("openRoomNumber", RPCMode.Others, number);
+			// else ?
 		}
 
 	}
 
+	/*
+	 * AI Entity RPC
+	 */
+	[RPC] // All
+	public void addHiddenBasicEntity(Vector3 pos){
+		GameObject go = (GameObject)Instantiate (_basicEntityPrefab);
+		_hiddenEntities.Add (go);
+	}
 
-
-
-
+	/*
+	 *  Game Master Stuff
+	 */
+	[RPC] // All
+	public void setGameMasterPosePoint(int value){
+		if (GameData.myself.isGM) {
+			GameMasterPlayer gm = (GameMasterPlayer)GameData.myself;
+			gm.currPosePoint = value;
+		} else {
+			GameData.getCastedGameMasterPlayer().currPosePoint = value;
+		}
+	}
 
 
 
@@ -400,14 +459,15 @@ public class GameManager : MonoBehaviour {
     }
 	*/
 
-    public roomBattleModeScript getRoomNumber(int number)
-    {
-        foreach (GameObject roomHandler in this._roomList)
-        {
-            roomBattleModeScript room = roomHandler.GetComponent<roomBattleModeScript>();
-            if (room.roomNumber == number)
-                return room;
-        }
-        return null;
-    }
+	/*
+	 *  GET / SET
+	 */
+
+
+   
+	public int playerGameStep {
+		get {
+			return _playerGameStep;
+		}
+	}
 }

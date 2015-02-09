@@ -9,11 +9,7 @@ public class DeplacementActionScript : MonoBehaviour {
 	Material _lineColorMaterial;
 
     GameObject _player;
-    public GameObject Player
-    {
-        get { return _player; }
-        set { _player = value; }
-    }
+	Transform _transform;
 
 	CharacterManager _characterManager;
     AStarScript networkDeplacement;
@@ -40,6 +36,8 @@ public class DeplacementActionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _player = gameObject;
+		_transform = gameObject.transform;
+
         networkDeplacement = new AStarScript(_player.networkView);
         agent = _player.GetComponent<NavMeshAgent>();
         _characterManager = _player.GetComponent<CharacterManager>();
@@ -97,6 +95,10 @@ public class DeplacementActionScript : MonoBehaviour {
 
     public void moveToTarget(Vector3 target)
     {
+		networkView.RPC("moveToPosition", RPCMode.All, target);
+		isMoving = true;
+
+		return;
         if (Network.isServer)
         {
 			NavMeshPath nmp = networkDeplacement.setTarget(_player.transform.position, target,false);
@@ -105,9 +107,9 @@ public class DeplacementActionScript : MonoBehaviour {
         }
         else
         {
-            networkView.RPC("setTargetRPC", RPCMode.Server,networkView.viewID, _player.transform.position, target);
+			networkView.RPC("setTargetRPC", RPCMode.Server,networkView.viewID, _player.transform.position, target);
         }
-        isMoving = true;
+       
         //agent.SetDestination(target);
     }
 
@@ -151,15 +153,12 @@ public class DeplacementActionScript : MonoBehaviour {
         return distance / agent.speed;
     }
 
-	public AStarScript AStarScript{
-		get{ return this.networkDeplacement;}
-	}
-
-    private void changeDirection(NetworkViewID id,string pathCorner)
-    {
-        Debug.Log("change direction");
-        //NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = networkDeplacement.changeDirection(pathCorner);
-    }
+	[RPC]
+	public void moveToPosition(Vector3 des){
+		NavMeshPath path = networkDeplacement.setTarget(_transform.position, des,true);
+		if(null != path)
+			agent.path = path;
+	} 
 
     [RPC]
     private void setTargetRPC(NetworkViewID id, Vector3 startPos, Vector3 newTarget)
@@ -168,4 +167,5 @@ public class DeplacementActionScript : MonoBehaviour {
         if (path != null)
             NetworkView.Find(id).gameObject.GetComponent<NavMeshAgent>().path = path;
     }
+
 }

@@ -44,6 +44,8 @@ public class InstantiateNPCScript : MonoBehaviour {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
             worldPos.y = currentEntityHandle.transform.position.y - 1;
             Ray ray = new Ray(worldPos, Vector3.down);
+
+
             if (Physics.Raycast(ray,out hit))
             {
                 if (hit.transform.tag == "Ground")

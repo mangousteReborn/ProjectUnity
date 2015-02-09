@@ -116,11 +116,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .1953125, g: .1953125, b: .1953125, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 16
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -275,9 +275,9 @@ MonoBehaviour:
   _topContainerObject: {fileID: 100008}
   _gameStateObject: {fileID: 100006}
   _readyButtonObject: {fileID: 100004}
+  _posePointText: {fileID: 11400000}
   _VignettesPickerObject: {fileID: 100010, guid: 29ebc0558cad2ef48a9618072d7b1ad5,
     type: 2}
-  gm: {fileID: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

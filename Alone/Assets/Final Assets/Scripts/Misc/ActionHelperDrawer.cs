@@ -30,6 +30,10 @@ public class ActionHelperDrawer : MonoBehaviour {
 	[SerializeField]
 	GameObject _defaultStaticHelperObject;
 
+	/* Game Master Stuff */
+	[SerializeField]
+	GameObject _AIEntityHelper;
+
 	/* Effects for battle*/
 	[SerializeField]
 	Material _lazerMaterial;
@@ -44,11 +48,14 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 	private IActionHelper _currentPlayerHelper;
 
+	// Local only (for GM)
+	private List<AIEntityHelperScript> _AIEntityHelperList;
 
 	// Use this for initialization
 	void Start () {
 		this._playerHelpers = new Stack<GameObject> ();
 		this._othersHelpersMap = new Dictionary<string, Stack<GameObject>>();
+		this._AIEntityHelperList = new List<AIEntityHelperScript>();
 
 	}
 
@@ -165,6 +172,28 @@ public class ActionHelperDrawer : MonoBehaviour {
 		
 		return helper;
 	}
+
+	/*
+	 *  Game Master Stuff
+	 */
+	public AIEntityHelperScript pushAIEntityHelper(Mesh m, Transform t, Action<Vector3> a){
+
+		GameObject go = (GameObject)Instantiate (_AIEntityHelper, Input.mousePosition, Quaternion.identity);
+		AIEntityHelperScript aie = go.GetComponent<AIEntityHelperScript> ();
+		aie.activate (m, t, a);
+
+		this._AIEntityHelperList.Add (aie);
+
+		return aie;
+		
+	}
+	public void deleteAllAIEntityHelpers(){
+		
+		foreach (AIEntityHelperScript s in this._AIEntityHelperList) {
+			s.delete();
+		}
+	}
+
 
 
 	/*

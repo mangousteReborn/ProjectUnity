@@ -230,7 +230,7 @@ public class ActionHelperDrawer : MonoBehaviour {
 	 *  RPC
 	 */
 	[RPC]
-	public void createStaticLazerRPC(NetworkViewID id, Vector2 pos, float duration){
+	public void createStaticLazerRPC(NetworkViewID id, Vector3 pos, float duration){
 		Player p = GameData.getPlayerByNetworkViewID (id);
 		CharacterManager cm = p.characterManager;
 
@@ -257,8 +257,6 @@ public class ActionHelperDrawer : MonoBehaviour {
 	// as a Description of current player actions.
 	[RPC]
 	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){
-		if(GameData.myself.isGM)
-			return;
 		
 		GameObject go = (GameObject)Instantiate (_defaultStaticHelperObject, startPoint , Quaternion.identity);
 		LineRenderer ln = go.GetComponent<LineRenderer>();

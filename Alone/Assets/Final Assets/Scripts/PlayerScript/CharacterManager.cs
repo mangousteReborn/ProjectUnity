@@ -99,15 +99,11 @@ public class CharacterManager : MonoBehaviour {
 		this._character.GetComponent<MeshRenderer>().material = this._material;
 	}
 
-	private void onCurrentLifeChange(CharacterStats stats, object[] param){
-		int damages = (int)param [0] - (int)param [1];
-		Color color = damages >= 0 ? Color.red : Color.green;
-
+	private void createPopup(String msg,Color col){
 		GameObject popup = (GameObject)Instantiate (this._damagePopup, this._character.transform.position,  Quaternion.identity);
 
-
-		popup.GetComponentInChildren<Text> ().color = color;
-		popup.GetComponentInChildren<Text> ().text = damages >= 0 ? ""+damages : "+"+damages*-1;
+		popup.GetComponentInChildren<Text> ().color = col;
+		popup.GetComponentInChildren<Text> ().text = msg;
 	
 	}
 
@@ -125,6 +121,7 @@ public class CharacterManager : MonoBehaviour {
 	}
 
 	IEnumerator runNextHotAction(object o){
+		bool isAI = this._player.isGM;
 
 		List<Action> actions = (List<Action>)o;
 		foreach(Action a in actions){
@@ -133,11 +130,10 @@ public class CharacterManager : MonoBehaviour {
 			a.onActionEnd(this);
 
             if (Network.isServer)
-                GameData.getGameManager().hotActionProcessed(this._player.id);
+				GameData.getGameManager().hotActionProcessed(this._player.id,isAI);
             else
-                GameData.getGameManager().networkView.RPC("hotActionProcessed", RPCMode.Server, this._player.id);
+				GameData.getGameManager().networkView.RPC("hotActionProcessed", RPCMode.Server, this.networkView.viewID, isAI);//this._player.id
 		}
-
 	}
 
 
@@ -157,11 +153,17 @@ public class CharacterManager : MonoBehaviour {
 	}
 	[RPC] // All
 	public void inflictDamage(int value){
+		Debug.Log("damages !");
 		this._characterStats.currentLife -= value;
 		if(this._characterStats.currentLife <= 0){
 			this._characterStats.isDead = true;
 		}
+
 		this._healthBarScript.setLife(this._characterStats.currentLife, this._characterStats.maxLife);
+
+		String msg = value >= 0 ? ""+value : "+"+value*-1;
+		Color col = value >= 0 ? Color.red : Color.green;
+		createPopup(msg,col);
 
 		if(this.player.gui != null)
 			this._player.gui.updateGUI();

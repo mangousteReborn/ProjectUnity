@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	private static Color _FREE_MODE_COLOR = new Color(1f,1f,1f); // index : 1
 	private static Color _PLANIF_MODE_COLOR = new Color(0,0,1f); // index : 2
 	private static Color _SPECTATOR_MODE_COLOR = new Color(1f,0,0); // index : 3
-
+	private static bool _LOG_STEPS = false;
 	/* Game Steps */
 	// 1 : Free
 	// 2 : Planif
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour {
 	private bool _roundInProgress;
 
 	private Dictionary<NetworkViewID, int> _playersReadyMap;
+	private Dictionary<NetworkViewID, int> _AIReadyMap;
+
 	private List<AIEntityData> _hiddenEntities;
 	private List<AIEntityData> _gameMastersMinions;
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		_light.color = _FREE_MODE_COLOR;
 		_playersReadyMap = new Dictionary<NetworkViewID, int> ();
+		_AIReadyMap = new Dictionary<NetworkViewID, int> ();
 		_hiddenEntities = new List<AIEntityData> ();
 		_gameMastersMinions = new List<AIEntityData>();
 
@@ -126,7 +129,8 @@ public class GameManager : MonoBehaviour {
 	 */
 	[RPC] // All
 	public void initNextRound(){
-		Debug.Log ("# 2 : initNextRound");
+
+		if(_LOG_STEPS) Debug.Log ("# 2 : initNextRound");
 		if(_playerGameStep == 2){
 			Debug.LogError("initNextRound : Player GameStep : " +_playerGameStep);
 
@@ -184,18 +188,29 @@ public class GameManager : MonoBehaviour {
 			GameData.myself.characterManager.isInFight = true;
 		}
 		
-		// Init AI
-		foreach(AIEntityData e in _gameMastersMinions){
-			// TODO : Init / Run AI
-		}
+
 		
 		// Reset AP for Minions
 		foreach(AIEntityData e in _gameMastersMinions){
 			CharacterManager cm = e.tryGetCharacterManager();
 			if(null == cm)
 				Debug.LogError("CharacterManager for AIEntityData is null ..");
-			cm.networkView.RPC("resetActionPointRPC", RPCMode.All);
+			else
+				cm.networkView.RPC("resetActionPointRPC", RPCMode.All);
 		}
+
+		// Init AI
+		foreach(AIEntityData e in _gameMastersMinions){ 
+			IABase ai = e.instanciateObject.GetComponent<IABase>();
+			ai.enabled = true;
+			if(ai == null){
+				Debug.LogError("AIBase compo. is NULL");
+				continue;
+			}
+			
+			ai.runPlanification(e);
+		}
+
 		// Reset Data for player and gm
 		GameData.myself.onInitNextRound();
 
@@ -207,7 +222,7 @@ public class GameManager : MonoBehaviour {
 
 		// Game Master move to next Room
 		networkView.RPC ("setGameMasterPosePoint", RPCMode.All, GameData.getCastedGameMasterPlayer().maxPosePoint);
-
+	
 	}
 
 	/*
@@ -216,8 +231,8 @@ public class GameManager : MonoBehaviour {
 	/* 3.1 : Wait for players clicking Ready Button */
 	[RPC] // All
 	public void addReadyPlayer(NetworkViewID id, int count){
-		Debug.Log ("# 3.1 : addReadyPlayer");
-		if(_playerGameStep != 2){
+		if(_LOG_STEPS)Debug.Log ("# 3.1 : addReadyPlayer");
+		if(_playerGameStep != 2) {
 			Debug.LogError("addReadyPlayer called for non PLANIF mode : " + _playerGameStep);
 		}
 
@@ -225,11 +240,11 @@ public class GameManager : MonoBehaviour {
 
 		bool f = _playersReadyMap.ContainsKey (id);
 		if (!f) {
-			//Player next = GameData.getPlayerByNetworkViewID(id);
+			Player next = GameData.getPlayerByNetworkViewID(id);
 
-			_playersReadyMap.Add(id, count);//next.characterManager.characterStats.hotActionsStack.Count);
+			_playersReadyMap.Add(next.id, count);//next.characterManager.characterStats.hotActionsStack.Count);
 		} else {
-			Debug.LogError("Player " + GameData.getPlayerByNetworkViewID(id).name + " aleady ready");
+			Debug.LogError("(Player) Key " + id + " aleady in map");
 		}
 
 		showMap ();
@@ -238,21 +253,42 @@ public class GameManager : MonoBehaviour {
 			checkPlayersAndGameMasterReady();
 
 	}
-	[RPC] // ?
-	public void gameMasterReady(){
-		return;
-		if (this._gameMasterReady) {
-			Debug.LogWarning("Game master already ready");
-			return;
+	[RPC]// All 
+	public void addReadyAI(NetworkViewID id, int count){
+		if(_LOG_STEPS)Debug.Log ("# 3.1(bis) : addReadyAI");
+		if(_playerGameStep != 2) {
+			Debug.LogError("addReadyAI called for non PLANIF mode : " + _playerGameStep);
 		}
-
-		//this._gameMaster = GameData.getGameMasterPlayer ();
-		this._gameMasterReady = true;
-
-		checkPlayersAndGameMasterReady ();
+		
+		
+		
+		bool f = _AIReadyMap.ContainsKey (id);
+		if (!f) {
+			//Player next = GameData.getPlayerByNetworkViewID(id);
+			
+			_AIReadyMap.Add(id, count);//next.characterManager.characterStats.hotActionsStack.Count);
+		} else {
+			Debug.LogError("(AI) Key " + id + " aleady in map");
+		}
+		
+		showMap ();
+		
+		if(Network.isServer)
+			checkPlayersAndGameMasterReady();
 	}
 	private void checkPlayersAndGameMasterReady(){
-		if (_playersReadyMap.Count == GameData.getNonGMPlayerCount ()) {
+		bool rdy = true;
+		// Players ready ?
+		if (_playersReadyMap.Count != GameData.getNonGMPlayerCount ()) {
+			rdy = false;
+		}
+		/* 
+		// AIs ready ?
+		if (_AIReadyMap.Count != _gameMastersMinions.Count) {
+			rdy = false;
+		}
+		*/
+		if(rdy){
 			networkView.RPC ("startNextRound", RPCMode.All);
 		}
 	}
@@ -263,9 +299,8 @@ public class GameManager : MonoBehaviour {
 	/* 3.2 : Run Next Round */
 	[RPC]// All
 	private void startNextRound(){
-		Debug.Log ("# 3.2 : startNextRound");
+		if(_LOG_STEPS)Debug.Log ("# 3.2 : startNextRound");
 		_roundInProgress = true;
-		Debug.Log ("Start next round");
 
 		_playerGameStep = 3;
 		_gameMasterGameStep = 1;
@@ -278,6 +313,13 @@ public class GameManager : MonoBehaviour {
 			GameData.myself.characterManager.runHotAcions();
 		}
 
+		foreach(AIEntityData e in _gameMastersMinions){
+			CharacterManager cm = e.tryGetCharacterManager();
+			if(null == cm)
+				Debug.LogError("CharacterManager for AIEntityData is null ..");
+			cm.runHotAcions();
+		}
+
 		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
 		GameData.getActionHelperDrawer().deleteAllHelpers();
 
@@ -288,23 +330,36 @@ public class GameManager : MonoBehaviour {
 	}
 
 	[RPC]
-	public void hotActionProcessed (NetworkViewID ownerId){
+	public void hotActionProcessed (NetworkViewID id, bool fromAI){
 		if(_playerGameStep!= 3){
 			Debug.LogError("hotActionProcessed called in non SPECTATOR step : " + _playerGameStep);
 		}
-		Player player = GameData.getPlayerByNetworkViewID(ownerId);
+		Player owner = null;
+		if(fromAI){
+			owner = GameData.getPlayerByNetworkViewID(id);
+		} else {
+			owner = GameData.getGameMasterPlayer();
+		}
+
 		bool roundIsOver = true;
 
-		if (player.isGM) {
-			// TODO : Check hotaction runned for Minnionzz
+		if (fromAI) {
+			if (_AIReadyMap.ContainsKey(id)){
+				_AIReadyMap[id] -= 1;
+				
+				Debug.Log("AI (owner : " + owner.name + ") remaining actions : " + _AIReadyMap[id]);
+				
+			} else {
+				Debug.LogError("[hotActionProcessed] _AIReadyMap doesnt contains AI " + id + "(owner : " + owner.name);
+			}
 		} else {
-			if (_playersReadyMap.ContainsKey(ownerId)){
-				_playersReadyMap[ownerId] -= 1;
+			if (_playersReadyMap.ContainsKey(id)){
+				_playersReadyMap[id] -= 1;
 
-				Debug.Log("Player " + player.name + " remaining actions : " + _playersReadyMap[ownerId]);
+				Debug.Log("Player " + owner.name + " remaining actions : " + _playersReadyMap[id]);
 
 			} else {
-				Debug.LogError("[hotActionProcessed] _playersReadyMap doesnt contains Player " + player.name);
+				Debug.LogError("[hotActionProcessed] _playersReadyMap doesnt contains Player " + owner.name);
 			}
 		}
 
@@ -312,18 +367,28 @@ public class GameManager : MonoBehaviour {
 	}
 	private void checkIfRoundIsOver(){
 		bool f = true;
+		// Players
 		foreach (KeyValuePair<NetworkViewID, int> kvp in _playersReadyMap) {
-			Debug.Log("kvp.value == " + kvp.Value);
+			Debug.Log("(Player) kvp.value == " + kvp.Value);
 			if(kvp.Value != 0){
 				f = false;
 				break;
 			}
 		}
-		// TODO check GM !
+		/*
+		// AI
+		foreach (KeyValuePair<NetworkViewID, int> kvp in _AIReadyMap) {
+			Debug.Log("(AI) kvp.value == " + kvp.Value);
+			if(kvp.Value != 0){
+				f = false;
+				break;
+			}
+		}
+		*/
 
 		if(!f)
 			return;
-		Debug.Log ("Round is OVER");
+		if(_LOG_STEPS)Debug.Log ("Round is OVER");
 		// At this point, round is OVER
 		StartCoroutine ("resetRound");
 	}
@@ -419,7 +484,7 @@ public class GameManager : MonoBehaviour {
 
 		foreach(AIEntityData e in _hiddenEntities){
 			Vector3 safePos = e.initPos;
-			safePos.y = 1;
+			safePos.y = 1.2f;
 			GameObject go = (GameObject) Instantiate(e.prefab, safePos, Quaternion.identity);
 
 			CharacterManager cm = go.GetComponent<CharacterManager>();
@@ -431,6 +496,7 @@ public class GameManager : MonoBehaviour {
 			// CharacManager Step 2 : Instantiate (logic data)
 			cm.initialize(stats,e.owner, null);
 			e.instanciateObject = go;
+			e.characterManager = cm;
 
 			_gameMastersMinions.Add(e);
 		}

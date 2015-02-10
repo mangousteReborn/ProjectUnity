@@ -4287,7 +4287,7 @@ MonoBehaviour:
   - {fileID: 2116470074}
   - {fileID: 641654297}
   gmSpawnPoint: {fileID: 1859967616}
-  _isGM: 1
+  _isGM: 0
   _materialGameMaster: {fileID: 2100000, guid: ca084320a21a38642978989828e90823, type: 2}
   _materialArray:
   - {fileID: 2100000, guid: 4a6613d73a67c5c459e88d23d2ed43fc, type: 2}

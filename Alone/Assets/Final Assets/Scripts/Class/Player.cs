@@ -33,9 +33,11 @@ public class Player {
 			return;
 		}
 		this._gui.changeGameMode(2);
-		this._characterManager.networkView.RPC("resetActionPointRPC", RPCMode.All);
-		PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
-		pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
+		//this._characterManager.networkView.RPC("resetActionPointRPC", RPCMode.All);
+		if(null !=this._gui){
+			PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
+			pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
+		}
 	}
 
 	public virtual void resetFight(){
@@ -43,15 +45,21 @@ public class Player {
 			Debug.LogError("(resetFight) _characterManager is not set for : " + this._name);
 			return;
 		}
-		this._gui.changeGameMode(1);
+		
 		this._characterManager.networkView.RPC("resetActionPoint", RPCMode.All);
 		this._characterManager.isInFight = false;
-		PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
-		pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
+
+		if(null !=this._gui){
+			this._gui.changeGameMode(1);
+			PlayerDesktopGUIScript pdgui = (PlayerDesktopGUIScript)this._gui;
+			pdgui.setActionPointText(this._characterManager.characterStats.maxActionPoint, this._characterManager.characterStats.maxActionPoint);
+		}
+
 	}
 
 	public virtual void hasLost(){
-		this._gui.changeGameMode(4);
+		if(this._gui != null)
+			this._gui.changeGameMode(4);
 	}
 	
 	public virtual void resetRound(){

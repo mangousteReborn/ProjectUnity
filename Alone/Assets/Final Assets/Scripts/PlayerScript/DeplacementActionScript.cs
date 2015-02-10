@@ -75,7 +75,7 @@ public class DeplacementActionScript : MonoBehaviour {
             }
             else
             {
-                if (isMoving)
+				if (isMoving && line != null)
                     drawPathTotarget(this.target);
 				/*
 				 * /?\ EventSystem.current.IsPointerOverGameObject() check if cursor is not on GUI

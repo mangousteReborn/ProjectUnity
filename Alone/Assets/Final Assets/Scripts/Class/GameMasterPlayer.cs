@@ -12,7 +12,12 @@ public class GameMasterPlayer : Player {
 		: base("GameMaster", id, gui)
 	{
 		this._isGM = true;
-		this._castedGui = (GameMasterGUIScript)gui;
+
+		if(null != gui)
+			this._castedGui = (GameMasterGUIScript)gui;
+		else
+			this._castedGui = null;
+
 		this._currPosePoint = GameData._GAME_MASTER_AP;
 		this._maxPosePoint = GameData._GAME_MASTER_AP;
 	}

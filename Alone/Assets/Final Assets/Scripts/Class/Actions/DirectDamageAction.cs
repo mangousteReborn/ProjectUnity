@@ -113,6 +113,7 @@ public class DirectDamageAction : Action {
 			return;
 		}
 
+
 	}
 	
 	public override void onActionEnd(CharacterManager cm, object[] param=null){
@@ -245,37 +246,41 @@ public class DirectDamageAction : Action {
 		go.layer = LayerMask.NameToLayer("AngleCollider");
 		//Transform t = go.AddComponent<Transform> ();
 		Transform t = go.GetComponent<Transform>();
-		t.position = this._endPosition;
+		t.position = new Vector3(this._endPosition.x, 0.9f, this._endPosition.z);
 		
 		MeshCollider mc = go.AddComponent<MeshCollider> ();
 		mc.sharedMesh = mesh;
 		mc.isTrigger = true;
 
-		bool active = true;
+		bool hasFired = false;
 		this._onCollision = delegate (Collider c){
-			if(!active)
+			if(hasFired)
 				return;
-			active = false;
-			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();
 
+			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();
+			Debug.Log("# Target is " + target);
 			// TODO : FIX ME THAT ! TargetType must change  ...
 			if(target.characterStats.hasTargetType(CharacterStats.TargetType.ai)){
 				RaycastHit hit;
 				Debug.Log("Ok, is AI");
-				if(
-					Physics.Raycast(new Vector3(this._startPosition.x, 0.5f, this._startPosition.z), new Vector3(target.character.transform.position.x,0.5f, target.character.transform.position.z), out hit,this._radius*10)
-					){
+				float y = 0.7f;
+
+				if(Physics.Raycast(
+					new Vector3(this._startPosition.x,y , this._startPosition.z), 
+			        new Vector3(target.character.transform.position.x,y, target.character.transform.position.z), 
+					out hit,
+					this._radius*10))
+				{
 					Debug.Log("Ok raycast hit");
 
 					int damages = cm.characterStats.currentStrength + this.damages;
 
-					GameData.getActionHelperDrawer().networkView.RPC("createStaticLazerRPC", RPCMode.All, cm.player.id, target.characterTransform.position, 2f);
+					GameData.getActionHelperDrawer().networkView.RPC("createStaticLazerRPC", RPCMode.All, cm.player.id, target.transform.position, 2f);
 					target.networkView.RPC("inflictDamage", RPCMode.All, damages);
-
+					hasFired = true;
 				}
 
 			}
-			active = true;
 			Debug.Log("hey ::: " + target.player.name + " is ::: " + target.characterStats.targetTypesToString());
 			
 		};

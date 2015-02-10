@@ -103,4 +103,13 @@ public class AIEntityData {
 			_instanciateObject = value;
 		}
 	}
+	
+	public CharacterManager characterManager {
+		get {
+			return _characterManager;
+		}
+		set {
+			_characterManager = value;
+		}
+	}
 }

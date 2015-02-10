@@ -98,7 +98,6 @@ GameObject:
   - 223: {fileID: 22300000}
   - 114: {fileID: 11400030}
   - 114: {fileID: 11400018}
-  - 148: {fileID: 14800000}
   m_Layer: 5
   m_Name: PlayerDefaultGUI
   m_TagString: Untagged
@@ -1056,18 +1055,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!148 &14800000
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 22400012}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -86,7 +86,13 @@ public class MoveAction : Action {
 			MidpointRounding.ToEven
 			);
 	}
-
+	public Vector3 getMaxPositionByCost(Vector3 start, Vector3 dest, float point) {
+		float dist = Vector3.Distance(start, dest);
+		float maxCost = dist * this._costPerUnit;
+		Vector3 res = new Vector3(dest.x - start.x,dest.y - start.y, dest.z - start.z);
+		res *= (point/maxCost);
+		return res;
+	}
 
 
 	// Get / Set

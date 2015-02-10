@@ -263,7 +263,7 @@ public class DirectDamageAction : Action {
 			if(target.characterStats.hasTargetType(CharacterStats.TargetType.ai)){
 				RaycastHit hit;
 				Debug.Log("Ok, is AI");
-				float y = 0.7f;
+				float y = 1f;
 
 				if(Physics.Raycast(
 					new Vector3(this._startPosition.x,y , this._startPosition.z), 

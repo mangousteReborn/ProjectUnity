@@ -331,6 +331,9 @@ public class GameManager : MonoBehaviour {
 
 	[RPC]
 	public void hotActionProcessed (NetworkViewID id, bool fromAI){
+		if(fromAI)
+			return;
+		
 		if(_playerGameStep!= 3){
 			Debug.LogError("hotActionProcessed called in non SPECTATOR step : " + _playerGameStep);
 		}

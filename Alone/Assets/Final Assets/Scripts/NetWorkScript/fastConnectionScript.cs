@@ -5,8 +5,13 @@ using System;
 
 public class fastConnectionScript : MonoBehaviour {
 
-    public bool localClientServer = false;
+   
+	[SerializeField]
+	private bool localMode;
 
+	[SerializeField]
+	private bool isServer;
+	
     [SerializeField]
     private GameObject playerPrefab;
 
@@ -44,8 +49,11 @@ public class fastConnectionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Application.runInBackground = true;
-        MasterServer.ClearHostList();
-        MasterServer.RequestHostList("MyUnityProject");
+		if(!localMode){
+			MasterServer.ClearHostList();
+			MasterServer.RequestHostList("MyUnityProject");
+		}
+     	
         StartCoroutine(wait5Second());
         GameData.init();
 	}
@@ -53,21 +61,34 @@ public class fastConnectionScript : MonoBehaviour {
     IEnumerator wait5Second()
     {
         yield return new WaitForSeconds(2);
-        HostData[] data = MasterServer.PollHostList();
-        if (data.Length == 0 && !localClientServer)
-        {
-            Network.InitializeServer(8, 8080, !Network.HavePublicAddress()); // 8, 8080
-            MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
-            //Network.InitializeSecurity();
-            //Network.InitializeServer(3, 9090, !Network.HavePublicAddress());
-            //MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
-            OnConnectedToServer();
-        }
-        else
-        {
-            Network.Connect(data[0]);
-            //Network.Connect("127.0.0.1", 9090);
-        }
+
+		if(localMode){
+			if(isServer){
+				Network.InitializeSecurity();
+				Network.InitializeServer(4, 8080, true);//!Network.HavePublicAddress()
+			} else {
+				Network.Connect("127.0.0.1", 8080);
+			}
+
+		} else {
+			HostData[] data = MasterServer.PollHostList();
+			if (data.Length == 0)
+			{
+				Network.InitializeServer(8, 8080, true ); // 8, 8080,!Network.HavePublicAddress()
+				MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
+				//Network.InitializeSecurity();
+				//Network.InitializeServer(3, 9090, !Network.HavePublicAddress());
+				//MasterServer.RegisterHost("MyUnityProject", "DefaultGameFastConnection", "");
+				OnConnectedToServer();
+			}
+			else
+			{
+				Network.Connect(data[0]);
+				//Network.Connect("127.0.0.1", 9090);
+			}
+		}
+
+        
     }
 
     void OnFailedToConnect(NetworkConnectionError error)
@@ -248,6 +269,7 @@ public class fastConnectionScript : MonoBehaviour {
     void OnApplicationQuit()
     {
         Network.Disconnect();
-        MasterServer.UnregisterHost();
+		if(!localMode)
+       		MasterServer.UnregisterHost();
     }
 }

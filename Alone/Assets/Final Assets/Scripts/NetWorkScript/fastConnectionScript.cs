@@ -24,8 +24,8 @@ public class fastConnectionScript : MonoBehaviour {
     [SerializeField]
     private GameObject gmSpawnPoint;
 
-    [SerializeField]
-    private bool _isGM;
+    //[SerializeField]
+    //private bool _isGM;
 
     [SerializeField]
     private Material _materialGameMaster;
@@ -49,16 +49,17 @@ public class fastConnectionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Application.runInBackground = true;
-		if(!localMode){
+		/*if(!localMode){
 			MasterServer.ClearHostList();
 			MasterServer.RequestHostList("MyUnityProject");
 		}
      	
-        StartCoroutine(wait5Second());
+        StartCoroutine(wait5Second());*/
         GameData.init();
+        OnConnectedToServer();
 	}
 
-    IEnumerator wait5Second()
+    /*IEnumerator wait5Second()
     {
         yield return new WaitForSeconds(2);
 
@@ -89,7 +90,7 @@ public class fastConnectionScript : MonoBehaviour {
 		}
 
         
-    }
+    }*/
 
     void OnFailedToConnect(NetworkConnectionError error)
     {
@@ -106,10 +107,10 @@ public class fastConnectionScript : MonoBehaviour {
 
     void instantiateMyPlayer()
     {
-        if (!_isGM)
+        if (!StaticVariableScript.isGameMaster)
         {
             int playerConnected = GameData.getPlayerList().Count;
-            GameObject spawnPos = spawnPoint[playerConnected];
+            GameObject spawnPos = spawnPoint[StaticVariableScript.numberClient];
             GameObject newPlayer = (GameObject)Network.Instantiate(playerPrefab, spawnPos.transform.position, Quaternion.identity, 10);
 
 			CharacterManager cm = newPlayer.GetComponent<CharacterManager>();

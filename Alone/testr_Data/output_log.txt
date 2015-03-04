@@ -12,25 +12,106 @@ Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Dat
 Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.061 seconds
+- Completed reload, in  0.056 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.dll (this message is harmless)
-Wait player(s) ..
+Initialize engine version: 4.6.0b20 (a3ecf55f1347)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 10.1]
+    Renderer: ATI Radeon HD 4800 Series (ID=0x9442)
+    Vendor:   ATI
+    VRAM:     505 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.049 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 4.6.0b20 (a3ecf55f1347)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 10.1]
+    Renderer: ATI Radeon HD 4800 Series (ID=0x9442)
+    Vendor:   ATI
+    VRAM:     505 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.050 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.dll (this message is harmless)
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Dossier Magique\Projets\Alone\ProjectUnity\Alone\testr_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 2.014648 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 900.
+Total: 1.276017 ms (FindLiveObjects: 0.044842 ms CreateObjectMapping: 0.020416 ms MarkObjects: 0.353639 ms  DeleteObjects: 0.014583 ms)
+
+UnloadTime: 2.005169 ms
+UnloadTime: 2.397818 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 900.
+Total: 1.058729 ms (FindLiveObjects: 0.043384 ms CreateObjectMapping: 0.022968 ms MarkObjects: 0.347805 ms  DeleteObjects: 0.014218 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 900.
+Total: 1.284037 ms (FindLiveObjects: 0.047030 ms CreateObjectMapping: 0.020416 ms MarkObjects: 0.546499 ms  DeleteObjects: 0.025520 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameManager.moveGMToPosition (Vector3 pos) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameManager.moveGMToPosition (Vector3 pos) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Player : Player_2 Is : ally, player, 
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Player : Player_1 Is : ally, player, 
+Player : Player_2 Is : ally, player, 
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Failed to create agent because it is not close enough to the NavMesh
+NullReferenceException: Object reference not set to an instance of an object
+  at GameManager.moveGMToPosition (Vector3 pos) [0x00000] in <filename unknown>:0 
  
-(Filename:  Line: 648)
+(Filename:  Line: -1)
 
-Opening room 0
+Player : Player_2 Is : ally, player, 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player : Player_3 Is : ally, player, 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player : Player_3 Is : ally, player, 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player : Player_3 Is : ally, player, 
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -42,11 +123,11 @@ daed min == 0 min count == 1 daed min list count == 1
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-(10.8, 0.7, 149.1)
+(10.9, 0.7, 149.7)
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-(0.0, 5.0, 132.0)
+(8.0, 5.0, 132.0)
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -54,23 +135,378 @@ daed min == 0 min count == 1 daed min list count == 1
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+# 2 : ini#NextR und
+ 
+(Fileetnoame
+  C
+(/BFillenanme: C:/dBuilfAgent5190bk/0/63dtifact51/Stb60a/oartifaerGenerated/UnityEngineDebug.cptp Stand 49one
+P
+layerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count ==d1a
+ed
+ mile == 0: Cin co:/BuildAgent/wmin d63dtfc6385190b60
+/a
+rtifename: ta:/BaildnePlayework/d63dfdc638tyEngineDebtifacts/inten: 4o)
+
+nePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.9, 0.7, 149.7)
+ 
+(Fi(e10me: C:/BuildAgent
+/w
+orilenamefc6385190b60/art/facts/work/d63dfc63yerGe0n60ratedi/UnityEngineDebug.ayeprGeneer49ed/
+U
+nit(EngineDebug.cpp Li
+ne
+: il9en
+a
+(8.0, 5.0, 132.0)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePleaeburGecpp Line: n9)
+ted/UnityEngineDebug.cpp Line0 4
+9)
+
+ilen
+a
+mFe:ename: C:/BuildAwork/dgedfc6385190bn0/artifact3/Stand85190b60/artifactsteSt/UnityEngineDebug.cpp Line: 49)
+
+neDebug.cpp Line: 49)
+
 # 2 : initNextRound
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/Staa 2 : inityeaxoGoene
+ aeeFUlayarngn n:/BebulUcpnpt LinEe: 49)
 
-daed min == 0 min count == 1 daed min list count == 1
+n385d9abegda ineDein StandabuonePlayerGenerated/Unityg.gineDebug.in count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlacpeLipp Line:
+ 
+4aed tmin == 0 m)
+
+count ed min ==dumin licount == 1 daed
+ 
+(Filename: C:/BuildAgent/ ork/d63dfc6385g.==c 0pa
+ L
+(Ficts)
+Se andalonedAgeye0nt,wora7/e 13Ufc4ty9nginb60/artifae.es)/t nd
+ainle:am4e:er
+G
+e/neirda(10t.9wtyrkn,g idfc.e3)u5
+19
+pbi60/ae: if9ac
+i
+/ltdndalot/wo10.y9r,en0r7a t4e.d51ni
+tyi0enamet i:/cpctl/dtAngaeo
+n
+tPlwyer, onerat3/.d)6
+ 3
+niFcyl3n8ien C0:6e/artgi.fcpcpt r//S6tda:nda5l9o6
+eaPtl.acy ert.n2ne reP3a2d.0eUen
+ ied
+(/FUineDebeE:g .CcDpeLbilg .9)p L
+/nw(o8r.k
+
+/d33  132603a8
+ m
+5Filena e:Cr/BuuilfaldAgent/work/d63tffc638c635519ePlb60/artifacts/StandayerGPlayeerGted/UnityEnginitenngierDeed/ULi.e: p i4eD)bu4
+)
+
+3
+
+ 
+
+(Filena
+e
+: C:/BuildAgent/work/d63dmc6385:/90b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp BuildAgent
+/
+work/d63dfc 30 1m0in /oart ifact sae/ Sin lisl count == 1
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-(10.8, 0.7, 149.1)
+(10.9, 0.7, 149.7)n
+eP
+layerGenerated/UnityEngineDebug.cpp Line: 49)
+
+artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(8.0, 1.2, 132.0)
+ 
+(Filename: C:/BuildAgent/work/#63 : in3851extRoundrt
+if
+acits/Stan C:/BnePlaygent/workted63dfc6385190b60bug.cpfacts/Standal
+o
+nePla3er
+Ge
+nerated/U: C:/BngineAgebnt/work Line: 49)51
+90d6aed min == 0 mindalontPla= 1 daed mind/Unit cEngineDe== 1
+ 
+(FLliname: C:/
+
+BuildAgent/work/d63dfc6385190b60/artifacts/Standalon# 2 : initNextRound
+ e
+(ratedamUnitC:ngineDebug.cpp Lind63dfc6
+3
+85190b60/artifacts/
+St
+andalonePlayerGenerated/UnityEngineDebug.cpp 0/ne: 49)
+
+dae#an2 : idneN miRounn 
+==
+(Pile0amem i:ateuunt ==yntgdnork d6inf 6l85ineb 4nta
+
+ti(a
+ ts/S.e2,amon2P.ayerGenegen
+te
+d/orlenamefi6eDebug.cpp Li3851/wo)
+60/aratd min == t mfin cou9nda=l6 daod/manePlayerGunt ==Se1
+ 
+(Ftlandme: C:tePlaldAgent/work/dy.epfe 6rL8519i0nie: 49i)eD
+c
+ebug.candalonePl4y)
+
+0.7, 349
+/U
+nFt
+ 
+(Filemame: C:e:/Bui/dAgene: 4ntnt)
+o
+r/d63dfc6385(110b6b 0artrtifac)t
+s/
+SFialoameo: ClaGeuneraAratetnitnyEngineneDebucpp L6ne: 49)9)s
+/Standalone2PlayerGe
+ 
+rated/Uni: y#:ngineDeitNextugk/np 
+Li
+nei85ena0
+ 
+C:artiflcts/nt/w.0lon
+(laic6namnera0ed/UnityEnantneoetunda3dfePlae: 949n0/
+a
+rtifaU
+ 
+(/ytanginlonbPl.yuplGeLerated/Un/
+
+ty3nfc min == 0 mpn cineacts=)1 
+daed on
+eP
+ lisrnaenertt==d1ldiA
+yentenamee: dC3dfuild8e:1949)o
+/artiffccts/Sta0bdalonePifayers/Sternated/ePlayerGeneeDebud/UnityLine: eDe)
+
+g.cpp Line: 49)
+
+# 2 : (nit.9, 0.7, 14
+9.
+7Fil
+ 
+(amelename: C:/BuildAgent/d63dk/d63dfc6385190b60/artifacts/StandaloyerGeneerated/UnityEngineDegineDebugLine: 49)
+
+daed min == 0 min couine:== 1 
+
+aed(0.0, 1.2, 132. == 
+1
+ 
+(Filename: C:/BuildAgent/work/d63dfc63890b60/60rtiftifasts/StandalonePlaPlerGeneraaed/UnityEated/UnityEngineDebug.c9)p 
+L
+ine: 49)
+
+(102
+, 
+0.7, 149.7)
+ 
+(Fildenamnt/work/uildAgent/work/d0/3drtifacts9Standba0/artifacts/rteandaled/eUlnyirteyeEaneg/ineDebug.cpp Lig.cpp Lin
+e
+: 49)
+
+(8.0, 1.2, 132.0)
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-(0.0, 1.2, 132.0)
+3
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-2
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ok
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ok
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnitcEurineentug.ctionPoient
+ )
+
+Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+click
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ok
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -78,7 +514,7 @@ current ActionPoint
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-current ActionPoint
+Actions count :: 0
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -90,7 +526,144 @@ Ready Player Map ::
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-1 : Player Actions : 2
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/Unity# 3.1 : add.cpp Line: 49
+)
+
+Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/URitadEn PlaDebug.cp p  
+ e:F 49nam
+e
+: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerat1d : Player nctions :eb0u
+g.
+cpp ename: C:/B
+u
+ildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/Unit1Enginlayebug.cponsLi: : 4
+9)
+Fi
+lename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artif#cts/StandaloReeadyPlayer
+ 
+(Filentyme: C:/BuildAgep Linoe: 49)
+
+c6385190b60/art Acatts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Pla 0er
+ M
+ap :enam
+e:
+( C:/Bume:A C:/Buirkd/d63dfc6385d63dfc6385190b601artifacts/StacnsdalondaloaePlayenGererated/UnatedngineDebu/.cpp LinU:n4i)
+
+Eng2ne : Playppr Litio:ns ):
+
+ 0
+1 
+: Plename: cC:/Bu :ldAg
+en
+t/worname63dfc6Build90gbnt/worrk/df3afccts/19t0nba60nearltifaGcntrst/StanidtloEngineDebug.cpp Line: 49)
+ineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49# 
+3
+.2 :: adayReadyPtions 
+: 
+0
+ 
+(File:nC:/BuildAgentamerk/d63dfc6385190b60/a:tiCf/Buactsge/Staodrk/d63ldfc638519atb6d0/artyEngineDebug.cpp Lonne: 49)
+
+enerateady Played/UnityErgiMap :: 
+ 
+pp Linne: 49)Bu
+ildAgent/awork/d63dfc :381
+ 
+(Fi0laename: C/StandadAgent/work/drGenerated/UnityEngtineDebuSg.cpp onePla 49)
+
+ner1 : PlayerE Actions : 0
+ 
+(Filename:
+ 
+C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDe#ug..c p pt rLiextRo49)
+
+  :Fillaname: C:/oBsildAgent/work/d63dfc6385190b6 : 0
+ 
+(FileSname: C:/BuildAgent/wterk/d63dfc6385190b60.cap LtifictseS:a d4lo)
+
+PlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3 : Player Actions : 1
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -98,39 +671,74 @@ Ready Player Map ::
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-damages !
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Round is OVER
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Reset Round
+# 3.2 : startNextRound
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 # 2 : initNextRound
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc63#5 2 : initNifatRtus/
+St
+aFilenonee:#C 2lu:yedAGentr/weorU
+n
+(tyldngineDeb0bg0.cptepfacts/ke:an3dalo6n
+e5Pld yer /=r 0 mit cnitnnEdai 1neeblgaycppr liner:a4o9)Un
+ =dyaed
+ m
+iF == 0 mp Liloname: C:/BuildAineg1 ntaeom
+rine63 dm ionn ==fc13 in
+ Fol60t me: 1 :ct/BuildAgent/work/d63dfc
+ 85190b60/artifacts/Stands/work/d63dfc6385190b60/artifacts/Standalonine: 49)Ge
+n
+erated/UnityEngi/eDtbug.cpp Line: 49)
 
-daed min == 0 min count == 1 daed min list count == 1
+(8.0, 0.7, 142.6)
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/Buil(Agent/work/d63dfc6
+38
+5190b60/artC:/BontlPlgaytn/awonePtld/dn6i3ydngce6/D8etbE0u60/artifactsgS.acdaplo)i
+: n(e.2
+ayerGe41
+.e)
+ 
+(Filenrat:eC:/BuildAngineDebug.cpp Line: 49)
 
-(0.5, 0.7, 139.2)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(8.20 1.2 s0S, 1 a1on2
+ 6a)ei
+ e
+(raF Ci/luelnAaemeDebork:/Bp3pfcAgee1t 0b60/
+d6tiff
+ct6Fi3e8adae: C:/aytifacts/ttwd/UaltnEdfciyerGen0b.at/a Lifitts/9)an
+dalou
+gP
+lpyerGane: 4C)/B
+ui(0AE2egine2,bug.3df)6 ne:ilenam
+e
+: C:/BuildAgent/work/d63dfc6385190b60/artifacts/ebtag.cpp nePla: 49)
 
-(-4.5, 1.2, 133.7)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+erated/UnityEngineDebug.cpp Line: 49)
 
 2
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+Tooltip !!!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 1
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -146,7 +754,462 @@ Ready Player Map ::
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDe.ug.cpp Line: 49)
+
+1 : Player Actions : 1
+ 
+(Filename: C:/Build
+A
+e(Filename: C:/63851Agent/wartifa63s/Stdnfaco6385190b60/artied/UtityE/StandDebueg.cyerGine: ated/
+U
+nityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3#1 : addR adyPlayerla
+(Fil
+e
+nFile: mC::C/BuiildAgent/work/dd63fd63c85190b60/artrtacts/Ss/StaalonePnePlayerGenerad/Un/UtyitnyEngieneDebpug.cne:  4n9: 
+
+9R
+
+adReady Player Map 
+ 
+(F
+il
+enilename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayeerraened/Unid/UEnginEnegineDebuginepp 4Line
+
+: 19)
+
+Pla1er AcltyeriAons ns 1
+ 
+(
+F
+(Fename: C:/BuiludAgent/work/d63d3dfc6385190b60/rartifacts/StandalonePlayerGenated/UnityEngiginebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filenam :49)
+
+u2ldAgPent/rwAcork/d63 0
+ 
+(851l9n0me60/a:/BuictsAgent/daork/d63dfc6385190bed/Unitifangts/SDtbagncpalonePl 4erGe
+n
+erated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Act#o 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayesGenera
+te
+d/UnetyEname: C:/Build Line: 49)/
+dReady6385190b60/ar:: 
+ 
+(sFilen#m o:.2Pl ayartAenxtatwenkn i
+tyEn6nime:0bb:/BucldAfaieet//wta
+kn
+dd2a l: 8nleab6e/yrr Aacnteroandaeon/
+ P
+nFiltermG:enereautug.cUpe Lt/nwin Debug
+.cc63L5laye 4 )A
+c
+tionsac: 1
+St
+andlelonePlay:/rGuildAgent/nwoyrk/i63dfcne85190b60/artifacts/StandalonePlayerGenerated/UnityEngin 49)u
+g3cpp : Player)Ac
+t
+io2s :: 0
+ 
+(Ficlenas :: C:
+/B
+uFilldAaent/wo:/Buil3dfc638/work/d6/artifact190b60ndartifacts/StandalonePlaytyEngineDeebug.ctpp Line: 49g)cp
+Line: 49)
+
+3 : Player AartNext : 0
+ 
+(F
+ilename: C:/BuildAdgent/work/d63dfc638551900b60/artifacts/StandalonePlayerGeneaated/UnityEEgnngDineDebup Lcine: 49) 
+4
+9)
+
 # 3.2 : startNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+OnTriggerEnter
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# Target is Player(Clone) (CharacterManager)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Tooltip !!!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Tooltip !!!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63 2 :6 3n#5190b60nit
+ 
+(FtNfxcRs/Sdnda
+(FnePlayerGiknleatadeU i:yBniidegDebacts/Sent/work/d6
+a
+yerGdaeda md/c6itn85190b60/ag.cp  Limctn 4o9una
+n
+d=adlded min ==eenemin atunt/Unotnt ed min
+ y
+iEtgiount:b C:/
+Bu
+ildlAgem49)
+o
+rk/Bud mfc63e5100b6r//rt63dcfc=S=a d1l1n9P0abd GmniaatidfUaicytnsonuDStt=ac= a1len4eFP
+i
+layerme: rC:/BuildAgent/work/dg.cpp Line: 491.9
+0.b, 0/artifacts/Stand138.2)lay
+ re(eFatlendm/:UC:/BuingiAeDebug.crk/d6(dfc 38517,4130/
+.
+2t)fa
+ 
+(Filename: C:/BuildAgnernttd/Uwork/d63dfc63851c90 L067e/ a9)
+fa
+ 
+(F2,tann2a l4mn0eCl
+(BeuGnnmeren:/d/ilnAient/w38rk5d69d0ug6085p 9rbtei 4r)ti
+s
+/S(a0/.al,o1.2,Play.0GGne
+railte/UUnityEnBuinedAgeug.cpp Line:dfc63
+
+
+(0.2, 
+/.
+2F 1le.ts/e
+:an:Filoildmleent/Genek/dAg3/t/wtyE190b6/darne63bufs./Sptainbd0/49on
+facts/
+ rtandaenaloneCelaBneitAyeEtnwodiUneDyEbgungD.9cb60p pLLiac:s 4t9nal
+one2la
+ r(Filenteme:UnityEnginegebug.cpp L/d63dfc6)
+
+5190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/cuildAgentc/work/dnt3dfc6385190b60/rti
+fFilts/amte:dalonePlayerGenerork/d6Unifc6385190b60/artif Line/Standa
+
+lonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/Bu 3ildAgeddReadyPlay3df
+c6
+38519n0me: Cartifacts/Standalone63dfc63enerated/UnittyEngineDendalonePbauegG.nerctedpUnLite: ng9)
+Debug.cppayLere: cti
+
+ns ady P
+la
+yer Maame: C:
+ u(Fidlename:orC:/d63ildAge8nt90b60/artiffacts/S90b6dalartePlayerGeneratlonePlayerGginerated/UniptyEne: neDeb
+u
+g.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 150 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.c#p 3.1 : addR
+e
+adyPlaye(
+ 
+(Fiylenamey Al:/BualdAgen: /work/le6adyc in m90p
+ 
+(arlenamct: /Standalongent/work/nd63dfc/Unit1y0bn0/iartifacts/S Lande: 49eP
+l
+ayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Fi(enaayee r:)B iKeygent/workedID: fc6385190b60/artapa 
+(Filename: nC:/BuildAgentt/w/Unitd63ngineDebu0b.cpp rLine: 49)
+
+1 :cPlsaStan Aalonens : 0
+ 
+(Filename: C:/BuiPdAgent/work/d6d/UnityEngineD0/artifacts/Se: 49)
+nReady rGeayera Medp/Unit
+yE
+ngileeDebug .C:/BLine:Age9n
+
+/2or:k/da63dfAc638519o0b60/ar
+ti
+facles/amendal:n C:/Buildnegent/work/tyEngineDebug.cp0/aLitifac49)
+t
+andalonelPlayeActions : 0
+ ni
+(yEngineDeb C:/BuilLine: 49)or
+k
+/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : #layer1 :caddoRs : e
+ 
+(Filenam
+e:
+ C:/BuildAgen/B/uildAgendfcwork/d63d60c6a385190b60Startdifanctsa/StanderloneePlnayerGgeneDebued.cpp Line: 49)gi
+n
+e3eb: Plapp Line: 49s)
+
+1R
+ 
+(Filename: C:/Bu: 
+ gnt/workame: dC:/BuildAgent/woifactsd/Stac6385190Pla0/arGenfactsd/SUnniatoyEngineDebug.cppd LniiyEngineDebun.cep : 49)
+4
+9)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.2 : starttNeetxotnd
+ 
+(F
+il
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.2 : startNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Linne: 49)
+B
+uildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+OnTriggerEnter
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# Target is EnemyBase(Clone) (CharacterManager)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Damages !
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+damages ? 20
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -154,11 +1217,532 @@ damages !
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Round is OVER
+damages !
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacds/amtgndalon
+ 
+(Filename: C:ed/UnidAgEneintDe/uw.oprk/d63dfc638
+5
+190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(F#l name: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+#
+ d :ed min == 0 min co
+ 
+(Filenamdaed mBuildAgent/unt 2/:di
+ fc6nlename: C:/BuildAgent/work/d63dfc6385190b60/artifact8/St1ndilob60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpneLeneeRGener
+a
+teddUnityEngineDebug.cpp Line: 49)ed
+ min list couno und1
+ 
+(FFlenaname C:/Build5g.A2ge n.t/wk/1k/d0c.3d8f
+ c
+(6i308a50/ C:/9abr0A/gaert/tf/nwtorn/P/Sta3nfGd3aerantPl/aynrrGeifarcatbeg.St/nUapo eLlaneeGg ienr
+
+aeebdu/gUni=p0yE L cie:tD=4 9 u)g.
+c
+mpn lp Lite: 49)nt
+ 0.2, 1
+ 
+(Filename:
+ 
+C:/lBuiledA(5en./2oik d03Ag, 1n50.29r0
+/
+dFi3edafacts/:tBuidb60ldAraeytacrse/dSatac6dUa5loEenlgaryiearuG.cpn eratode/la
+
+neiGtnyEangineDebyEnginp Lineg.cpp Line: 49)
+
+(0.2, 1.:  44()05.
+ 
+2
+,F 0.7
+mei e14m0u.ld:/e
+ t/work/d63dfc63856(dfic6e8a5ti9a0t60uitadrtiftawcrk/erGannrd3851o0beyPnliaeDebrgGcennerLaitndeU:i ynEna
+
+ed/2buy.Epp nimee::C ug.ui
+p
+ Ligent/work
+/
+d6(dfc63 5190b60/.r2, 141.0)
+ daloleenlaymree: C:/ed/UuiiylndAneDebug.cppd63dfne: 4919
+
+b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Reset Round
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+current ActionPoint
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 150 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 150 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63 3.1 : addReadyPlayefc6385190b60/artr
+ 
+(Filenamel:nePlayuildAgent/worU/d63dEfgc6eDebug.cpp Ltinaet:/ tanda
+l
+one1la: Playerrated/UnityEng
+in
+eDebuname:  :LiuildAgen
+
+worPl/dayer) K8ey 0Alloarttfacts/Stan5dalonePlayerGap
+ 
+(Felenarated/UnityEngineDebug.cd63dfc63 49)
+0
+b62/artifactr Actions :a 0
+ P
+(yFileneraet e:/BUnityEngineDebug.63dfcL6ne3 85)1
+9
+0beady Pilayts/Ster Map ::la
+ er
+(Generame: C:/BtyEldAgenDe/work/dp Line: 49)
+0
+b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 150 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/Buil#Ag3.1 :work/d63dRc6ad8P51ye0b
+60
+/ailenaacts/StaBudalongePl/ayerGenedfct638519t0b60/artifug.cppStaidnlonePlay
+
+er(Player) Key AyllocatedID: 150 Lileady49)
+
+ma(
+ a(Filenyer) C:/y AlloAgated/work/5d63dfc638519mab60
+/a
+(Filename: tC:/BluiellaAegent/rate/d/3Uni63t5yEngin/artifacts/ Lanne: nePla
+y
+RearyGPenerateap/Un: 
+ 
+(Filenname: C:/Builde: 49t/w
+
+orkadd6 3dfc638519 0b60
+/a
+rtilfacts/StanduildAgelat/worenerated/UnityEngineDebug.cpp Line: 49)
+
+layerGenelayer /UnityEng 0
+ 
+(Filepame: C:/pu Line: 49)
+
+k/1 3d fc63e8519tions : 0
+ 
+(F/ilename: C:/Byuiledergetnt/woirk/d63dfc6bug.cpp60L/artif9)
+
+acts/StanraActionsa:yer
+G
+(nFrlateme: C:/Buildingent/wo.cpp Lidfe: 49)
+0b6 0 /larer Acttsonst :d lo
+ 
+(Filename:ated/BuiildAgeint/wbrkg/d63dfcne8:1 0490/
+tifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 50 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 50 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(Player) Key AllocatedID: 50 aleady in map
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Actions count :: 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+1 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2 : Player Actions : 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3 : Player Actions : 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.2 : startNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.1 : addReadyPlayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ready Player Map :: 
+ 
+(Filename: C:/BuildAgent#work/d63dfc6ReadyPlbayertif
+acts/Samt:aCn/duildnePlat/work/er63dfcUn38tyEngine/aebug.cts/SLindea 4oneP
+l
+a1 : Plerate A/UnityEngin
+ D(Filencpme: Cne: uil
+
+Agent/work/d63 daf c: 
+ 190bl60a/arti:/BuildAgent/lonePlayedfGenerate0b60/itryEfngineDebug.cpp Line: 49a
+c
+ts2 : Plalyer Actionsne: ra
+te
+dF/UnityE: gC:/BuiugA.cpp woine: 49df
+
+61 : P0bayer Atifacts/Sta
+ 
+(Filename: C:/Brated/Uent/work/d63dfc6385 190b60/a)
+t
+fa3 s: PandalonAcPlayerGe 1
+ 
+(FilUnname: C:/BuildAgcpnp/ Lrk/d63d9)
+382190b60/artifacions : nd
+al
+onePlaayer G:/Builted/UnityEngineDebug.cpp Lb60e/a4rti
+f
+acts/St#ndalonePlaartNeeneratnd/U
+ni
+(FylenEmen g:iBnelDAeebt/wocpkp 63dfc: 49)
+
+0b63/ r:if ctl/Star ActoniPlayerGen
+er
+ated/UnityEngineDebug.cpp Line: 49)
+
+385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 3.2 : startNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+OnTriggerEnter
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# Target is EnemyBase(Clone) (CharacterManager)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Damages !
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+damages ? 20
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+damages !
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+damages !
+ 
+(Filename: C:/BuildAgent/wdramd6g3d f
+ 38519e0abe6 C:/BuildAge/Stanord/a63lfo6n8e1P0l6a/yreiraGte/Staated/Unenliytryeneriated/Ugi.ycpgpneDebug.c9p)Ln
+: 49)
+
+OnTriggerEnter
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# Target is Player(Clone) (CharacterManager)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc63#5 0 : f/arti iast oSterdal
+(FilenameGenC:rBuild/UnityEworkeDd6bug.cpp8# i0 :60/art
+tiisacoverSt
+ 
+(Finenadea C:/euildAgerGenerated/Un# yEn 1nn0tNebutRciunLdn
+ 
+4tane
+laon: C:/yBuiendAgened/work/dEn3dineDebug9cpb6# ia etif4a)N
+t
+stRounda
+ ePlilenaGmee:a eC/:/BuilngineDebwor#cp63  i6n85eNex6t9R)tu
+na
+dtd
+/ tn( limlPea e=n=nera CmiUBuiouEne in/e re duaed m.cp51i0  listt 49)nt
+
+s== 0am
+nd
+a=i l ein lou:eC :=e/nBuid miA giei coEngoi /ed 6b
+3
+dFicep3mL:5C1e9:b 6409/)arot
+kid6aefc mi5na0=d=a r0n ePilna yedruGt ==n0edeaeteG /UrittnE giitetebiceDubug.==ep0Li9
+(F 4
+9am
+
+  #:/:uildgget  ss over6r
+ 
+f 6
+(n1a9elb Cename: C:/B/uBuiladldAAgegentnnork/ted/rk/dd63dfcneDebu85190b66385100b6a0/rt
+a
+rtificts/ acts/StandalSr
+ tanilenameda:o eClayBuildAgent/work/tyEngineDee190b60/ Line: 49)ta
+ndalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+nerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/art#f 0 : fight is over
+ 
+(Filename/ 0 : f:i/Bghetu ge overn
+e/
+wFileo
+r
+n/d63df :0Buc dAgent6/s ov1r
+ 
+9Fike/nda6mdec6 /8:/1B9u0b6PdaAeaGrntiwtodctkUds3/fc63851lonnit/artifacts/SPandalonePeyyeEGnngiiatneDebin/Upp LgEcppn Lie
+n
+bu: 4c#p 
+
+ :e  fi)g
+
+#t 0 : figh
+t
+(Filener
+ 
+ C:/BuildA C:/B/wildA/gent/c63851963dfc638t5190b60/artdaflonePlaayerGenerated/UailonePlayerGue.cpp Lind/Unit)y
+
+EngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 0 daed min list count == 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -166,15 +1750,194 @@ Reset Round
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-_toRemove ++
+daed min == 0 min cou# 2 : initNextRound
+ 
+(Fnlen==me: C:ed min list cou/t == 0B
+ 
+(Filename: C:/BuildAgent/wirk/d63dfc6385190b60/artifacts/StandalonePla385190b60/artifacts/SgtandalonePlayerGene49)
+e
+d/UnityE ngineDes over
+ 
+(File 49)
+
+daed min == 0nman count == 0 Ageent/work/d63count 85190b
+6
+(Filename: C:/BuildAgent/yerGe/nerated/UnityEngineDefbcusg.cpp LineePla9er
+G
+enerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-daed min == 1 min count == 1 daed min list count == 1
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work#d 0d: fighf cs6over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line:#49): 
+fight is ov#r2 
+( initNextRoundBu
+il
+dAgent/work/dnamfc6385/BuildAgent/fac90bStdfc63loa5ts90S6eanentloneed/UntatdalonePi/UeirGbEenagcp/Ueninte.:pg4i9neD
+u9.)p
+L#ne: : ini
+t
+NdatRound
+ 
+(Filenamc: C:/BuildAgent/work/dount =# 02 d abed mxnRoinct 
+/
+oFulnna == 0
+ 
+(mFilenayee: CrCBueldAgentew:/U/nBiitlydEn1gent/wbug.fa6ctscStinne1:0 60/aye
+ar
+etdraaed m/iSyEa=gin0emnePl aypouGen e=9=
+ 
+d0U# 0yE nigmiieD oisg.
+c 
+( FLine
+e4a)ml
+e
+:naemem:B uC:0/Bgunt /cwoorkt/=/dd c6 851edb9m/irnifarti/Sfaacalonetalndtl=n Pa 
+GFnlrated/eeDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgentUwork/d63dfc6385190b60 Line: 49)
+
+Sta#dalonePlayerGenerate
+d/
+Unitename: eDenam.uippCA:/eui/lwdo
+r
+gk/t/6w3odff/d3 51f 6380/ar
+ b0/crlifScmt:/ tC:d/BlynrGelayarordkU/d63dfc6385190b60/artineecds/)
+t
+anlioen#bPg.cpfiLGetniero)ee
+
+ /
+# in i aye: Cgsiovleren gw(op Linme: C9rk/i
+dd6gent#w32 k:d6ndtfaetx8tR90s/nd/r tifaltl/SnanP: Cl/duilalgentrntPdaUeiGynnritedeUui.ypn iieeebugan)a
+pp 2 : initNextRound
+ y
+EngineDeb:iCe/  Line: 4nt)
+wo
+daed min == 0 min count == 0 daed min list count == 0
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-removing
+ 0
+ : fight is ove#
+ 0
+ : fight ik dv3rfc
+63gent/work/ 6
+rft6iia190b/S/aname: C:andal/aBuniPladerGenerated/UnityEEngineDebug.cpp  Line: 49)
+
+daed min =# 0 m: fight is oveA
+ 
+(Filename: count == 0
+ 
+(Filename: fc6:/B1/ild60/work/d6td/fca6dork/1P90dfc63nera8erti51f0actgsi/StDancbsalgo.cepllaynenrae n9)
+
+teGdn/rat#dy0n iiyfniegheebui..povpe ri 9
+(
+ 
+F9i#
+l
+0e:nfime: Cs ov r
+ l
+iniieteNe:x/twRuikund6n
+3/
+(fFci6le8na61901:b066:0/ruiftcisAStenst/oweolnykr/ele63tedflcayye8gGee9nbegr0apa rdn/: fi)ys
+n
+ginaedDe#ugPlc piph neisined/U9
+it
+E
+gineDeb#Cg/.c ldngeneN:x r4/d63
+(c63851a eb6n/arti0 mAge/St/undrk/= 63dfc638ine9rbted/UuityEngt =t=/Seb
+ug
+.lile LlaeerGenur
+iategen#/do : i/y63dfcs385vug.cpp Line: 49er
+
+9d
+bFedemiam==ctCs//StaountenePlayerGedaedw rn/dn63det cctun/Unit 60/
+ar
+tFifactsmet aL:n/BoildAg
+e
+nrG/worktfi6hd ityEn519eDe
+bFar.tip Liee:  9):a
+/
+oBeuildAg :enferra/d63/Unit5 
+(inl0/ame: C:/ s/SteagentonePl#/d63dfc63ated/UnierEr
+ti
+(File/St.cpda o/BuPlldye)t/
+worratd#3/Unc6385gt 0b6ovurr.
+ci
+(FiLisneStan):/
+
+BuildAay 2r :nerateedxtnityE63
+85
+19iDeeame: C./cuplpA eLaionePl4dy3e
+r6G8e190b6te:df/fUct is tvarn
+ dDebulgne.la:yerGnuee:atent/U
+o
+ri/t63dfng6ne figh.c0/artiea: 
+49
+)i
+andald min:== rGenera0t/w moityEount == 0 daed minrk/ d6l3
+i
+st 3 85190b60/a
+rt
+ifacts
+/S
+tandalone: Plena/wldAgent/work/d5190b60/artifacts/Standcts/StandalonePlayerGenerated/ynityEngineDebug.cpp9)in
+e
+: 4# 0
+ 
+: fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc63r8enerated/Untifactsn/StandaloneLine: 49)ne
+r
+ated/Unity#ng2 n: inig.cpp Loune: 
+ 
+()
+
+lename: C:/#uildA fight is /d63df
+c6
+(Fil90b60/artifacis/StandalonAgent/work/erated/UnityEngineDebug.cpp LiandaloneP
+l
+aderGenerate= 0 min count == 0 daed mine: 49)
+ount == 0
+ 
+(Filenam#: C:/BuildAgest/ over63d
+fc6385ame: C:/Builfactent/wandalonePlayerGener0/artifacyEngineDebunePlayerGne: 49ted
+/UnityEngineDebug.cpp Line
+ 49#
+
+# 0 : fight is ove
+r
+ 
+#Fi n aiml: is nomv: /B
+ui
+lC:/edumiA genl/wloAre/d6/wo3kdd633d3fc160b860006br6i0acftcss/acttnaalonaPloneerGenerGGnenaUni/tnetyEngDiebEuggn.cepug LLnp L: e4 4
+
+)
+
+
+# #  # i0:: fiihg ht 
+oi
+s 
+vn 
+F le/
+(FBuildleniadmgewo C/o6B3/d6Aged3fc1o9k0d6066//ar85iiact6t/srtnSaaactsPStePyderGnePleyrted/UenatyE/tnineDtyitEyginEegDne4bbug
+.
+ccppL Line: )
+
+)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -186,20 +1949,297 @@ removing
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tooltip !!!
+# 0 : fight is over
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tooltip !!!
+# 0 : fight is over
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tooltip !!!
+# 0 : fight is over
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 0 : fight is over
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-113.8, 5.0, -135.2)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-113.8, 5.0, -135.2)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-113.8, 1.2, -135.2)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-113.8, 5.0, -135.2)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-113.8, 1.2, -135.2)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-107.2, 1.2, -79.5)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-107.2, 1.2, -79.5)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+# 2 : initNextRound
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+daed min == 0 min count == 1 daed min list count == 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(10.8, 0.7, 150.9)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+(-113.8, 1.2, -135.2)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenera#ed/2n t:E gineDeebug.cpd
+ Ln(: i9le
+n
+ame: C:/Bu
+i
+lFdAename/wor:/BuildAgen851o9k0db36f06/8a190ifa0cts/iStansdSaaldolonePlyerGeGneeratedd/UitytEEnggniDneDebug.cppn Line: 
+4
+9)
+
+daed min =# 02 :miiinNextRound  
+ daed amei n:/BuildAgent/work/
+d6
+3dfle63n5a9mb60 aCtifacts/Standal:n/PlayerGenerated/UnitBEnildiAegeeugncp/ Lirk/d63dfc
+
+6d8ed min == 0 mfancctust/=S 1 daed minlayerGenerated/U1
+ n
+(FileyaEn: g:iBniedDgent/.wcrp/p6 Line: 49)0b
+/artifacts/Standa(10.PlayerG, n1r5t0d.U9i)yE
+ gi
+neDebugme: p Line: 4Ag)e
+
+nt/work/(10.8, 085190.60/art0.9)
+ s/
+Standname: C:/erGeneratnt/work/d63dfc638b5190pp L/ine: 4ct)
+
+St(n-107.2, 1.2,Generated
+/U
+nFilename: C:/Bu.cpp Line: o9)
+
+r(/d63dfc631.2, -135.2)
+if
+actse/aSe:aCn/duildAgent/work/d6atdecd3/5U90b60/artneDacts/Scpp Line: P49)eGe
+nerated/Un2t
+ ng
+iniDlbug.cpp Line: 49):/
+BuildAge2
+/
+wFolrnk/ed C6/3udfc6385190b60/ar3dffacts/StandaloneiPlays/SGeandelrnaPlayerGityEaneg/inneDebgin.cpp Linep: 49):
+ 49)
+
+# 2 :#i 2 : inRoundxt
+Ro
+(und
+ 
+(Fi en:/Bui Cd:g/Btuwork/den3dfc63851630b60dfc6if385190b60/artifacts/rGtandaltnePlayerGenerated/UnityEngineDebug.cpp Linee : 49
+)
+
+
+daed mimi n == 0 n inount =t ==daed min list cou ct unt  =
+= 
+1ile
+(Famle: me: C:i/dAgent/work/d63dfd6638d1f0c60/arti0b60t/artinfacts/Slandalonenerated/Uniratey/EnityEeDebngeDebug.cpp 49)ne
+:
+ 49)
+
+(10.(,10.8, 0.7.9)1
+ .9)
+(
+F
+iFileeane: C:/C:u/BuildAg/wor/wodr3kf/6385190b60/artifacts/St5n190b60/arteiGfaeracts/SnityEngineDlayer.GeneLrate 4/)U
+
+ni-113.8, 1.2, -.c3p.p) 
+ L
+iFine:ame: C
+:
+/B(il107.2,t/1o.k2d,3dfc6385190b60/artifacts/S a-da79.5)l
+ rGeilename: C:/BuildAgenetug.orp Li63e: 49)
+5
+190260
+ 
+(Filename/Sta:nBdiadAgeePl/aoykedrGdfnc63851/0UnityEngineDe/SugandaloLine: 49)
+eerated/Uni2yE
+ng
+inelename: C:/Biuil 49)
+n
+t/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Couldn't send RPC function '__RPCNetworkDestroy'
 
+ 
+(Filename:  Line: 2463)
+
+Failed to send remove RPCs command to network
+ 
+(Filename:  Line: 2463)
+
+Couldn't send RPC function '__RPCNetworkDestroy'
+
+ 
+(Filename:  Line: 2463)
+
+Failed to send remove RPCs command to network
+ 
+(Filename:  Line: 2463)
+
+Couldn't send RPC function '__RPCNetworkDestroy'
+
+ 
+(Filename:  Line: 2463)
+
+Failed to send remove RPCs command to network
  
 (Filename:  Line: 2463)
 

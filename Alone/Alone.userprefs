@@ -1,12 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Final Assets\Scripts\Class\Player.cs">
     <Files>
-      <File FileName="..\..\..\Battle\Assets\Script\StatsScript.cs" Line="1" Column="1" />
-      <File FileName="..\..\..\Battle\Assets\Script\GolemManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Actions\DirectDamageAction.cs" Line="257" Column="12" />
       <File FileName="..\..\..\Battle\Assets\Script\PlayerScript.cs" Line="65" Column="4" />
       <File FileName="..\..\..\Battle\Assets\Script\GUIScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\PlayerScript\CharacterManager.cs" Line="147" Column="33" />
+      <File FileName="Assets\Final Assets\Scripts\GameManager.cs" Line="103" Column="4" />
+      <File FileName="Assets\Final Assets\Scripts\Class\CharacterStats.cs" Line="527" Column="3" />
+      <File FileName="Assets\Final Assets\Scripts\EnvironnementScript\roomBattleModeScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Final Assets\Scripts\EnvironnementScript\ConnectRoomScript.cs" Line="26" Column="11" />
+      <File FileName="Assets\Final Assets\Scripts\Class\Player.cs" Line="51" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

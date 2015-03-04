@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour {
 		GameData.getActionHelperDrawer().deleteAllHelpers();
 		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
 
-		//_roomList [currentRoomBattle].GetComponent<ConnectRoomScript> ().setIsOpen (true);
+		_roomList [currentRoomBattle].GetComponent<ConnectRoomScript> ().setIsOpen (true);
 		_playersReadyMap.Clear();
 		_gameMastersMinions.Clear();
 		_hiddenEntities.Clear();
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour {
 		foreach (AIEntityData e in _toRemove) {
 			Debug.Log("removing");
 			_gameMastersMinions.Remove(e);
-			e.characterManager.networkView.RPC ("destoy", RPCMode.All);
+			e.characterManager.networkView.RPC ("destroy", RPCMode.All);
 		}
 		if(deadMinion >= minionsCount){
 			networkView.RPC ("fightIsOver", RPCMode.All);

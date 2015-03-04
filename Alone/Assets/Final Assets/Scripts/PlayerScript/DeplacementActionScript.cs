@@ -47,6 +47,9 @@ public class DeplacementActionScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(GameData.myself.isGM)
+			return;
+		
         if (networkView.isMine)
         {
 			if (_characterManager.isInFight)

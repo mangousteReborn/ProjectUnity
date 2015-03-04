@@ -78,7 +78,7 @@ public class GameMasterHandler : MonoBehaviour {
 		}
 
 		GameData.getGameManager ().networkView.RPC("instanciateHiddenEntities", RPCMode.All);
-		GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.All, _currRoom + 1);
+		GameData.getGameManager().networkView.RPC("openRoomNumber", RPCMode.All, 1);
 		Debug.Log("Opening room " + _currRoom);
 		// TODO : Move GM TO NEXT ROOM
 

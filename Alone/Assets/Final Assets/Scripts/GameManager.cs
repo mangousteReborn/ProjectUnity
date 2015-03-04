@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	Light _light;
 
+	[SerializeField]
+	GameMasterHandler _gmHandler;
+
 	/* GUI */
 	[SerializeField]
 	GameObject _playerDesktopGUIObject;
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour {
 			Debug.Log ("# 0 : fight is over");
 
 		if(GameData.myself.isGM){
+			_gmHandler.moveGMToNextRoom();
 			// TODO : check for LAST room
 		} else {
 			GameData.myself.resetFight();
@@ -177,7 +181,8 @@ public class GameManager : MonoBehaviour {
 			e.characterManager.networkView.RPC ("destroy", RPCMode.All);
 		}
 		if(deadMinion >= minionsCount){
-			networkView.RPC ("fightIsOver", RPCMode.All);
+			if(Network.isServer)
+				networkView.RPC ("fightIsOver", RPCMode.All);
 			return;
 		}
 

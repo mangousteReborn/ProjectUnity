@@ -4322,6 +4322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _basicEntityPrefab: {fileID: 100000, guid: 8fcf0a47cf0684940ba66c31af452415, type: 2}
   _light: {fileID: 2146795032}
+  _gmHandler: {fileID: 1356624000}
   _playerDesktopGUIObject: {fileID: 100010, guid: 58c9189069ac22f45aebb2c99059532f,
     type: 2}
   _gameMasterGUIObject: {fileID: 100010, guid: 86c0922701908114c96f33cd4008c01d, type: 2}

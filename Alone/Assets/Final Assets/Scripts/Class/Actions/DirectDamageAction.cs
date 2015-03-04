@@ -240,7 +240,6 @@ public class DirectDamageAction : Action {
 	}
 
 	public GameObject useMeshCollider(CharacterManager cm, Mesh mesh){
-		Debug.Log("this._mesh == " + mesh);
 
 		GameObject go = new GameObject("AngleCollider_"+(int)this._degree);
 		go.layer = LayerMask.NameToLayer("AngleCollider");
@@ -260,14 +259,36 @@ public class DirectDamageAction : Action {
 			CharacterManager target = c.gameObject.GetComponent<CharacterManager>();
 			Debug.Log("# Target is " + target);
 			// TODO : FIX ME THAT ! TargetType must change  ...
-			if(target.characterStats.hasTargetType(CharacterStats.TargetType.ai)){
-				RaycastHit hit;
-				Debug.Log("Ok, is AI");
-				float y = 1f;
 
+			bool match = true;
+
+			foreach(CharacterStats.TargetType typeMe in cm.characterStats.targetTypes){
+				foreach(CharacterStats.TargetType typeHim in target.characterStats.targetTypes){
+					if(typeMe == typeHim)
+						match = false;
+				}
+			}
+
+			if(match){
+				Debug.Log("Damages !");
+
+				int damages = cm.characterStats.currentStrength + this.damages;
+				Debug.Log("damages ? " + damages);
+				GameData.getActionHelperDrawer().networkView.RPC("createStaticLazerRPC", RPCMode.All, this._startPosition, target.transform.position, 2f);
+
+				target.networkView.RPC("inflictDamages", RPCMode.All, damages);
+				/*
+				hasFired = true;
+
+
+
+
+				
+				RaycastHit hit;
+				// new Vector3(target.character.transform.position.x,y, target.character.transform.position.z)
 				if(Physics.Raycast(
-					new Vector3(this._startPosition.x,y , this._startPosition.z), 
-			        new Vector3(target.character.transform.position.x,y, target.character.transform.position.z), 
+					new Vector3(this._startPosition.x, 1f , this._startPosition.z), 
+			       	target.character.transform.position, 
 					out hit,
 					this._radius*10))
 				{
@@ -279,9 +300,9 @@ public class DirectDamageAction : Action {
 					target.networkView.RPC("inflictDamage", RPCMode.All, damages);
 					hasFired = true;
 				}
+				*/
 
 			}
-			Debug.Log("hey ::: " + target.player.name + " is ::: " + target.characterStats.targetTypesToString());
 			
 		};
 		

@@ -10,17 +10,12 @@ public class ConnectRoomScript : MonoBehaviour {
     [SerializeField]
     private List<ListSpwan> ExitSpawn;
 
-    [SerializeField]
-    private GameObject handler;
-
     private bool isOpen = true;
 	private bool active = true;
-    private GameManager gm;
     private int currentIndex;
 
 	// Use this for initialization
 	void Start () {
-        gm = handler.GetComponent<GameManager>();
         EntryCollider.AddComponent<fireCollisionEventScript>().setFireScript(this);
         currentIndex = 0;
 	}

@@ -440,7 +440,7 @@ public class CharacterStats  {
 			return;
 		this._targetTypes.Remove (elem);
 	}
-	
+
 	public bool hasTargetType(TargetType tt){
 		return this._targetTypes.Contains (tt);
 	}

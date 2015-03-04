@@ -56,11 +56,11 @@ public class MoveHelperScript : MonoBehaviour, IActionHelper{
 
 		if (this._validated)
 			return;
-
+		Debug.Log ("click");
 		if (Input.GetMouseButton (0) && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector3 target = getTarget();
 			calcCost(target);
-
+			Debug.Log ("ok");
 			if(this._RPCcallback){
                 this._owner.networkView.RPC("validateMoveActionRPC", RPCMode.All, this._owner.player.id, this._endPoint);
 				this._RPCcallback = false;

@@ -812,7 +812,6 @@ MonoBehaviour:
   EntryCollider: {fileID: 446428662}
   ExitSpawn:
   - {fileID: 282038630}
-  handler: {fileID: 1356623992}
 --- !u!114 &282038629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,7 +1266,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 8de8b79f4f632d348b395a6e43eb2fc1, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 8de8b79f4f632d348b395a6e43eb2fc1, type: 2}
       propertyPath: handler
@@ -2072,7 +2071,6 @@ MonoBehaviour:
   EntryCollider: {fileID: 613108739}
   ExitSpawn:
   - {fileID: 546654594}
-  handler: {fileID: 1356623992}
 --- !u!114 &546654593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,7 +2308,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400040, guid: a9d66babeb2b32b4abe4a8a62fe540a8, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100044, guid: a9d66babeb2b32b4abe4a8a62fe540a8, type: 2}
       propertyPath: m_TagString
@@ -3647,7 +3645,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1029392027
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,11 +4242,13 @@ GameObject:
   - 4: {fileID: 1356623993}
   - 114: {fileID: 1356623994}
   - 148: {fileID: 1356623995}
-  - 114: {fileID: 1356623997}
   - 114: {fileID: 1356623996}
   - 114: {fileID: 1356623998}
   - 114: {fileID: 1356623999}
   - 114: {fileID: 1356624000}
+  - 114: {fileID: 1356623997}
+  - 114: {fileID: 1356624001}
+  - 120: {fileID: 1356624002}
   m_Layer: 0
   m_Name: Handler
   m_TagString: Untagged
@@ -4263,7 +4263,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1356623992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1000, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4342,6 +4342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2bff4634992846a9a388983637cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackLineRenderer: {fileID: 1356624001}
   _mouseDistanceHelperObject: {fileID: 100006, guid: e089130b926849c40a761144e4d83c07,
     type: 2}
   _moveHelperObject: {fileID: 100000, guid: 06e5c4971342e054d82885da61d88960, type: 2}
@@ -4396,6 +4397,51 @@ MonoBehaviour:
   - {fileID: 1859967616}
   - {fileID: 263641296}
   - {fileID: 46064164}
+--- !u!114 &1356624001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1356623992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c88dabfab4628f47ad6c9cb68d8ce16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lineRenderer: {fileID: 1356624002}
+  _lazerMaterial: {fileID: 2100000, guid: 3c667bf1c742d8c4da448204b0c709df, type: 2}
+--- !u!120 &1356624002
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1356623992}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials: []
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 1
+    endWidth: 1
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!1 &1413695650
 GameObject:
   m_ObjectHideFlags: 0
@@ -5010,7 +5056,6 @@ MonoBehaviour:
   - {fileID: 1690448758}
   - {fileID: 1690448757}
   - {fileID: 0}
-  handler: {fileID: 1356623992}
 --- !u!114 &1690448756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5209,7 +5254,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: ce0e154ce6a69824585cbf304729d551, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ce0e154ce6a69824585cbf304729d551, type: 2}
       propertyPath: handler
@@ -5774,7 +5819,7 @@ Transform:
   - {fileID: 641654298}
   - {fileID: 1690448754}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!23 &1987804910
 Renderer:
   m_ObjectHideFlags: 0

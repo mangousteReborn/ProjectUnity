@@ -46,7 +46,7 @@ public class Player {
 			return;
 		}
 		
-		this._characterManager.networkView.RPC("resetActionPoint", RPCMode.All);
+		this._characterManager.networkView.RPC("resetActionPointRPC", RPCMode.All);
 		this._characterManager.isInFight = false;
 
 		if(null !=this._gui){

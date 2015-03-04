@@ -16,6 +16,9 @@ using System.Collections.Generic;
 
 public class ActionHelperDrawer : MonoBehaviour {
 
+	[SerializeField]
+	AttackLineRenderer _attackLineRenderer;
+
 	/* Use for client side*/
 	[SerializeField]
 	GameObject _mouseDistanceHelperObject;
@@ -208,55 +211,19 @@ public class ActionHelperDrawer : MonoBehaviour {
 
 
 	/*
-	 * Effects on battle
-	 */
-	public void createStaticLazer(CharacterManager cm, Vector3 end, float duration){
-
-		Vector3 from = cm.characterTransform.position,
-				to = end;
-
-		to.y = 1;
-		from.y = 1;
-
-		cm.lineRenderer.SetVertexCount(2);
-		cm.lineRenderer.SetPosition(0,from);
-		cm.lineRenderer.SetPosition(1, to);
-		cm.lineRenderer.material = _lazerMaterial;
-		cm.lineRenderer.SetWidth (1f, 1f);
-		StartCoroutine(removeLine(cm, duration));
-	}
-
-	/*
 	 *  RPC
 	 */
 	[RPC]
-	public void createStaticLazerRPC(NetworkViewID id, Vector3 pos, float duration){
-		Player p = GameData.getPlayerByNetworkViewID (id);
-		CharacterManager cm = p.characterManager;
+	public void createStaticLazerRPC(Vector3 start, Vector3 end, float duration){
 
-		Vector3 from = cm.characterTransform.position,
-				to = pos;
-
-		to.y = 1;
-		from.y = 1;
-		
-		cm.lineRenderer.SetVertexCount(2);
-		cm.lineRenderer.SetPosition(0,from);
-		cm.lineRenderer.SetPosition(1, to);
-		cm.lineRenderer.material = _lazerMaterial;
-		cm.lineRenderer.SetWidth (1f, 1f);
-		StartCoroutine(removeLine(cm, duration));
-	}
-	IEnumerator removeLine(CharacterManager cm, float dur){
-		yield return new WaitForSeconds(dur);
-		cm.lineRenderer.material = _moveMaterial;
-		cm.lineRenderer.SetVertexCount(0);
-		
+		_attackLineRenderer.addLine (start, end, duration);
 	}
 	// Specific Helpers will ne puched for client side obly. After validating a helper, will put for all player a static helper
 	// as a Description of current player actions.
 	[RPC]
 	public void pushDefaultStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label){
+		if(GameData.myself.isGM)
+			return;
 		
 		GameObject go = (GameObject)Instantiate (_defaultStaticHelperObject, startPoint , Quaternion.identity);
 		LineRenderer ln = go.GetComponent<LineRenderer>();
@@ -281,7 +248,8 @@ public class ActionHelperDrawer : MonoBehaviour {
 	}
 	[RPC]
 	public void pushDirectDamageStaticHelperRPC(NetworkViewID playerID, Vector3 startPoint, Vector3 endPoint, string label , float degree, float radius, float angle){
-
+		if(GameData.myself.isGM)
+			return;
 
 		GameObject go = (GameObject)Instantiate (_directDamageObject, startPoint , Quaternion.identity);
 		DirectDamageHelperScript ddhs = go.GetComponent<DirectDamageHelperScript>();

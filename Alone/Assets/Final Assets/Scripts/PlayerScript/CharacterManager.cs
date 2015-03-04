@@ -67,7 +67,7 @@ public class CharacterManager : MonoBehaviour {
 
 			if(null != target){
 				Debug.Log("A MA FIRIN MA LAZER !!!");
-				GameData.getActionHelperDrawer().createStaticLazer(this, target, 1f);
+				GameData.getActionHelperDrawer().createStaticLazerRPC(this._characterTransform.position, target, 0.3f);
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.M)) {
@@ -152,7 +152,7 @@ public class CharacterManager : MonoBehaviour {
 
 	}
 	[RPC] // All
-	public void inflictDamage(int value){
+	public void inflictDamages(int value){
 		Debug.Log("damages !");
 		this._characterStats.currentLife -= value;
 		if(this._characterStats.currentLife <= 0){
@@ -160,13 +160,18 @@ public class CharacterManager : MonoBehaviour {
 		}
 
 		this._healthBarScript.setLife(this._characterStats.currentLife, this._characterStats.maxLife);
-
+		/*
 		String msg = value >= 0 ? ""+value : "+"+value*-1;
 		Color col = value >= 0 ? Color.red : Color.green;
 		createPopup(msg,col);
-
+		*/
 		if(this.player.gui != null)
 			this._player.gui.updateGUI();
+	}
+	[RPC]
+	public void destroy(){
+		Destroy (this._healthBar);
+		Destroy (this.gameObject);
 	}
 	[RPC] // All
 	public void setCurrentActionPointRPC(float value){
@@ -416,5 +421,11 @@ public class CharacterManager : MonoBehaviour {
 	}
 	public LineRenderer lineRenderer {
 		get {return this._lineRenderer;}
+	}
+
+	public GameObject healthBar {
+		get {
+			return _healthBar;
+		}
 	}
 }

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	private static Color _FREE_MODE_COLOR = new Color(1f,1f,1f); // index : 1
 	private static Color _PLANIF_MODE_COLOR = new Color(0,0,1f); // index : 2
 	private static Color _SPECTATOR_MODE_COLOR = new Color(1f,0,0); // index : 3
-	private static bool _LOG_STEPS = false;
+	private static bool _LOG_STEPS = true;
 	/* Game Steps */
 	// 1 : Free
 	// 2 : Planif
@@ -94,6 +94,9 @@ public class GameManager : MonoBehaviour {
     */
 	[RPC]
 	public void fightIsOver(){
+		if (_LOG_STEPS)
+			Debug.Log ("# 0 : fight is over");
+
 		if(GameData.myself.isGM){
 			// TODO : check for LAST room
 		} else {
@@ -103,6 +106,7 @@ public class GameManager : MonoBehaviour {
 		GameData.getActionHelperDrawer().deleteAllHelpers();
 		GameData.getActionHelperDrawer().deleteAllAIEntityHelpers();
 
+		//_roomList [currentRoomBattle].GetComponent<ConnectRoomScript> ().setIsOpen (true);
 		_playersReadyMap.Clear();
 		_gameMastersMinions.Clear();
 		_hiddenEntities.Clear();
@@ -116,9 +120,6 @@ public class GameManager : MonoBehaviour {
 	 * Step 1 : Entering in room (Fight Mode)
 	 */
 	public void playerEnteredRoom(){
-		if(_playerGameStep != 1){
-			Debug.LogError("playerEnteredRoom _playerGameStep is not 'FREE' : " + _playerGameStep);
-		}
 
 		networkView.RPC("initNextRound", RPCMode.All);
 	}
@@ -131,13 +132,7 @@ public class GameManager : MonoBehaviour {
 	public void initNextRound(){
 
 		if(_LOG_STEPS) Debug.Log ("# 2 : initNextRound");
-		if(_playerGameStep == 2){
-			Debug.LogError("initNextRound : Player GameStep : " +_playerGameStep);
 
-		}
-		if(_gameMastersMinions.Count <= 0){
-			Debug.LogError("GameMaster hasnt posed units");
-		}
 
 		_playersReadyMap.Clear();
 
@@ -152,7 +147,7 @@ public class GameManager : MonoBehaviour {
 				deadPlayer ++;
 		}
 		if(deadPlayer == GameData.getNonGMPlayerCount()){
-			Debug.Log("Players lost !");
+			//Debug.Log("Players lost !");
 			foreach(Player p in GameData.getPlayerList()){
 				p.hasLost();
 			}
@@ -160,7 +155,9 @@ public class GameManager : MonoBehaviour {
 		}
 
 		// Check if gamemaster lost Round
-		int deadMinion = 0;
+		int deadMinion = 0, minionsCount = _gameMastersMinions.Count;
+		List<AIEntityData> _toRemove = new List<AIEntityData> ();
+
 		foreach(AIEntityData e in _gameMastersMinions){
 			CharacterManager cm = e.tryGetCharacterManager();
 			if (null == cm){
@@ -168,13 +165,22 @@ public class GameManager : MonoBehaviour {
 				continue;
 			}
 			if(cm.characterStats.isDead){
+				Debug.Log("_toRemove ++");
+				_toRemove.Add(e);
 				deadMinion ++;
 			}
 		}
-		if(deadMinion == _gameMastersMinions.Count){
+		Debug.Log ("daed min == " + deadMinion + " min count == " + minionsCount + " daed min list count == " + _gameMastersMinions.Count);
+		foreach (AIEntityData e in _toRemove) {
+			Debug.Log("removing");
+			_gameMastersMinions.Remove(e);
+			e.characterManager.networkView.RPC ("destoy", RPCMode.All);
+		}
+		if(deadMinion >= minionsCount){
 			networkView.RPC ("fightIsOver", RPCMode.All);
 			return;
 		}
+
 
 		/* 
 		 * Reseting stats
@@ -189,7 +195,11 @@ public class GameManager : MonoBehaviour {
 		}
 		
 
-		
+		// Reset AP for Players
+		foreach(Player p in GameData.getPlayerList()) {
+			p.characterManager.networkView.RPC("resetActionPointRPC", RPCMode.All);
+		}
+
 		// Reset AP for Minions
 		foreach(AIEntityData e in _gameMastersMinions){
 			CharacterManager cm = e.tryGetCharacterManager();
@@ -350,7 +360,7 @@ public class GameManager : MonoBehaviour {
 			if (_AIReadyMap.ContainsKey(id)){
 				_AIReadyMap[id] -= 1;
 				
-				Debug.Log("AI (owner : " + owner.name + ") remaining actions : " + _AIReadyMap[id]);
+				//Debug.Log("AI (owner : " + owner.name + ") remaining actions : " + _AIReadyMap[id]);
 				
 			} else {
 				Debug.LogError("[hotActionProcessed] _AIReadyMap doesnt contains AI " + id + "(owner : " + owner.name);
@@ -359,7 +369,7 @@ public class GameManager : MonoBehaviour {
 			if (_playersReadyMap.ContainsKey(id)){
 				_playersReadyMap[id] -= 1;
 
-				Debug.Log("Player " + owner.name + " remaining actions : " + _playersReadyMap[id]);
+				//Debug.Log("Player " + owner.name + " remaining actions : " + _playersReadyMap[id]);
 
 			} else {
 				Debug.LogError("[hotActionProcessed] _playersReadyMap doesnt contains Player " + owner.name);
@@ -372,7 +382,7 @@ public class GameManager : MonoBehaviour {
 		bool f = true;
 		// Players
 		foreach (KeyValuePair<NetworkViewID, int> kvp in _playersReadyMap) {
-			Debug.Log("(Player) kvp.value == " + kvp.Value);
+
 			if(kvp.Value != 0){
 				f = false;
 				break;

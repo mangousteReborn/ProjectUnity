@@ -10,6 +10,8 @@ public class ConnectRoomScript : MonoBehaviour {
     [SerializeField]
     private List<ListSpwan> ExitSpawn;
 
+    public bool isExit;
+
     private bool isOpen = true;
 	private bool active = true;
     private int currentIndex;
@@ -56,8 +58,8 @@ public class ConnectRoomScript : MonoBehaviour {
             currentIndex++;
 
 			active = false;
-
-			GameData.getGameManager().networkView.RPC("initNextRound", RPCMode.All);
+            if(!isExit)
+			    GameData.getGameManager().networkView.RPC("initNextRound", RPCMode.All);
 
         }
     }
